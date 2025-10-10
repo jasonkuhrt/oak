@@ -3,7 +3,9 @@
   "compilerOptions": {
     "outDir": "build/esm",
     "rootDir": "src",
-    "tsBuildInfoFile": "node_modules/.cache/esm.tsbuildinfo"
+    "tsBuildInfoFile": "node_modules/.cache/esm.tsbuildinfo",
+    "noEmit": false,
+    "allowImportingTsExtensions": false
   },
   "include": ["src"],
   "exclude": ["**/*.spec.*"]

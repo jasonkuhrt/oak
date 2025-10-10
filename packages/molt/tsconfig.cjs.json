@@ -4,7 +4,9 @@
     "outDir": "build/cjs",
     "module": "commonjs",
     "moduleResolution": "node",
-    "rootDir": "src"
+    "rootDir": "src",
+    "noEmit": false,
+    "allowImportingTsExtensions": false
   },
   "include": ["src"],
   "exclude": ["**/*.spec.*"]
