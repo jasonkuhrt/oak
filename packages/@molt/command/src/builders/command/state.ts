@@ -39,7 +39,7 @@ export namespace BuilderCommandState {
 
   export type Base = {
     IsPromptEnabled: boolean
-    Schema: unknown  // The constraint type from the extension (e.g., z.ZodType)
+    Schema: unknown // The constraint type from the extension (e.g., z.ZodType)
     ParametersExclusive: {
       [label: string]: {
         Optional: boolean
@@ -47,7 +47,7 @@ export namespace BuilderCommandState {
           [canonicalName: string]: {
             NameParsed: Name.Data.NameParsed
             NameUnion: string
-            Schema: StandardSchemaV1  // Always store Standard Schema V1
+            Schema: StandardSchemaV1 // Always store Standard Schema V1
           }
         }
       }
@@ -56,7 +56,7 @@ export namespace BuilderCommandState {
       [nameExpression: string]: {
         NameParsed: Name.Data.NameParsed
         NameUnion: string
-        Schema: StandardSchemaV1  // Always store Standard Schema V1
+        Schema: StandardSchemaV1 // Always store Standard Schema V1
       }
     }
   }
@@ -83,12 +83,14 @@ export namespace BuilderCommandState {
     Label extends string,
     Value extends boolean,
   > = Obj.Replace<$State, {
-    ParametersExclusive: $State['ParametersExclusive'] & {
-      [_ in Label]: {
-        Optional: Value
-        Parameters: $State['ParametersExclusive'][_]['Parameters']
+    ParametersExclusive:
+      & $State['ParametersExclusive']
+      & {
+        [_ in Label]: {
+          Optional: Value
+          Parameters: $State['ParametersExclusive'][_]['Parameters']
+        }
       }
-    }
   }>
 
   export type SetIsPromptEnabled<$State extends Base, value extends boolean> = Obj.Replace<$State, {
@@ -100,9 +102,11 @@ export namespace BuilderCommandState {
     NameExpression extends string,
     Configuration extends ParameterConfiguration<$State>,
   > = Obj.Replace<$State, {
-    Parameters: $State['Parameters'] & {
-      [_ in NameExpression]: CreateParameter<$State, NameExpression, Configuration>
-    }
+    Parameters:
+      & $State['Parameters']
+      & {
+        [_ in NameExpression]: CreateParameter<$State, NameExpression, Configuration>
+      }
     IsPromptEnabled: $State['IsPromptEnabled'] extends true ? true : IsPromptEnabledInParameterSettings<Configuration>
   }>
 
@@ -112,24 +116,26 @@ export namespace BuilderCommandState {
     NameExpression extends string,
     Configuration extends ExclusiveParameterConfiguration<$State>,
   > = Obj.Replace<$State, {
-    ParametersExclusive: $State['ParametersExclusive'] & {
-      [_ in Label]: {
-        Optional: $State['ParametersExclusive'][_]['Optional']
-        Parameters: {
-          [_ in NameExpression as Name.Data.GetCanonicalNameOrErrorFromParseResult<Name.Parse<NameExpression>>]: {
-            // Store the schema as StandardSchemaV1 to extract Output type
-            Schema: Configuration['type'] extends StandardSchemaV1 ? Configuration['type'] : never
-            NameParsed: Name.Parse<
-              NameExpression,
-              { usedNames: GetUsedNames<$State>; reservedNames: ReservedParameterNames }
-            >
-            NameUnion: Name.Data.GetNamesFromParseResult<
-              Name.Parse<NameExpression, { usedNames: GetUsedNames<$State>; reservedNames: ReservedParameterNames }>
-            >
+    ParametersExclusive:
+      & $State['ParametersExclusive']
+      & {
+        [_ in Label]: {
+          Optional: $State['ParametersExclusive'][_]['Optional']
+          Parameters: {
+            [_ in NameExpression as Name.Data.GetCanonicalNameOrErrorFromParseResult<Name.Parse<NameExpression>>]: {
+              // Store the schema as StandardSchemaV1 to extract Output type
+              Schema: Configuration['type'] extends StandardSchemaV1 ? Configuration['type'] : never
+              NameParsed: Name.Parse<
+                NameExpression,
+                { usedNames: GetUsedNames<$State>; reservedNames: ReservedParameterNames }
+              >
+              NameUnion: Name.Data.GetNamesFromParseResult<
+                Name.Parse<NameExpression, { usedNames: GetUsedNames<$State>; reservedNames: ReservedParameterNames }>
+              >
+            }
           }
         }
       }
-    }
   }>
 
   export type CreateParameter<

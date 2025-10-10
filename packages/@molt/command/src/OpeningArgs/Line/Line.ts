@@ -118,7 +118,9 @@ export const parse = (rawLineInputs: RawInputs, parameters: Parameter[]): Parsed
         )
       } catch (error) {
         // Validation errors during deserialization are captured here and wrapped in ErrorInvalidArgument
-        const errorMessage = error instanceof Error ? error.message.replace(/^Deserialization failed: /, '') : String(error)
+        const errorMessage = error instanceof Error
+          ? error.message.replace(/^Deserialization failed: /, '')
+          : String(error)
         currentReport.errors.push(
           new Errors.ErrorInvalidArgument({
             spec: currentReport.parameter,

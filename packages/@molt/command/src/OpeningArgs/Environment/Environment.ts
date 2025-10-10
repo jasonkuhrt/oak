@@ -48,7 +48,9 @@ export const parse = (environment: RawInputs, specs: Parameter[]): ParsedInputs 
           prefix: match.namespace,
           value: match.value,
         }
-        const e = report.errors.find((_) => _.name === `ErrorDuplicateEnvArg`) as Errors.ErrorDuplicateEnvArg | undefined
+        const e = report.errors.find((_) => _.name === `ErrorDuplicateEnvArg`) as
+          | Errors.ErrorDuplicateEnvArg
+          | undefined
         if (e) {
           e.instances.push(instance)
         } else {
@@ -69,7 +71,9 @@ export const parse = (environment: RawInputs, specs: Parameter[]): ParsedInputs 
         value = parseSerializedValue(match.nameWithNegation, match.value, parameter)
       } catch (error) {
         // Validation errors during deserialization are captured here and wrapped in ErrorInvalidArgument
-        const errorMessage = error instanceof Error ? error.message.replace(/^Deserialization failed: /, '') : String(error)
+        const errorMessage = error instanceof Error
+          ? error.message.replace(/^Deserialization failed: /, '')
+          : String(error)
         errors.push(
           new Errors.ErrorInvalidArgument({
             spec: parameter,

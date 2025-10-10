@@ -40,7 +40,9 @@ export const Zod = createExtension<SupportedZodType>({
     // Reject unsupported schema types
     // z.unknown() doesn't have a meaningful CLI representation - everything is a string input
     if (zodSchema._def?.type === 'unknown') {
-      throw new Error(`Unsupported Zod schema type: z.unknown() cannot be used as a CLI parameter. Use z.string() if you want to accept any string value.`)
+      throw new Error(
+        `Unsupported Zod schema type: z.unknown() cannot be used as a CLI parameter. Use z.string() if you want to accept any string value.`,
+      )
     }
 
     // Zod v4 schemas already implement Standard Schema V1
