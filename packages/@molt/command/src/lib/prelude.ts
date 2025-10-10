@@ -73,7 +73,6 @@ export function groupBy<Item extends object, Key extends keyof Item>(
     result[keyValue]!.push(item)
   }
 
-  // eslint-disable-next-line
   return result as any
 }
 

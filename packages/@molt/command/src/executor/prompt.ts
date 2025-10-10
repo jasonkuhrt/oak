@@ -42,7 +42,6 @@ export const prompt = (
             )
         )
         .render()
-      // eslint-disable-next-line no-constant-condition
       while (true) {
         const asking = prompter.ask({
           question,

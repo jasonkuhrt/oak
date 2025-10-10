@@ -66,9 +66,7 @@ const match = workspacePkg.repository.match(/git@github.com:(.+)\/(.+)\.git/)
 if (!match) throw new Error(`Invalid repository URL: ${workspacePkg.repository}`)
 
 const repo = {
-  // eslint-disable-next-line
   owner: match[1]!,
-  // eslint-disable-next-line
   name: match[2]!,
 }
 

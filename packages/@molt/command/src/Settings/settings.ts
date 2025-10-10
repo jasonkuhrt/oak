@@ -16,7 +16,6 @@ export type PromptInput<$Schema = unknown> =
     when?: EventPatternsInputAtLeastOne<$Schema>
   }
 
-// eslint-disable-next-line
 export interface Input<$State extends BuilderCommandState.Base = BuilderCommandState.BaseEmpty> {
   description?: string
   help?: boolean
@@ -90,7 +89,6 @@ interface Environment {
   [name: string]: string | undefined
 }
 
-// eslint-disable-next-line
 export const change = (
   current: Output,
   input: Input<BuilderCommandState.BaseEmpty>,
@@ -198,17 +196,7 @@ export const change = (
 
 const isEnvironmentEnabled = (lowercaseEnv: NodeJS.ProcessEnv) => {
   return lowercaseEnv[`cli_settings_read_arguments_from_environment`]
-    // eslint-disable-next-line
     ? parseEnvironmentVariableBooleanOrThrow(lowercaseEnv[`cli_settings_read_arguments_from_environment`]!)
-    // : processEnvLowerCase[`cli_environment_arguments`]
-    // ? //eslint-disable-next-line
-    //   parseEnvironmentVariableBoolean(processEnvLowerCase[`cli_environment_arguments`]!)
-    // : processEnvLowerCase[`cli_env_args`]
-    // ? //eslint-disable-next-line
-    //   parseEnvironmentVariableBoolean(processEnvLowerCase[`cli_env_args`]!)
-    // : processEnvLowerCase[`cli_env_arguments`]
-    // ? //eslint-disable-next-line
-    //   parseEnvironmentVariableBoolean(processEnvLowerCase[`cli_env_arguments`]!)
     : true
 }
 

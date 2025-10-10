@@ -27,11 +27,8 @@ export const parse = (expression: string): NameParsed => {
    * one name that thus satisfies the return type. Its tricky to convince TS of the union though
    * so we just use non-null type casts on all the following name values.
    */
-  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
   const short = (shorts.shift() ?? null)!
-  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
   const long = (longs.shift() ?? null)!
-  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
   const canonical = (long ?? short)!
 
   return {

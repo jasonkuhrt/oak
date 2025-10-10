@@ -83,7 +83,6 @@ describe(`prompt can be toggled by check on error`, () => {
     })
     it(`check does match`, async () => {
       memoryPrompter.script.keyPress.push(...foo)
-      // eslint-disable-next-line
       const args = await tryCatch(() =>
         $.parameter(`a`, { type: s })
           .settings({ onError: `throw`, helpOnError: false, prompt: settings })
@@ -144,7 +143,6 @@ it(`can be stack of conditional prompts`, async () => {
     ],
   })
   memoryPrompter.script.keyPress.push(...foo)
-  // eslint-disable-next-line
   const args = await tryCatch(() =>
     $.parameter(`a`, { type: s.optional() })
       .settings({ onError: `throw`, helpOnError: false, prompt: settings })
