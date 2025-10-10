@@ -5,7 +5,7 @@ import type { ParameterExclusive } from './exclusive.js'
 
 export type Parameter = ParameterBasic | ParameterExclusive
 
-export type Prompt<$Schema extends MoltSchema = MoltSchema> =
+export type Prompt<$Schema = unknown> =
   | null
   | boolean
   | {

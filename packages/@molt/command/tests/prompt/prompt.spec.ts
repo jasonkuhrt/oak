@@ -1,7 +1,7 @@
 import stripAnsi from 'strip-ansi'
 import { expectType } from 'tsd'
 import { beforeEach, describe, expect, it } from 'vitest'
-import { z } from 'zod'
+import { z } from 'zod/v4'
 import type { BuilderCommandState } from '../../src/builders/command/state.js'
 import type { CommandBuilder } from '../../src/builders/command/types.js'
 import type { KeyPress } from '../../src/lib/KeyPress/index.js'

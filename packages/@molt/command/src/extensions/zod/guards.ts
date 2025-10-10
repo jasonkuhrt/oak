@@ -1,4 +1,4 @@
-import type { z } from 'zod'
+import type { z } from 'zod/v4'
 
 // Type guards for Zod v4 schemas
 // Zod v4 uses a different internal structure than v3

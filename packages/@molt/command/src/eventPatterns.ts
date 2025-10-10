@@ -5,15 +5,11 @@ import type { ParameterBasicData } from './Parameter/basic.js'
 import type { Pattern } from './Pattern/Pattern.js'
 import type { MoltSchema } from './schema/molt-schema.js'
 
-export type EventPatternsInputAtLeastOne<$Schema extends MoltSchema> = 'optional' extends
-  $Schema['metadata']['optionality']['_tag'] ? Pattern<BasicParameterParseEvent, 'result'>
-  : 'default' extends $Schema['metadata']['optionality']['_tag'] ? Pattern<BasicParameterParseEvent, 'result'>
-  : Pattern<BasicParameterParseEventAccepted | BasicParameterParseEventRejected, 'result'>
+// Event patterns are runtime-only, so we accept any schema type
+// At runtime, the actual MoltSchema will be used for pattern matching
+export type EventPatternsInputAtLeastOne<$Schema = unknown> = Pattern<BasicParameterParseEvent, 'result'>
 
-export type EventPatternsInput<$Schema extends MoltSchema> = $Schema['metadata']['optionality']['_tag'] extends
-  'optional' ? Pattern<BasicParameterParseEvent, 'result'>
-  : $Schema['metadata']['optionality']['_tag'] extends 'default' ? Pattern<BasicParameterParseEvent, 'result'>
-  : Pattern<BasicParameterParseEventAccepted | BasicParameterParseEventRejected, 'result'>
+export type EventPatternsInput<$Schema = unknown> = Pattern<BasicParameterParseEvent, 'result'>
 
 export type BasicParameterParseEvent =
   | BasicParameterParseEventAccepted

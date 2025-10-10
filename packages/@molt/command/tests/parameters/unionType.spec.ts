@@ -1,6 +1,6 @@
 import { expectType } from 'tsd'
 import { expect, it } from 'vitest'
-import { z } from 'zod'
+import { z } from 'zod/v4'
 import { $, as } from '../_/helpers.js'
 
 it(`arg static type is the union`, () => {

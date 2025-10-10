@@ -1,3 +1,4 @@
+import type { StandardSchemaV1 } from '@standard-schema/spec'
 import type { Name } from '@molt/name'
 import type { Objects, Pipe } from 'hotscript'
 import type { Simplify } from 'type-fest'
@@ -32,22 +33,34 @@ export interface BuilderCommandState {
 }
 
 export namespace BuilderCommandState {
-  export interface TypeMapper<$Schema extends MoltSchema = MoltSchema> extends HKT.Fn<$Schema, $Schema> {
-    return: $Schema
+  /**
+   * Type mapper for extension-specific schemas.
+   *
+   * This HKT maps input types to themselves for type-level inference.
+   * At RUNTIME, the actual typeMapper function wraps schemas in MoltSchema,
+   * but at the TYPE level we keep the raw schema type for InferOutput to work.
+   */
+  export interface TypeMapper<$Type = unknown> extends HKT.Fn {
+    params: $Type
+    // Return the input type as-is for type-level inference
+    // Runtime behavior is defined in constructor
+    return: $Type
   }
 
   export interface BaseEmpty extends Base {
     IsPromptEnabled: false
     ParametersExclusive: {} // eslint-disable-line
     Parameters: {} // eslint-disable-line
-    Schema: MoltSchema
-    TypeMapper: HKT.IDFn<MoltSchema<unknown>>
+    Type: StandardSchemaV1
+    Schema: StandardSchemaV1
+    TypeMapper: TypeMapper<StandardSchemaV1>
   }
 
   export type Base = {
     IsPromptEnabled: boolean
-    Schema: MoltSchema
-    TypeMapper: HKT.Fn<unknown, MoltSchema<unknown>>
+    Type: unknown
+    Schema: unknown
+    TypeMapper: TypeMapper<unknown>
     ParametersExclusive: {
       [label: string]: {
         Optional: boolean
@@ -55,7 +68,7 @@ export namespace BuilderCommandState {
           [canonicalName: string]: {
             NameParsed: Name.Data.NameParsed
             NameUnion: string
-            Schema: MoltSchema
+            Schema: unknown
           }
         }
       }
@@ -64,7 +77,7 @@ export namespace BuilderCommandState {
       [nameExpression: string]: {
         NameParsed: Name.Data.NameParsed
         NameUnion: string
-        Schema: MoltSchema
+        Schema: unknown
       }
     }
   }
@@ -81,7 +94,7 @@ export namespace BuilderCommandState {
   export type ParametersConfigBase = Record<
     string,
     {
-      schema: ParameterConfiguration['schema']
+      type: ParameterConfiguration['type']
       prompt?: Prompt<any>
     }
   >
@@ -146,7 +159,7 @@ export namespace BuilderCommandState {
             Optional: $State['ParametersExclusive'][_]['Optional']
             Parameters: {
               [_ in NameExpression as Name.Data.GetCanonicalNameOrErrorFromParseResult<Name.Parse<NameExpression>>]: {
-                Schema: HKT.Call<$State['TypeMapper'], Configuration['schema']>
+                Schema: HKT.Call<$State['TypeMapper'], Configuration['type']>
                 NameParsed: Name.Parse<
                   NameExpression,
                   { usedNames: GetUsedNames<$State>; reservedNames: ReservedParameterNames }
@@ -167,7 +180,7 @@ export namespace BuilderCommandState {
     NameExpression extends string,
     Configuration extends ParameterConfiguration<$State>,
   > = {
-    Schema: HKT.Call<$State['TypeMapper'], Configuration['schema']>
+    Schema: HKT.Call<$State['TypeMapper'], Configuration['type']>
     NameParsed: Name.Parse<NameExpression, { usedNames: GetUsedNames<$State>; reservedNames: ReservedParameterNames }>
     NameUnion: Name.Data.GetNamesFromParseResult<
       Name.Parse<NameExpression, { usedNames: GetUsedNames<$State>; reservedNames: ReservedParameterNames }>
@@ -180,7 +193,7 @@ export namespace BuilderCommandState {
   type ToArgs_<$State extends Base> = Simplify<
     & {
       [Name in keyof $State['Parameters'] & string as $State['Parameters'][Name]['NameParsed']['canonical']]:
-        InferOutput<$State['Parameters'][Name]['Schema']['standardSchema']>
+        InferOutput<$State['Parameters'][Name]['Schema']>
     }
     & {
       [Label in keyof $State['ParametersExclusive'] & string]:
@@ -189,7 +202,7 @@ export namespace BuilderCommandState {
             {
               [Name in keyof $State['ParametersExclusive'][Label]['Parameters']]: {
                 _tag: $State['ParametersExclusive'][Label]['Parameters'][Name]['NameParsed']['canonical']
-                value: InferOutput<$State['ParametersExclusive'][Label]['Parameters'][Name]['Schema']['standardSchema']>
+                value: InferOutput<$State['ParametersExclusive'][Label]['Parameters'][Name]['Schema']>
               }
             }
           >

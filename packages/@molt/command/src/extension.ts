@@ -1,7 +1,7 @@
 import type { StandardSchemaV1 } from '@standard-schema/spec'
 import type { MoltSchema } from './schema/molt-schema.js'
 
-export type SomeExtension = Extension
+export type SomeExtension = Extension<any>
 
 /**
  * Extension interface for schema libraries (Zod, Effect, etc.).
@@ -9,11 +9,19 @@ export type SomeExtension = Extension
  * Extensions convert library-specific schemas to Standard Schema V1
  * and extract metadata for better CLI help generation.
  */
-export interface Extension {
+export interface Extension<Type = unknown> {
   /**
    * Extension name (e.g., "Zod", "Effect").
    */
   name: string
+
+  /**
+   * The type constraint that this extension accepts.
+   * This is used for compile-time type checking of parameters.
+   *
+   * For example, the Zod extension would use `z.ZodType`.
+   */
+  type: Type
 
   /**
    * Convert a library-specific schema to Standard Schema V1.
@@ -36,4 +44,4 @@ export interface Extension {
 /**
  * Create an extension with the given configuration.
  */
-export const createExtension = (config: Extension): Extension => config
+export const createExtension = <Type>(config: Extension<Type>): Extension<Type> => config

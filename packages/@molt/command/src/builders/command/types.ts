@@ -15,8 +15,8 @@ import type { Objects, Pipe } from 'hotscript'
 export interface ParameterConfiguration<
   $State extends BuilderCommandState.Base = BuilderCommandState.BaseEmpty,
 > {
-  schema: $State['Schema']
-  prompt?: Prompt<HKT.Call<$State['TypeMapper'], this['schema']>>
+  type: $State['Type']
+  prompt?: Prompt<HKT.Call<$State['TypeMapper'], this['type']>>
 }
 
 export type IsHasKey<Obj extends object, Key> = Key extends keyof Obj ? true : false
@@ -37,18 +37,28 @@ export type IsPromptEnabled<P extends Prompt<any> | undefined> = P extends undef
   : true
 
 export interface CommandBuilder<$State extends BuilderCommandState.Base = BuilderCommandState.BaseEmpty> {
-  use<$Extension extends SomeExtension>(extension: $Extension): CommandBuilder<$State>
+  use<$Extension extends SomeExtension>(
+    extension: $Extension,
+  ): CommandBuilder<
+    Pipe<$State, [
+      Objects.Update<'Type', $Extension extends { type: infer __type__ } ? __type__ : $State['Type']>,
+      Objects.Update<
+        'TypeMapper',
+        $Extension extends { type: infer __type__ } ? BuilderCommandState.TypeMapper<__type__> : $State['TypeMapper']
+      >,
+    ]>
+  >
   description(this: void, description: string): CommandBuilder<$State>
   parameter<NameExpression extends string, const Configuration extends ParameterConfiguration<$State>>(
     this: void,
     name: BuilderCommandState.ValidateNameExpression<$State, NameExpression>,
     configuration: Configuration,
   ): CommandBuilder<BuilderCommandState.AddParameter<$State, NameExpression, Configuration>>
-  parameter<NameExpression extends string>(
+  parameter<NameExpression extends string, $Type extends $State['Type']>(
     this: void,
     name: BuilderCommandState.ValidateNameExpression<$State, NameExpression>,
-    schema: any,
-  ): any // Accept any extension schema type - runtime wraps in MoltSchema via typeMapper
+    type: $Type,
+  ): CommandBuilder<BuilderCommandState.AddParameter<$State, NameExpression, { type: $Type }>>
   parametersExclusive<Label extends string, $BuilderExclusive extends BuilderExclusive<$State>>(
     this: void,
     label: Label,

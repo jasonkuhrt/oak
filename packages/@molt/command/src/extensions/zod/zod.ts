@@ -1,5 +1,5 @@
 import type { StandardSchemaV1 } from '@standard-schema/spec'
-import type { z } from 'zod'
+import type { z } from 'zod/v4'
 import { createExtension } from '../../extension.js'
 import type { Optionality } from '../../schema/molt-schema.js'
 import {
@@ -14,8 +14,11 @@ import {
   isUnion,
 } from './guards.js'
 
-export const Zod = createExtension({
+export const Zod = createExtension<z.ZodType<any>>({
   name: `Zod`,
+
+  // Type-level only field for compile-time validation
+  type: undefined as any,
 
   toStandardSchema: (schema: unknown): StandardSchemaV1<any, any> => {
     // Zod v4 schemas already implement Standard Schema V1

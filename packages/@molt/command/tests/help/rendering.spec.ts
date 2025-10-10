@@ -1,7 +1,7 @@
 import stripAnsi from 'strip-ansi'
 import { describe, expect, it } from 'vitest'
 import { mockProcessExit } from 'vitest-mock-process'
-import { z } from 'zod'
+import { z } from 'zod/v4'
 import { $, s } from '../_/helpers.js'
 import { createState } from '../environment/__helpers__.js'
 

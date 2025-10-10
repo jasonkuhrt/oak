@@ -1,6 +1,6 @@
 import { beforeEach, expect } from 'vitest'
 import { describe, it } from 'vitest'
-import { z } from 'zod'
+import { z } from 'zod/v4'
 import { $, b, n, s } from '../_/helpers.js'
 import { stdout } from '../_/mocks.js'
 import { environmentManager } from './__helpers__.js'

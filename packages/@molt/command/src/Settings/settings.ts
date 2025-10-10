@@ -9,7 +9,7 @@ import type { MoltSchema } from '../schema/molt-schema.js'
 
 export type OnErrorReaction = 'exit' | 'throw'
 
-export type PromptInput<$Schema extends MoltSchema> =
+export type PromptInput<$Schema = unknown> =
   | boolean
   | {
     enabled?: boolean

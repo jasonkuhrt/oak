@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { z } from 'zod'
+import { z } from 'zod/v4'
 import { entries } from '../../../src/helpers.js'
 import { $, s } from '../../_/helpers.js'
 
