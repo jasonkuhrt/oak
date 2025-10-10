@@ -53,7 +53,9 @@ const create_ = (state: BuilderCommandState): CommandBuilder => {
       return create_(newState) as any
     },
     parameter: (nameExpression, schemaOrConfiguration: any) => {
-      const configuration = `schema` in schemaOrConfiguration ? schemaOrConfiguration : { schema: schemaOrConfiguration }
+      const configuration = `schema` in schemaOrConfiguration
+        ? schemaOrConfiguration
+        : { schema: schemaOrConfiguration }
       const prompt = configuration.prompt ?? null
       const schema = state.typeMapper(configuration.schema)
       const parameter: ParameterBasicInput = {

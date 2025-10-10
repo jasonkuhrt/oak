@@ -31,9 +31,15 @@ export const prompt = (
         .block((__) =>
           __.block(
             Term.colors.positive(parameter.name.canonical)
-              + `${parameter.type.metadata.optionality._tag === `required` ? `` : chalk.dim(` optional (press esc to skip)`)}`,
+              + `${
+                parameter.type.metadata.optionality._tag === `required`
+                  ? ``
+                  : chalk.dim(` optional (press esc to skip)`)
+              }`,
           )
-            .block((parameter.type.metadata.description && Term.colors.dim(parameter.type.metadata.description)) ?? null)
+            .block(
+              (parameter.type.metadata.description && Term.colors.dim(parameter.type.metadata.description)) ?? null,
+            )
         )
         .render()
       // eslint-disable-next-line no-constant-condition

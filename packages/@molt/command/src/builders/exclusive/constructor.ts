@@ -15,7 +15,9 @@ const create_ = (
   const builder: SomeBuilderExclusiveInitial = {
     [ExclusiveBuilderStateSymbol]: state,
     parameter: (nameExpression: string, schemaOrConfiguration) => {
-      const configuration = `schema` in schemaOrConfiguration ? schemaOrConfiguration : { schema: schemaOrConfiguration } //  prettier-ignore
+      const configuration = `schema` in schemaOrConfiguration
+        ? schemaOrConfiguration
+        : { schema: schemaOrConfiguration } //  prettier-ignore
       const newState = {
         ...state,
         parameters: [

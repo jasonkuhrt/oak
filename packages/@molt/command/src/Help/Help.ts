@@ -25,7 +25,9 @@ interface RenderSettings {
 
 export const render = (parameters_: Parameter[], settings: Settings.Output, _settings?: RenderSettings) => {
   const allParameters = parameters_
-  const parametersWithDescription = allParameters.filter((_) => _.type.metadata.description !== null && _.type.metadata.description !== undefined)
+  const parametersWithDescription = allParameters.filter((_) =>
+    _.type.metadata.description !== null && _.type.metadata.description !== undefined
+  )
   const parametersByTag = groupBy(parameters_, `_tag`)
   const basicParameters = parametersByTag.Basic ?? []
   const allParametersWithoutHelp = allParameters
@@ -103,7 +105,10 @@ export const render = (parameters_: Parameter[], settings: Settings.Output, _set
               .rows([
                 ...parametersBasicWithoutHelp.map((parameter) => [
                   parameterName(parameter),
-                  Tex.block({ maxWidth: 40, padding: { right: 9, bottom: 1 } }, SchemaRuntime.help(parameter.type, settings)),
+                  Tex.block(
+                    { maxWidth: 40, padding: { right: 9, bottom: 1 } },
+                    SchemaRuntime.help(parameter.type, settings),
+                  ),
                   Tex.block({ maxWidth: 24 }, parameterDefault(parameter)),
                   ...(isEnvironmentEnabled ? [parameterEnvironment(parameter, settings)] : []),
                 ]),

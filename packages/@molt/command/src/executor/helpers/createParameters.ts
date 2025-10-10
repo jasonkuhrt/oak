@@ -1,5 +1,5 @@
-import { Either } from 'effect'
 import { Alge } from 'alge'
+import { Either } from 'effect'
 import type { ParameterBasic, ParameterBasicInput } from '../../Parameter/basic.js'
 import { parameterBasicCreate } from '../../Parameter/basic.js'
 import type { ParameterExclusive, ParameterExclusiveInput } from '../../Parameter/exclusive.js'

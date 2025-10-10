@@ -1,8 +1,8 @@
 import { Either } from 'effect'
 import camelCase from 'lodash.camelcase'
 import { negateNamePattern } from '../helpers.js'
-import * as SchemaRuntime from '../schema/schema-runtime.js'
 import type { Parameter } from '../Parameter/types.js'
+import * as SchemaRuntime from '../schema/schema-runtime.js'
 import type { Value } from './types.js'
 
 export const stripeDashPrefix = (flagNameInput: string): string => {

@@ -45,26 +45,22 @@ export const deserialize = <___Input, ___Output>(
   // Handle string - just use the value as-is
   if (displayType === 'string') {
     parsedValue = serializedValue
-  }
-  // Handle boolean
+  } // Handle boolean
   else if (displayType === 'boolean') {
     const lower = serializedValue.toLowerCase()
     if (lower === 'true' || lower === '1' || lower === 'yes') parsedValue = true
     else if (lower === 'false' || lower === '0' || lower === 'no') parsedValue = false
     else parsedValue = serializedValue
-  }
-  // Handle number
+  } // Handle number
   else if (displayType === 'number') {
     const num = Number(serializedValue)
     parsedValue = Number.isNaN(num) ? serializedValue : num
-  }
-  // Handle literal or enum (quoted values)
+  } // Handle literal or enum (quoted values)
   else if (displayType.includes("'")) {
     // Extract the literal value without quotes
     const match = displayType.match(/'([^']+)'/)
     parsedValue = match ? match[1] : serializedValue
-  }
-  // Default: try JSON parse, fall back to string
+  } // Default: try JSON parse, fall back to string
   else {
     try {
       parsedValue = JSON.parse(serializedValue)
@@ -82,8 +78,8 @@ export const deserialize = <___Input, ___Output>(
   }
 
   if (isFailure(result)) {
-    const errors = result.issues?.map((issue) => issue.message ?? 'Validation failed').join(', ') ??
-      'Validation failed'
+    const errors = result.issues?.map((issue) => issue.message ?? 'Validation failed').join(', ')
+      ?? 'Validation failed'
     return Ef.left(new Error(`Deserialization failed: ${errors}`))
   }
 

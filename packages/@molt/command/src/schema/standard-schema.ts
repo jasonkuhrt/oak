@@ -3,8 +3,7 @@ import type { StandardSchemaV1 } from '@standard-schema/spec'
 /**
  * Extract the Output type from a Standard Schema.
  */
-export type InferOutput<$Schema> = $Schema extends StandardSchemaV1<any, infer ___Output>
-  ? ___Output
+export type InferOutput<$Schema> = $Schema extends StandardSchemaV1<any, infer ___Output> ? ___Output
   : unknown
 
 /**
