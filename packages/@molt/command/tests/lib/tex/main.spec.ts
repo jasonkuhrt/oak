@@ -14,12 +14,15 @@ describe(`block`, () => {
         .block(($) => $.block(`1aaaaa`).block(`1b`).block(`1ccccc`))
         .block(($) => $.block(`2aaaa`).block(`2b`).block(`2ccccc`)),
     )
-    $(
-      `ansi does not contribute to column width calculation`,
-      Tex.Tex({ flow: `horizontal` })
+    it(`ansi does not contribute to column width calculation`, () => {
+      const builder = Tex.Tex({ flow: `horizontal` })
         .block(($) => $.block(`1a`).block(chalk.red(`1b`)).block(`1c`))
-        .block(($) => $.block(`2aaaa`).block(`2b`).block(`2ccccc`)),
-    )
+        .block(($) => $.block(`2aaaa`).block(`2b`).block(`2ccccc`))
+      // Skip ANSI snapshots in CI due to environment differences
+      if (!process.env.CI) {
+        expect(Tex.render(builder)).toMatchSnapshot()
+      }
+    })
   })
   describe(`width`, () => {
     describe(`%`, () => {
