@@ -34,5 +34,6 @@
     "sourceMap": true,
     "declaration": true,
     "declarationMap": true
-  }
+  },
+  "exclude": ["**/build/**", "**/node_modules/**"]
 }
