@@ -16,7 +16,7 @@ export const create = (): CommandBuilder => {
 const create_ = (state: BuilderCommandState): any => {
   // Cast to any internally - the type system tracks state transformations correctly
   // at the public API level, but the implementation is too complex for TS to verify
-  const builder: InternalRootBuilder = {
+  const builder = {
     use: (extension: SomeExtension) => {
       const newState: BuilderCommandState = {
         ...state,
@@ -107,22 +107,4 @@ const create_ = (state: BuilderCommandState): any => {
   }
 
   return builder as any
-}
-
-//
-// Internal Types
-//
-
-interface Parameter {
-  (nameExpression: string, schema: unknown): InternalRootBuilder
-  (nameExpression: string, configuration: ParameterConfiguration): InternalRootBuilder
-}
-
-interface InternalRootBuilder {
-  use: (extension: SomeExtension) => InternalRootBuilder
-  description: (description: string) => InternalRootBuilder
-  settings: (newSettings: any) => InternalRootBuilder
-  parameter: Parameter
-  parametersExclusive: (label: string, builderContainer: any) => InternalRootBuilder
-  parse: (argInputs?: RawArgInputs) => any
 }

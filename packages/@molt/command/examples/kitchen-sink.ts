@@ -1,8 +1,9 @@
-// @ts-nocheck - Type instantiation excessively deep due to complex builder state
 import { z } from 'zod/v4'
 import { Command } from '../src/_entrypoints/default.js'
 import { Zod } from '../src/_entrypoints/extensions.js'
 
+// Type instantiation depth exceeded - see https://github.com/jasonkuhrt/molt/issues/XXX
+// @ts-ignore - builder type inference
 const args = Command.create()
   .use(Zod)
   .description(
