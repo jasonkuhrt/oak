@@ -59,7 +59,7 @@ export const parameterExclusiveCreate = (
       environment,
       name,
       // See comment/code below: (1)
-      group: null as any, // eslint-disable-line
+      group: null as any,
     }
   })
 

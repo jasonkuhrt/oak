@@ -99,7 +99,7 @@ export const parse = (rawLineInputs: RawInputs, parameters: Parameter[]): Parsed
       currentReport = {
         parameter,
         errors: [],
-        value: PENDING_VALUE, // eslint-disable-line
+        value: PENDING_VALUE,
         source: {
           _tag: `line`,
           name: flagNameNoDashPrefix,
@@ -157,5 +157,4 @@ const stripeShortFlagPrefixUnsafe = (lineInput: string) => lineInput.trim().slic
 
 const addShortFlagPrefix = (lineInput: string) => `-${lineInput}`
 
-// eslint-disable-next-line
 const PENDING_VALUE = `__PENDING__` as any

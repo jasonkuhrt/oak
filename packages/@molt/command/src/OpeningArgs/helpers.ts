@@ -17,7 +17,7 @@ export const parseSerializedValue = (name: string, serializedValue: string, spec
     throw either.left
   }
   // TODO make return unknown
-  const value = either.right // eslint-disable-line
+  const value = either.right
   const type = typeof value
   if (type === `string`) return { _tag: `string`, value: value as string }
   if (type === `number`) return { _tag: `number`, value: value as number }

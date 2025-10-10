@@ -43,8 +43,8 @@ export type BuilderExclusiveAfterDefault<$State extends BuilderCommandState.Base
 }
 
 export interface SomeParameter<$State extends BuilderCommandState.Base> {
-  (nameExpression: any, type: $State['Schema']): any // eslint-disable-line
-  (nameExpression: any, configuration: ExclusiveParameterConfiguration<$State>): any // eslint-disable-line
+  (nameExpression: any, type: $State['Schema']): any
+  (nameExpression: any, configuration: ExclusiveParameterConfiguration<$State>): any
 }
 
 export type SomeBuilderExclusiveInitial<
@@ -52,8 +52,8 @@ export type SomeBuilderExclusiveInitial<
 > = {
   [ExclusiveBuilderStateSymbol]: BuilderParameterExclusiveState<$State>
   parameter: SomeParameter<$State>
-  optional: any // eslint-disable-line
-  default: (tag: any, value: any) => any // eslint-disable-line
+  optional: any
+  default: (tag: any, value: any) => any
 }
 
 export type BuilderMutuallyExclusiveAfterOptional<$State extends BuilderCommandState.Base> =

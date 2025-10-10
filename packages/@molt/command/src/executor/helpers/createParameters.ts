@@ -69,5 +69,5 @@ const helpParameter: ParameterBasicInput = {
   _tag: `Basic`,
   type: booleanSchema,
   nameExpression: `-h --help`,
-  prompt: false as any, // eslint-disable-line
+  prompt: false as any,
 }

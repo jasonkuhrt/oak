@@ -60,7 +60,7 @@ export const render = (parameters_: Parameter[], settings: Settings.Output, _set
   const parametersExclusiveGroups = Object.values(
     groupBy(parametersByTag.Exclusive ?? [], (_) => _.group.label),
   ).map(
-    (_) => _[0]!.group, // eslint-disable-line
+    (_) => _[0]!.group,
   )
 
   const noteItems: (Tex.Block | string | null)[] = []

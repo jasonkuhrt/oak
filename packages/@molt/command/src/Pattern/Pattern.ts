@@ -25,7 +25,7 @@ export type PatternForObject<Data extends SomeDataObject, DiscriminantProperty e
     >
   }
   & (
-    null extends DiscriminantProperty ? {} // eslint-disable-line
+    null extends DiscriminantProperty ? {}
       : { [K in Exclude<DiscriminantProperty, null>]: Data[K] }
   )
 

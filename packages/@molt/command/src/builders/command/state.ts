@@ -32,8 +32,8 @@ export interface BuilderCommandState {
 export namespace BuilderCommandState {
   export interface BaseEmpty extends Base {
     IsPromptEnabled: false
-    ParametersExclusive: {} // eslint-disable-line
-    Parameters: {} // eslint-disable-line
+    ParametersExclusive: {}
+    Parameters: {}
     Schema: StandardSchemaV1
   }
 

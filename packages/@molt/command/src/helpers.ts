@@ -73,7 +73,7 @@ export const entries = <O extends object>(
 ): Exclude<{ [k in keyof O]: [k, O[k]] }[keyof O], undefined>[] => Object.entries(obj) as any
 
 export const casesExhausted = (_: never): never => {
-  throw new Error(`Cases exhausted: ${_}`) // eslint-disable-line
+  throw new Error(`Cases exhausted: ${_}`)
 }
 
 export namespace HKT {

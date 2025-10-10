@@ -168,7 +168,7 @@ export const parse = ({
   const exclusiveGroupSpecsByGroupLabel = groupBy(specsByVariant.Exclusive ?? [], (spec) => spec.group.label)
 
   for (const specs of Object.values(exclusiveGroupSpecsByGroupLabel)) {
-    const group = specs[0]!.group // eslint-disable-line
+    const group = specs[0]!.group
     const argsToGroup = specs
       .map((_) => lineParseResult.reports[_.name.canonical] ?? envParseResult.reports[_.name.canonical])
       .filter((_): _ is ArgumentReport<ParameterExclusive> => _ !== undefined)
@@ -231,7 +231,7 @@ export const parse = ({
     }
 
     if (argsToGroup.length === 1) {
-      const arg = argsToGroup[0]! // eslint-disable-line
+      const arg = argsToGroup[0]!
 
       // Check for errors during parsing
       if (arg.errors.length > 0) {

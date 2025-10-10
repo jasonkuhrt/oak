@@ -1,6 +1,5 @@
 import { Name } from '@molt/name'
 import type { BuilderCommandState } from '../builders/command/state.js'
-import type { HKT } from '../helpers.js'
 import type { Pam } from '../lib/Pam/index.js'
 import type { MoltSchema } from '../schema/molt-schema.js'
 import type { Settings } from '../Settings/index.js'
@@ -28,7 +27,7 @@ export const parameterBasicCreate = (
 ): ParameterBasic => {
   const name = Name.parse(input.nameExpression)
   const environment = processEnvironment(settings, name)
-  const prompt = input.prompt as boolean | null | { enabled?: boolean; when?: object } // eslint-disable-line
+  const prompt = input.prompt as boolean | null | { enabled?: boolean; when?: object }
   const promptEnabled = prompt === true
     ? true
     : prompt === false
@@ -43,7 +42,7 @@ export const parameterBasicCreate = (
     name,
     prompt: {
       enabled: promptEnabled,
-      when: promptEnabledWhen as any, // eslint-disable-line
+      when: promptEnabledWhen as any,
     },
     type: input.type,
   }

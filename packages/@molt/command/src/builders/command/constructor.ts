@@ -72,7 +72,7 @@ const create_ = (state: BuilderCommandState): any => {
         _tag: `Basic`,
         type: moltSchema,
         nameExpression,
-        prompt: prompt as any, // eslint-disable-line
+        prompt: prompt as any,
       }
       const newState = {
         ...state,
@@ -84,12 +84,12 @@ const create_ = (state: BuilderCommandState): any => {
       return create_(newState)
     },
     parametersExclusive: (label: string, builderContainer: any) => {
-      const exclusiveBuilderState = builderContainer(ExclusiveBuilder.create(label, state))[ExclusiveBuilderStateSymbol] // eslint-disable-line
+      const exclusiveBuilderState = builderContainer(ExclusiveBuilder.create(label, state))[ExclusiveBuilderStateSymbol]
       const newState = {
         ...state,
         parameterInputs: {
           ...state.parameterInputs,
-          [label]: exclusiveBuilderState, // eslint-disable-line
+          [label]: exclusiveBuilderState,
         },
       }
       return create_(newState)

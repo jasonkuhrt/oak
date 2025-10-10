@@ -122,7 +122,6 @@ export const lookupEnvironmentVariableArgument = (
 
   // dump(prefixes, environment, parameterName)
 
-  // eslint-disable-next-line
   const environmentVariable = args[0]!
   return environmentVariable
 }
