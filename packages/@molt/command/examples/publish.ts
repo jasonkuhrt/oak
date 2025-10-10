@@ -8,7 +8,7 @@ const args = Command.create()
   .parameter(`githubToken`, z.string())
   .parameter(`publish`, z.boolean().default(true))
   .parameter(`githubRelease`, z.boolean().default(true))
-  .parameter(`p package`, z.enum([`@molt/command`, `@molt/name`, `molt`]))
+  .parameter(`p package`, z.enum([`@molt/command`, `molt`]))
   .parametersExclusive(`method`, (__: any) =>
     __.parameter(`v version`, z.string().regex(semverRegex()))
       .parameter(`b bump`, z.enum([`major`, `minor`, `patch`])))

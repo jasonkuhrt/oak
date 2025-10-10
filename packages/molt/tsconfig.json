@@ -5,10 +5,5 @@
   },
   "include": ["./src"],
   // Prevent auto-import from build
-  "exclude": ["./build"],
-  "references": [
-    {
-      "path": "../@molt/name"
-    }
-  ]
+  "exclude": ["./build"]
 }

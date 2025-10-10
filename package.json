@@ -12,7 +12,6 @@
     "check:lint": "oxlint .",
     "check:types": "tsc --noEmit",
     "release:@molt/command": "pnpm release --package @molt/command",
-    "release:@molt/name": "pnpm release --package @molt/name",
     "release:molt": "pnpm release --package molt",
     "release": "tsx scripts/release.ts"
   },
