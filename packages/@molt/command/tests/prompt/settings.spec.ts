@@ -27,8 +27,8 @@ describe(`parameter level`, () => {
   })
 })
 
-// NOTE: Prompt tests using `{ type: schema }` syntax are skipped due to prompting not being implemented for MoltSchema yet
-describe.skip(`command level`, () => {
+// NOTE: Testing if prompting works with Standard Schema V1 after migration
+describe(`command level`, () => {
   it(`passing object makes enabled default to true`, async () => {
     memoryPrompter.script.keyPress.push(...foo)
     const args = await $.parameter(`a`, { type: s })
