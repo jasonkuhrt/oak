@@ -26,7 +26,7 @@ export interface ParameterExclusiveInput<
 
 export interface ParameterExclusive {
   _tag: 'Exclusive'
-  name: Cli.FlagName.FlagName
+  name: Cli.FlagName
   type: MoltSchema
   description: string | null
   environment: Environment
@@ -50,7 +50,7 @@ export const parameterExclusiveCreate = (
   settings: Settings.Output,
 ): ParameterExclusive[] => {
   const parameters: ParameterExclusive[] = input.parameters.map((_) => {
-    const name = S.decodeSync(Cli.FlagName.FlagName.String)(_.nameExpression)
+    const name = S.decodeSync(Cli.FlagName.String)(_.nameExpression)
     const environment = processEnvironment(settings, name)
     return {
       _tag: `Exclusive`,

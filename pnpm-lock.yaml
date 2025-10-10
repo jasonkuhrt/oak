@@ -76,8 +76,8 @@ importers:
         specifier: ^1.0.0
         version: 1.0.0
       '@wollybeard/kit':
-        specifier: ^0.77.0
-        version: 0.77.0(@effect/platform@0.92.1)(effect@3.18.4)
+        specifier: ^0.78.0
+        version: 0.78.0(@effect/platform@0.92.1)(effect@3.18.4)
       alge:
         specifier: 0.8.1
         version: 0.8.1
@@ -152,9 +152,6 @@ importers:
 
   packages/molt:
     dependencies:
-      '@molt/name':
-        specifier: ../types
-        version: link:../types
       zod:
         specifier: ^4.0.0
         version: 4.1.12
@@ -917,8 +914,8 @@ packages:
       '@vltpkg/spec': 0.0.0-30
     dev: false
 
-  /@wollybeard/kit@0.77.0(@effect/platform@0.92.1)(effect@3.18.4):
-    resolution: {integrity: sha512-RXNbN9JCDZUx577fZ3d9PFMvrvJtZKNw54MesXVk17nLCUOAulDrcBZt+QRVQzugANjOkAX/RX89LtAoAJ0SXQ==}
+  /@wollybeard/kit@0.78.0(@effect/platform@0.92.1)(effect@3.18.4):
+    resolution: {integrity: sha512-uogjjhWZSlofiZT1TUGO6gv65C22fFxhQmNXxuX+At1A/aAJu6ikdfj2axvFGgOknsbqWEXrhcYPdIej+9i4ew==}
     peerDependencies:
       '@effect/platform': '>=0.90.0 <1.0.0'
       effect: ^3.17.0

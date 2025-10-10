@@ -6,7 +6,7 @@ import type { Environment } from './types.js'
 /**
  * Parse the specification for a parameter's environment support.
  */
-export const processEnvironment = (settings: Settings.Output, name: Cli.FlagName.FlagName): Environment => {
+export const processEnvironment = (settings: Settings.Output, name: Cli.FlagName): Environment => {
   const hasEnvironment = settings.parameters.environment[name.canonical]?.enabled
     ?? settings.parameters.environment.$default.enabled
   return hasEnvironment
