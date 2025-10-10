@@ -39,7 +39,7 @@ export const Zod = createExtension<SupportedZodType>({
 
     // Reject unsupported schema types
     // z.unknown() doesn't have a meaningful CLI representation - everything is a string input
-    if (zodSchema._def?.type === 'unknown') {
+    if (zodSchema._def?.type === `unknown`) {
       throw new Error(
         `Unsupported Zod schema type: z.unknown() cannot be used as a CLI parameter. Use z.string() if you want to accept any string value.`,
       )
@@ -87,25 +87,25 @@ const extractZodMetadata = (
     optionality = { _tag: `required` }
   }
 
-  let displayType = 'unknown'
+  let displayType = `unknown`
   let refinements: string[] = []
   let priority = 0
   let schemaType: SchemaType
 
   if (isString(zodSchema)) {
-    displayType = 'string'
+    displayType = `string`
     refinements = extractStringRefinements(zodSchema)
     priority = 1
-    schemaType = { _tag: 'string' }
+    schemaType = { _tag: `string` }
   } else if (isNumber(zodSchema)) {
-    displayType = 'number'
+    displayType = `number`
     refinements = extractNumberRefinements(zodSchema)
     priority = 2
-    schemaType = { _tag: 'number' }
+    schemaType = { _tag: `number` }
   } else if (isBoolean(zodSchema)) {
-    displayType = 'boolean'
+    displayType = `boolean`
     priority = 3
-    schemaType = { _tag: 'boolean' }
+    schemaType = { _tag: `boolean` }
   } else if (isEnum(zodSchema)) {
     // Check if this is a native enum or regular enum
     // Native enums have _def.entries (object), regular enums have _def.values (array)
@@ -113,21 +113,21 @@ const extractZodMetadata = (
       // Native enum
       const enumObj = schema._def.entries
       const members = Object.values(enumObj)
-      displayType = members.map((m) => `'${m}'`).join(' | ')
+      displayType = members.map((m) => `'${m}'`).join(` | `)
       priority = 4
-      schemaType = { _tag: 'enum', values: members }
+      schemaType = { _tag: `enum`, values: members }
     } else {
       // Regular enum
       const members = schema._def?.values as string[] ?? []
-      displayType = members.map((m) => `'${m}'`).join(' | ')
+      displayType = members.map((m) => `'${m}'`).join(` | `)
       priority = 4
-      schemaType = { _tag: 'enum', values: members }
+      schemaType = { _tag: `enum`, values: members }
     }
   } else if (isLiteral(zodSchema)) {
     const value = schema._def?.value
-    displayType = typeof value === 'string' ? `'${value}'` : String(value)
+    displayType = typeof value === `string` ? `'${value}'` : String(value)
     priority = 5
-    schemaType = { _tag: 'literal', value }
+    schemaType = { _tag: `literal`, value }
   } else if (isDefault(zodSchema)) {
     return extractZodMetadata(schema._def?.innerType, { description, optionality })
   } else if (isOptional(zodSchema)) {
@@ -135,9 +135,9 @@ const extractZodMetadata = (
   } else if (isUnion(zodSchema)) {
     const options = (schema._def?.options as z.ZodType[]) ?? []
     const membersMetadata = options.map((opt) => extractZodMetadata(opt))
-    displayType = membersMetadata.map((m) => m.helpHints?.displayType ?? 'unknown').join(' | ')
+    displayType = membersMetadata.map((m) => m.helpHints?.displayType ?? `unknown`).join(` | `)
     priority = 0
-    schemaType = { _tag: 'union', members: membersMetadata.map((m) => m.schemaType) }
+    schemaType = { _tag: `union`, members: membersMetadata.map((m) => m.schemaType) }
 
     return {
       description,
@@ -151,7 +151,7 @@ const extractZodMetadata = (
     }
   } else {
     // Fallback for unknown types
-    schemaType = { _tag: 'string' }
+    schemaType = { _tag: `string` }
   }
 
   return {
@@ -174,20 +174,20 @@ const extractStringRefinements = (schema: z.ZodString): string[] => {
   const checks = (schema as any)._def?.checks ?? []
 
   for (const check of checks) {
-    const kind = (check as any).kind
-    if (kind === 'min') refinements.push(`min length: ${(check as any).value}`)
-    else if (kind === 'max') refinements.push(`max length: ${(check as any).value}`)
-    else if (kind === 'length') refinements.push(`length: ${(check as any).value}`)
-    else if (kind === 'email') refinements.push('email format')
-    else if (kind === 'url') refinements.push('URL format')
-    else if (kind === 'uuid') refinements.push('UUID format')
-    else if (kind === 'cuid') refinements.push('CUID format')
-    else if (kind === 'cuid2') refinements.push('CUID2 format')
-    else if (kind === 'ulid') refinements.push('ULID format')
-    else if (kind === 'regex') refinements.push(`pattern: ${(check as any).regex}`)
-    else if (kind === 'startsWith') refinements.push(`starts with: "${(check as any).value}"`)
-    else if (kind === 'endsWith') refinements.push(`ends with: "${(check as any).value}"`)
-    else if (kind === 'includes') refinements.push(`contains: "${(check as any).value}"`)
+    const kind = (check ).kind
+    if (kind === `min`) refinements.push(`min length: ${(check ).value}`)
+    else if (kind === `max`) refinements.push(`max length: ${(check ).value}`)
+    else if (kind === `length`) refinements.push(`length: ${(check ).value}`)
+    else if (kind === `email`) refinements.push(`email format`)
+    else if (kind === `url`) refinements.push(`URL format`)
+    else if (kind === `uuid`) refinements.push(`UUID format`)
+    else if (kind === `cuid`) refinements.push(`CUID format`)
+    else if (kind === `cuid2`) refinements.push(`CUID2 format`)
+    else if (kind === `ulid`) refinements.push(`ULID format`)
+    else if (kind === `regex`) refinements.push(`pattern: ${(check ).regex}`)
+    else if (kind === `startsWith`) refinements.push(`starts with: "${(check ).value}"`)
+    else if (kind === `endsWith`) refinements.push(`ends with: "${(check ).value}"`)
+    else if (kind === `includes`) refinements.push(`contains: "${(check ).value}"`)
   }
 
   return refinements
@@ -201,12 +201,12 @@ const extractNumberRefinements = (schema: z.ZodNumber): string[] => {
   const checks = (schema as any)._def?.checks ?? []
 
   for (const check of checks) {
-    const kind = (check as any).kind
-    if (kind === 'min') refinements.push(`min: ${(check as any).value}`)
-    else if (kind === 'max') refinements.push(`max: ${(check as any).value}`)
-    else if (kind === 'int') refinements.push('integer')
-    else if (kind === 'multipleOf') refinements.push(`multiple of: ${(check as any).value}`)
-    else if (kind === 'finite') refinements.push('finite')
+    const kind = (check ).kind
+    if (kind === `min`) refinements.push(`min: ${(check ).value}`)
+    else if (kind === `max`) refinements.push(`max: ${(check ).value}`)
+    else if (kind === `int`) refinements.push(`integer`)
+    else if (kind === `multipleOf`) refinements.push(`multiple of: ${(check ).value}`)
+    else if (kind === `finite`) refinements.push(`finite`)
   }
 
   return refinements

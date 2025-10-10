@@ -25,7 +25,7 @@ export const validateWithStandardSchema = <___Input, ___Output>(
   schema: StandardSchemaV1<___Input, ___Output>,
   value: unknown,
 ): StandardSchemaV1.Result<___Output> | Promise<StandardSchemaV1.Result<___Output>> => {
-  return schema['~standard'].validate(value)
+  return schema[`~standard`].validate(value)
 }
 
 /**
@@ -34,7 +34,7 @@ export const validateWithStandardSchema = <___Input, ___Output>(
 export const isSuccess = <___Output>(
   result: StandardSchemaV1.Result<___Output>,
 ): result is StandardSchemaV1.SuccessResult<___Output> => {
-  return 'value' in result
+  return `value` in result
 }
 
 /**
@@ -43,5 +43,5 @@ export const isSuccess = <___Output>(
 export const isFailure = <___Output>(
   result: StandardSchemaV1.Result<___Output>,
 ): result is StandardSchemaV1.FailureResult => {
-  return 'issues' in result
+  return `issues` in result
 }

@@ -37,19 +37,19 @@ const booleanSchema: MoltSchema<boolean, boolean> = {
   standardSchema: {
     '~standard': {
       version: 1,
-      vendor: 'molt',
+      vendor: `molt`,
       validate: (value) => {
-        if (typeof value === 'boolean') {
+        if (typeof value === `boolean`) {
           return { value }
         }
-        if (value === 'true' || value === '1') {
+        if (value === `true` || value === `1`) {
           return { value: true }
         }
-        if (value === 'false' || value === '0') {
+        if (value === `false` || value === `0`) {
           return { value: false }
         }
         return {
-          issues: [{ message: 'Expected boolean value' }],
+          issues: [{ message: `Expected boolean value` }],
         }
       },
     },
@@ -57,9 +57,9 @@ const booleanSchema: MoltSchema<boolean, boolean> = {
   metadata: {
     description: undefined,
     optionality: { _tag: `default`, getValue: () => false },
-    schema: { _tag: 'boolean' },
+    schema: { _tag: `boolean` },
     helpHints: {
-      displayType: 'boolean',
+      displayType: `boolean`,
       priority: 3,
     },
   },

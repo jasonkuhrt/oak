@@ -22,7 +22,7 @@ const create_ = (state: BuilderCommandState): any => {
         ...state,
         extension,
       }
-      return create_(newState) as any
+      return create_(newState) 
     },
     description: (description: string) => {
       const newState = {
@@ -34,20 +34,20 @@ const create_ = (state: BuilderCommandState): any => {
           },
         ],
       }
-      return create_(newState) as any
+      return create_(newState) 
     },
     settings: (newSettings: any) => {
       const newState = {
         ...state,
         newSettingsBuffer: [...state.newSettingsBuffer, newSettings],
       }
-      return create_(newState) as any
+      return create_(newState) 
     },
     parameter: (nameExpression: string, typeOrConfiguration: any) => {
       // Check if this is a schema (has ~standard property) or a configuration object
       // Standard Schema V1 schemas have a '~standard' property
-      const isSchema = typeOrConfiguration && typeof typeOrConfiguration === 'object'
-        && '~standard' in typeOrConfiguration
+      const isSchema = typeOrConfiguration && typeof typeOrConfiguration === `object`
+        && `~standard` in typeOrConfiguration
       const configuration = isSchema
         ? { type: typeOrConfiguration }
         : typeOrConfiguration
@@ -55,7 +55,7 @@ const create_ = (state: BuilderCommandState): any => {
 
       // Convert raw schema to MoltSchema using extension
       if (!state.extension) {
-        throw new Error('No extension configured. Call .use() first (e.g., .use(Zod)).')
+        throw new Error(`No extension configured. Call .use() first (e.g., .use(Zod)).`)
       }
       const standardSchema = state.extension.toStandardSchema(configuration.type)
       const metadata = state.extension.extractMetadata?.(configuration.type) ?? {
@@ -81,7 +81,7 @@ const create_ = (state: BuilderCommandState): any => {
           [nameExpression]: parameter,
         },
       }
-      return create_(newState) as any
+      return create_(newState) 
     },
     parametersExclusive: (label: string, builderContainer: any) => {
       const exclusiveBuilderState = builderContainer(ExclusiveBuilder.create(label, state))[ExclusiveBuilderStateSymbol] // eslint-disable-line
@@ -92,7 +92,7 @@ const create_ = (state: BuilderCommandState): any => {
           [label]: exclusiveBuilderState, // eslint-disable-line
         },
       }
-      return create_(newState) as any
+      return create_(newState) 
     },
     parse: (argInputs?: RawArgInputs) => {
       const argInputsEnvironment = argInputs?.environment

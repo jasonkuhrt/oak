@@ -17,15 +17,15 @@ const create_ = (
     parameter: (nameExpression: string, typeOrConfiguration) => {
       // Check if this is a schema (has ~standard property) or a configuration object
       // Standard Schema V1 schemas have a '~standard' property
-      const isSchema = typeOrConfiguration && typeof typeOrConfiguration === 'object'
-        && '~standard' in typeOrConfiguration
+      const isSchema = typeOrConfiguration && typeof typeOrConfiguration === `object`
+        && `~standard` in typeOrConfiguration
       const configuration = isSchema
         ? { type: typeOrConfiguration }
         : typeOrConfiguration
 
       // Convert raw schema to MoltSchema using extension
       if (!commandState.extension) {
-        throw new Error('No extension configured. Call .use() first (e.g., .use(Zod)).')
+        throw new Error(`No extension configured. Call .use() first (e.g., .use(Zod)).`)
       }
       const standardSchema = commandState.extension.toStandardSchema(configuration.type)
       const metadata = commandState.extension.extractMetadata?.(configuration.type) ?? {

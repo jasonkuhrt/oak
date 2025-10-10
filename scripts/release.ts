@@ -29,7 +29,7 @@ const args = Command.create()
   })
   .parse()
 
-if (typeof args.package !== 'string') {
+if (typeof args.package !== `string`) {
   throw new Error(`Expected package to be a string, got: ${JSON.stringify(args.package)}`)
 }
 

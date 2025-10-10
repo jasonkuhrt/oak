@@ -62,7 +62,7 @@ export const isOrHasType = (parameter: Parameter, typeTag: string): boolean => {
   const schema = parameter.type.metadata.schema
 
   // Convert typeTag to schema _tag format (e.g., 'TypeBoolean' -> 'boolean')
-  const schemaTag = typeTag.replace('Type', '').toLowerCase()
+  const schemaTag = typeTag.replace(`Type`, ``).toLowerCase()
 
   // Check if this schema is the target type
   if (schema._tag === schemaTag) {
@@ -70,13 +70,13 @@ export const isOrHasType = (parameter: Parameter, typeTag: string): boolean => {
   }
 
   // For union types, check if any member is the target type
-  if (schema._tag === 'union') {
+  if (schema._tag === `union`) {
     return schema.members.some((member) => {
       if (member._tag === schemaTag) {
         return true
       }
       // Recursively check nested unions
-      if (member._tag === 'union') {
+      if (member._tag === `union`) {
         return member.members.some((m) => m._tag === schemaTag)
       }
       return false

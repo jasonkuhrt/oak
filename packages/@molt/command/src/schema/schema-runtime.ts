@@ -21,11 +21,11 @@ export const validate = <___Input, ___Output>(
   }
 
   if (isFailure(result)) {
-    const errors = result.issues?.map((issue) => issue.message ?? 'Validation failed') ?? ['Validation failed']
+    const errors = result.issues?.map((issue) => issue.message ?? `Validation failed`) ?? [`Validation failed`]
     return Ef.left({ value, errors }) as any
   }
 
-  return Ef.left({ value, errors: ['Unknown validation error'] }) as any
+  return Ef.left({ value, errors: [`Unknown validation error`] }) as any
 }
 
 /**
@@ -41,35 +41,35 @@ export const deserialize = <___Input, ___Output>(
 
   // Use structured schema metadata for deserialization
   switch (schema.metadata.schema._tag) {
-    case 'string':
+    case `string`:
       parsedValue = serializedValue
       break
 
-    case 'boolean': {
+    case `boolean`: {
       const lower = serializedValue.toLowerCase()
-      if (lower === 'true' || lower === '1' || lower === 'yes') parsedValue = true
-      else if (lower === 'false' || lower === '0' || lower === 'no') parsedValue = false
+      if (lower === `true` || lower === `1` || lower === `yes`) parsedValue = true
+      else if (lower === `false` || lower === `0` || lower === `no`) parsedValue = false
       else parsedValue = serializedValue
       break
     }
 
-    case 'number': {
+    case `number`: {
       const num = Number(serializedValue)
       parsedValue = Number.isNaN(num) ? serializedValue : num
       break
     }
 
-    case 'literal':
+    case `literal`:
       // For literals, try to match the expected value type
       parsedValue = serializedValue
       break
 
-    case 'enum': {
+    case `enum`: {
       // For enums, try to coerce to the correct type
       // Check if enum values are numbers
-      if (schema.metadata.schema._tag === 'enum' && schema.metadata.schema.values.length > 0) {
+      if (schema.metadata.schema._tag === `enum` && schema.metadata.schema.values.length > 0) {
         const firstValue = schema.metadata.schema.values[0]
-        if (typeof firstValue === 'number') {
+        if (typeof firstValue === `number`) {
           const num = Number(serializedValue)
           parsedValue = Number.isNaN(num) ? serializedValue : num
           break
@@ -79,7 +79,7 @@ export const deserialize = <___Input, ___Output>(
       break
     }
 
-    case 'union':
+    case `union`:
       // For unions, try JSON parse, fall back to string
       try {
         parsedValue = JSON.parse(serializedValue)
@@ -106,19 +106,19 @@ export const deserialize = <___Input, ___Output>(
   }
 
   if (isFailure(result)) {
-    const errors = result.issues?.map((issue) => issue.message ?? 'Validation failed').join(', ')
-      ?? 'Validation failed'
+    const errors = result.issues?.map((issue) => issue.message ?? `Validation failed`).join(`, `)
+      ?? `Validation failed`
     return Ef.left(new Error(`Deserialization failed: ${errors}`))
   }
 
-  return Ef.left(new Error('Unknown deserialization error'))
+  return Ef.left(new Error(`Unknown deserialization error`))
 }
 
 /**
  * Get the display type string for help output.
  */
 export const display = <___Input, ___Output>(schema: MoltSchema<___Input, ___Output>): string => {
-  return schema.metadata.helpHints?.displayType ?? 'unknown'
+  return schema.metadata.helpHints?.displayType ?? `unknown`
 }
 
 /**
@@ -135,19 +135,19 @@ export const displayExpanded = <___Input, ___Output>(schema: MoltSchema<___Input
  */
 export const getTag = <___Input, ___Output>(schema: MoltSchema<___Input, ___Output>): string => {
   switch (schema.metadata.schema._tag) {
-    case 'boolean':
-      return 'TypeBoolean'
-    case 'number':
-      return 'TypeNumber'
-    case 'string':
-      return 'TypeString'
-    case 'union':
-      return 'TypeUnion'
-    case 'enum':
-    case 'literal':
-      return 'TypeScalar'
+    case `boolean`:
+      return `TypeBoolean`
+    case `number`:
+      return `TypeNumber`
+    case `string`:
+      return `TypeString`
+    case `union`:
+      return `TypeUnion`
+    case `enum`:
+    case `literal`:
+      return `TypeScalar`
     default:
-      return 'TypeScalar'
+      return `TypeScalar`
   }
 }
 
@@ -172,8 +172,8 @@ export const help = <___Input, ___Output>(
 
   // Add refinements if present
   if (schema.metadata.helpHints?.refinements && schema.metadata.helpHints.refinements.length > 0) {
-    parts.push(`\n• ${schema.metadata.helpHints.refinements.join('\n• ')}`)
+    parts.push(`\n• ${schema.metadata.helpHints.refinements.join(`\n• `)}`)
   }
 
-  return parts.join('')
+  return parts.join(``)
 }
