@@ -18,7 +18,10 @@ interface Parameter<$State extends BuilderCommandState.Base, Label extends strin
   <NameExpression extends string, $Type extends $State['Type']>(
     name: BuilderCommandState.ValidateNameExpression<$State, NameExpression>,
     type: $Type,
-  ): BuilderExclusiveInitial<BuilderCommandState.AddExclusiveParameter<$State, Label, NameExpression, { type: $Type }>, Label>
+  ): BuilderExclusiveInitial<
+    BuilderCommandState.AddExclusiveParameter<$State, Label, NameExpression, { type: $Type }>,
+    Label
+  >
 }
 
 export interface BuilderExclusiveInitial<$State extends BuilderCommandState.Base, Label extends string> {

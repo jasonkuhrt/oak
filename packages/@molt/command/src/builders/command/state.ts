@@ -1,5 +1,5 @@
-import type { StandardSchemaV1 } from '@standard-schema/spec'
 import type { Name } from '@molt/name'
+import type { StandardSchemaV1 } from '@standard-schema/spec'
 import type { Objects, Pipe } from 'hotscript'
 import type { Simplify } from 'type-fest'
 import type { SomeExtension } from '../../extension.js'

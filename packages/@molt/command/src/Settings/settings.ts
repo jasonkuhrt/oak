@@ -103,7 +103,6 @@ export const change = (
     } else {
       if (input.prompt.enabled !== undefined) current.prompt.enabled = input.prompt.enabled
       if (input.prompt.when !== undefined) {
-        // @ts-expect-error fixme
         current.prompt.when = input.prompt.when
         // Passing object makes enabled default to true
         if (input.prompt.enabled === undefined) current.prompt.enabled = true
