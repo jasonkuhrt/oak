@@ -17,7 +17,7 @@ const create_ = (state: BuilderCommandState): CommandBuilder => {
   // Cast to any internally - the type system tracks state transformations correctly
   // at the public API level, but the implementation is too complex for TS to verify
   const builder: CommandBuilder = {
-    use: (extension) => {
+    use: (extension: SomeExtension) => {
       const newState: BuilderCommandState = {
         ...state,
         extension,
@@ -35,7 +35,7 @@ const create_ = (state: BuilderCommandState): CommandBuilder => {
       }
       return create_(newState)
     },
-    description: (description) => {
+    description: (description: string) => {
       const newState = {
         ...state,
         newSettingsBuffer: [
@@ -47,14 +47,14 @@ const create_ = (state: BuilderCommandState): CommandBuilder => {
       }
       return create_(newState)
     },
-    settings: (newSettings) => {
+    settings: (newSettings: any) => {
       const newState = {
         ...state,
         newSettingsBuffer: [...state.newSettingsBuffer, newSettings],
       }
       return create_(newState)
     },
-    parameter: (nameExpression, typeOrConfiguration: any) => {
+    parameter: (nameExpression: string, typeOrConfiguration: any) => {
       const configuration = `type` in typeOrConfiguration
         ? typeOrConfiguration
         : { type: typeOrConfiguration }
@@ -75,7 +75,7 @@ const create_ = (state: BuilderCommandState): CommandBuilder => {
       }
       return create_(newState)
     },
-    parametersExclusive: (label, builderContainer) => {
+    parametersExclusive: (label: string, builderContainer: any) => {
       const exclusiveBuilderState = builderContainer(ExclusiveBuilder.create(label, state))[ExclusiveBuilderStateSymbol] // eslint-disable-line
       const newState = {
         ...state,
@@ -86,7 +86,7 @@ const create_ = (state: BuilderCommandState): CommandBuilder => {
       }
       return create_(newState)
     },
-    parse: (argInputs) => {
+    parse: (argInputs?: RawArgInputs) => {
       const argInputsEnvironment = argInputs?.environment
         ? lowerCaseObjectKeys(argInputs.environment)
         : getLowerCaseEnvironment()
@@ -97,7 +97,7 @@ const create_ = (state: BuilderCommandState): CommandBuilder => {
         Settings.change(state.settings!, newSettings, argInputsEnvironment)
       )
       state.settings.typeMapper = state.typeMapper
-      return parse(state.settings, state.parameterInputs, argInputs)
+      return parse(state.settings, state.parameterInputs, argInputs as any)
     },
   } as any
 
