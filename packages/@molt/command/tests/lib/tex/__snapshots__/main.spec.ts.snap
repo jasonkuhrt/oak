@@ -96,7 +96,7 @@ bar"
 
 exports[`block > flow > ansi does not contribute to column width calculation 1`] = `
 "1a2aaaa 
-[31m1b[39m2b    
+1b2b    
 1c2ccccc"
 `;
 

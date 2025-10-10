@@ -3,7 +3,7 @@ import type { BuilderCommandState } from '../command/state.js'
 import type { BuilderParameterExclusiveState, ExclusiveBuilderStateSymbol } from './state.js'
 
 export interface ExclusiveParameterConfiguration<$State extends BuilderCommandState.Base> {
-  type: $State['Type']
+  type: $State['Schema']
 }
 
 interface Parameter<$State extends BuilderCommandState.Base, Label extends string> {
@@ -15,11 +15,11 @@ interface Parameter<$State extends BuilderCommandState.Base, Label extends strin
     Label
   >
 
-  <NameExpression extends string, $Type extends $State['Type']>(
+  <NameExpression extends string, $Schema extends $State['Schema']>(
     name: BuilderCommandState.ValidateNameExpression<$State, NameExpression>,
-    type: $Type,
+    type: $Schema,
   ): BuilderExclusiveInitial<
-    BuilderCommandState.AddExclusiveParameter<$State, Label, NameExpression, { type: $Type }>,
+    BuilderCommandState.AddExclusiveParameter<$State, Label, NameExpression, { type: $Schema }>,
     Label
   >
 }
@@ -43,7 +43,7 @@ export type BuilderExclusiveAfterDefault<$State extends BuilderCommandState.Base
 }
 
 export interface SomeParameter<$State extends BuilderCommandState.Base> {
-  (nameExpression: any, type: $State['Type']): any // eslint-disable-line
+  (nameExpression: any, type: $State['Schema']): any // eslint-disable-line
   (nameExpression: any, configuration: ExclusiveParameterConfiguration<$State>): any // eslint-disable-line
 }
 

@@ -21,17 +21,6 @@ const create_ = (state: BuilderCommandState): any => {
       const newState: BuilderCommandState = {
         ...state,
         extension,
-        typeMapper: (schema: unknown) => {
-          const standardSchema = extension.toStandardSchema(schema)
-          const metadata = extension.extractMetadata?.(schema) ?? {
-            description: undefined,
-            optionality: { _tag: `required` },
-          }
-          return {
-            standardSchema,
-            metadata,
-          }
-        },
       }
       return create_(newState) as any
     },
@@ -55,19 +44,33 @@ const create_ = (state: BuilderCommandState): any => {
       return create_(newState) as any
     },
     parameter: (nameExpression: string, typeOrConfiguration: any) => {
-      // Check if this is a ParameterConfiguration object by looking for BOTH 'type' and 'prompt'
-      // A raw schema might have a 'type' property (like Zod schemas), but won't have 'prompt'
-      const isConfiguration = typeOrConfiguration && typeof typeOrConfiguration === 'object'
-        && 'type' in typeOrConfiguration
-        && 'prompt' in typeOrConfiguration
-      const configuration = isConfiguration
-        ? typeOrConfiguration
-        : { type: typeOrConfiguration }
+      // Check if this is a schema (has ~standard property) or a configuration object
+      // Standard Schema V1 schemas have a '~standard' property
+      const isSchema = typeOrConfiguration && typeof typeOrConfiguration === 'object'
+        && '~standard' in typeOrConfiguration
+      const configuration = isSchema
+        ? { type: typeOrConfiguration }
+        : typeOrConfiguration
       const prompt = configuration.prompt ?? null
-      const schema = state.typeMapper(configuration.type)
+
+      // Convert raw schema to MoltSchema using extension
+      if (!state.extension) {
+        throw new Error('No extension configured. Call .use() first (e.g., .use(Zod)).')
+      }
+      const standardSchema = state.extension.toStandardSchema(configuration.type)
+      const metadata = state.extension.extractMetadata?.(configuration.type) ?? {
+        description: undefined,
+        optionality: { _tag: `required` } as const,
+        schema: { _tag: `string` } as const,
+      }
+      const moltSchema = {
+        standardSchema,
+        metadata,
+      }
+
       const parameter: ParameterBasicInput = {
         _tag: `Basic`,
-        type: schema,
+        type: moltSchema,
         nameExpression,
         prompt: prompt as any, // eslint-disable-line
       }
@@ -101,7 +104,6 @@ const create_ = (state: BuilderCommandState): any => {
       state.newSettingsBuffer.forEach((newSettings) =>
         Settings.change(state.settings!, newSettings, argInputsEnvironment)
       )
-      state.settings.typeMapper = state.typeMapper
       return parse(state.settings, state.parameterInputs, argInputs as any)
     },
   }

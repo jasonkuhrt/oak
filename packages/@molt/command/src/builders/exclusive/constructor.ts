@@ -15,16 +15,36 @@ const create_ = (
   const builder: SomeBuilderExclusiveInitial = {
     [ExclusiveBuilderStateSymbol]: state,
     parameter: (nameExpression: string, typeOrConfiguration) => {
-      const configuration = `type` in typeOrConfiguration
-        ? typeOrConfiguration
-        : { type: typeOrConfiguration } //  prettier-ignore
+      // Check if this is a schema (has ~standard property) or a configuration object
+      // Standard Schema V1 schemas have a '~standard' property
+      const isSchema = typeOrConfiguration && typeof typeOrConfiguration === 'object'
+        && '~standard' in typeOrConfiguration
+      const configuration = isSchema
+        ? { type: typeOrConfiguration }
+        : typeOrConfiguration
+
+      // Convert raw schema to MoltSchema using extension
+      if (!commandState.extension) {
+        throw new Error('No extension configured. Call .use() first (e.g., .use(Zod)).')
+      }
+      const standardSchema = commandState.extension.toStandardSchema(configuration.type)
+      const metadata = commandState.extension.extractMetadata?.(configuration.type) ?? {
+        description: undefined,
+        optionality: { _tag: `required` } as const,
+        schema: { _tag: `string` } as const,
+      }
+      const moltSchema = {
+        standardSchema,
+        metadata,
+      }
+
       const newState = {
         ...state,
         parameters: [
           ...state.parameters,
           {
             nameExpression,
-            type: commandState.typeMapper(configuration.type),
+            type: moltSchema,
           },
         ],
       }

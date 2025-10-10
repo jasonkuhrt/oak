@@ -13,7 +13,7 @@ export interface ParameterBasicInput<
   _tag: 'Basic'
   nameExpression: string
   type: MoltSchema
-  prompt: Prompt<HKT.Call<$State['TypeMapper'], $State['Schema']>>
+  prompt: Prompt<$State['Schema']>
 }
 
 export interface ParameterBasic extends Omit<Pam.Parameter, '_tag'> {

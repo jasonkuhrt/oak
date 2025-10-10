@@ -13,8 +13,8 @@ export const parseSerializedValue = (name: string, serializedValue: string, spec
   const either = SchemaRuntime.deserialize(spec.type, serializedValue)
 
   if (Either.isLeft(either)) {
-    const expectedTypes = SchemaRuntime.getTag(spec.type)
-    throw new Error(`Failed to parse input ${name} with value ${serializedValue}. Expected type of ${expectedTypes}.`)
+    // Preserve the actual validation error message from the schema
+    throw either.left
   }
   // TODO make return unknown
   const value = either.right // eslint-disable-line

@@ -57,6 +57,7 @@ const booleanSchema: MoltSchema<boolean, boolean> = {
   metadata: {
     description: undefined,
     optionality: { _tag: `default`, getValue: () => false },
+    schema: { _tag: 'boolean' },
     helpHints: {
       displayType: 'boolean',
       priority: 3,

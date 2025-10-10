@@ -11,7 +11,7 @@ export type RawInputs = string[]
 
 export type GlobalParseErrors = Errors.Global.ErrorUnknownFlag
 
-export type LocalParseErrors = Errors.ErrorMissingArgument | Errors.ErrorDuplicateLineArg
+export type LocalParseErrors = Errors.ErrorMissingArgument | Errors.ErrorDuplicateLineArg | Errors.ErrorInvalidArgument
 
 interface ParsedInputs {
   globalErrors: GlobalParseErrors[]
@@ -110,12 +110,23 @@ export const parse = (rawLineInputs: RawInputs, parameters: Parameter[]): Parsed
 
       continue
     } else if (currentReport) {
-      // TODO catch error and put into errors array
-      currentReport.value = parseSerializedValue(
-        currentReport.parameter.name.canonical,
-        rawLineInput,
-        currentReport.parameter,
-      )
+      try {
+        currentReport.value = parseSerializedValue(
+          currentReport.parameter.name.canonical,
+          rawLineInput,
+          currentReport.parameter,
+        )
+      } catch (error) {
+        // Validation errors during deserialization are captured here and wrapped in ErrorInvalidArgument
+        const errorMessage = error instanceof Error ? error.message.replace(/^Deserialization failed: /, '') : String(error)
+        currentReport.errors.push(
+          new Errors.ErrorInvalidArgument({
+            spec: currentReport.parameter,
+            validationErrors: [errorMessage],
+            value: rawLineInput,
+          }),
+        )
+      }
       currentReport = null
       continue
     } else {

@@ -1,5 +1,4 @@
-import type { IsExact } from 'conditional-type-checks'
-import { assert } from 'conditional-type-checks'
+import type { Ts } from '@wollybeard/kit'
 import { describe, expect, it } from 'vitest'
 import { $, n, s } from '../../_/helpers.js'
 
@@ -24,12 +23,12 @@ describe(`errors`, () => {
 describe(`optional`, () => {
   it(`specified input can be omitted, missing key is possible`, () => {
     const args = $.parameter(`--foo`, s.optional()).parse({ line: [] })
-    assert<IsExact<{ foo: string | undefined }, typeof args>>(true)
+    true as Ts.Test.bid<{ foo: string | undefined }, typeof args>
     expect(Object.keys(args)).not.toContain(`foo`)
   })
   it(`input can be given`, () => {
     const args = $.parameter(`--foo`, s.optional()).parse({ line: [`--foo`, `bar`] })
-    assert<IsExact<{ foo: string | undefined }, typeof args>>(true)
+    true as Ts.Test.bid<{ foo: string | undefined }, typeof args>
     expect(args).toMatchObject({ foo: `bar` })
   })
 })

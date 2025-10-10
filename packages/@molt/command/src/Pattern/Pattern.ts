@@ -1,4 +1,4 @@
-import type { Simplify } from 'type-fest'
+import type { Ts } from '@wollybeard/kit'
 
 export const _ = `*`
 
@@ -18,7 +18,7 @@ export type PatternForValue<Data extends SomeData> = Data extends SomeDataScalar
 
 export type PatternForObject<Data extends SomeDataObject, DiscriminantProperty extends null | keyof Data = null> =
   & {
-    [K in Exclude<keyof Data, DiscriminantProperty>]?: Simplify<
+    [K in Exclude<keyof Data, DiscriminantProperty>]?: Ts.Simplify<
       Data[K] extends Array<any> ? Or<PatternForValue<Data[K][number]>[]>
         : Data[K] extends SomeDataObject ? Or<PatternForObject<Data[K]>>
         : Or<Data[K]>

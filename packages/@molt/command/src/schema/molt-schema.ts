@@ -9,6 +9,20 @@ export type Optionality<___T = unknown> =
   | { _tag: 'default'; getValue: () => ___T }
 
 /**
+ * Structured schema type information extracted from the underlying schema library.
+ *
+ * This provides type structure for Molt's internal logic (type detection, deserialization, etc.)
+ * without relying on string parsing.
+ */
+export type SchemaType =
+  | { _tag: 'string' }
+  | { _tag: 'number' }
+  | { _tag: 'boolean' }
+  | { _tag: 'literal'; value: unknown }
+  | { _tag: 'enum'; values: unknown[] }
+  | { _tag: 'union'; members: SchemaType[] }
+
+/**
  * Molt's internal schema representation.
  *
  * Wraps a Standard Schema V1 compliant schema with CLI-specific metadata.
@@ -34,7 +48,16 @@ export interface MoltSchema<___Input = unknown, ___Output = ___Input> {
     optionality: Optionality<___Output>
 
     /**
-     * Hints for help text generation.
+     * Structured type information for internal Molt logic.
+     *
+     * Used for type detection, deserialization, and CLI behavior.
+     */
+    schema: SchemaType
+
+    /**
+     * Optional hints for help text generation.
+     *
+     * These can be auto-generated from `schema` if not provided.
      */
     helpHints?: {
       /**

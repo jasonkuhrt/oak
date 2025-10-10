@@ -1,10 +1,20 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`can be stack of conditional prompts > args 1`] = `[TypeError: Cannot read properties of undefined (reading 'validate')]`;
+exports[`can be stack of conditional prompts > args 1`] = `[Error: Prompting not yet implemented for MoltSchema]`;
 
-exports[`can be stack of conditional prompts > tty 1`] = `[]`;
+exports[`can be stack of conditional prompts > tty 1`] = `
+[
+  "1/1  a optional (press esc to skip)
+",
+]
+`;
 
-exports[`can be stack of conditional prompts > tty strip ansi 1`] = `[]`;
+exports[`can be stack of conditional prompts > tty strip ansi 1`] = `
+[
+  "1/1  a optional (press esc to skip)
+",
+]
+`;
 
 exports[`parameter defaults to custom settings > args 1`] = `[Error: Prompting not yet implemented for MoltSchema]`;
 
@@ -22,27 +32,27 @@ exports[`parameter defaults to custom settings > tty strip ansi 1`] = `
 ]
 `;
 
-exports[`parameter level > can be passed object > args 1`] = `[ErrorMissingArgument: Missing argument for flag "a".]`;
+exports[`parameter level > can be passed object > args 1`] = `[Error: Prompting not yet implemented for MoltSchema]`;
 
-exports[`parameter level > can be passed object > tty 1`] = `[]`;
-
-exports[`parameter level > can be passed object > tty strip ansi 1`] = `[]`;
-
-exports[`parameter settings overrides default settings > args 1`] = `Promise {}`;
-
-exports[`parameter settings overrides default settings > tty 1`] = `
+exports[`parameter level > can be passed object > tty 1`] = `
 [
   "1/1  a
 ",
 ]
 `;
 
-exports[`parameter settings overrides default settings > tty strip ansi 1`] = `
+exports[`parameter level > can be passed object > tty strip ansi 1`] = `
 [
   "1/1  a
 ",
 ]
 `;
+
+exports[`parameter settings overrides default settings > args 1`] = `[ErrorMissingArgument: Missing argument for flag "a".]`;
+
+exports[`parameter settings overrides default settings > tty 1`] = `[]`;
+
+exports[`parameter settings overrides default settings > tty strip ansi 1`] = `[]`;
 
 exports[`prompt can be enabled by default > args 1`] = `[Error: Prompting not yet implemented for MoltSchema]`;
 

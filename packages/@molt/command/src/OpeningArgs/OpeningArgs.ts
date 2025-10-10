@@ -232,6 +232,17 @@ export const parse = ({
 
     if (argsToGroup.length === 1) {
       const arg = argsToGroup[0]! // eslint-disable-line
+
+      // Check for errors during parsing
+      if (arg.errors.length > 0) {
+        result.mutuallyExclusiveParameters[group.label] = {
+          _tag: `error`,
+          parameter: group,
+          errors: arg.errors,
+        }
+        continue
+      }
+
       result.mutuallyExclusiveParameters[group.label] = {
         _tag: `supplied`,
         spec: group,

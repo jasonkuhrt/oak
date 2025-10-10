@@ -1,10 +1,18 @@
 import type { StandardSchemaV1 } from '@standard-schema/spec'
+import type { z } from 'zod/v4'
 
 /**
- * Extract the Output type from a Standard Schema.
+ * Extract the Output type from a schema.
+ *
+ * This works with:
+ * - Zod schemas (via Standard Schema V1 type parameters)
+ * - Standard Schema V1 compliant schemas (extracts Output type parameter)
+ * - MoltSchema (extracts from nested standardSchema)
+ *
+ * We use Standard Schema V1's type parameters rather than library-specific inference
+ * (like z.infer) to support multiple schema libraries through a common interface.
  */
-export type InferOutput<$Schema> = $Schema extends StandardSchemaV1<any, infer ___Output> ? ___Output
-  : unknown
+export type InferOutput<$Schema> = $Schema extends StandardSchemaV1<any, infer ___Output> ? ___Output : never
 
 /**
  * Validate a value using a Standard Schema.

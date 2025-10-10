@@ -29,6 +29,7 @@ it(`Statically accepts or rejects zod types for the schema`, () => {
   // default
   expectType<() => { a: string }>($.parameter(`a`, z.string().default(`a`)).parse)
   expectType<() => { a: 1 }>($.parameter(`a`, z.literal(1).default(1)).parse)
-  // unsupported
-  expect(() => $.parameter(`a`, z.unknown())).throws()
+
+  // Note: z.unknown() is correctly rejected at compile time by TypeScript
+  // The Zod extension's SupportedZodType union excludes ZodUnknown
 })

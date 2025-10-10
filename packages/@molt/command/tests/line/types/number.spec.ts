@@ -1,5 +1,4 @@
-import type { IsExact } from 'conditional-type-checks'
-import { assert } from 'conditional-type-checks'
+import type { Ts } from '@wollybeard/kit'
 import { describe, expect, it } from 'vitest'
 import { $, n } from '../../_/helpers.js'
 import { s } from '../../_/helpers.js'
@@ -7,7 +6,7 @@ import { stdout } from '../../_/mocks.js'
 
 it(`casts the input as a number`, () => {
   const args = $.parameter(`--age`, n).parse({ line: [`--age`, `1`] })
-  assert<IsExact<{ age: number }, typeof args>>(true)
+  true as Ts.Test.bid<{ age: number }, typeof args>
   expect(args).toMatchObject({ age: 1 })
 })
 

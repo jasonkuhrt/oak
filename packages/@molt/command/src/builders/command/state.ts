@@ -1,7 +1,6 @@
 import type { Name } from '@molt/name'
 import type { StandardSchemaV1 } from '@standard-schema/spec'
-import type { Objects, Pipe } from 'hotscript'
-import type { Simplify } from 'type-fest'
+import type { Obj, Ts } from '@wollybeard/kit'
 import type { SomeExtension } from '../../extension.js'
 import type { Values } from '../../helpers.js'
 import type { HKT } from '../../helpers.js'
@@ -17,7 +16,6 @@ import type { IsPromptEnabledInParameterSettings, ParameterConfiguration } from 
 export const createState = (): BuilderCommandState => {
   return {
     extension: null,
-    typeMapper: (type) => type as any,
     newSettingsBuffer: [],
     settings: null,
     parameterInputs: {},
@@ -26,41 +24,22 @@ export const createState = (): BuilderCommandState => {
 
 export interface BuilderCommandState {
   extension: SomeExtension | null
-  typeMapper: (value: unknown) => MoltSchema
   settings: null | Settings.Output
   newSettingsBuffer: Settings.Input[]
   parameterInputs: Record<string, ParameterBasicInput | ParameterExclusiveInput>
 }
 
 export namespace BuilderCommandState {
-  /**
-   * Type mapper for extension-specific schemas.
-   *
-   * This HKT maps input types to themselves for type-level inference.
-   * At RUNTIME, the actual typeMapper function wraps schemas in MoltSchema,
-   * but at the TYPE level we keep the raw schema type for InferOutput to work.
-   */
-  export interface TypeMapper<$Type = unknown> extends HKT.Fn {
-    params: $Type
-    // Return the input type as-is for type-level inference
-    // Runtime behavior is defined in constructor
-    return: $Type
-  }
-
   export interface BaseEmpty extends Base {
     IsPromptEnabled: false
     ParametersExclusive: {} // eslint-disable-line
     Parameters: {} // eslint-disable-line
-    Type: StandardSchemaV1
     Schema: StandardSchemaV1
-    TypeMapper: TypeMapper<StandardSchemaV1>
   }
 
   export type Base = {
     IsPromptEnabled: boolean
-    Type: unknown
-    Schema: unknown
-    TypeMapper: TypeMapper<unknown>
+    Schema: unknown  // The constraint type from the extension (e.g., z.ZodType)
     ParametersExclusive: {
       [label: string]: {
         Optional: boolean
@@ -68,7 +47,7 @@ export namespace BuilderCommandState {
           [canonicalName: string]: {
             NameParsed: Name.Data.NameParsed
             NameUnion: string
-            Schema: unknown
+            Schema: StandardSchemaV1  // Always store Standard Schema V1
           }
         }
       }
@@ -77,7 +56,7 @@ export namespace BuilderCommandState {
       [nameExpression: string]: {
         NameParsed: Name.Data.NameParsed
         NameUnion: string
-        Schema: unknown
+        Schema: StandardSchemaV1  // Always store Standard Schema V1
       }
     }
   }
@@ -103,84 +82,64 @@ export namespace BuilderCommandState {
     $State extends Base,
     Label extends string,
     Value extends boolean,
-  > = Pipe<$State, [
-    Objects.Update<
-      'ParametersExclusive',
-      Objects.Assign<
-        {
-          [_ in Label]: {
-            Optional: Value
-            Parameters: $State['ParametersExclusive'][_]['Parameters']
-          }
-        }
-      >
-    >,
-  ]>
+  > = Obj.Replace<$State, {
+    ParametersExclusive: $State['ParametersExclusive'] & {
+      [_ in Label]: {
+        Optional: Value
+        Parameters: $State['ParametersExclusive'][_]['Parameters']
+      }
+    }
+  }>
 
-  export type SetIsPromptEnabled<$State extends Base, value extends boolean> = Pipe<
-    $State,
-    [Objects.Update<'IsPromptEnabled', $State['IsPromptEnabled'] extends true ? true : value>]
-  >
+  export type SetIsPromptEnabled<$State extends Base, value extends boolean> = Obj.Replace<$State, {
+    IsPromptEnabled: $State['IsPromptEnabled'] extends true ? true : value
+  }>
 
   export type AddParameter<
     $State extends Base,
     NameExpression extends string,
     Configuration extends ParameterConfiguration<$State>,
-  > = Pipe<
-    $State,
-    [
-      Objects.Update<
-        'Parameters',
-        Objects.Assign<
-          {
-            [_ in NameExpression]: CreateParameter<$State, NameExpression, Configuration>
-          }
-        >
-      >,
-      Objects.Update<
-        'IsPromptEnabled',
-        $State['IsPromptEnabled'] extends true ? true : IsPromptEnabledInParameterSettings<Configuration>
-      >,
-    ]
-  >
+  > = Obj.Replace<$State, {
+    Parameters: $State['Parameters'] & {
+      [_ in NameExpression]: CreateParameter<$State, NameExpression, Configuration>
+    }
+    IsPromptEnabled: $State['IsPromptEnabled'] extends true ? true : IsPromptEnabledInParameterSettings<Configuration>
+  }>
 
   export type AddExclusiveParameter<
     $State extends Base,
     Label extends string,
     NameExpression extends string,
     Configuration extends ExclusiveParameterConfiguration<$State>,
-  > = Pipe<$State, [
-    Objects.Update<
-      'ParametersExclusive',
-      Objects.Assign<
-        & $State['ParametersExclusive']
-        & {
-          [_ in Label]: {
-            Optional: $State['ParametersExclusive'][_]['Optional']
-            Parameters: {
-              [_ in NameExpression as Name.Data.GetCanonicalNameOrErrorFromParseResult<Name.Parse<NameExpression>>]: {
-                Schema: HKT.Call<$State['TypeMapper'], Configuration['type']>
-                NameParsed: Name.Parse<
-                  NameExpression,
-                  { usedNames: GetUsedNames<$State>; reservedNames: ReservedParameterNames }
-                >
-                NameUnion: Name.Data.GetNamesFromParseResult<
-                  Name.Parse<NameExpression, { usedNames: GetUsedNames<$State>; reservedNames: ReservedParameterNames }>
-                >
-              }
-            }
+  > = Obj.Replace<$State, {
+    ParametersExclusive: $State['ParametersExclusive'] & {
+      [_ in Label]: {
+        Optional: $State['ParametersExclusive'][_]['Optional']
+        Parameters: {
+          [_ in NameExpression as Name.Data.GetCanonicalNameOrErrorFromParseResult<Name.Parse<NameExpression>>]: {
+            // Store the schema as StandardSchemaV1 to extract Output type
+            Schema: Configuration['type'] extends StandardSchemaV1 ? Configuration['type'] : never
+            NameParsed: Name.Parse<
+              NameExpression,
+              { usedNames: GetUsedNames<$State>; reservedNames: ReservedParameterNames }
+            >
+            NameUnion: Name.Data.GetNamesFromParseResult<
+              Name.Parse<NameExpression, { usedNames: GetUsedNames<$State>; reservedNames: ReservedParameterNames }>
+            >
           }
         }
-      >
-    >,
-  ]>
+      }
+    }
+  }>
 
   export type CreateParameter<
     $State extends Base,
     NameExpression extends string,
     Configuration extends ParameterConfiguration<$State>,
   > = {
-    Schema: HKT.Call<$State['TypeMapper'], Configuration['type']>
+    // Store the schema as StandardSchemaV1 to extract Output type
+    // Configuration['type'] is constrained to be a StandardSchemaV1
+    Schema: Configuration['type'] extends StandardSchemaV1 ? Configuration['type'] : never
     NameParsed: Name.Parse<NameExpression, { usedNames: GetUsedNames<$State>; reservedNames: ReservedParameterNames }>
     NameUnion: Name.Data.GetNamesFromParseResult<
       Name.Parse<NameExpression, { usedNames: GetUsedNames<$State>; reservedNames: ReservedParameterNames }>
@@ -190,14 +149,14 @@ export namespace BuilderCommandState {
   export type ToArgs<$State extends Base> = $State['IsPromptEnabled'] extends true ? Promise<ToArgs_<$State>>
     : ToArgs_<$State>
 
-  type ToArgs_<$State extends Base> = Simplify<
+  type ToArgs_<$State extends Base> = Ts.Simplify<
     & {
       [Name in keyof $State['Parameters'] & string as $State['Parameters'][Name]['NameParsed']['canonical']]:
         InferOutput<$State['Parameters'][Name]['Schema']>
     }
     & {
       [Label in keyof $State['ParametersExclusive'] & string]:
-        | Simplify<
+        | Ts.Simplify<
           Values<
             {
               [Name in keyof $State['ParametersExclusive'][Label]['Parameters']]: {

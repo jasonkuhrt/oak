@@ -59,13 +59,31 @@ export const hasName = (parameter: Parameter, name: string): null | NameHit => {
 }
 
 export const isOrHasType = (parameter: Parameter, typeTag: string): boolean => {
-  const tag = SchemaRuntime.getTag(parameter.type)
-  // For Union types, check if display type contains the tag
-  if (tag === `Union`) {
-    const displayType = SchemaRuntime.display(parameter.type)
-    return displayType.includes(typeTag.replace('Type', '').toLowerCase())
+  const schema = parameter.type.metadata.schema
+
+  // Convert typeTag to schema _tag format (e.g., 'TypeBoolean' -> 'boolean')
+  const schemaTag = typeTag.replace('Type', '').toLowerCase()
+
+  // Check if this schema is the target type
+  if (schema._tag === schemaTag) {
+    return true
   }
-  return tag === typeTag
+
+  // For union types, check if any member is the target type
+  if (schema._tag === 'union') {
+    return schema.members.some((member) => {
+      if (member._tag === schemaTag) {
+        return true
+      }
+      // Recursively check nested unions
+      if (member._tag === 'union') {
+        return member.members.some((m) => m._tag === schemaTag)
+      }
+      return false
+    })
+  }
+
+  return false
 }
 
 const parameterSpecHasNameDo = (

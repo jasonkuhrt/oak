@@ -31,42 +31,70 @@ export const validate = <___Input, ___Output>(
 /**
  * Deserialize a string value into the schema's type.
  *
- * This attempts to parse common formats (JSON for objects, plain strings for strings, numbers, etc.)
+ * Uses structured schema metadata to determine how to parse the string value.
  */
 export const deserialize = <___Input, ___Output>(
   schema: MoltSchema<___Input, ___Output>,
   serializedValue: string,
 ): Ef.Either<Error, ___Output> => {
-  // Try to infer the type from metadata hints
-  const displayType = schema.metadata.helpHints?.displayType ?? 'unknown'
-
   let parsedValue: unknown
 
-  // Handle string - just use the value as-is
-  if (displayType === 'string') {
-    parsedValue = serializedValue
-  } // Handle boolean
-  else if (displayType === 'boolean') {
-    const lower = serializedValue.toLowerCase()
-    if (lower === 'true' || lower === '1' || lower === 'yes') parsedValue = true
-    else if (lower === 'false' || lower === '0' || lower === 'no') parsedValue = false
-    else parsedValue = serializedValue
-  } // Handle number
-  else if (displayType === 'number') {
-    const num = Number(serializedValue)
-    parsedValue = Number.isNaN(num) ? serializedValue : num
-  } // Handle literal or enum (quoted values)
-  else if (displayType.includes("'")) {
-    // Extract the literal value without quotes
-    const match = displayType.match(/'([^']+)'/)
-    parsedValue = match ? match[1] : serializedValue
-  } // Default: try JSON parse, fall back to string
-  else {
-    try {
-      parsedValue = JSON.parse(serializedValue)
-    } catch {
+  // Use structured schema metadata for deserialization
+  switch (schema.metadata.schema._tag) {
+    case 'string':
       parsedValue = serializedValue
+      break
+
+    case 'boolean': {
+      const lower = serializedValue.toLowerCase()
+      if (lower === 'true' || lower === '1' || lower === 'yes') parsedValue = true
+      else if (lower === 'false' || lower === '0' || lower === 'no') parsedValue = false
+      else parsedValue = serializedValue
+      break
     }
+
+    case 'number': {
+      const num = Number(serializedValue)
+      parsedValue = Number.isNaN(num) ? serializedValue : num
+      break
+    }
+
+    case 'literal':
+      // For literals, try to match the expected value type
+      parsedValue = serializedValue
+      break
+
+    case 'enum': {
+      // For enums, try to coerce to the correct type
+      // Check if enum values are numbers
+      if (schema.metadata.schema._tag === 'enum' && schema.metadata.schema.values.length > 0) {
+        const firstValue = schema.metadata.schema.values[0]
+        if (typeof firstValue === 'number') {
+          const num = Number(serializedValue)
+          parsedValue = Number.isNaN(num) ? serializedValue : num
+          break
+        }
+      }
+      parsedValue = serializedValue
+      break
+    }
+
+    case 'union':
+      // For unions, try JSON parse, fall back to string
+      try {
+        parsedValue = JSON.parse(serializedValue)
+      } catch {
+        parsedValue = serializedValue
+      }
+      break
+
+    default:
+      // Fallback: try JSON parse, fall back to string
+      try {
+        parsedValue = JSON.parse(serializedValue)
+      } catch {
+        parsedValue = serializedValue
+      }
   }
 
   // Validate the parsed value
@@ -103,15 +131,24 @@ export const displayExpanded = <___Input, ___Output>(schema: MoltSchema<___Input
 /**
  * Get the schema tag (for backwards compatibility).
  *
- * Since MoltSchema doesn't have _tag, we derive it from the display type.
+ * Uses structured schema metadata instead of parsing display strings.
  */
 export const getTag = <___Input, ___Output>(schema: MoltSchema<___Input, ___Output>): string => {
-  const displayType = display(schema)
-  if (displayType === 'boolean') return 'TypeBoolean'
-  if (displayType === 'number') return 'TypeNumber'
-  if (displayType === 'string') return 'TypeString'
-  if (displayType.includes('|')) return 'TypeUnion'
-  return 'TypeScalar'
+  switch (schema.metadata.schema._tag) {
+    case 'boolean':
+      return 'TypeBoolean'
+    case 'number':
+      return 'TypeNumber'
+    case 'string':
+      return 'TypeString'
+    case 'union':
+      return 'TypeUnion'
+    case 'enum':
+    case 'literal':
+      return 'TypeScalar'
+    default:
+      return 'TypeScalar'
+  }
 }
 
 /**

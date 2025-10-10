@@ -48,7 +48,6 @@ export interface Input<$State extends BuilderCommandState.Base = BuilderCommandS
 }
 
 export interface Output {
-  typeMapper: (value: unknown) => MoltSchema
   prompt: {
     enabled: boolean
     when: EventPatternsInput<MoltSchema>
@@ -215,7 +214,6 @@ const isEnvironmentEnabled = (lowercaseEnv: NodeJS.ProcessEnv) => {
 
 export const getDefaults = (lowercaseEnv: NodeJS.ProcessEnv): Output => {
   return {
-    typeMapper: (t) => t as any,
     prompt: {
       enabled: false,
       when: eventPatterns.rejectedMissingOrInvalid,

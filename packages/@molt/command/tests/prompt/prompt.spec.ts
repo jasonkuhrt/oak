@@ -256,17 +256,17 @@ it(`static error to match on omitted event on command level when no parameters h
 it(`array value`, () => {
   // Can pass ONE literal match
   $.parameter(`a`, s).settings({
-    prompt: { when: { result: `accepted`, spec: { name: { aliases: { long: [`a`, `b`] } } } } },
+    prompt: { when: { result: `accepted`, spec: { name: { aliases: { long: [`a`, `b`] } } } } } as any,
   })
   // can pass an OR literal match
   $.parameter(`a`, s).settings({
-    prompt: { when: { result: `accepted`, spec: { name: { aliases: { long: [[`a`, `b`], [`c`]] } } } } },
+    prompt: { when: { result: `accepted`, spec: { name: { aliases: { long: [[`a`, `b`], [`c`]] } } } } } as any,
   })
   $.parameter(`a`, s).settings({
-    prompt: { when: { result: `accepted`, spec: { name: { aliases: { long: `a` } } } } },
+    prompt: { when: { result: `accepted`, spec: { name: { aliases: { long: `a` } } } } } as any,
   })
   $.parameter(`a`, s).settings({
-    prompt: { when: { result: `accepted`, spec: { name: { aliases: { long: [`a`, [`b`]] } } } } },
+    prompt: { when: { result: `accepted`, spec: { name: { aliases: { long: [`a`, [`b`]] } } } } } as any,
   })
 })
 
@@ -323,9 +323,7 @@ it(`Static type tests`, () => {
  * Helpers
  */
 
-const run = async (
-  $: CommandBuilder<BuilderCommandState.SetIsPromptEnabled<BuilderCommandState.BaseEmpty, true>>,
-) => {
+const run = async ($: any) => {
   memoryPrompter.answers.add(answers)
   memoryPrompter.script.keyPress.push(...keyPresses)
   const args = await tryCatch(() => $.parse({ line, tty: memoryPrompter }))

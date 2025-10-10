@@ -11,7 +11,7 @@ export const defaultParameterNamePrefixes = [`cli_parameter`, `cli_param`]
 
 export type RawInputs = Record<string, string | undefined>
 
-export type LocalParseErrors = Errors.ErrorDuplicateEnvArg
+export type LocalParseErrors = Errors.ErrorDuplicateEnvArg | Errors.ErrorInvalidArgument
 
 export type GlobalParseErrors = Errors.Global.ErrorUnknownParameterViaEnvironment
 
@@ -48,7 +48,7 @@ export const parse = (environment: RawInputs, specs: Parameter[]): ParsedInputs 
           prefix: match.namespace,
           value: match.value,
         }
-        const e = report.errors.find((_) => _.name === `ErrorDuplicateEnvArg`)
+        const e = report.errors.find((_) => _.name === `ErrorDuplicateEnvArg`) as Errors.ErrorDuplicateEnvArg | undefined
         if (e) {
           e.instances.push(instance)
         } else {
@@ -63,11 +63,26 @@ export const parse = (environment: RawInputs, specs: Parameter[]): ParsedInputs 
       }
 
       // Case 3
-      const value = parseSerializedValue(match.nameWithNegation, match.value, parameter)
+      const errors: LocalParseErrors[] = []
+      let value
+      try {
+        value = parseSerializedValue(match.nameWithNegation, match.value, parameter)
+      } catch (error) {
+        // Validation errors during deserialization are captured here and wrapped in ErrorInvalidArgument
+        const errorMessage = error instanceof Error ? error.message.replace(/^Deserialization failed: /, '') : String(error)
+        errors.push(
+          new Errors.ErrorInvalidArgument({
+            spec: parameter,
+            environmentVariableName: envar.name.raw,
+            validationErrors: [errorMessage],
+            value: match.value,
+          }),
+        )
+      }
       result.reports[parameter.name.canonical] = {
         parameter,
-        value,
-        errors: [],
+        value: value as any, // May be undefined if parse failed
+        errors,
         source: {
           _tag: `environment`,
           name: envar.name.raw,
