@@ -2,6 +2,7 @@ import { z } from 'zod'
 import { Command } from '../src/_entrypoints/default.js'
 import { Zod } from '../src/_entrypoints/extensions.js'
 
+// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 const args = await Command.create()
   .use(Zod)
   .parameter(`filePath`, z.string().describe(`Path to the file to convert.`))

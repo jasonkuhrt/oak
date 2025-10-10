@@ -30,6 +30,5 @@ it(`Statically accepts or rejects zod types for the schema`, () => {
   expectType<() => { a: string }>($.parameter(`a`, z.string().default(`a`)).parse)
   expectType<() => { a: 1 }>($.parameter(`a`, z.literal(1).default(1)).parse)
   // unsupported
-  // @ts-expect-error not supported
   expect(() => $.parameter(`a`, z.unknown())).throws()
 })

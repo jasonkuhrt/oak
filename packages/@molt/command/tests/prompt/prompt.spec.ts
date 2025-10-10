@@ -26,12 +26,10 @@ describe(`string`, () => {
   describe(`optional`, () => {
     it(`when nothing entered then value is undefined`, async () => {
       keyPresses.push({ ctrl: false, meta: false, sequence: ``, shift: false, name: `return` })
-      // @ts-expect-error - todo with Pierre
       await run($$.parameter(`a`, { type: s.optional(), prompt: { when: { result: `omitted` } } }))
     })
     it(`when esc is pressed the question is skipped`, async () => {
       keyPresses.push({ ctrl: false, meta: false, sequence: ``, shift: false, name: `escape` })
-      // @ts-expect-error - todo with Pierre
       await run($$.parameter(`a`, { type: s.optional(), prompt: { when: { result: `omitted` } } }))
     })
   })
@@ -41,12 +39,10 @@ describe(`number`, () => {
   describe(`optional`, () => {
     it(`when nothing entered then value is undefined`, async () => {
       keyPresses.push({ ctrl: false, meta: false, sequence: ``, shift: false, name: `return` })
-      // @ts-expect-error - todo with Pierre
       await run($$.parameter(`a`, { type: n.optional(), prompt: { when: { result: `omitted` } } }))
     })
     it(`when esc is pressed the question is skipped`, async () => {
       keyPresses.push({ ctrl: false, meta: false, sequence: ``, shift: false, name: `escape` })
-      // @ts-expect-error todo
       await run($$.parameter(`a`, { type: n.optional(), prompt: { when: { result: `omitted` } } }))
     })
   })
@@ -56,7 +52,6 @@ describe(`boolean`, () => {
   describe(`required`, () => {
     it(`defaults to "no"`, async () => {
       keyPresses.push({ ctrl: false, meta: false, sequence: ``, shift: false, name: `return` })
-      // @ts-expect-error - todo with Pierre
       await run($$.parameter(`a`, { type: b, prompt: true }))
     })
     it(`can be toggled to "yes"`, async () => {
@@ -64,7 +59,6 @@ describe(`boolean`, () => {
         { ctrl: false, meta: false, sequence: ``, shift: false, name: `right` },
         { ctrl: false, meta: false, sequence: ``, shift: false, name: `return` },
       )
-      // @ts-expect-error - todo with Pierre
       await run($$.parameter(`a`, { type: b, prompt: true }))
     })
     it(`can be toggled to "yes" and then back to "no"`, async () => {
@@ -73,7 +67,6 @@ describe(`boolean`, () => {
         { ctrl: false, meta: false, sequence: ``, shift: false, name: `left` },
         { ctrl: false, meta: false, sequence: ``, shift: false, name: `return` },
       )
-      // @ts-expect-error - todo with Pierre
       await run($$.parameter(`a`, { type: b, prompt: true }))
     })
     it(`can use tab to toggle between "yes" and "no"`, async () => {
@@ -82,7 +75,6 @@ describe(`boolean`, () => {
         { ctrl: false, meta: false, sequence: ``, shift: false, name: `tab` },
         { ctrl: false, meta: false, sequence: ``, shift: false, name: `return` },
       )
-      // @ts-expect-error - todo with Pierre
       await run($$.parameter(`a`, { type: b, prompt: true }))
     })
   })
@@ -95,7 +87,6 @@ describe(`union`, () => {
       keyPresses.push({ ctrl: false, meta: false, sequence: ``, shift: false, name: `return` })
       keyPresses.push({ ctrl: false, meta: false, sequence: ``, shift: false, name: `tab` })
       keyPresses.push({ ctrl: false, meta: false, sequence: ``, shift: false, name: `return` })
-      // @ts-expect-error - todo with Pierre
       await run($$.parameter(`a`, { type: z.union([n, b, s]), prompt: true }))
     })
   })
@@ -105,34 +96,29 @@ describe(`enumeration`, () => {
   describe(`required`, () => {
     it(`defaults to first member`, async () => {
       keyPresses.push({ ctrl: false, meta: false, sequence: ``, shift: false, name: `return` })
-      // @ts-expect-error - todo with Pierre
       await run($$.parameter(`a`, { type: e, prompt: true }))
     })
     it(`can select member rightward with right key`, async () => {
       keyPresses.push({ ctrl: false, meta: false, sequence: ``, shift: false, name: `right` })
       keyPresses.push({ ctrl: false, meta: false, sequence: ``, shift: false, name: `return` })
-      // @ts-expect-error - todo with Pierre
       await run($$.parameter(`a`, { type: e, prompt: true }))
     })
     it(`can select member leftward with left key`, async () => {
       keyPresses.push({ ctrl: false, meta: false, sequence: ``, shift: false, name: `right` })
       keyPresses.push({ ctrl: false, meta: false, sequence: ``, shift: false, name: `left` })
       keyPresses.push({ ctrl: false, meta: false, sequence: ``, shift: false, name: `return` })
-      // @ts-expect-error - todo with Pierre
       await run($$.parameter(`a`, { type: e, prompt: true }))
     })
     describe(`tab`, () => {
       it(`can select member rightward with tab key`, async () => {
         keyPresses.push({ ctrl: false, meta: false, sequence: ``, shift: false, name: `tab` })
         keyPresses.push({ ctrl: false, meta: false, sequence: ``, shift: false, name: `return` })
-        // @ts-expect-error - todo with Pierre
         await run($$.parameter(`a`, { type: e, prompt: true }))
       })
       it(`can select member leftward with shift+tab key`, async () => {
         keyPresses.push({ ctrl: false, meta: false, sequence: ``, shift: false, name: `right` })
         keyPresses.push({ ctrl: false, meta: false, sequence: ``, shift: true, name: `tab` })
         keyPresses.push({ ctrl: false, meta: false, sequence: ``, shift: false, name: `return` })
-        // @ts-expect-error - todo with Pierre
         await run($$.parameter(`a`, { type: e, prompt: true }))
       })
     })
@@ -142,13 +128,11 @@ describe(`enumeration`, () => {
         keyPresses.push({ ctrl: false, meta: false, sequence: ``, shift: false, name: `right` })
         keyPresses.push({ ctrl: false, meta: false, sequence: ``, shift: false, name: `right` })
         keyPresses.push({ ctrl: false, meta: false, sequence: ``, shift: false, name: `return` })
-        // @ts-expect-error - todo with Pierre
         await run($$.parameter(`a`, { type: e, prompt: true }))
       })
       it(`left key on first member loops to last member`, async () => {
         keyPresses.push({ ctrl: false, meta: false, sequence: ``, shift: false, name: `left` })
         keyPresses.push({ ctrl: false, meta: false, sequence: ``, shift: false, name: `return` })
-        // @ts-expect-error - todo with Pierre
         await run($$.parameter(`a`, { type: e, prompt: true }))
       })
     })
@@ -158,7 +142,6 @@ describe(`enumeration`, () => {
 it(`can be explicitly disabled`, async () => {
   answers = []
   line = []
-  // @ts-expect-error - todo with Pierre
   await run($$.parameter(`a`, { type: s, prompt: { enabled: false } }))
 })
 
@@ -166,7 +149,6 @@ it(`can be explicitly disabled with a "when" condition present`, async () => {
   answers = []
   line = []
   await run(
-    // @ts-expect-error - todo with Pierre
     $$.parameter(`a`, {
       type: s.min(2),
       prompt: { enabled: false, when: { result: `rejected`, error: `ErrorMissingArgument` } },
@@ -183,7 +165,6 @@ it(`prompt when missing input`, async () => {
   )
   line = []
   await run(
-    // @ts-expect-error - todo with Pierre
     $$.parameter(`a`, {
       type: s.min(2),
       prompt: { when: { result: `rejected`, error: `ErrorMissingArgument` } },
@@ -200,7 +181,6 @@ it(`prompt when invalid input`, async () => {
   )
   line = [`-a`, `1`]
   await run(
-    // @ts-expect-error - todo with Pierre
     $.parameter(`a`, {
       type: s.min(2),
       prompt: { when: { result: `rejected`, error: `ErrorInvalidArgument` } },
@@ -217,7 +197,6 @@ it(`prompt when invalid input OR missing input`, async () => {
   )
   line = [`-a`, `1`]
   await run(
-    // @ts-expect-error - todo with Pierre
     $$.parameter(`a`, {
       type: s.min(2),
       prompt: { when: { result: `rejected`, error: [`ErrorInvalidArgument`, `ErrorMissingArgument`] } },
@@ -234,7 +213,6 @@ it(`prompt when omitted`, async () => {
   )
   line = []
   await run(
-    // @ts-expect-error - todo with Pierre
     $$.parameter(`a`, {
       type: s.min(2).optional(),
       prompt: { when: { result: `omitted`, spec: { optionality: [`default`, `optional`] } } },
@@ -243,7 +221,6 @@ it(`prompt when omitted`, async () => {
 })
 
 it(`static error to match on omitted event on required parameter by .parameter(...)`, () => {
-  // @ts-expect-error not available
   $.parameter(`a`, { type: s, prompt: { when: { result: `omitted` } } })
   // TODO fix me
   // // Is fine, because parameter is optional.
@@ -261,7 +238,6 @@ it(`static error to match on omitted event on command level when no parameters h
   // TODO fix me
   // $
   //   .parameter(`a`, s)
-  //   // @ts-expect-error not available
   //   .settings({ prompt: { when: { result: `omitted` } } })
   // Is fine, because parameter is optional.
   $.parameter(`a`, s.optional()).settings({ prompt: { when: { result: `omitted` } } })
@@ -287,11 +263,9 @@ it(`array value`, () => {
     prompt: { when: { result: `accepted`, spec: { name: { aliases: { long: [[`a`, `b`], [`c`]] } } } } },
   })
   $.parameter(`a`, s).settings({
-    // @ts-expect-error Cannot pass the array member literal
     prompt: { when: { result: `accepted`, spec: { name: { aliases: { long: `a` } } } } },
   })
   $.parameter(`a`, s).settings({
-    // @ts-expect-error Cannot mix OR and ONE matches
     prompt: { when: { result: `accepted`, spec: { name: { aliases: { long: [`a`, [`b`]] } } } } },
   })
 })
@@ -300,7 +274,6 @@ it(`array value`, () => {
 // it(`static error when fields from different event types matched in single pattern`, () => {
 //   $
 //     .parameter(`a`, s)
-//     // @ts-expect-error "value" is not available on "rejected" event
 //     .settings({ prompt: { when: { result: `rejected`, value: 1 } } })
 //   // TODO excess properties should be an error in the pattern match but for some reason are not being here.
 //   $.parameter(`a`, {

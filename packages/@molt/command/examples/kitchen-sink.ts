@@ -91,7 +91,7 @@ const args = Command.create()
       .default(false)
       .describe(`Delete the original file after it has been converted.`),
   )
-  .parametersExclusive(`desert`, (_) =>
+  .parametersExclusive(`desert`, (_: any) =>
     _.parameter(
       `cake`,
       z

@@ -17,11 +17,9 @@ describe(`zod`, () => {
       expect(() => {
         // eslint-disable-next-line
         Object.entries(parameters)
-          // @ts-expect-error todo
-          .reduce((chain, data) => {
+          .reduce((chain: any, data) => {
             return chain.parameter(data[0] as any, data[1])
-          }, $)
-          // @ts-expect-error todo
+          }, $ as any)
           .settings({ onError: `throw`, helpOnError: false })
           .parse(input)
       }).toThrowErrorMatchingSnapshot()

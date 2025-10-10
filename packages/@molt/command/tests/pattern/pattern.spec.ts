@@ -49,19 +49,14 @@ const staticTypeTests_ = () => {
   match(d, { x: [[`1`], [`2`]] })
   match(d, { x: [`2`] })
   match(d, { x: [`1`, `2`] })
-  // @ts-expect-error
   match(d, { x: `1` })
-  // @ts-expect-error
   match(d, { x: [['1'], '2'] })
 
   // scalar
-  // @ts-expect-error
   match(1, '1')
   match(1, 1)
-  // @ts-expect-error
   match('a', 'b')
   match('a', 'a')
-  // @ts-expect-error
   match(true, false)
   match(true, true)
 
@@ -69,31 +64,24 @@ const staticTypeTests_ = () => {
   match(1, [])
   match(1, [1])
   match(1, [1, 1])
-  // // @ts-expect-error
   // checkMatches(null, [null])
-  // // @ts-expect-error
   // checkMatches(true, [true])
-  // @ts-expect-error
   match('a', ['a', 'b'])
   match('a', ['a', 'a'])
 
   // shallow object
-  // @ts-expect-error
   match({ a: 1 }, { a: `1` })
   match({ a: 1 }, { a: 1 })
   // shallow object non-deterministic
-  // @ts-expect-error
   match({ a: 1 }, [{ a: '1' }])
   match({ a: 1 }, [{ a: 1 }, { a: 2 }])
   match({ a: 1 }, { a: [1, 2] })
 
   // deep object
-  // @ts-expect-error
   match({ a: { b1: 2, b2: 3 } }, { a: { b1: 'a' } })
   match({ a: { b1: 2, b2: 3 } }, { a: { b1: 2 } })
   match({ a: { b1: 2, b2: 3 } }, { a: {} })
   // deep object non-deterministic
-  // @ts-expect-error
   match({ a: { b1: 2, b2: 3 } }, { a: [{ b1: 2 }, { b2: '3' }] })
   match({ a: { b1: 2, b2: 3 } }, { a: [{ b1: 2 }, { b2: 3 }] })
   match({ a: { b1: 2, b2: 3 } }, [{ a: { b1: 2 } }, {}])
