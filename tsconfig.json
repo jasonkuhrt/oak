@@ -23,6 +23,7 @@
     "forceConsistentCasingInFileNames": true,
     "noImplicitReturns": false,
     "exactOptionalPropertyTypes": false,
+    "noPropertyAccessFromIndexSignature": false,
 
     // DX covered by linter:
     "noUnusedLocals": false,
