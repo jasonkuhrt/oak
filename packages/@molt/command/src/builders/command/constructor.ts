@@ -13,10 +13,10 @@ export const create = (): CommandBuilder => {
   return create_(createState())
 }
 
-const create_ = (state: BuilderCommandState): CommandBuilder => {
+const create_ = (state: BuilderCommandState): any => {
   // Cast to any internally - the type system tracks state transformations correctly
   // at the public API level, but the implementation is too complex for TS to verify
-  const builder: CommandBuilder = {
+  const builder: InternalRootBuilder = {
     use: (extension: SomeExtension) => {
       const newState: BuilderCommandState = {
         ...state,
@@ -33,7 +33,7 @@ const create_ = (state: BuilderCommandState): CommandBuilder => {
           }
         },
       }
-      return create_(newState)
+      return create_(newState) as any
     },
     description: (description: string) => {
       const newState = {
@@ -45,14 +45,14 @@ const create_ = (state: BuilderCommandState): CommandBuilder => {
           },
         ],
       }
-      return create_(newState)
+      return create_(newState) as any
     },
     settings: (newSettings: any) => {
       const newState = {
         ...state,
         newSettingsBuffer: [...state.newSettingsBuffer, newSettings],
       }
-      return create_(newState)
+      return create_(newState) as any
     },
     parameter: (nameExpression: string, typeOrConfiguration: any) => {
       // Check if this is a ParameterConfiguration object by looking for BOTH 'type' and 'prompt'
@@ -78,7 +78,7 @@ const create_ = (state: BuilderCommandState): CommandBuilder => {
           [nameExpression]: parameter,
         },
       }
-      return create_(newState)
+      return create_(newState) as any
     },
     parametersExclusive: (label: string, builderContainer: any) => {
       const exclusiveBuilderState = builderContainer(ExclusiveBuilder.create(label, state))[ExclusiveBuilderStateSymbol] // eslint-disable-line
@@ -89,7 +89,7 @@ const create_ = (state: BuilderCommandState): CommandBuilder => {
           [label]: exclusiveBuilderState, // eslint-disable-line
         },
       }
-      return create_(newState)
+      return create_(newState) as any
     },
     parse: (argInputs?: RawArgInputs) => {
       const argInputsEnvironment = argInputs?.environment
@@ -104,12 +104,25 @@ const create_ = (state: BuilderCommandState): CommandBuilder => {
       state.settings.typeMapper = state.typeMapper
       return parse(state.settings, state.parameterInputs, argInputs as any)
     },
-  } as any
+  }
 
-  return builder
+  return builder as any
 }
 
 //
 // Internal Types
-// (Not needed - using CommandBuilder directly)
 //
+
+interface Parameter {
+  (nameExpression: string, schema: unknown): InternalRootBuilder
+  (nameExpression: string, configuration: ParameterConfiguration): InternalRootBuilder
+}
+
+interface InternalRootBuilder {
+  use: (extension: SomeExtension) => InternalRootBuilder
+  description: (description: string) => InternalRootBuilder
+  settings: (newSettings: any) => InternalRootBuilder
+  parameter: Parameter
+  parametersExclusive: (label: string, builderContainer: any) => InternalRootBuilder
+  parse: (argInputs?: RawArgInputs) => any
+}
