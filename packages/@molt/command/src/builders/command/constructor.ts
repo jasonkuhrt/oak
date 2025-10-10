@@ -55,7 +55,12 @@ const create_ = (state: BuilderCommandState): CommandBuilder => {
       return create_(newState)
     },
     parameter: (nameExpression: string, typeOrConfiguration: any) => {
-      const configuration = `type` in typeOrConfiguration
+      // Check if this is a ParameterConfiguration object by looking for BOTH 'type' and 'prompt'
+      // A raw schema might have a 'type' property (like Zod schemas), but won't have 'prompt'
+      const isConfiguration = typeOrConfiguration && typeof typeOrConfiguration === 'object'
+        && 'type' in typeOrConfiguration
+        && 'prompt' in typeOrConfiguration
+      const configuration = isConfiguration
         ? typeOrConfiguration
         : { type: typeOrConfiguration }
       const prompt = configuration.prompt ?? null
