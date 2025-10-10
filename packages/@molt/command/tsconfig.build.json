@@ -1,0 +1,10 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "build",
+    "rootDir": "src",
+    "tsBuildInfoFile": "node_modules/.cache/build.tsbuildinfo"
+  },
+  "include": ["src"],
+  "exclude": ["**/*.spec.*", "**/*.test.*"]
+}
