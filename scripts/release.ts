@@ -29,6 +29,10 @@ const args = Command.create()
   })
   .parse()
 
+if (typeof args.package !== 'string') {
+  throw new Error(`Expected package to be a string, got: ${JSON.stringify(args.package)}`)
+}
+
 const cwd = Path.join(Path.dirname(url.fileURLToPath(import.meta.url)), `../packages`, args.package)
 const $Fs = Fs.cwd(cwd)
 
@@ -44,12 +48,15 @@ const pkg = (await $Fs.readAsync(`package.json`, `json`)) as {
   repository: string
 }
 
-if (!args.method) throw new Error(``)
+if (!args.method) throw new Error(`Method is required`)
 
-// eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-const newVersion = Alge.match(args.method as any)
-  .bump((_: any) => Semver.inc(pkg.version, _.value)!) // eslint-disable-line
-  .version((_: any) => _.value)
+type MethodType =
+  | { _tag: 'bump'; value: 'major' | 'minor' | 'patch' }
+  | { _tag: 'version'; value: string }
+
+const newVersion = Alge.match(args.method as MethodType)
+  .bump((method) => Semver.inc(pkg.version, method.value)!)
+  .version((method) => method.value)
   .done()
 
 const gitTagName = `${args.package}@${newVersion}`
