@@ -1,9 +1,10 @@
 import { Effect } from 'effect'
 import type { MoltSchema } from '../../../schema/molt-schema.js'
 import type { InferOutput } from '../../../schema/standard-schema.js'
+import { Term } from '../../../term.js'
+import type { KeyPress } from '../../KeyPress/index.js'
 import type { Pam } from '../../Pam/index.js'
 import { PromptEngine } from '../../PromptEngine/PromptEngine.js'
-import { Term } from '../../../term.js'
 import { Text } from '../../Text/index.js'
 
 export interface Prompter {
@@ -54,13 +55,13 @@ export const create = (channels: PromptEngine.Channels): Prompter => {
                 {
                   // Match backspace separately
                   match: `backspace`,
-                  run: (state) => ({ value: state.value.slice(0, -1) }),
+                  run: (state: { value: string }) => ({ value: state.value.slice(0, -1) }),
                 },
                 {
                   // Match all other keys by having empty match criteria (matches everything)
                   // The PromptEngine filters out return/escape automatically
                   match: {},
-                  run: (state, event) => {
+                  run: (state: { value: string }, event: KeyPress.KeyPressEvent) => {
                     // Add the character if it has a sequence (printable character)
                     if (event.sequence && event.sequence !== ``) {
                       return { value: state.value + event.sequence }
@@ -100,6 +101,7 @@ export const create = (channels: PromptEngine.Channels): Prompter => {
               ],
             }),
           )
+          if (result === null) throw new Error(`Boolean selection cancelled`)
           return result.value as any
         })
       }
@@ -130,6 +132,7 @@ export const create = (channels: PromptEngine.Channels): Prompter => {
               ],
             }),
           )
+          if (result === null) throw new Error(`Enum selection cancelled`)
           return values[result.index] as any
         })
       }
@@ -161,11 +164,13 @@ export const create = (channels: PromptEngine.Channels): Prompter => {
               ],
             }),
           )
+          if (typeResult === null) throw new Error(`Union type selection cancelled`)
 
           // Second prompt: prompt for the selected type
           const selectedSchema = schema.members[typeResult.index]!
+          const prompter = create(channels) as Prompter
           return yield* _(
-            (create(channels) as Prompter).ask({
+            prompter.ask({
               ...params,
               parameter: {
                 ...params.parameter,
@@ -179,7 +184,7 @@ export const create = (channels: PromptEngine.Channels): Prompter => {
               } as any,
             }),
           )
-        })
+        }) as any
       }
 
       // Literal type - just return the literal value
