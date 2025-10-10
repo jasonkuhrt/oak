@@ -6,11 +6,14 @@
   "license": "MIT",
   "type": "module",
   "scripts": {
-    "format": "dprint fmt",
-    "format:check": "dprint check",
+    "fix:format": "dprint fmt",
     "fix:lint": "oxlint --fix --fix-suggestions .",
+    "check:format": "dprint check",
     "check:lint": "oxlint .",
     "check:types": "tsc --noEmit",
+    "fixcheck": "pnpm run '/fix:.*/' && pnpm run '/check:.*/'",
+    "check": "pnpm run '/check:.*/'",
+    "fix": "pnpm run '/fix:.*/'",
     "release:@molt/command": "pnpm release --package @molt/command",
     "release:molt": "pnpm release --package molt",
     "release": "tsx scripts/release.ts"

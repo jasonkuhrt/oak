@@ -41,7 +41,7 @@ export const parseEnvironmentVariableBooleanOrThrow = (value: string) => {
 export const negateNamePattern = /^no([A-Z].+)/
 
 export const stripeNegatePrefix = (name: string): null | string => {
-  const withoutPrefix = name.match(negateNamePattern)?.[1]!
+  const withoutPrefix = name.match(negateNamePattern)?.[1]
   if (!withoutPrefix) return null
   const withCamelCase = camelCase(withoutPrefix)
   return withCamelCase
