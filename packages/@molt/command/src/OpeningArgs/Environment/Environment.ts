@@ -48,7 +48,7 @@ export const parse = (environment: RawInputs, specs: Parameter[]): ParsedInputs 
           prefix: match.namespace,
           value: match.value,
         }
-        const e = report.errors.find((_) => _.name === `ErrorDuplicateEnvArg`) 
+        const e = report.errors.find((_) => _.name === `ErrorDuplicateEnvArg`)
         if (e) {
           e.instances.push(instance)
         } else {

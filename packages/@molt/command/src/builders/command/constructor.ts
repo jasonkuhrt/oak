@@ -22,7 +22,7 @@ const create_ = (state: BuilderCommandState): any => {
         ...state,
         extension,
       }
-      return create_(newState) 
+      return create_(newState)
     },
     description: (description: string) => {
       const newState = {
@@ -34,14 +34,14 @@ const create_ = (state: BuilderCommandState): any => {
           },
         ],
       }
-      return create_(newState) 
+      return create_(newState)
     },
     settings: (newSettings: any) => {
       const newState = {
         ...state,
         newSettingsBuffer: [...state.newSettingsBuffer, newSettings],
       }
-      return create_(newState) 
+      return create_(newState)
     },
     parameter: (nameExpression: string, typeOrConfiguration: any) => {
       // Check if this is a schema (has ~standard property) or a configuration object
@@ -81,7 +81,7 @@ const create_ = (state: BuilderCommandState): any => {
           [nameExpression]: parameter,
         },
       }
-      return create_(newState) 
+      return create_(newState)
     },
     parametersExclusive: (label: string, builderContainer: any) => {
       const exclusiveBuilderState = builderContainer(ExclusiveBuilder.create(label, state))[ExclusiveBuilderStateSymbol] // eslint-disable-line
@@ -92,7 +92,7 @@ const create_ = (state: BuilderCommandState): any => {
           [label]: exclusiveBuilderState, // eslint-disable-line
         },
       }
-      return create_(newState) 
+      return create_(newState)
     },
     parse: (argInputs?: RawArgInputs) => {
       const argInputsEnvironment = argInputs?.environment

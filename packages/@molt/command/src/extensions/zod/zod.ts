@@ -174,20 +174,20 @@ const extractStringRefinements = (schema: z.ZodString): string[] => {
   const checks = (schema as any)._def?.checks ?? []
 
   for (const check of checks) {
-    const kind = (check ).kind
-    if (kind === `min`) refinements.push(`min length: ${(check ).value}`)
-    else if (kind === `max`) refinements.push(`max length: ${(check ).value}`)
-    else if (kind === `length`) refinements.push(`length: ${(check ).value}`)
+    const kind = check.kind
+    if (kind === `min`) refinements.push(`min length: ${check.value}`)
+    else if (kind === `max`) refinements.push(`max length: ${check.value}`)
+    else if (kind === `length`) refinements.push(`length: ${check.value}`)
     else if (kind === `email`) refinements.push(`email format`)
     else if (kind === `url`) refinements.push(`URL format`)
     else if (kind === `uuid`) refinements.push(`UUID format`)
     else if (kind === `cuid`) refinements.push(`CUID format`)
     else if (kind === `cuid2`) refinements.push(`CUID2 format`)
     else if (kind === `ulid`) refinements.push(`ULID format`)
-    else if (kind === `regex`) refinements.push(`pattern: ${(check ).regex}`)
-    else if (kind === `startsWith`) refinements.push(`starts with: "${(check ).value}"`)
-    else if (kind === `endsWith`) refinements.push(`ends with: "${(check ).value}"`)
-    else if (kind === `includes`) refinements.push(`contains: "${(check ).value}"`)
+    else if (kind === `regex`) refinements.push(`pattern: ${check.regex}`)
+    else if (kind === `startsWith`) refinements.push(`starts with: "${check.value}"`)
+    else if (kind === `endsWith`) refinements.push(`ends with: "${check.value}"`)
+    else if (kind === `includes`) refinements.push(`contains: "${check.value}"`)
   }
 
   return refinements
@@ -201,11 +201,11 @@ const extractNumberRefinements = (schema: z.ZodNumber): string[] => {
   const checks = (schema as any)._def?.checks ?? []
 
   for (const check of checks) {
-    const kind = (check ).kind
-    if (kind === `min`) refinements.push(`min: ${(check ).value}`)
-    else if (kind === `max`) refinements.push(`max: ${(check ).value}`)
+    const kind = check.kind
+    if (kind === `min`) refinements.push(`min: ${check.value}`)
+    else if (kind === `max`) refinements.push(`max: ${check.value}`)
     else if (kind === `int`) refinements.push(`integer`)
-    else if (kind === `multipleOf`) refinements.push(`multiple of: ${(check ).value}`)
+    else if (kind === `multipleOf`) refinements.push(`multiple of: ${check.value}`)
     else if (kind === `finite`) refinements.push(`finite`)
   }
 
