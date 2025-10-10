@@ -21,7 +21,7 @@ export interface Prompter {
     prompt: string
     question: string
     marginLeft?: number
-  }) => Effect.Effect<never, never, InferOutput<$Schema['standardSchema']>>
+  }) => Effect.Effect<InferOutput<$Schema['standardSchema']>>
 }
 
 export const create = (channels: PromptEngine.Channels): Prompter => {
@@ -34,7 +34,7 @@ export const create = (channels: PromptEngine.Channels): Prompter => {
       prompt: string
       question: string
       marginLeft?: number
-    }): Effect.Effect<never, never, InferOutput<$Schema['standardSchema']>> => {
+    }): Effect.Effect<InferOutput<$Schema['standardSchema']>> => {
       channels.output(params.question + Text.chars.newline)
       const schema = params.parameter.type.metadata.schema
       const marginLeft = params.marginLeft ?? 0

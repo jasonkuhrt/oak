@@ -12,7 +12,7 @@ import { isFailure, isSuccess, validateWithStandardSchema } from './standard-sch
 export const validate = <___Input, ___Output>(
   schema: MoltSchema<___Input, ___Output>,
   value: unknown,
-): Ef.Either<{ value: unknown; errors: string[] }, ___Output | undefined> => {
+): Ef.Either<___Output | undefined, { value: unknown; errors: string[] }> => {
   // Cast to synchronous result - molt only uses sync schemas
   const result = validateWithStandardSchema(schema.standardSchema, value) as any
 
@@ -36,7 +36,7 @@ export const validate = <___Input, ___Output>(
 export const deserialize = <___Input, ___Output>(
   schema: MoltSchema<___Input, ___Output>,
   serializedValue: string,
-): Ef.Either<Error, ___Output> => {
+): Ef.Either<___Output, Error> => {
   let parsedValue: unknown
 
   // Use structured schema metadata for deserialization

@@ -13,7 +13,7 @@ import type { ParseProgressPostPrompt, ParseProgressPostPromptAnnotation } from 
 export const prompt = (
   parseProgress: ParseProgressPostPromptAnnotation,
   prompter: null | Prompter.Prompter,
-): Effect.Effect<never, never, ParseProgressPostPrompt> =>
+): Effect.Effect<ParseProgressPostPrompt> =>
   Effect.gen(function*(_) {
     if (prompter === null) return parseProgress as ParseProgressPostPrompt
 

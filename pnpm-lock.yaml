@@ -72,15 +72,12 @@ importers:
 
   packages/@molt/command:
     dependencies:
-      '@molt/name':
-        specifier: workspace:*
-        version: link:../name
       '@standard-schema/spec':
         specifier: ^1.0.0
         version: 1.0.0
       '@wollybeard/kit':
-        specifier: ^0.76.2
-        version: 0.76.2(@effect/platform@0.92.1)(effect@2.2.4)
+        specifier: ^0.77.0
+        version: 0.77.0(@effect/platform@0.92.1)(effect@3.18.4)
       alge:
         specifier: 0.8.1
         version: 0.8.1
@@ -91,8 +88,8 @@ importers:
         specifier: ^5.3.0
         version: 5.3.0
       effect:
-        specifier: 2.2.4
-        version: 2.2.4
+        specifier: ^3.18.4
+        version: 3.18.4
       lodash.camelcase:
         specifier: ^4.3.0
         version: 4.3.0
@@ -195,12 +192,12 @@ packages:
       js-tokens: 4.0.0
     dev: true
 
-  /@effect/platform@0.92.1(effect@2.2.4):
+  /@effect/platform@0.92.1(effect@3.18.4):
     resolution: {integrity: sha512-XXWCBVwyhaKZISN7aM1fv/3fWDGyxr84ObywnUrL8aHvJLoIeskWFAP/fqw3c5MFCrJ3ZV97RWLbv6JiBQugdg==}
     peerDependencies:
       effect: ^3.18.1
     dependencies:
-      effect: 2.2.4
+      effect: 3.18.4
       find-my-way-ts: 0.1.6
       msgpackr: 1.11.5
       multipasta: 0.2.7
@@ -874,18 +871,65 @@ packages:
       pretty-format: 29.7.0
     dev: true
 
-  /@wollybeard/kit@0.76.2(@effect/platform@0.92.1)(effect@2.2.4):
-    resolution: {integrity: sha512-DCsJCmliApmPqo56oeDBNcMKxCRl7xIfCT+hJZCtXy+dNKSHx2xKtDlXO/h3ugbCUxOJsFy5qvsDVSb0mquqjg==}
+  /@vltpkg/dep-id@0.0.0-30:
+    resolution: {integrity: sha512-SvUHQgZJg0d7Mc1yec+5lF2DFiwbEgikCvdqXdxWAxjSdXhj7d6vNUH3MitrZCJPiUpdvOejS4DVHanLfcwI9g==}
+    engines: {node: '>=22'}
+    dependencies:
+      '@vltpkg/error-cause': 0.0.0-30
+      '@vltpkg/spec': 0.0.0-30
+      '@vltpkg/types': 0.0.0-30
+    dev: false
+
+  /@vltpkg/error-cause@0.0.0-30:
+    resolution: {integrity: sha512-j+rjUo0m1C81HdoW7qLgQFHGedg4YypzAYEdrUT04f4DGLZB3Qf9OS1Wd26IzICjMxB8OSAxFqKHikst3KR4wA==}
+    engines: {node: '>=22'}
+    dev: false
+
+  /@vltpkg/fast-split@0.0.0-30:
+    resolution: {integrity: sha512-UhCch9sy30lyR5Ry8knwIi46MGCr8fMQ/Z3TG2dBxH2kkTWKkOPc0s8wa9uz8y0BkE9fqku2gVkTAnz1yCeROg==}
+    engines: {node: '>=22'}
+    dev: false
+
+  /@vltpkg/semver@0.0.0-30:
+    resolution: {integrity: sha512-GWqy5Rr5L9VeJDE6Yb0BscLehLWc1GWDAShxFFmfGBqr68Vy0DF5YSWb0NvVpfQ0r+uIxA5FK7b7bK0oJKThPw==}
+    engines: {node: '>=22'}
+    dependencies:
+      '@vltpkg/error-cause': 0.0.0-30
+      '@vltpkg/fast-split': 0.0.0-30
+      '@vltpkg/types': 0.0.0-30
+    dev: false
+
+  /@vltpkg/spec@0.0.0-30:
+    resolution: {integrity: sha512-0eYijND+UJBNkrEpL7+Ammc6Sjk7bAOZC33PETYXkV3JGl8npoV3o4w3rigtwfZVuedfi81RmMcr0Nb2JjNaMw==}
+    engines: {node: '>=22'}
+    dependencies:
+      '@vltpkg/error-cause': 0.0.0-30
+      '@vltpkg/semver': 0.0.0-30
+    dev: false
+
+  /@vltpkg/types@0.0.0-30:
+    resolution: {integrity: sha512-gUqYAZwVQjmjbM+xnyZNHnpMyXIvDN5nIzifWY9RKJ9XEmPVJg8Nql5zMXXPbr1MekMZzBvqvCgMeoDV53dX2g==}
+    engines: {node: '>=22'}
+    dependencies:
+      '@vltpkg/dep-id': 0.0.0-30
+      '@vltpkg/error-cause': 0.0.0-30
+      '@vltpkg/semver': 0.0.0-30
+      '@vltpkg/spec': 0.0.0-30
+    dev: false
+
+  /@wollybeard/kit@0.77.0(@effect/platform@0.92.1)(effect@3.18.4):
+    resolution: {integrity: sha512-RXNbN9JCDZUx577fZ3d9PFMvrvJtZKNw54MesXVk17nLCUOAulDrcBZt+QRVQzugANjOkAX/RX89LtAoAJ0SXQ==}
     peerDependencies:
       '@effect/platform': '>=0.90.0 <1.0.0'
       effect: ^3.17.0
     dependencies:
-      '@effect/platform': 0.92.1(effect@2.2.4)
+      '@effect/platform': 0.92.1(effect@3.18.4)
       '@types/node': 24.7.1
       '@types/object-inspect': 1.13.0
+      '@vltpkg/semver': 0.0.0-30
       ansis: 4.2.0
       consola: 3.4.2
-      effect: 2.2.4
+      effect: 3.18.4
       es-toolkit: 1.40.0
       fast-check: 4.3.0
       jsonc-parser: 3.3.1
@@ -1273,8 +1317,11 @@ packages:
       path-type: 4.0.0
     dev: true
 
-  /effect@2.2.4:
-    resolution: {integrity: sha512-anOrPpTZoS42kWDyspNZB5szHA+w0qCM316huX7RLIrkKwCcOHa4/clEe3e3dzZswbiO/JgenAyBIExywkWulA==}
+  /effect@3.18.4:
+    resolution: {integrity: sha512-b1LXQJLe9D11wfnOKAk3PKxuqYshQ0Heez+y5pnkd3jLj1yx9QhM72zZ9uUrOQyNvrs2GZZd/3maL0ZV18YuDA==}
+    dependencies:
+      '@standard-schema/spec': 1.0.0
+      fast-check: 3.23.2
     dev: false
 
   /emoji-regex@8.0.0:
@@ -1378,6 +1425,13 @@ packages:
     dependencies:
       is-extendable: 0.1.1
     dev: true
+
+  /fast-check@3.23.2:
+    resolution: {integrity: sha512-h5+1OzzfCC3Ef7VbtKdcv7zsstUQwUDlYpUTvjeUsJAssPgLn7QzbboPtL5ro04Mq0rPOsMzl7q5hIbRs2wD1A==}
+    engines: {node: '>=8.0.0'}
+    dependencies:
+      pure-rand: 6.1.0
+    dev: false
 
   /fast-check@4.3.0:
     resolution: {integrity: sha512-JVw/DJSxVKl8uhCb7GrwanT9VWsCIdBkK3WpP37B/Au4pyaspriSjtrY2ApbSFwTg3ViPfniT13n75PhzE7VEQ==}
@@ -2254,6 +2308,10 @@ packages:
   /pstree.remy@1.1.8:
     resolution: {integrity: sha512-77DZwxQmxKnu3aR542U+X8FypNzbfJ+C5XQDk3uWjWxn6151aIMGthWYRXTqT1E5oJvg+ljaa2OJi+VfvCOQ8w==}
     dev: true
+
+  /pure-rand@6.1.0:
+    resolution: {integrity: sha512-bVWawvoZoBYpp6yIoQtQXHZjmz35RSVHnUOTefl8Vcjr8snTPY1wnpSPMWekcFwbxI6gtmT7rSYPFvz71ldiOA==}
+    dev: false
 
   /pure-rand@7.0.1:
     resolution: {integrity: sha512-oTUZM/NAZS8p7ANR3SHh30kXB+zK2r2BPcEn/awJIbOvq82WoMN4p62AWWp3Hhw50G0xMsw1mhIBLqHw64EcNQ==}

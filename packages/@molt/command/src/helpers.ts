@@ -23,7 +23,7 @@ export const getLowerCaseEnvironment = (): NodeJS.ProcessEnv => lowerCaseObjectK
 export const lowerCaseObjectKeys = (obj: object) =>
   Object.fromEntries(Object.entries(obj).map(([k, v]) => [k.toLowerCase(), v]))
 
-export const parseEnvironmentVariableBoolean = (serializedValue: string): Either.Either<Error, boolean> => {
+export const parseEnvironmentVariableBoolean = (serializedValue: string): Either.Either<boolean, Error> => {
   // @ts-expect-error ignore
   const value = environmentVariableBooleanLookup[serializedValue]
   if (value === undefined) return Either.left(new Error(`Invalid boolean value: ${value}`))

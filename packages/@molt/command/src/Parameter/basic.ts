@@ -1,5 +1,6 @@
-import { Name } from '@molt/name'
+import { Cli } from '@wollybeard/kit'
 import type { BuilderCommandState } from '../builders/command/state.js'
+import { S } from '../deps/effect.js'
 import type { Pam } from '../lib/Pam/index.js'
 import type { MoltSchema } from '../schema/molt-schema.js'
 import type { Settings } from '../Settings/index.js'
@@ -25,7 +26,7 @@ export const parameterBasicCreate = (
   input: ParameterBasicInput,
   settings: Settings.Output,
 ): ParameterBasic => {
-  const name = Name.parse(input.nameExpression)
+  const name = S.decodeSync(Cli.FlagName.FlagName.String)(input.nameExpression)
   const environment = processEnvironment(settings, name)
   const prompt = input.prompt as boolean | null | { enabled?: boolean; when?: object }
   const promptEnabled = prompt === true

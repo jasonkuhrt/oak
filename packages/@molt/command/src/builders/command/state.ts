@@ -1,17 +1,30 @@
-import type { Name } from '@molt/name'
 import type { StandardSchemaV1 } from '@standard-schema/spec'
-import type { Obj, Ts } from '@wollybeard/kit'
+import type { Cli, Obj, Ts } from '@wollybeard/kit'
 import type { SomeExtension } from '../../extension.js'
 import type { Values } from '../../helpers.js'
-import type { HKT } from '../../helpers.js'
 import type { ParameterBasicInput } from '../../Parameter/basic.js'
 import type { ParameterExclusiveInput } from '../../Parameter/exclusive.js'
 import type { Prompt } from '../../Parameter/types.js'
-import type { MoltSchema } from '../../schema/molt-schema.js'
 import type { InferOutput } from '../../schema/standard-schema.js'
 import type { Settings } from '../../Settings/index.js'
 import type { ExclusiveParameterConfiguration } from '../exclusive/types.js'
 import type { IsPromptEnabledInParameterSettings, ParameterConfiguration } from './types.js'
+
+// Type utilities for working with FlagName parse results
+type IsParseError<$result extends string | Cli.FlagName.FlagName> = $result extends string ? true : false
+
+type GetCanonicalNameOrErrorFromParseResult<$result extends string | Cli.FlagName.FlagName> = $result extends string
+  ? $result
+  : $result extends Cli.FlagName.FlagName ? $result['canonical']
+  : never
+
+type GetNamesFromParseResult<$names extends string | Cli.FlagName.FlagName> = $names extends Cli.FlagName.FlagName ? (
+    | ($names['long'] extends string ? $names['long'] : never)
+    | ($names['short'] extends string ? $names['short'] : never)
+    | $names['aliases']['long'][number]
+    | $names['aliases']['short'][number]
+  )
+  : ''
 
 export const createState = (): BuilderCommandState => {
   return {
@@ -45,7 +58,7 @@ export namespace BuilderCommandState {
         Optional: boolean
         Parameters: {
           [canonicalName: string]: {
-            NameParsed: Name.Data.NameParsed
+            NameParsed: Cli.FlagName.FlagName
             NameUnion: string
             Schema: StandardSchemaV1 // Always store Standard Schema V1
           }
@@ -54,7 +67,7 @@ export namespace BuilderCommandState {
     }
     Parameters: {
       [nameExpression: string]: {
-        NameParsed: Name.Data.NameParsed
+        NameParsed: Cli.FlagName.FlagName
         NameUnion: string
         Schema: StandardSchemaV1 // Always store Standard Schema V1
       }
@@ -63,9 +76,10 @@ export namespace BuilderCommandState {
 
   type ReservedParameterNames = 'help' | 'h'
 
-  export type ValidateNameExpression<State extends Base, NameExpression extends string> = Name.Data.IsParseError<
-    Name.Parse<NameExpression, { usedNames: GetUsedNames<State>; reservedNames: ReservedParameterNames }>
-  > extends true ? Name.Parse<NameExpression, { usedNames: GetUsedNames<State>; reservedNames: ReservedParameterNames }>
+  export type ValidateNameExpression<State extends Base, NameExpression extends string> = IsParseError<
+    Cli.FlagName.Analyze<NameExpression, { usedNames: GetUsedNames<State>; reservedNames: ReservedParameterNames }>
+  > extends true
+    ? Cli.FlagName.Analyze<NameExpression, { usedNames: GetUsedNames<State>; reservedNames: ReservedParameterNames }>
     : NameExpression
 
   export type GetUsedNames<State extends Base> = Values<State['Parameters']>['NameUnion']
@@ -122,15 +136,18 @@ export namespace BuilderCommandState {
         [_ in Label]: {
           Optional: $State['ParametersExclusive'][_]['Optional']
           Parameters: {
-            [_ in NameExpression as Name.Data.GetCanonicalNameOrErrorFromParseResult<Name.Parse<NameExpression>>]: {
+            [_ in NameExpression as GetCanonicalNameOrErrorFromParseResult<Cli.FlagName.Analyze<NameExpression>>]: {
               // Store the schema as StandardSchemaV1 to extract Output type
               Schema: Configuration['type'] extends StandardSchemaV1 ? Configuration['type'] : never
-              NameParsed: Name.Parse<
+              NameParsed: Cli.FlagName.Analyze<
                 NameExpression,
                 { usedNames: GetUsedNames<$State>; reservedNames: ReservedParameterNames }
               >
-              NameUnion: Name.Data.GetNamesFromParseResult<
-                Name.Parse<NameExpression, { usedNames: GetUsedNames<$State>; reservedNames: ReservedParameterNames }>
+              NameUnion: GetNamesFromParseResult<
+                Cli.FlagName.Analyze<
+                  NameExpression,
+                  { usedNames: GetUsedNames<$State>; reservedNames: ReservedParameterNames }
+                >
               >
             }
           }
@@ -146,9 +163,12 @@ export namespace BuilderCommandState {
     // Store the schema as StandardSchemaV1 to extract Output type
     // Configuration['type'] is constrained to be a StandardSchemaV1
     Schema: Configuration['type'] extends StandardSchemaV1 ? Configuration['type'] : never
-    NameParsed: Name.Parse<NameExpression, { usedNames: GetUsedNames<$State>; reservedNames: ReservedParameterNames }>
-    NameUnion: Name.Data.GetNamesFromParseResult<
-      Name.Parse<NameExpression, { usedNames: GetUsedNames<$State>; reservedNames: ReservedParameterNames }>
+    NameParsed: Cli.FlagName.Analyze<
+      NameExpression,
+      { usedNames: GetUsedNames<$State>; reservedNames: ReservedParameterNames }
+    >
+    NameUnion: GetNamesFromParseResult<
+      Cli.FlagName.Analyze<NameExpression, { usedNames: GetUsedNames<$State>; reservedNames: ReservedParameterNames }>
     >
   }
 

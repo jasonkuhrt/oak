@@ -45,7 +45,7 @@ export namespace PromptEngine {
 
   export const create = <State extends object, Skippable extends boolean>(
     params: Params<State, Skippable>,
-  ): Effect.Effect<never, never, Skippable extends true ? null | State : State> =>
+  ): Effect.Effect<Skippable extends true ? null | State : State> =>
     Effect.gen(function*(_) {
       type Ret = Skippable extends true ? null | State : State
 
@@ -114,7 +114,7 @@ export namespace PromptEngine {
           }),
           Effect.tap(() => {
             cleanup()
-            return Effect.unit
+            return Effect.void
           }),
         ),
       )
@@ -122,10 +122,10 @@ export namespace PromptEngine {
 
   export interface Channels {
     output: (value: string) => void
-    readLine: () => Effect.Effect<never, never, string>
+    readLine: () => Effect.Effect<string>
     readKeyPresses: <K extends KeyPress.Key>(
       params?: ReadKeyPressesParams<K>,
-    ) => Stream.Stream<never, never, Exit.Exit<never, void> | KeyPress.KeyPressEvent<K>>
+    ) => Stream.Stream<Exit.Exit<void> | KeyPress.KeyPressEvent<K>>
   }
   export interface ReadKeyPressesParams<K extends string> {
     matching?: K[]
