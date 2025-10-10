@@ -7,6 +7,7 @@
     // Package
     "module": "nodenext",
     "moduleResolution": "nodenext",
+    "lib": ["es2023"],
 
     // Output
     "verbatimModuleSyntax": true,
