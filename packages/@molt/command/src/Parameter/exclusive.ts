@@ -3,8 +3,8 @@ import { Name } from '@molt/name'
 import { Alge } from 'alge'
 import type { BuilderCommandState } from '../builders/command/state.js'
 import type { Pam } from '../lib/Pam/index.js'
+import type { MoltSchema } from '../schema/molt-schema.js'
 import type { Settings } from '../Settings/index.js'
-import type { Type } from '../Type/index.js'
 import { processEnvironment } from './helpers/environment.js'
 import type { Environment } from './helpers/types.js'
 
@@ -20,14 +20,14 @@ export interface ParameterExclusiveInput<
   description?: string
   parameters: {
     nameExpression: string
-    type: $State['Type']
+    type: MoltSchema
   }[]
 }
 
 export interface ParameterExclusive {
   _tag: 'Exclusive'
   name: MoltName.Data.NameParsed
-  type: Type.Type
+  type: MoltSchema
   description: string | null
   environment: Environment
   group: ParameterExclusiveGroup
@@ -54,7 +54,7 @@ export const parameterExclusiveCreate = (
     const environment = processEnvironment(settings, name)
     return {
       _tag: `Exclusive`,
-      description: _.type.description,
+      description: _.type.metadata.description ?? null,
       type: _.type,
       environment,
       name,

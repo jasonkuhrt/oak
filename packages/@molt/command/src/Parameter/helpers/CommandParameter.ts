@@ -1,12 +1,13 @@
 import { Either } from 'effect'
 import { stripeNegatePrefix } from '../../helpers.js'
-import type { Type } from '../../Type/index.js'
-import type { ValidationResult } from '../../Type/Type.js'
+import * as SchemaRuntime from '../../schema/schema-runtime.js'
 import type { Parameter } from '../types.js'
 
-export const validate = <T>(parameter: Parameter, value: unknown): ValidationResult<T> => {
-  if (parameter.type.optionality._tag === `optional` && value === undefined) return Either.right(value as T)
-  return parameter.type.validate(value)
+export const validate = <T>(parameter: Parameter, value: unknown) => {
+  if (parameter.type.metadata.optionality._tag === `optional` && value === undefined) {
+    return Either.right(value as T)
+  }
+  return SchemaRuntime.validate(parameter.type, value) as any
 }
 
 export const findByName = (name: string, specs: Parameter[]): null | Parameter => {
@@ -57,10 +58,14 @@ export const hasName = (parameter: Parameter, name: string): null | NameHit => {
   return result
 }
 
-export const isOrHasType = (parameter: Parameter, typeTag: Type.Type['_tag']): boolean => {
-  return parameter.type._tag === `TypeUnion`
-    ? (parameter.type as Type.Union).members.find((_) => _._tag === typeTag) !== undefined
-    : parameter.type._tag === typeTag
+export const isOrHasType = (parameter: Parameter, typeTag: string): boolean => {
+  const tag = SchemaRuntime.getTag(parameter.type)
+  // For Union types, check if display type contains the tag
+  if (tag === `Union`) {
+    const displayType = SchemaRuntime.display(parameter.type)
+    return displayType.includes(typeTag.replace('Type', '').toLowerCase())
+  }
+  return tag === typeTag
 }
 
 const parameterSpecHasNameDo = (

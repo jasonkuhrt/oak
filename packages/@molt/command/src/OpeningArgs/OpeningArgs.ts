@@ -3,6 +3,7 @@ import { Errors } from '../Errors/index.js'
 import { errorFromUnknown, groupBy } from '../lib/prelude.js'
 import type { ParameterExclusive } from '../Parameter/exclusive.js'
 import type { Parameter } from '../Parameter/types.js'
+import * as SchemaRuntime from '../schema/schema-runtime.js'
 import { Environment } from './Environment/index.js'
 import { Line } from './Line/index.js'
 import type { ArgumentReport, ParseResult } from './types.js'
@@ -83,16 +84,14 @@ export const parse = ({
           }
         })
         .else((argReportValue) => {
-          // eslint-disable-next-line
-          const valueTransformed = parameter.type.transform?.(argReportValue.value) ?? argReportValue.value
-          const validationResult = parameter.type.validate(valueTransformed)
+          // Note: MoltSchema doesn't have transform, we just validate directly
+          const validationResult = SchemaRuntime.validate(parameter.type, argReportValue.value)
           return Alge.match(validationResult)
             .Right((result) => {
               return {
                 _tag: `supplied` as const,
                 parameter: parameter,
-                // eslint-disable-next-line
-                value: result.right,
+                value: result.right as any, // Cast validated value to ArgumentValue
               }
             })
             .Left((result) => {
@@ -117,11 +116,11 @@ export const parse = ({
      * No opening argument was given. Process this fact according to spec (e.g. ok b/c optional, apply default, ... etc.)
      */
 
-    result.basicParameters[parameter.name.canonical] = Alge.match(parameter.type.optionality)
+    result.basicParameters[parameter.name.canonical] = Alge.match(parameter.type.metadata.optionality)
       .default((optionality) => {
         let defaultValue
         try {
-          defaultValue = optionality.getValue() // eslint-disable-line
+          defaultValue = optionality.getValue()
         } catch (someError) {
           return {
             _tag: `error` as const,
@@ -137,7 +136,7 @@ export const parse = ({
         return {
           _tag: `supplied` as const,
           parameter,
-          value: defaultValue, // eslint-disable-line
+          value: defaultValue as any, // Cast default value to ArgumentValue
         }
       })
       .required(() => {

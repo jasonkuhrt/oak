@@ -1,12 +1,11 @@
 import stripAnsi from 'strip-ansi'
 import { describe, expect, it } from 'vitest'
 import type { Settings } from '../../src/_entrypoints/default.js'
-import type { FromZod } from '../../src/extensions/zod/typeAdaptor/types.js'
-import type { Type } from '../../src/Type/index.js'
+import type { MoltSchema } from '../../src/schema/molt-schema.js'
 import { $, s, tryCatch } from '../_/helpers.js'
 import { memoryPrompter } from '../_/mocks/tty.js'
 
-const S = <T extends Type.Type>(settings: Settings.PromptInput<T>) => settings
+const S = <$Schema extends MoltSchema>(settings: Settings.PromptInput<$Schema>) => settings
 const foo = [
   { ctrl: false, meta: false, sequence: `f`, shift: false, name: `f` },
   { ctrl: false, meta: false, sequence: `o`, shift: false, name: `o` },
@@ -77,7 +76,7 @@ it(`parameter settings overrides default settings`, () => {
 
 describe(`prompt can be toggled by check on error`, () => {
   describe(`toggle to enabled`, () => {
-    const settings = S<FromZod<typeof s>>({
+    const settings = S({
       enabled: true,
       when: { result: `rejected`, error: `ErrorMissingArgument`, spec: { name: { canonical: `a` } } },
     })

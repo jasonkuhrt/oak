@@ -1,11 +1,12 @@
+import { Either } from 'effect'
 import { Alge } from 'alge'
 import type { ParameterBasic, ParameterBasicInput } from '../../Parameter/basic.js'
 import { parameterBasicCreate } from '../../Parameter/basic.js'
 import type { ParameterExclusive, ParameterExclusiveInput } from '../../Parameter/exclusive.js'
 import { parameterExclusiveCreate } from '../../Parameter/exclusive.js'
 import type { Parameter } from '../../Parameter/types.js'
+import type { MoltSchema } from '../../schema/molt-schema.js'
 import type { Settings } from '../../Settings/index.js'
-import { Type } from '../../Type/index.js'
 
 /**
  * Process the spec input into a normalized spec.
@@ -31,9 +32,41 @@ export const createParameters = (
   return outputs
 }
 
+// Simple boolean schema for the built-in help parameter
+const booleanSchema: MoltSchema<boolean, boolean> = {
+  standardSchema: {
+    '~standard': {
+      version: 1,
+      vendor: 'molt',
+      validate: (value) => {
+        if (typeof value === 'boolean') {
+          return { value }
+        }
+        if (value === 'true' || value === '1') {
+          return { value: true }
+        }
+        if (value === 'false' || value === '0') {
+          return { value: false }
+        }
+        return {
+          issues: [{ message: 'Expected boolean value' }],
+        }
+      },
+    },
+  },
+  metadata: {
+    description: undefined,
+    optionality: { _tag: `default`, getValue: () => false },
+    helpHints: {
+      displayType: 'boolean',
+      priority: 3,
+    },
+  },
+}
+
 const helpParameter: ParameterBasicInput = {
   _tag: `Basic`,
-  type: Type.boolean({ optionality: { _tag: `default`, getValue: () => false } }),
+  type: booleanSchema,
   nameExpression: `-h --help`,
   prompt: false as any, // eslint-disable-line
 }

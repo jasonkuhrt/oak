@@ -5,6 +5,7 @@ import { groupBy } from '../lib/prelude.js'
 import { Tex } from '../lib/Tex/index.js'
 import { Text } from '../lib/Text/index.js'
 import type { Parameter } from '../Parameter/types.js'
+import * as SchemaRuntime from '../schema/schema-runtime.js'
 import type { Settings } from '../Settings/index.js'
 import { Term } from '../term.js'
 
@@ -24,7 +25,7 @@ interface RenderSettings {
 
 export const render = (parameters_: Parameter[], settings: Settings.Output, _settings?: RenderSettings) => {
   const allParameters = parameters_
-  const parametersWithDescription = allParameters.filter((_) => _.type.description !== null)
+  const parametersWithDescription = allParameters.filter((_) => _.type.metadata.description !== null && _.type.metadata.description !== undefined)
   const parametersByTag = groupBy(parameters_, `_tag`)
   const basicParameters = parametersByTag.Basic ?? []
   const allParametersWithoutHelp = allParameters
@@ -34,14 +35,14 @@ export const render = (parameters_: Parameter[], settings: Settings.Output, _set
         ? _.group.optionality._tag === `optional`
           ? 1
           : -1
-        : _.type.optionality._tag === `optional`
+        : _.type.metadata.optionality._tag === `optional`
         ? 1
         : -1
     )
 
   const parametersBasicWithoutHelp = basicParameters
     .filter((_) => _.name.canonical !== `help`)
-    .sort((_) => (_.type.optionality._tag === `optional` ? 1 : -1))
+    .sort((_) => (_.type.metadata.optionality._tag === `optional` ? 1 : -1))
   const isAcceptsAnyEnvironmentArgs = basicParameters.filter((_) => _.environment?.enabled).length > 0
   const isAcceptsAnyMutuallyExclusiveParameters = (parametersByTag.Exclusive && parametersByTag.Exclusive.length > 0)
     || false
@@ -102,7 +103,7 @@ export const render = (parameters_: Parameter[], settings: Settings.Output, _set
               .rows([
                 ...parametersBasicWithoutHelp.map((parameter) => [
                   parameterName(parameter),
-                  Tex.block({ maxWidth: 40, padding: { right: 9, bottom: 1 } }, parameter.type.help(settings)),
+                  Tex.block({ maxWidth: 40, padding: { right: 9, bottom: 1 } }, SchemaRuntime.help(parameter.type, settings)),
                   Tex.block({ maxWidth: 24 }, parameterDefault(parameter)),
                   ...(isEnvironmentEnabled ? [parameterEnvironment(parameter, settings)] : []),
                 ]),
@@ -127,7 +128,7 @@ export const render = (parameters_: Parameter[], settings: Settings.Output, _set
                     ],
                     ...Object.values(parametersExclusive.parameters).map((parameter) => [
                       parameterName(parameter),
-                      parameter.type.help(settings),
+                      SchemaRuntime.help(parameter.type, settings),
                       parameterDefault(parameter),
                       ...(isEnvironmentEnabled ? [parameterEnvironment(parameter, settings)] : []),
                     ]),
@@ -229,13 +230,13 @@ const parameterDefault = (parameter: Parameter) => {
     return Term.colors.dim(`–`)
   }
 
-  if (parameter.type.optionality._tag === `optional`) {
+  if (parameter.type.metadata.optionality._tag === `optional`) {
     return Term.colors.secondary(`undefined`)
   }
 
-  if (parameter.type.optionality._tag === `default`) {
+  if (parameter.type.metadata.optionality._tag === `default`) {
     try {
-      return Term.colors.secondary(String(parameter.type.optionality.getValue()))
+      return Term.colors.secondary(String(parameter.type.metadata.optionality.getValue()))
     } catch (e) {
       const error = e instanceof Error ? e : new Error(String(e))
       return chalk.bold(Term.colors.alert(`Error trying to render this default: ${error.message}`))
@@ -250,7 +251,7 @@ const labels = {
 }
 
 const parameterName = (parameter: Parameter) => {
-  const isRequired = (parameter._tag === `Basic` && parameter.type.optionality._tag === `required`)
+  const isRequired = (parameter._tag === `Basic` && parameter.type.metadata.optionality._tag === `required`)
     || (parameter._tag === `Exclusive` && parameter.group.optionality._tag === `required`)
 
   const parameters: Tex.BlockParameters = parameter._tag === `Exclusive`

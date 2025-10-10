@@ -1,6 +1,7 @@
 import { Either } from 'effect'
 import camelCase from 'lodash.camelcase'
 import { negateNamePattern } from '../helpers.js'
+import * as SchemaRuntime from '../schema/schema-runtime.js'
 import type { Parameter } from '../Parameter/types.js'
 import type { Value } from './types.js'
 
@@ -9,9 +10,10 @@ export const stripeDashPrefix = (flagNameInput: string): string => {
 }
 
 export const parseSerializedValue = (name: string, serializedValue: string, spec: Parameter): Value => {
-  const either = spec.type.deserialize(serializedValue)
+  const either = SchemaRuntime.deserialize(spec.type, serializedValue)
+
   if (Either.isLeft(either)) {
-    const expectedTypes = spec.type._tag
+    const expectedTypes = SchemaRuntime.getTag(spec.type)
     throw new Error(`Failed to parse input ${name} with value ${serializedValue}. Expected type of ${expectedTypes}.`)
   }
   // TODO make return unknown

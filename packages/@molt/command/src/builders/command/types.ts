@@ -3,6 +3,7 @@ import type { HKT } from '../../helpers.js'
 import type { Prompter } from '../../lib/Prompter/Prompter.js'
 import type { OpeningArgs } from '../../OpeningArgs/index.js'
 import type { Prompt } from '../../Parameter/types.js'
+import type { MoltSchema } from '../../schema/molt-schema.js'
 import type { Settings } from '../../Settings/index.js'
 import type { ExclusiveBuilderStateSymbol } from '../exclusive/state.js'
 import type { BuilderExclusive, BuilderExclusiveInitial } from '../exclusive/types.js'
@@ -14,8 +15,8 @@ import type { Objects, Pipe } from 'hotscript'
 export interface ParameterConfiguration<
   $State extends BuilderCommandState.Base = BuilderCommandState.BaseEmpty,
 > {
-  type: $State['Type']
-  prompt?: Prompt<HKT.Call<$State['TypeMapper'], this['type']>>
+  schema: $State['Schema']
+  prompt?: Prompt<HKT.Call<$State['TypeMapper'], this['schema']>>
 }
 
 export type IsHasKey<Obj extends object, Key> = Key extends keyof Obj ? true : false
@@ -36,24 +37,18 @@ export type IsPromptEnabled<P extends Prompt<any> | undefined> = P extends undef
   : true
 
 export interface CommandBuilder<$State extends BuilderCommandState.Base = BuilderCommandState.BaseEmpty> {
-  use<$Extension extends SomeExtension>(extension: $Extension): CommandBuilder<{
-    IsPromptEnabled: $State['IsPromptEnabled']
-    Parameters: $State['Parameters']
-    ParametersExclusive: $State['ParametersExclusive']
-    Type: $Extension['types']['type']
-    TypeMapper: $Extension['types']['typeMapper']
-  }>
+  use<$Extension extends SomeExtension>(extension: $Extension): CommandBuilder<$State>
   description(this: void, description: string): CommandBuilder<$State>
   parameter<NameExpression extends string, const Configuration extends ParameterConfiguration<$State>>(
     this: void,
     name: BuilderCommandState.ValidateNameExpression<$State, NameExpression>,
     configuration: Configuration,
   ): CommandBuilder<BuilderCommandState.AddParameter<$State, NameExpression, Configuration>>
-  parameter<NameExpression extends string, $Type extends $State['Type']>(
+  parameter<NameExpression extends string>(
     this: void,
     name: BuilderCommandState.ValidateNameExpression<$State, NameExpression>,
-    type: $Type,
-  ): CommandBuilder<BuilderCommandState.AddParameter<$State, NameExpression, { type: $Type }>>
+    schema: any,
+  ): any // Accept any extension schema type - runtime wraps in MoltSchema via typeMapper
   parametersExclusive<Label extends string, $BuilderExclusive extends BuilderExclusive<$State>>(
     this: void,
     label: Label,

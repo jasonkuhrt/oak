@@ -5,15 +5,15 @@ import { eventPatterns } from '../eventPatterns.js'
 import type { Values } from '../helpers.js'
 import { parseEnvironmentVariableBooleanOrThrow } from '../helpers.js'
 import { defaultParameterNamePrefixes } from '../OpeningArgs/Environment/Environment.js'
-import type { Type } from '../Type/index.js'
+import type { MoltSchema } from '../schema/molt-schema.js'
 
 export type OnErrorReaction = 'exit' | 'throw'
 
-export type PromptInput<T extends Type.Type> =
+export type PromptInput<$Schema extends MoltSchema> =
   | boolean
   | {
     enabled?: boolean
-    when?: EventPatternsInputAtLeastOne<T>
+    when?: EventPatternsInputAtLeastOne<$Schema>
   }
 
 // eslint-disable-next-line
@@ -48,10 +48,10 @@ export interface Input<$State extends BuilderCommandState.Base = BuilderCommandS
 }
 
 export interface Output {
-  typeMapper: (value: unknown) => Type.Type
+  typeMapper: (value: unknown) => MoltSchema
   prompt: {
     enabled: boolean
-    when: EventPatternsInput<Type.Type>
+    when: EventPatternsInput<MoltSchema>
   }
   description?: string | undefined
   help: boolean

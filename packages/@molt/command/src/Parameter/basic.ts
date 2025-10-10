@@ -2,8 +2,8 @@ import { Name } from '@molt/name'
 import type { BuilderCommandState } from '../builders/command/state.js'
 import type { HKT } from '../helpers.js'
 import type { Pam } from '../lib/Pam/index.js'
+import type { MoltSchema } from '../schema/molt-schema.js'
 import type { Settings } from '../Settings/index.js'
-import type { Optionality } from '../Type/Type.js'
 import { processEnvironment } from './helpers/environment.js'
 import type { Environment, Prompt } from './helpers/types.js'
 
@@ -12,8 +12,8 @@ export interface ParameterBasicInput<
 > {
   _tag: 'Basic'
   nameExpression: string
-  type: $State['Type']
-  prompt: Prompt<HKT.Call<$State['TypeMapper'], $State['Type']>>
+  type: MoltSchema
+  prompt: Prompt<HKT.Call<$State['TypeMapper'], $State['Schema']>>
 }
 
 export interface ParameterBasic extends Omit<Pam.Parameter, '_tag'> {
@@ -51,5 +51,5 @@ export const parameterBasicCreate = (
 
 export type ParameterBasicData = Omit<ParameterBasic, '_tag'> & {
   _tag: 'BasicData'
-  optionality: Optionality['_tag']
+  optionality: MoltSchema['metadata']['optionality']['_tag']
 }

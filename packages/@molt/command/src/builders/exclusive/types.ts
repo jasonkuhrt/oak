@@ -1,9 +1,9 @@
-import type { Type } from '../../Type/index.js'
+import type { InferOutput } from '../../schema/standard-schema.js'
 import type { BuilderCommandState } from '../command/state.js'
 import type { BuilderParameterExclusiveState, ExclusiveBuilderStateSymbol } from './state.js'
 
 export interface ExclusiveParameterConfiguration<$State extends BuilderCommandState.Base> {
-  type: $State['Type']
+  schema: $State['Schema']
 }
 
 interface Parameter<$State extends BuilderCommandState.Base, Label extends string> {
@@ -15,14 +15,10 @@ interface Parameter<$State extends BuilderCommandState.Base, Label extends strin
     Label
   >
 
-  <NameExpression extends string, $Type extends $State['Type']>(
+  <NameExpression extends string>(
     name: BuilderCommandState.ValidateNameExpression<$State, NameExpression>,
-    type: $Type,
-  ): // BuilderCommandState.AddExclusiveParameter<$State, Label, NameExpression, { type: $Type }>
-  BuilderExclusiveInitial<
-    BuilderCommandState.AddExclusiveParameter<$State, Label, NameExpression, { type: $Type }>,
-    Label
-  >
+    schema: any,
+  ): any // Accept any extension schema type - runtime wraps via typeMapper
 }
 
 export interface BuilderExclusiveInitial<$State extends BuilderCommandState.Base, Label extends string> {
@@ -31,7 +27,7 @@ export interface BuilderExclusiveInitial<$State extends BuilderCommandState.Base
   optional: () => BuilderExclusiveAfterOptional<BuilderCommandState.SetExclusiveOptional<$State, Label, true>>
   default: <Tag extends keyof $State['ParametersExclusive'][Label]['Parameters']>(
     tag: Tag,
-    value: Type.Infer<$State['ParametersExclusive'][Label]['Parameters'][Tag]['Type']>,
+    value: InferOutput<$State['ParametersExclusive'][Label]['Parameters'][Tag]['Schema']['standardSchema']>,
   ) => BuilderExclusiveAfterDefault<BuilderCommandState.SetExclusiveOptional<$State, Label, false>>
 }
 
@@ -44,7 +40,7 @@ export type BuilderExclusiveAfterDefault<$State extends BuilderCommandState.Base
 }
 
 export interface SomeParameter<$State extends BuilderCommandState.Base> {
-  (nameExpression: any, type: $State['Type']): any // eslint-disable-line
+  (nameExpression: any, schema: $State['Schema']): any // eslint-disable-line
   (nameExpression: any, configuration: ExclusiveParameterConfiguration<$State>): any // eslint-disable-line
 }
 

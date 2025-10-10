@@ -14,15 +14,15 @@ const create_ = (
 ): SomeBuilderExclusiveInitial => {
   const builder: SomeBuilderExclusiveInitial = {
     [ExclusiveBuilderStateSymbol]: state,
-    parameter: (nameExpression: string, typeOrConfiguration) => {
-      const configuration = `type` in typeOrConfiguration ? typeOrConfiguration : { type: typeOrConfiguration } //  prettier-ignore
+    parameter: (nameExpression: string, schemaOrConfiguration) => {
+      const configuration = `schema` in schemaOrConfiguration ? schemaOrConfiguration : { schema: schemaOrConfiguration } //  prettier-ignore
       const newState = {
         ...state,
         parameters: [
           ...state.parameters,
           {
             nameExpression,
-            type: commandState.typeMapper(configuration.type),
+            type: commandState.typeMapper(configuration.schema),
           },
         ],
       }

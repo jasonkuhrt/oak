@@ -1,5 +1,6 @@
 import type { Effect } from 'effect'
-import type { Type } from '../../../Type/index.js'
+import type { MoltSchema } from '../../../schema/molt-schema.js'
+import type { InferOutput } from '../../../schema/standard-schema.js'
 import type { Pam } from '../../Pam/index.js'
 import type { PromptEngine } from '../../PromptEngine/PromptEngine.js'
 import { Text } from '../../Text/index.js'
@@ -13,12 +14,12 @@ export interface Prompter {
    * Receive input from the user.
    * TODO remove prompt config from here.
    */
-  ask: <T extends Type.Type>(params: {
-    parameter: Pam.Parameter<T>
+  ask: <$Schema extends MoltSchema>(params: {
+    parameter: Pam.Parameter<$Schema>
     prompt: string
     question: string
     marginLeft?: number
-  }) => Effect.Effect<never, never, Type.Infer<T>>
+  }) => Effect.Effect<never, never, InferOutput<$Schema['standardSchema']>>
 }
 
 export const create = (channels: PromptEngine.Channels): Prompter => {
@@ -27,12 +28,10 @@ export const create = (channels: PromptEngine.Channels): Prompter => {
       channels.output(value + Text.chars.newline)
     },
     ask: (params) => {
-      const args = { ...params, channels }
       channels.output(params.question + Text.chars.newline)
-      if (args.parameter.type._tag === `TypeLiteral`) {
-        throw new Error(`Literals are not supported yet.`)
-      }
-      return params.parameter.type.prompt(args)
+      // TODO: Implement prompt functionality for MoltSchema
+      // For now, return a simple prompt that reads a string
+      throw new Error(`Prompting not yet implemented for MoltSchema`)
     },
   }
 }

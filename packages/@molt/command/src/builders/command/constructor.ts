@@ -3,7 +3,6 @@ import type { SomeExtension } from '../../extension.js'
 import { getLowerCaseEnvironment, lowerCaseObjectKeys } from '../../helpers.js'
 import type { ParameterBasicInput } from '../../Parameter/basic.js'
 import { Settings } from '../../Settings/index.js'
-import type { Type } from '../../Type/index.js'
 import * as ExclusiveBuilder from '../exclusive/constructor.js'
 import { ExclusiveBuilderStateSymbol } from '../exclusive/state.js'
 import type { BuilderCommandState } from './state.js'
@@ -17,9 +16,20 @@ export const create = (): CommandBuilder => {
 const create_ = (state: BuilderCommandState): CommandBuilder => {
   const builder: InternalRootBuilder = {
     use: (extension) => {
-      const newState = {
+      const newState: BuilderCommandState = {
         ...state,
-        typeMapper: extension.typeMapper,
+        extension,
+        typeMapper: (schema: unknown) => {
+          const standardSchema = extension.toStandardSchema(schema)
+          const metadata = extension.extractMetadata?.(schema) ?? {
+            description: undefined,
+            optionality: { _tag: `required` },
+          }
+          return {
+            standardSchema,
+            metadata,
+          }
+        },
       }
       return create_(newState) as any
     },
@@ -42,16 +52,16 @@ const create_ = (state: BuilderCommandState): CommandBuilder => {
       }
       return create_(newState) as any
     },
-    parameter: (nameExpression, typeOrConfiguration) => {
-      const configuration = `type` in typeOrConfiguration ? typeOrConfiguration : { type: typeOrConfiguration }
+    parameter: (nameExpression, schemaOrConfiguration: any) => {
+      const configuration = `schema` in schemaOrConfiguration ? schemaOrConfiguration : { schema: schemaOrConfiguration }
       const prompt = configuration.prompt ?? null
-      const type = state.typeMapper(configuration.type)
-      const parameter = {
+      const schema = state.typeMapper(configuration.schema)
+      const parameter: ParameterBasicInput = {
         _tag: `Basic`,
-        type,
+        type: schema,
         nameExpression,
         prompt: prompt as any, // eslint-disable-line
-      } satisfies ParameterBasicInput
+      }
       const newState = {
         ...state,
         parameterInputs: {
@@ -95,7 +105,7 @@ const create_ = (state: BuilderCommandState): CommandBuilder => {
 //
 
 interface Parameter {
-  (nameExpression: string, type: Type.Type): InternalRootBuilder
+  (nameExpression: string, schema: unknown): InternalRootBuilder
   (nameExpression: string, configuration: ParameterConfiguration): InternalRootBuilder
 }
 

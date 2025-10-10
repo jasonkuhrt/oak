@@ -1,8 +1,8 @@
 import type { Name } from '@molt/name'
-import type { Type } from '../../Type/index.js'
+import type { MoltSchema } from '../../schema/molt-schema.js'
 
-export interface Parameter<$Type extends Type.Type = Type.Type> {
+export interface Parameter<$Schema extends MoltSchema = MoltSchema> {
   _tag: 'Basic'
   name: Name.Data.NameParsed
-  type: $Type
+  type: $Schema
 }

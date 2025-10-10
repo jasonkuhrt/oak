@@ -1,18 +1,21 @@
 import type { Name } from '@molt/name'
 import type { Objects, Pipe } from 'hotscript'
 import type { Simplify } from 'type-fest'
+import type { SomeExtension } from '../../extension.js'
 import type { Values } from '../../helpers.js'
 import type { HKT } from '../../helpers.js'
 import type { ParameterBasicInput } from '../../Parameter/basic.js'
 import type { ParameterExclusiveInput } from '../../Parameter/exclusive.js'
 import type { Prompt } from '../../Parameter/types.js'
+import type { MoltSchema } from '../../schema/molt-schema.js'
+import type { InferOutput } from '../../schema/standard-schema.js'
 import type { Settings } from '../../Settings/index.js'
-import type { Type } from '../../Type/index.js'
 import type { ExclusiveParameterConfiguration } from '../exclusive/types.js'
 import type { IsPromptEnabledInParameterSettings, ParameterConfiguration } from './types.js'
 
 export const createState = (): BuilderCommandState => {
   return {
+    extension: null,
     typeMapper: (type) => type as any,
     newSettingsBuffer: [],
     settings: null,
@@ -21,29 +24,30 @@ export const createState = (): BuilderCommandState => {
 }
 
 export interface BuilderCommandState {
-  typeMapper: (value: unknown) => Type.Type
+  extension: SomeExtension | null
+  typeMapper: (value: unknown) => MoltSchema
   settings: null | Settings.Output
   newSettingsBuffer: Settings.Input[]
   parameterInputs: Record<string, ParameterBasicInput | ParameterExclusiveInput>
 }
 
 export namespace BuilderCommandState {
-  export interface TypeMapper<T extends Type.Type = Type.Type> extends HKT.Fn<T, T> {
-    return: T
+  export interface TypeMapper<$Schema extends MoltSchema = MoltSchema> extends HKT.Fn<$Schema, $Schema> {
+    return: $Schema
   }
 
   export interface BaseEmpty extends Base {
     IsPromptEnabled: false
     ParametersExclusive: {} // eslint-disable-line
     Parameters: {} // eslint-disable-line
-    Type: Type.Type
-    TypeMapper: HKT.IDFn<Type.Type<unknown>>
+    Schema: MoltSchema
+    TypeMapper: HKT.IDFn<MoltSchema<unknown>>
   }
 
   export type Base = {
     IsPromptEnabled: boolean
-    Type: Type.Type
-    TypeMapper: HKT.Fn<unknown, Type.Type<unknown>>
+    Schema: MoltSchema
+    TypeMapper: HKT.Fn<unknown, MoltSchema<unknown>>
     ParametersExclusive: {
       [label: string]: {
         Optional: boolean
@@ -51,7 +55,7 @@ export namespace BuilderCommandState {
           [canonicalName: string]: {
             NameParsed: Name.Data.NameParsed
             NameUnion: string
-            Type: Type.Type
+            Schema: MoltSchema
           }
         }
       }
@@ -60,7 +64,7 @@ export namespace BuilderCommandState {
       [nameExpression: string]: {
         NameParsed: Name.Data.NameParsed
         NameUnion: string
-        Type: Type.Type
+        Schema: MoltSchema
       }
     }
   }
@@ -77,7 +81,7 @@ export namespace BuilderCommandState {
   export type ParametersConfigBase = Record<
     string,
     {
-      type: ParameterConfiguration['type']
+      schema: ParameterConfiguration['schema']
       prompt?: Prompt<any>
     }
   >
@@ -142,7 +146,7 @@ export namespace BuilderCommandState {
             Optional: $State['ParametersExclusive'][_]['Optional']
             Parameters: {
               [_ in NameExpression as Name.Data.GetCanonicalNameOrErrorFromParseResult<Name.Parse<NameExpression>>]: {
-                Type: HKT.Call<$State['TypeMapper'], Configuration['type']>
+                Schema: HKT.Call<$State['TypeMapper'], Configuration['schema']>
                 NameParsed: Name.Parse<
                   NameExpression,
                   { usedNames: GetUsedNames<$State>; reservedNames: ReservedParameterNames }
@@ -163,7 +167,7 @@ export namespace BuilderCommandState {
     NameExpression extends string,
     Configuration extends ParameterConfiguration<$State>,
   > = {
-    Type: HKT.Call<$State['TypeMapper'], Configuration['type']>
+    Schema: HKT.Call<$State['TypeMapper'], Configuration['schema']>
     NameParsed: Name.Parse<NameExpression, { usedNames: GetUsedNames<$State>; reservedNames: ReservedParameterNames }>
     NameUnion: Name.Data.GetNamesFromParseResult<
       Name.Parse<NameExpression, { usedNames: GetUsedNames<$State>; reservedNames: ReservedParameterNames }>
@@ -176,7 +180,7 @@ export namespace BuilderCommandState {
   type ToArgs_<$State extends Base> = Simplify<
     & {
       [Name in keyof $State['Parameters'] & string as $State['Parameters'][Name]['NameParsed']['canonical']]:
-        Type.Infer<$State['Parameters'][Name]['Type']>
+        InferOutput<$State['Parameters'][Name]['Schema']['standardSchema']>
     }
     & {
       [Label in keyof $State['ParametersExclusive'] & string]:
@@ -185,7 +189,7 @@ export namespace BuilderCommandState {
             {
               [Name in keyof $State['ParametersExclusive'][Label]['Parameters']]: {
                 _tag: $State['ParametersExclusive'][Label]['Parameters'][Name]['NameParsed']['canonical']
-                value: Type.Infer<$State['ParametersExclusive'][Label]['Parameters'][Name]['Type']>
+                value: InferOutput<$State['ParametersExclusive'][Label]['Parameters'][Name]['Schema']['standardSchema']>
               }
             }
           >
@@ -196,6 +200,6 @@ export namespace BuilderCommandState {
 
   export type ToTypes<$State extends BuilderCommandState.Base> = {
     [K in keyof $State['Parameters'] & string as $State['Parameters'][K]['NameParsed']['canonical']]:
-      $State['Parameters'][K]['Type']
+      $State['Parameters'][K]['Schema']
   }
 }
