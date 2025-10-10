@@ -54,7 +54,6 @@ export function groupBy<Item extends object, Key extends keyof Item>(
   key: Key,
 ): { [k in Item[Key] & string]?: Include<Item, { [_ in Key]: k }>[] }
 
-// eslint-disable-next-line
 export function groupBy<Item extends object, Key extends keyof Item>(
   items: Item[],
   key: Key | ((item: Item) => string),

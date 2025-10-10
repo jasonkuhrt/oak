@@ -49,11 +49,9 @@ export const prompt = (
           marginLeft: gutterWidth,
           parameter: parameter as any,
         })
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
         const arg = yield* _(asking)
         const validationResult = SchemaRuntime.validate(parameter.type, arg)
         if (validationResult._tag === `Right`) {
-          // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
           args[parameter.name.canonical] = validationResult.right
           prompter.say(``) // newline
           indexCurrent++

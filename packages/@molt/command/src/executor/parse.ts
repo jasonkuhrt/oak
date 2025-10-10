@@ -135,7 +135,6 @@ export const parse = (
     }
   }
 
-  // eslint-disable-next-line
   const askedForHelp = `help` in openingArgsResult.basicParameters
     && openingArgsResult.basicParameters[`help`]._tag === `supplied`
     && openingArgsResult.basicParameters[`help`].value === true

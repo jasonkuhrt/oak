@@ -1,5 +1,3 @@
-/* eslint-disable */
-
 import { expect, it } from 'vitest'
 import { _, match } from '../../src/Pattern/Pattern.js'
 

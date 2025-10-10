@@ -31,7 +31,6 @@ describe(`parameter level`, () => {
 describe.skip(`command level`, () => {
   it(`passing object makes enabled default to true`, async () => {
     memoryPrompter.script.keyPress.push(...foo)
-    // eslint-disable-next-line
     const args = await $.parameter(`a`, { type: s })
       .settings({ onError: `throw`, helpOnError: false, prompt: { when: { result: `rejected` } } })
       .parse({ line: [], tty: memoryPrompter })

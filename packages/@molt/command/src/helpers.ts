@@ -25,7 +25,6 @@ export const lowerCaseObjectKeys = (obj: object) =>
 
 export const parseEnvironmentVariableBoolean = (serializedValue: string): Either.Either<Error, boolean> => {
   // @ts-expect-error ignore
-  // eslint-disable-next-line
   const value = environmentVariableBooleanLookup[serializedValue]
   if (value === undefined) return Either.left(new Error(`Invalid boolean value: ${value}`))
   return Either.right(value)
@@ -42,7 +41,6 @@ export const parseEnvironmentVariableBooleanOrThrow = (value: string) => {
 export const negateNamePattern = /^no([A-Z].+)/
 
 export const stripeNegatePrefix = (name: string): null | string => {
-  // eslint-disable-next-line
   const withoutPrefix = name.match(negateNamePattern)?.[1]!
   if (!withoutPrefix) return null
   const withCamelCase = camelCase(withoutPrefix)
