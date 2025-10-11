@@ -2,7 +2,7 @@
 layout: home
 
 hero:
-  name: "@wollybeard/oak"
+  name: "Oak"
   text: "Type-safe CLI command definition and execution"
   tagline: 🌱 Build powerful command-line interfaces with type safety
   actions:

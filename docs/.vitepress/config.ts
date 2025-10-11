@@ -3,10 +3,14 @@ import { transformerNotationDiff, transformerNotationHighlight } from '@shikijs/
 import { defineConfig } from 'vitepress'
 
 export default defineConfig({
-  title: '@wollybeard/oak',
+  title: 'Oak',
   description: 'Type-safe CLI command definition and execution',
   // Use root path for Netlify, /oak/ for GitHub Pages
   base: process.env.NETLIFY ? '/' : '/oak/',
+
+  head: [
+    ['link', { rel: 'icon', type: 'image/svg+xml', href: '/logo.svg' }],
+  ],
 
   markdown: {
     codeTransformers: [
@@ -23,6 +27,8 @@ export default defineConfig({
   },
 
   themeConfig: {
+    logo: '/logo.svg',
+
     nav: [
       { text: 'Guide', link: '/guide/getting-started' },
       { text: 'Extensions', link: '/extensions/zod' },
@@ -85,7 +91,7 @@ export default defineConfig({
 
     footer: {
       message: 'Released under the MIT License.',
-      copyright: 'Copyright © 2024 Jason Kuhrt',
+      copyright: 'Copyright © 2025 Jason Kuhrt',
     },
 
     search: {
