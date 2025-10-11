@@ -41,9 +41,10 @@ export default defineConfig({
           ],
         },
         {
-          text: 'Core Concepts',
+          text: 'Core',
           items: [
             { text: 'Immutability', link: '/guides/immutability' },
+            { text: 'Settings', link: '/guides/settings' },
           ],
         },
         {
@@ -53,6 +54,7 @@ export default defineConfig({
             { text: 'Types', link: '/guides/parameter-types' },
             { text: 'Prompts', link: '/guides/prompts' },
             { text: 'Mutually Exclusive', link: '/guides/mutually-exclusive-parameters' },
+            { text: 'Description', link: '/guides/description' },
           ],
         },
         {
@@ -63,14 +65,7 @@ export default defineConfig({
           ],
         },
         {
-          text: 'Advanced',
-          items: [
-            { text: 'Description', link: '/guides/description' },
-            { text: 'Settings', link: '/guides/settings' },
-          ],
-        },
-        {
-          text: 'Reference',
+          text: 'Appendix',
           items: [
             { text: 'Recipes', link: '/guides/recipes' },
             { text: 'Architecture', link: '/guides/architecture' },
