@@ -5,8 +5,8 @@ exports[`errors > is validated 1`] = `
   [
     "Cannot run command, you made some mistakes:
 
-Invalid argument for parameter: \\"mode\\". The error was:
-Invalid option: expected one of \\"a\\"|\\"b\\"|\\"c\\"
+Invalid argument for parameter: "mode". The error was:
+Invalid option: expected one of "a"|"b"|"c"
 
 Here are the docs for this command:
 
@@ -27,7 +27,7 @@ PARAMETERS
       arguments take precedence. Environment variable names are snake cased       
       versions of the parameter name (or its aliases), case insensitive. They must
       be prefixed with CLI_PARAMETER_ or CLI_PARAM_ (case insensitive). Examples: 
-        → CLI_PARAMETER_MODE=\\"...\\"                                                
+        → CLI_PARAMETER_MODE="..."                                                
 ",
   ],
 ]
@@ -38,7 +38,7 @@ exports[`errors > when argument missing (last position) 1`] = `
   [
     "Cannot run command, you made some mistakes:
 
-Missing argument for flag \\"mode\\".
+Missing argument for flag "mode".
 
 Here are the docs for this command:
 
@@ -59,7 +59,7 @@ PARAMETERS
       arguments take precedence. Environment variable names are snake cased       
       versions of the parameter name (or its aliases), case insensitive. They must
       be prefixed with CLI_PARAMETER_ or CLI_PARAM_ (case insensitive). Examples: 
-        → CLI_PARAMETER_MODE=\\"...\\"                                                
+        → CLI_PARAMETER_MODE="..."                                                
 ",
   ],
 ]
@@ -70,7 +70,7 @@ exports[`errors > when argument missing (non-last position) 1`] = `
   [
     "Cannot run command, you made some mistakes:
 
-Missing argument for flag \\"mode\\".
+Missing argument for flag "mode".
 
 Here are the docs for this command:
 
@@ -93,8 +93,8 @@ PARAMETERS
       arguments take precedence. Environment variable names are snake cased       
       versions of the parameter name (or its aliases), case insensitive. They must
       be prefixed with CLI_PARAMETER_ or CLI_PARAM_ (case insensitive). Examples: 
-        → CLI_PARAMETER_MODE=\\"...\\"                                                
-        → CLI_PARAMETER_NAME=\\"...\\"                                                
+        → CLI_PARAMETER_MODE="..."                                                
+        → CLI_PARAMETER_NAME="..."                                                
 ",
   ],
 ]

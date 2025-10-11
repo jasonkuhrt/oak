@@ -1,11 +1,11 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`environment supersedes settings 1`] = `"Missing argument for flag \\"foo\\"."`;
+exports[`environment supersedes settings 1`] = `[ErrorMissingArgument: Missing argument for flag "foo".]`;
 
 exports[`environment supersedes settings 2`] = `
 "Cannot run command, you made some mistakes:
 
-Missing argument for flag \\"foo\\".
+Missing argument for flag "foo".
 
 Here are the docs for this command:
 

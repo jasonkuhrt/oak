@@ -5,7 +5,7 @@ exports[`default environment argument parameter name prefix > when both argument
   [
     "Cannot run command, you made some mistakes:
 
-The parameter \\"foo\\" was passed an argument multiple times via different parameter aliases in the environment.
+The parameter "foo" was passed an argument multiple times via different parameter aliases in the environment.
 
 Here are the docs for this command:
 
@@ -26,7 +26,7 @@ PARAMETERS
       arguments take precedence. Environment variable names are snake cased       
       versions of the parameter name (or its aliases), case insensitive. They must
       be prefixed with CLI_PARAMETER_ or CLI_PARAM_ (case insensitive). Examples: 
-        → CLI_PARAMETER_FOO=\\"...\\"                                                 
+        → CLI_PARAMETER_FOO="..."                                                 
 ",
   ],
 ]
@@ -37,8 +37,8 @@ exports[`error > when using multiple prefixes and args passed for all param vari
   [
     "Cannot run command, you made some mistakes:
 
-The parameter \\"foo\\" was passed an argument multiple times via different parameter aliases in the environment.
-X The parameter \\"bar\\" was passed an argument multiple times via different parameter aliases in the environment.
+The parameter "foo" was passed an argument multiple times via different parameter aliases in the environment.
+X The parameter "bar" was passed an argument multiple times via different parameter aliases in the environment.
 
 Here are the docs for this command:
 
@@ -61,8 +61,8 @@ PARAMETERS
       arguments take precedence. Environment variable names are snake cased       
       versions of the parameter name (or its aliases), case insensitive. They must
       be prefixed with CLI_PARAMETER_ or CLI_PARAM_ (case insensitive). Examples: 
-        → CLI_PARAMETER_BAR=\\"...\\"                                                 
-        → CLI_PARAMETER_FOO=\\"...\\"                                                 
+        → CLI_PARAMETER_BAR="..."                                                 
+        → CLI_PARAMETER_FOO="..."                                                 
 ",
   ],
 ]
@@ -73,7 +73,7 @@ exports[`error > when using prefix and there is a typo 1`] = `
   [
     "Cannot run command, you made some mistakes:
 
-Missing argument for flag \\"foo\\".
+Missing argument for flag "foo".
 
 Here are the docs for this command:
 
@@ -94,7 +94,7 @@ PARAMETERS
       arguments take precedence. Environment variable names are snake cased       
       versions of the parameter name (or its aliases), case insensitive. They must
       be prefixed with CLI_PARAMETER_ or CLI_PARAM_ (case insensitive). Examples: 
-        → CLI_PARAMETER_FOO=\\"...\\"                                                 
+        → CLI_PARAMETER_FOO="..."                                                 
 ",
   ],
 ]

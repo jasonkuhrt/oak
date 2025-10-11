@@ -5,7 +5,7 @@ exports[`errors > throws error when argument missing (last position) 1`] = `
   [
     "Cannot run command, you made some mistakes:
 
-Missing argument for flag \\"age\\".
+Missing argument for flag "age".
 
 Here are the docs for this command:
 
@@ -26,7 +26,7 @@ PARAMETERS
       arguments take precedence. Environment variable names are snake cased       
       versions of the parameter name (or its aliases), case insensitive. They must
       be prefixed with CLI_PARAMETER_ or CLI_PARAM_ (case insensitive). Examples: 
-        → CLI_PARAMETER_AGE=\\"...\\"                                                 
+        → CLI_PARAMETER_AGE="..."                                                 
 ",
   ],
 ]
@@ -37,7 +37,7 @@ exports[`errors > throws error when argument missing (non-last position) 1`] = `
   [
     "Cannot run command, you made some mistakes:
 
-Missing argument for flag \\"age\\".
+Missing argument for flag "age".
 
 Here are the docs for this command:
 
@@ -60,8 +60,8 @@ PARAMETERS
       arguments take precedence. Environment variable names are snake cased       
       versions of the parameter name (or its aliases), case insensitive. They must
       be prefixed with CLI_PARAMETER_ or CLI_PARAM_ (case insensitive). Examples: 
-        → CLI_PARAMETER_AGE=\\"...\\"                                                 
-        → CLI_PARAMETER_NAME=\\"...\\"                                                
+        → CLI_PARAMETER_AGE="..."                                                 
+        → CLI_PARAMETER_NAME="..."                                                
 ",
   ],
 ]
@@ -72,7 +72,7 @@ exports[`errors > validates the  input 1`] = `
   [
     "Cannot run command, you made some mistakes:
 
-Invalid argument for parameter: \\"age\\". The error was:
+Invalid argument for parameter: "age". The error was:
 Invalid input: expected int, received number
 
 Here are the docs for this command:
@@ -94,7 +94,7 @@ PARAMETERS
       arguments take precedence. Environment variable names are snake cased       
       versions of the parameter name (or its aliases), case insensitive. They must
       be prefixed with CLI_PARAMETER_ or CLI_PARAM_ (case insensitive). Examples: 
-        → CLI_PARAMETER_AGE=\\"...\\"                                                 
+        → CLI_PARAMETER_AGE="..."                                                 
 ",
   ],
 ]

@@ -5,8 +5,8 @@ exports[`enum can be parsed > throws an error if the value does not pass validat
   [
     "Cannot run command, you made some mistakes:
 
-Invalid argument (via environment variable \\"cli_param_foo\\") for parameter: \\"foo\\". The error was:
-Invalid option: expected one of \\"a\\"|\\"b\\"|\\"c\\"
+Invalid argument (via environment variable "cli_param_foo") for parameter: "foo". The error was:
+Invalid option: expected one of "a"|"b"|"c"
 
 Here are the docs for this command:
 
@@ -27,7 +27,7 @@ PARAMETERS
       arguments take precedence. Environment variable names are snake cased       
       versions of the parameter name (or its aliases), case insensitive. They must
       be prefixed with CLI_PARAMETER_ or CLI_PARAM_ (case insensitive). Examples: 
-        → CLI_PARAMETER_FOO=\\"...\\"                                                 
+        → CLI_PARAMETER_FOO="..."                                                 
 ",
   ],
 ]

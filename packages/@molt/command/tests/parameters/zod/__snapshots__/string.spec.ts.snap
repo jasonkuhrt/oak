@@ -22,86 +22,86 @@ exports[`zod > transformations > trim 1`] = `
 `;
 
 exports[`zod > validation > cuid 1`] = `
-"Invalid argument for parameter: \\"a\\". The error was:
-Invalid cuid"
+[ErrorInvalidArgument: Invalid argument for parameter: "a". The error was:
+Invalid cuid]
 `;
 
 exports[`zod > validation > cuid2 1`] = `
-"Invalid argument for parameter: \\"a\\". The error was:
-Invalid cuid2"
+[ErrorInvalidArgument: Invalid argument for parameter: "a". The error was:
+Invalid cuid2]
 `;
 
 exports[`zod > validation > datetime 1`] = `
-"Invalid argument for parameter: \\"a\\". The error was:
-Invalid ISO datetime"
+[ErrorInvalidArgument: Invalid argument for parameter: "a". The error was:
+Invalid ISO datetime]
 `;
 
 exports[`zod > validation > datetime no offset 1`] = `
-"Invalid argument for parameter: \\"a\\". The error was:
-Invalid ISO datetime"
+[ErrorInvalidArgument: Invalid argument for parameter: "a". The error was:
+Invalid ISO datetime]
 `;
 
 exports[`zod > validation > datetime precision 1 1`] = `
-"Invalid argument for parameter: \\"a\\". The error was:
-Invalid ISO datetime"
+[ErrorInvalidArgument: Invalid argument for parameter: "a". The error was:
+Invalid ISO datetime]
 `;
 
 exports[`zod > validation > email 1`] = `
-"Invalid argument for parameter: \\"a\\". The error was:
-Invalid email address"
+[ErrorInvalidArgument: Invalid argument for parameter: "a". The error was:
+Invalid email address]
 `;
 
 exports[`zod > validation > emoji 1`] = `
-"Invalid argument for parameter: \\"a\\". The error was:
-Invalid emoji"
+[ErrorInvalidArgument: Invalid argument for parameter: "a". The error was:
+Invalid emoji]
 `;
 
 exports[`zod > validation > endsWith 1`] = `
-"Invalid argument for parameter: \\"a\\". The error was:
-Invalid string: must end with \\"x\\""
+[ErrorInvalidArgument: Invalid argument for parameter: "a". The error was:
+Invalid string: must end with "x"]
 `;
 
 exports[`zod > validation > includes 1`] = `
-"Invalid argument for parameter: \\"a\\". The error was:
-Invalid string: must include \\"z\\""
+[ErrorInvalidArgument: Invalid argument for parameter: "a". The error was:
+Invalid string: must include "z"]
 `;
 
 exports[`zod > validation > length 1`] = `
-"Invalid argument for parameter: \\"a\\". The error was:
-Too big: expected string to have <=1 characters"
+[ErrorInvalidArgument: Invalid argument for parameter: "a". The error was:
+Too big: expected string to have <=1 characters]
 `;
 
 exports[`zod > validation > max 1`] = `
-"Invalid argument for parameter: \\"a\\". The error was:
-Too big: expected string to have <=1 characters"
+[ErrorInvalidArgument: Invalid argument for parameter: "a". The error was:
+Too big: expected string to have <=1 characters]
 `;
 
 exports[`zod > validation > min 1`] = `
-"Invalid argument for parameter: \\"a\\". The error was:
-Too small: expected string to have >=5 characters"
+[ErrorInvalidArgument: Invalid argument for parameter: "a". The error was:
+Too small: expected string to have >=5 characters]
 `;
 
 exports[`zod > validation > regex 1`] = `
-"Invalid argument for parameter: \\"a\\". The error was:
-Invalid string: must match pattern /[a-z]+/"
+[ErrorInvalidArgument: Invalid argument for parameter: "a". The error was:
+Invalid string: must match pattern /[a-z]+/]
 `;
 
 exports[`zod > validation > startsWith 1`] = `
-"Invalid argument for parameter: \\"a\\". The error was:
-Invalid string: must start with \\"y\\""
+[ErrorInvalidArgument: Invalid argument for parameter: "a". The error was:
+Invalid string: must start with "y"]
 `;
 
 exports[`zod > validation > ulid 1`] = `
-"Invalid argument for parameter: \\"a\\". The error was:
-Invalid ULID"
+[ErrorInvalidArgument: Invalid argument for parameter: "a". The error was:
+Invalid ULID]
 `;
 
 exports[`zod > validation > url 1`] = `
-"Invalid argument for parameter: \\"a\\". The error was:
-Invalid URL"
+[ErrorInvalidArgument: Invalid argument for parameter: "a". The error was:
+Invalid URL]
 `;
 
 exports[`zod > validation > uuid 1`] = `
-"Invalid argument for parameter: \\"a\\". The error was:
-Invalid UUID"
+[ErrorInvalidArgument: Invalid argument for parameter: "a". The error was:
+Invalid UUID]
 `;

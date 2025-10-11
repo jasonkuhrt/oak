@@ -15,7 +15,7 @@ PARAMETERS
       arguments take precedence. Environment variable names are snake cased       
       versions of the parameter name (or its aliases), case insensitive. They must
       be prefixed with CLI_PARAMETER_ or CLI_PARAM_ (case insensitive). Examples: 
-        → CLI_PARAMETER_FOO=\\"...\\"                                                 
+        → CLI_PARAMETER_FOO="..."                                                 
 "
 `;
 
@@ -34,7 +34,7 @@ PARAMETERS
       arguments take precedence. Environment variable names are snake cased       
       versions of the parameter name (or its aliases), case insensitive. They must
       be prefixed with CLI_PARAMETER_ or CLI_PARAM_ (case insensitive). Examples: 
-        → CLI_PARAMETER_FOO=\\"...\\"                                                 
+        → CLI_PARAMETER_FOO="..."                                                 
 "
 `;
 
@@ -53,7 +53,7 @@ PARAMETERS
       arguments take precedence. Environment variable names are snake cased       
       versions of the parameter name (or its aliases), case insensitive. They must
       be prefixed with CLI_PARAMETER_ or CLI_PARAM_ (case insensitive). Examples: 
-        → CLI_PARAMETER_FOO=\\"...\\"                                                 
+        → CLI_PARAMETER_FOO="..."                                                 
 "
 `;
 
@@ -72,7 +72,7 @@ PARAMETERS
       arguments take precedence. Environment variable names are snake cased       
       versions of the parameter name (or its aliases), case insensitive. They must
       be prefixed with CLI_PARAMETER_ or CLI_PARAM_ (case insensitive). Examples: 
-        → CLI_PARAMETER_FOO=\\"...\\"                                                 
+        → CLI_PARAMETER_FOO="..."                                                 
 "
 `;
 
@@ -94,7 +94,7 @@ PARAMETERS
       arguments take precedence. Environment variable names are snake cased       
       versions of the parameter name (or its aliases), case insensitive. They must
       be prefixed with CLI_PARAMETER_ or CLI_PARAM_ (case insensitive). Examples: 
-        → CLI_PARAMETER_FOO=\\"...\\"                                                 
+        → CLI_PARAMETER_FOO="..."                                                 
 "
 `;
 
@@ -116,7 +116,7 @@ PARAMETERS
       arguments take precedence. Environment variable names are snake cased       
       versions of the parameter name (or its aliases), case insensitive. They must
       be prefixed with CLI_PARAMETER_ or CLI_PARAM_ (case insensitive). Examples: 
-        → CLI_PARAMETER_FOO=\\"...\\"                                                 
+        → CLI_PARAMETER_FOO="..."                                                 
 "
 `;
 
@@ -135,7 +135,7 @@ PARAMETERS
       arguments take precedence. Environment variable names are snake cased       
       versions of the parameter name (or its aliases), case insensitive. They must
       be prefixed with CLI_PARAMETER_ or CLI_PARAM_ (case insensitive). Examples: 
-        → CLI_PARAMETER_FOO=\\"...\\"                                                 
+        → CLI_PARAMETER_FOO="..."                                                 
 "
 `;
 
@@ -154,7 +154,7 @@ PARAMETERS
       arguments take precedence. Environment variable names are snake cased       
       versions of the parameter name (or its aliases), case insensitive. They must
       be prefixed with CLI_PARAMETER_ or CLI_PARAM_ (case insensitive). Examples: 
-        → CLI_PARAMETER_FOO=\\"...\\"                                                 
+        → CLI_PARAMETER_FOO="..."                                                 
 "
 `;
 
@@ -178,8 +178,8 @@ PARAMETERS
       arguments take precedence. Environment variable names are snake cased       
       versions of the parameter name (or its aliases), case insensitive. They must
       be prefixed with CLI_PARAMETER_ or CLI_PARAM_ (case insensitive). Examples: 
-        → CLI_PARAMETER_FOO=\\"...\\"                                                 
-        → CLI_PARAMETER_BAR=\\"...\\"                                                 
+        → CLI_PARAMETER_FOO="..."                                                 
+        → CLI_PARAMETER_BAR="..."                                                 
 "
 `;
 
@@ -203,8 +203,8 @@ PARAMETERS
       arguments take precedence. Environment variable names are snake cased       
       versions of the parameter name (or its aliases), case insensitive. They must
       be prefixed with CLI_PARAMETER_ or CLI_PARAM_ (case insensitive). Examples: 
-        → CLI_PARAMETER_FOO=\\"...\\"                                                 
-        → CLI_PARAMETER_BAR=\\"...\\"                                                 
+        → CLI_PARAMETER_FOO="..."                                                 
+        → CLI_PARAMETER_BAR="..."                                                 
 "
 `;
 
@@ -226,8 +226,8 @@ PARAMETERS
       versions of the parameter name (or its aliases), case insensitive. By     
       default they must be prefixed with CLI_PARAMETER_ or CLI_PARAM_ (case     
       insensitive), though some parameters deviate (shown in docs). Examples:   
-        → CLI_PARAMETER_BAR=\\"...\\"                                               
-        → MOO_FOO=\\"...\\"                                                         
+        → CLI_PARAMETER_BAR="..."                                               
+        → MOO_FOO="..."                                                         
 "
 `;
 
@@ -249,8 +249,8 @@ PARAMETERS
       versions of the parameter name (or its aliases), case insensitive. By     
       default they must be prefixed with CLI_PARAMETER_ or CLI_PARAM_ (case     
       insensitive), though some parameters deviate (shown in docs). Examples:   
-        → CLI_PARAMETER_BAR=\\"...\\"                                               
-        → MOO_FOO=\\"...\\"                                                         
+        → CLI_PARAMETER_BAR="..."                                               
+        → MOO_FOO="..."                                                         
 "
 `;
 
@@ -272,8 +272,8 @@ PARAMETERS
       versions of the parameter name (or its aliases), case insensitive. By     
       default they must be prefixed with CLI_PARAMETER_ or CLI_PARAM_ (case     
       insensitive), though some parameters deviate (shown in docs). Examples:   
-        → CLI_PARAMETER_BAR=\\"...\\"                                               
-        → MOO_FOO=\\"...\\"                                                         
+        → CLI_PARAMETER_BAR="..."                                               
+        → MOO_FOO="..."                                                         
 "
 `;
 
@@ -295,8 +295,8 @@ PARAMETERS
       versions of the parameter name (or its aliases), case insensitive. By     
       default they must be prefixed with CLI_PARAMETER_ or CLI_PARAM_ (case     
       insensitive), though some parameters deviate (shown in docs). Examples:   
-        → CLI_PARAMETER_BAR=\\"...\\"                                               
-        → MOO_FOO=\\"...\\"                                                         
+        → CLI_PARAMETER_BAR="..."                                               
+        → MOO_FOO="..."                                                         
 "
 `;
 
@@ -317,8 +317,8 @@ PARAMETERS
       arguments take precedence. Environment variable names are snake cased       
       versions of the parameter name (or its aliases), case insensitive. They must
       be prefixed with CLI_PARAMETER_ or CLI_PARAM_ (case insensitive). Examples: 
-        → CLI_PARAMETER_BAR=\\"...\\"                                                 
-        → FOO=\\"...\\"                                                               
+        → CLI_PARAMETER_BAR="..."                                                 
+        → FOO="..."                                                               
 "
 `;
 
@@ -339,8 +339,8 @@ PARAMETERS
       arguments take precedence. Environment variable names are snake cased       
       versions of the parameter name (or its aliases), case insensitive. They must
       be prefixed with CLI_PARAMETER_ or CLI_PARAM_ (case insensitive). Examples: 
-        → CLI_PARAMETER_BAR=\\"...\\"                                                 
-        → FOO=\\"...\\"                                                               
+        → CLI_PARAMETER_BAR="..."                                                 
+        → FOO="..."                                                               
 "
 `;
 
@@ -361,7 +361,7 @@ PARAMETERS
       arguments take precedence. Environment variable names are snake cased       
       versions of the parameter name (or its aliases), case insensitive. They must
       be prefixed with CLI_PARAMETER_ or CLI_PARAM_ (case insensitive). Examples: 
-        → CLI_PARAMETER_BAR=\\"...\\"                                                 
+        → CLI_PARAMETER_BAR="..."                                                 
 "
 `;
 
@@ -382,7 +382,7 @@ PARAMETERS
       arguments take precedence. Environment variable names are snake cased       
       versions of the parameter name (or its aliases), case insensitive. They must
       be prefixed with CLI_PARAMETER_ or CLI_PARAM_ (case insensitive). Examples: 
-        → CLI_PARAMETER_BAR=\\"...\\"                                                 
+        → CLI_PARAMETER_BAR="..."                                                 
 "
 `;
 
@@ -423,7 +423,7 @@ PARAMETERS
       arguments take precedence. Environment variable names are snake cased       
       versions of the parameter name (or its aliases), case insensitive. They must
       be prefixed with CLI_PARAMETER_ or CLI_PARAM_ (case insensitive). Examples: 
-        → CLI_PARAMETER_FOO=\\"...\\"                                                 
+        → CLI_PARAMETER_FOO="..."                                                 
 "
 `;
 
@@ -442,7 +442,7 @@ PARAMETERS
       arguments take precedence. Environment variable names are snake cased       
       versions of the parameter name (or its aliases), case insensitive. They must
       be prefixed with CLI_PARAMETER_ or CLI_PARAM_ (case insensitive). Examples: 
-        → CLI_PARAMETER_FOO=\\"...\\"                                                 
+        → CLI_PARAMETER_FOO="..."                                                 
 "
 `;
 
@@ -465,8 +465,8 @@ PARAMETERS
       arguments take precedence. Environment variable names are snake cased       
       versions of the parameter name (or its aliases), case insensitive. They must
       be prefixed with CLI_PARAMETER_ or CLI_PARAM_ (case insensitive). Examples: 
-        → CLI_PARAMETER_BAZ=\\"...\\"                                                 
-        → CLI_PARAMETER_BAR=\\"...\\"                                                 
+        → CLI_PARAMETER_BAZ="..."                                                 
+        → CLI_PARAMETER_BAR="..."                                                 
   (2) This is a set of mutually exclusive parameters. Only one can be provided at
       a time. If more than one is provided, execution will fail with an input    
       error.                                                                     
@@ -492,8 +492,8 @@ PARAMETERS
       arguments take precedence. Environment variable names are snake cased       
       versions of the parameter name (or its aliases), case insensitive. They must
       be prefixed with CLI_PARAMETER_ or CLI_PARAM_ (case insensitive). Examples: 
-        → CLI_PARAMETER_BAZ=\\"...\\"                                                 
-        → CLI_PARAMETER_BAR=\\"...\\"                                                 
+        → CLI_PARAMETER_BAZ="..."                                                 
+        → CLI_PARAMETER_BAR="..."                                                 
   (2) This is a set of mutually exclusive parameters. Only one can be provided at
       a time. If more than one is provided, execution will fail with an input    
       error.                                                                     
@@ -519,8 +519,8 @@ PARAMETERS
       arguments take precedence. Environment variable names are snake cased       
       versions of the parameter name (or its aliases), case insensitive. They must
       be prefixed with CLI_PARAMETER_ or CLI_PARAM_ (case insensitive). Examples: 
-        → CLI_PARAMETER_BAZ=\\"...\\"                                                 
-        → CLI_PARAMETER_BAR=\\"...\\"                                                 
+        → CLI_PARAMETER_BAZ="..."                                                 
+        → CLI_PARAMETER_BAR="..."                                                 
   (2) This is a set of mutually exclusive parameters. Only one can be provided at
       a time. If more than one is provided, execution will fail with an input    
       error.                                                                     
@@ -546,8 +546,8 @@ PARAMETERS
       arguments take precedence. Environment variable names are snake cased       
       versions of the parameter name (or its aliases), case insensitive. They must
       be prefixed with CLI_PARAMETER_ or CLI_PARAM_ (case insensitive). Examples: 
-        → CLI_PARAMETER_BAZ=\\"...\\"                                                 
-        → CLI_PARAMETER_BAR=\\"...\\"                                                 
+        → CLI_PARAMETER_BAZ="..."                                                 
+        → CLI_PARAMETER_BAR="..."                                                 
   (2) This is a set of mutually exclusive parameters. Only one can be provided at
       a time. If more than one is provided, execution will fail with an input    
       error.                                                                     
@@ -573,8 +573,8 @@ PARAMETERS
       arguments take precedence. Environment variable names are snake cased       
       versions of the parameter name (or its aliases), case insensitive. They must
       be prefixed with CLI_PARAMETER_ or CLI_PARAM_ (case insensitive). Examples: 
-        → CLI_PARAMETER_BAR=\\"...\\"                                                 
-        → CLI_PARAMETER_BAZ=\\"...\\"                                                 
+        → CLI_PARAMETER_BAR="..."                                                 
+        → CLI_PARAMETER_BAZ="..."                                                 
   (2) This is a set of mutually exclusive parameters. Only one can be provided at
       a time. If more than one is provided, execution will fail with an input    
       error.                                                                     
@@ -600,8 +600,8 @@ PARAMETERS
       arguments take precedence. Environment variable names are snake cased       
       versions of the parameter name (or its aliases), case insensitive. They must
       be prefixed with CLI_PARAMETER_ or CLI_PARAM_ (case insensitive). Examples: 
-        → CLI_PARAMETER_BAR=\\"...\\"                                                 
-        → CLI_PARAMETER_BAZ=\\"...\\"                                                 
+        → CLI_PARAMETER_BAR="..."                                                 
+        → CLI_PARAMETER_BAZ="..."                                                 
   (2) This is a set of mutually exclusive parameters. Only one can be provided at
       a time. If more than one is provided, execution will fail with an input    
       error.                                                                     
@@ -669,7 +669,7 @@ PARAMETERS
       arguments take precedence. Environment variable names are snake cased       
       versions of the parameter name (or its aliases), case insensitive. They must
       be prefixed with CLI_PARAMETER_ or CLI_PARAM_ (case insensitive). Examples: 
-        → CLI_PARAMETER_FOO=\\"...\\"                                                 
+        → CLI_PARAMETER_FOO="..."                                                 
 "
 `;
 
@@ -692,7 +692,7 @@ PARAMETERS
       arguments take precedence. Environment variable names are snake cased       
       versions of the parameter name (or its aliases), case insensitive. They must
       be prefixed with CLI_PARAMETER_ or CLI_PARAM_ (case insensitive). Examples: 
-        → CLI_PARAMETER_FOO=\\"...\\"                                                 
+        → CLI_PARAMETER_FOO="..."                                                 
 "
 `;
 
@@ -711,7 +711,7 @@ PARAMETERS
       arguments take precedence. Environment variable names are snake cased       
       versions of the parameter name (or its aliases), case insensitive. They must
       be prefixed with CLI_PARAMETER_ or CLI_PARAM_ (case insensitive). Examples: 
-        → CLI_PARAMETER_FOO=\\"...\\"                                                 
+        → CLI_PARAMETER_FOO="..."                                                 
 "
 `;
 
@@ -730,7 +730,7 @@ PARAMETERS
       arguments take precedence. Environment variable names are snake cased       
       versions of the parameter name (or its aliases), case insensitive. They must
       be prefixed with CLI_PARAMETER_ or CLI_PARAM_ (case insensitive). Examples: 
-        → CLI_PARAMETER_FOO=\\"...\\"                                                 
+        → CLI_PARAMETER_FOO="..."                                                 
 "
 `;
 
@@ -750,7 +750,7 @@ PARAMETERS
       arguments take precedence. Environment variable names are snake cased       
       versions of the parameter name (or its aliases), case insensitive. They must
       be prefixed with CLI_PARAMETER_ or CLI_PARAM_ (case insensitive). Examples: 
-        → CLI_PARAMETER_A=\\"...\\"                                                   
+        → CLI_PARAMETER_A="..."                                                   
 "
 `;
 
@@ -770,7 +770,7 @@ PARAMETERS
       arguments take precedence. Environment variable names are snake cased       
       versions of the parameter name (or its aliases), case insensitive. They must
       be prefixed with CLI_PARAMETER_ or CLI_PARAM_ (case insensitive). Examples: 
-        → CLI_PARAMETER_A=\\"...\\"                                                   
+        → CLI_PARAMETER_A="..."                                                   
 "
 `;
 
@@ -789,7 +789,7 @@ PARAMETERS
       arguments take precedence. Environment variable names are snake cased       
       versions of the parameter name (or its aliases), case insensitive. They must
       be prefixed with CLI_PARAMETER_ or CLI_PARAM_ (case insensitive). Examples: 
-        → CLI_PARAMETER_FOO=\\"...\\"                                                 
+        → CLI_PARAMETER_FOO="..."                                                 
 "
 `;
 
@@ -808,7 +808,7 @@ PARAMETERS
       arguments take precedence. Environment variable names are snake cased       
       versions of the parameter name (or its aliases), case insensitive. They must
       be prefixed with CLI_PARAMETER_ or CLI_PARAM_ (case insensitive). Examples: 
-        → CLI_PARAMETER_FOO=\\"...\\"                                                 
+        → CLI_PARAMETER_FOO="..."                                                 
 "
 `;
 
@@ -827,7 +827,7 @@ PARAMETERS
       arguments take precedence. Environment variable names are snake cased       
       versions of the parameter name (or its aliases), case insensitive. They must
       be prefixed with CLI_PARAMETER_ or CLI_PARAM_ (case insensitive). Examples: 
-        → CLI_PARAMETER_FOO=\\"...\\"                                                 
+        → CLI_PARAMETER_FOO="..."                                                 
 "
 `;
 
@@ -846,7 +846,7 @@ PARAMETERS
       arguments take precedence. Environment variable names are snake cased       
       versions of the parameter name (or its aliases), case insensitive. They must
       be prefixed with CLI_PARAMETER_ or CLI_PARAM_ (case insensitive). Examples: 
-        → CLI_PARAMETER_FOO=\\"...\\"                                                 
+        → CLI_PARAMETER_FOO="..."                                                 
 "
 `;
 
@@ -865,7 +865,7 @@ PARAMETERS
       arguments take precedence. Environment variable names are snake cased       
       versions of the parameter name (or its aliases), case insensitive. They must
       be prefixed with CLI_PARAMETER_ or CLI_PARAM_ (case insensitive). Examples: 
-        → CLI_PARAMETER_FOO=\\"...\\"                                                 
+        → CLI_PARAMETER_FOO="..."                                                 
 "
 `;
 
@@ -884,7 +884,7 @@ PARAMETERS
       arguments take precedence. Environment variable names are snake cased       
       versions of the parameter name (or its aliases), case insensitive. They must
       be prefixed with CLI_PARAMETER_ or CLI_PARAM_ (case insensitive). Examples: 
-        → CLI_PARAMETER_FOO=\\"...\\"                                                 
+        → CLI_PARAMETER_FOO="..."                                                 
 "
 `;
 
@@ -904,7 +904,7 @@ PARAMETERS
       arguments take precedence. Environment variable names are snake cased       
       versions of the parameter name (or its aliases), case insensitive. They must
       be prefixed with CLI_PARAMETER_ or CLI_PARAM_ (case insensitive). Examples: 
-        → CLI_PARAMETER_A=\\"...\\"                                                   
+        → CLI_PARAMETER_A="..."                                                   
 "
 `;
 
@@ -924,7 +924,7 @@ PARAMETERS
       arguments take precedence. Environment variable names are snake cased       
       versions of the parameter name (or its aliases), case insensitive. They must
       be prefixed with CLI_PARAMETER_ or CLI_PARAM_ (case insensitive). Examples: 
-        → CLI_PARAMETER_A=\\"...\\"                                                   
+        → CLI_PARAMETER_A="..."                                                   
 "
 `;
 
@@ -945,7 +945,7 @@ PARAMETERS
       arguments take precedence. Environment variable names are snake cased       
       versions of the parameter name (or its aliases), case insensitive. They must
       be prefixed with CLI_PARAMETER_ or CLI_PARAM_ (case insensitive). Examples: 
-        → CLI_PARAMETER_A=\\"...\\"                                                   
+        → CLI_PARAMETER_A="..."                                                   
 "
 `;
 
@@ -966,7 +966,7 @@ PARAMETERS
       arguments take precedence. Environment variable names are snake cased       
       versions of the parameter name (or its aliases), case insensitive. They must
       be prefixed with CLI_PARAMETER_ or CLI_PARAM_ (case insensitive). Examples: 
-        → CLI_PARAMETER_A=\\"...\\"                                                   
+        → CLI_PARAMETER_A="..."                                                   
 "
 `;
 
@@ -986,7 +986,7 @@ PARAMETERS
       arguments take precedence. Environment variable names are snake cased       
       versions of the parameter name (or its aliases), case insensitive. They must
       be prefixed with CLI_PARAMETER_ or CLI_PARAM_ (case insensitive). Examples: 
-        → CLI_PARAMETER_BAR=\\"...\\"                                                 
+        → CLI_PARAMETER_BAR="..."                                                 
 "
 `;
 
@@ -1006,7 +1006,7 @@ PARAMETERS
       arguments take precedence. Environment variable names are snake cased       
       versions of the parameter name (or its aliases), case insensitive. They must
       be prefixed with CLI_PARAMETER_ or CLI_PARAM_ (case insensitive). Examples: 
-        → CLI_PARAMETER_BAR=\\"...\\"                                                 
+        → CLI_PARAMETER_BAR="..."                                                 
 "
 `;
 
@@ -1026,7 +1026,7 @@ PARAMETERS
       arguments take precedence. Environment variable names are snake cased       
       versions of the parameter name (or its aliases), case insensitive. They must
       be prefixed with CLI_PARAMETER_ or CLI_PARAM_ (case insensitive). Examples: 
-        → CLI_PARAMETER_BAR=\\"...\\"                                                 
+        → CLI_PARAMETER_BAR="..."                                                 
 "
 `;
 
@@ -1046,7 +1046,7 @@ PARAMETERS
       arguments take precedence. Environment variable names are snake cased       
       versions of the parameter name (or its aliases), case insensitive. They must
       be prefixed with CLI_PARAMETER_ or CLI_PARAM_ (case insensitive). Examples: 
-        → CLI_PARAMETER_BAR=\\"...\\"                                                 
+        → CLI_PARAMETER_BAR="..."                                                 
 "
 `;
 
@@ -1066,7 +1066,7 @@ PARAMETERS
       arguments take precedence. Environment variable names are snake cased       
       versions of the parameter name (or its aliases), case insensitive. They must
       be prefixed with CLI_PARAMETER_ or CLI_PARAM_ (case insensitive). Examples: 
-        → CLI_PARAMETER_BAR=\\"...\\"                                                 
+        → CLI_PARAMETER_BAR="..."                                                 
 "
 `;
 
@@ -1086,7 +1086,7 @@ PARAMETERS
       arguments take precedence. Environment variable names are snake cased       
       versions of the parameter name (or its aliases), case insensitive. They must
       be prefixed with CLI_PARAMETER_ or CLI_PARAM_ (case insensitive). Examples: 
-        → CLI_PARAMETER_BAR=\\"...\\"                                                 
+        → CLI_PARAMETER_BAR="..."                                                 
 "
 `;
 
@@ -1106,7 +1106,7 @@ PARAMETERS
       arguments take precedence. Environment variable names are snake cased       
       versions of the parameter name (or its aliases), case insensitive. They must
       be prefixed with CLI_PARAMETER_ or CLI_PARAM_ (case insensitive). Examples: 
-        → CLI_PARAMETER_BAR=\\"...\\"                                                 
+        → CLI_PARAMETER_BAR="..."                                                 
 "
 `;
 
@@ -1126,7 +1126,7 @@ PARAMETERS
       arguments take precedence. Environment variable names are snake cased       
       versions of the parameter name (or its aliases), case insensitive. They must
       be prefixed with CLI_PARAMETER_ or CLI_PARAM_ (case insensitive). Examples: 
-        → CLI_PARAMETER_BAR=\\"...\\"                                                 
+        → CLI_PARAMETER_BAR="..."                                                 
 "
 `;
 
@@ -1146,7 +1146,7 @@ PARAMETERS
       arguments take precedence. Environment variable names are snake cased       
       versions of the parameter name (or its aliases), case insensitive. They must
       be prefixed with CLI_PARAMETER_ or CLI_PARAM_ (case insensitive). Examples: 
-        → CLI_PARAMETER_BAR=\\"...\\"                                                 
+        → CLI_PARAMETER_BAR="..."                                                 
 "
 `;
 
@@ -1166,7 +1166,7 @@ PARAMETERS
       arguments take precedence. Environment variable names are snake cased       
       versions of the parameter name (or its aliases), case insensitive. They must
       be prefixed with CLI_PARAMETER_ or CLI_PARAM_ (case insensitive). Examples: 
-        → CLI_PARAMETER_BAR=\\"...\\"                                                 
+        → CLI_PARAMETER_BAR="..."                                                 
 "
 `;
 
@@ -1186,7 +1186,7 @@ PARAMETERS
       arguments take precedence. Environment variable names are snake cased       
       versions of the parameter name (or its aliases), case insensitive. They must
       be prefixed with CLI_PARAMETER_ or CLI_PARAM_ (case insensitive). Examples: 
-        → CLI_PARAMETER_BAR=\\"...\\"                                                 
+        → CLI_PARAMETER_BAR="..."                                                 
 "
 `;
 
@@ -1206,7 +1206,7 @@ PARAMETERS
       arguments take precedence. Environment variable names are snake cased       
       versions of the parameter name (or its aliases), case insensitive. They must
       be prefixed with CLI_PARAMETER_ or CLI_PARAM_ (case insensitive). Examples: 
-        → CLI_PARAMETER_BAR=\\"...\\"                                                 
+        → CLI_PARAMETER_BAR="..."                                                 
 "
 `;
 
@@ -1226,7 +1226,7 @@ PARAMETERS
       arguments take precedence. Environment variable names are snake cased       
       versions of the parameter name (or its aliases), case insensitive. They must
       be prefixed with CLI_PARAMETER_ or CLI_PARAM_ (case insensitive). Examples: 
-        → CLI_PARAMETER_BAR=\\"...\\"                                                 
+        → CLI_PARAMETER_BAR="..."                                                 
 "
 `;
 
@@ -1246,7 +1246,7 @@ PARAMETERS
       arguments take precedence. Environment variable names are snake cased       
       versions of the parameter name (or its aliases), case insensitive. They must
       be prefixed with CLI_PARAMETER_ or CLI_PARAM_ (case insensitive). Examples: 
-        → CLI_PARAMETER_BAR=\\"...\\"                                                 
+        → CLI_PARAMETER_BAR="..."                                                 
 "
 `;
 
@@ -1266,7 +1266,7 @@ PARAMETERS
       arguments take precedence. Environment variable names are snake cased       
       versions of the parameter name (or its aliases), case insensitive. They must
       be prefixed with CLI_PARAMETER_ or CLI_PARAM_ (case insensitive). Examples: 
-        → CLI_PARAMETER_BAR=\\"...\\"                                                 
+        → CLI_PARAMETER_BAR="..."                                                 
 "
 `;
 
@@ -1286,6 +1286,6 @@ PARAMETERS
       arguments take precedence. Environment variable names are snake cased       
       versions of the parameter name (or its aliases), case insensitive. They must
       be prefixed with CLI_PARAMETER_ or CLI_PARAM_ (case insensitive). Examples: 
-        → CLI_PARAMETER_BAR=\\"...\\"                                                 
+        → CLI_PARAMETER_BAR="..."                                                 
 "
 `;
