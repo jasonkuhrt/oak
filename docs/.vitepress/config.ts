@@ -49,17 +49,17 @@ export default defineConfig({
         {
           text: 'Parameters',
           items: [
-            { text: 'Parameter Naming', link: '/guides/parameter-naming' },
-            { text: 'Parameter Types', link: '/guides/parameter-types' },
-            { text: 'Parameter Prompts', link: '/guides/prompts' },
-            { text: 'Mutually Exclusive Parameters', link: '/guides/mutually-exclusive-parameters' },
+            { text: 'Naming', link: '/guides/parameter-naming' },
+            { text: 'Types', link: '/guides/parameter-types' },
+            { text: 'Prompts', link: '/guides/prompts' },
+            { text: 'Mutually Exclusive', link: '/guides/mutually-exclusive-parameters' },
           ],
         },
         {
           text: 'Arguments',
           items: [
-            { text: 'Line Arguments', link: '/guides/line-arguments' },
-            { text: 'Environment Arguments', link: '/guides/environment-arguments' },
+            { text: 'Line', link: '/guides/line-arguments' },
+            { text: 'Environment', link: '/guides/environment-arguments' },
           ],
         },
         {
