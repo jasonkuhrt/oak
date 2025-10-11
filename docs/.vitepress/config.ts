@@ -29,53 +29,53 @@ export default defineConfig({
     logo: '/logo.svg',
 
     nav: [
-      { text: 'Guide', link: '/guide/getting-started' },
+      { text: 'Guides', link: '/guides/getting-started' },
     ],
 
     sidebar: {
-      '/guide/': [
+      '/guides/': [
         {
           text: 'Introduction',
           items: [
-            { text: 'Getting Started', link: '/guide/getting-started' },
+            { text: 'Getting Started', link: '/guides/getting-started' },
           ],
         },
         {
           text: 'Core Concepts',
           items: [
-            { text: 'Immutability', link: '/guide/immutability' },
-            { text: 'Parameter Naming', link: '/guide/parameter-naming' },
-            { text: 'Parameter Types', link: '/guide/parameter-types' },
-            { text: 'Parameter Prompts', link: '/guide/prompts' },
+            { text: 'Immutability', link: '/guides/immutability' },
+            { text: 'Parameter Naming', link: '/guides/parameter-naming' },
+            { text: 'Parameter Types', link: '/guides/parameter-types' },
+            { text: 'Parameter Prompts', link: '/guides/prompts' },
           ],
         },
         {
           text: 'Arguments',
           items: [
-            { text: 'Line Arguments', link: '/guide/line-arguments' },
-            { text: 'Environment Arguments', link: '/guide/environment-arguments' },
+            { text: 'Line Arguments', link: '/guides/line-arguments' },
+            { text: 'Environment Arguments', link: '/guides/environment-arguments' },
           ],
         },
         {
           text: 'Advanced',
           items: [
-            { text: 'Mutually Exclusive Parameters', link: '/guide/mutually-exclusive-parameters' },
-            { text: 'Description', link: '/guide/description' },
-            { text: 'Settings', link: '/guide/settings' },
+            { text: 'Mutually Exclusive Parameters', link: '/guides/mutually-exclusive-parameters' },
+            { text: 'Description', link: '/guides/description' },
+            { text: 'Settings', link: '/guides/settings' },
           ],
         },
         {
           text: 'Reference',
           items: [
-            { text: 'Recipes', link: '/guide/recipes' },
-            { text: 'Architecture', link: '/guide/architecture' },
-            { text: 'Alternatives', link: '/guide/alternatives' },
+            { text: 'Recipes', link: '/guides/recipes' },
+            { text: 'Architecture', link: '/guides/architecture' },
+            { text: 'Alternatives', link: '/guides/alternatives' },
           ],
         },
         {
           text: 'Extensions',
           items: [
-            { text: 'Zod', link: '/guide/extensions/zod' },
+            { text: 'Zod', link: '/guides/extensions/zod' },
           ],
         },
       ],

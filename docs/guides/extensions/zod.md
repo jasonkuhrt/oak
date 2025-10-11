@@ -16,12 +16,12 @@ The supported Zod types and their mapping is as follows:
 
 | Zod                                                                               | Oak Type                                    |
 | --------------------------------------------------------------------------------- | ------------------------------------------- |
-| [`boolean`](https://github.com/colinhacks/zod#booleans)                           | [`boolean`](/guide/parameter-types#boolean) |
-| [`string`](https://github.com/colinhacks/zod#strings)                             | [`string`](/guide/parameter-types#string)   |
-| [`number`](https://github.com/colinhacks/zod#numbers)                             | [`number`](/guide/parameter-types#number)   |
-| [`enum`](https://github.com/colinhacks/zod#zod-enums)                             | [`enum`](/guide/parameter-types#enum)       |
-| [`nativeEnum`](https://github.com/colinhacks/zod#native-enums)                    | [`enum`](/guide/parameter-types#enum)       |
-| [`union`](https://github.com/colinhacks/zod#unions) (of any other Zod type above) | [`union`](/guide/parameter-types#union)     |
+| [`boolean`](https://github.com/colinhacks/zod#booleans)                           | [`boolean`](/guides/parameter-types#boolean) |
+| [`string`](https://github.com/colinhacks/zod#strings)                             | [`string`](/guides/parameter-types#string)   |
+| [`number`](https://github.com/colinhacks/zod#numbers)                             | [`number`](/guides/parameter-types#number)   |
+| [`enum`](https://github.com/colinhacks/zod#zod-enums)                             | [`enum`](/guides/parameter-types#enum)       |
+| [`nativeEnum`](https://github.com/colinhacks/zod#native-enums)                    | [`enum`](/guides/parameter-types#enum)       |
+| [`union`](https://github.com/colinhacks/zod#unions) (of any other Zod type above) | [`union`](/guides/parameter-types#union)     |
 
 All validation methods are accepted (`.min(1)`, `.regex(/.../)`, `.cuid()`, ...).
 

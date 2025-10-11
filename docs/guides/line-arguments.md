@@ -1,6 +1,6 @@
 # Line Arguments
 
-This section is about users passing arguments via the command line (as opposed to [the environment](/guide/environment-arguments)), also known as "flags", to the parameters you've defined for your CLI.
+This section is about users passing arguments via the command line (as opposed to [the environment](/guides/environment-arguments)), also known as "flags", to the parameters you've defined for your CLI.
 
 ## Parameter Argument Separator
 

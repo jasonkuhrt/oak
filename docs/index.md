@@ -11,7 +11,7 @@ hero:
   actions:
     - theme: brand
       text: Get Started
-      link: /guide/getting-started
+      link: /guides/getting-started
     - theme: alt
       text: View on GitHub
       link: https://github.com/jasonkuhrt/oak
@@ -148,7 +148,7 @@ args.force
   args.path === '/over/ride' // $ mybin --path /over/ride
   ```
 
-- [mutually exclusive parameters](/guide/mutually-exclusive-parameters)
+- [mutually exclusive parameters](/guides/mutually-exclusive-parameters)
 
 - flexible argument passing
 

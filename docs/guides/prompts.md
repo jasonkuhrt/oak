@@ -20,7 +20,7 @@ $ mybin --filePath ./a/b/c.yaml
 
 - By default, disabled.
 - Can be configured at parameter level _or_ command level. Parameter level overrides command level.
-- Only _basic_ parameters support prompting (so e.g. not [mutually exclusive parameters](/guide/mutually-exclusive-parameters)).
+- Only _basic_ parameters support prompting (so e.g. not [mutually exclusive parameters](/guides/mutually-exclusive-parameters)).
 - Prompt interaction honours the parameter type. Here are some examples:
 
   - enumeration
@@ -87,7 +87,7 @@ _All_ defined parameters emit parse events, irregardless if _arguments_ were giv
 - When they an optional parameter is not given an argument up front
 - ...
 
-All you need to do is pass a _pattern_ to `prompt` either at the parameter level or the [command level settings](/guide/settings). There are three parse events you can match against:
+All you need to do is pass a _pattern_ to `prompt` either at the parameter level or the [command level settings](/guides/settings). There are three parse events you can match against:
 
 - _Accepted_
   The parameter received an argument and it was successfully parsed.
