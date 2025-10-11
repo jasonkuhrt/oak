@@ -1,5 +1,4 @@
-import camelCase from 'lodash.camelcase'
-import snakecase from 'lodash.snakecase'
+import { Str } from '@wollybeard/kit'
 import { Errors } from '../../Errors/index.js'
 import type { Index, RequireField } from '../../lib/prelude.js'
 import { getNames } from '../../Parameter/helpers/CommandParameter.js'
@@ -102,7 +101,7 @@ export const lookupEnvironmentVariableArgument = (
   environment: Record<string, string | undefined>,
   parameterName: string,
 ): null | { name: string; value: string } => {
-  const parameterNameSnakeCase = snakecase(parameterName)
+  const parameterNameSnakeCase = Str.Case.snake(parameterName)
   const parameterNames = prefixes.length === 0
     ? [parameterNameSnakeCase]
     // TODO add test coverage for the snake case conversion of a parameter name
@@ -144,7 +143,7 @@ const checkInputMatch = (envar: Envar, spec: ParameterSpecOutputWithEnvironment)
   for (const name of specParameterNames) {
     if (spec.environment.namespaces.length > 0) {
       for (const namespace of spec.environment.namespaces) {
-        const nameNamespaced = camelCase(`${namespace}_${name}`)
+        const nameNamespaced = Str.Case.camel(`${namespace}_${name}`)
 
         if (nameNamespaced === envar.name.camel) {
           return {
@@ -220,7 +219,7 @@ const normalizeEnvironment = (environment: RawInputs): Envar[] => {
           value,
           name: {
             raw: name,
-            camel: camelCase(name),
+            camel: Str.Case.camel(name),
           },
         }
     )

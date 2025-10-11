@@ -1,6 +1,5 @@
+import { Str } from '@wollybeard/kit'
 import chalk from 'chalk'
-import camelCase from 'lodash.camelcase'
-import snakeCase from 'lodash.snakecase'
 import { groupBy } from '../lib/prelude.js'
 import { Tex } from '../lib/Tex/index.js'
 import { Text } from '../lib/Text/index.js'
@@ -166,7 +165,7 @@ const environmentNote = (parameters: Parameter[], settings: Settings.Output) => 
     .filter(
       (_) =>
         _.environment!.namespaces.filter((_) =>
-          settings.parameters.environment.$default.prefix.map(camelCase).includes(_)
+          settings.parameters.environment.$default.prefix.map(Str.Case.camel).includes(_)
         ).length !== _.environment!.namespaces.length,
     ).length > 0
 
@@ -293,7 +292,7 @@ const parameterEnvironment = (parameter: Parameter, settings: Settings.Output) =
         : parameter.environment.enabled
             && parameter.environment.namespaces.filter(
                 // TODO settings normalized should store prefix in camel case
-                (_) => !settings.parameters.environment.$default.prefix.includes(snakeCase(_)),
+                (_) => !settings.parameters.environment.$default.prefix.includes(Str.Case.snake(_)),
               ).length > 0
         ? ` `
           + Term.colors.dim(

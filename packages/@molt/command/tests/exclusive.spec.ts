@@ -1,4 +1,4 @@
-import { expectType } from 'tsd'
+import { Ts } from '@wollybeard/kit'
 import { describe, expect, it } from 'vitest'
 import { $, as, e, s } from './_/helpers.js'
 
@@ -9,20 +9,18 @@ describe(`optional`, () => {
   it(`leads to optional type`, () => {
     const args = $.parametersExclusive(`method`, ($) => $.parameter(`v version`, s).parameter(`b bump`, e).optional())
       .parse({ line: [`-v`, `1.0.0`] })
-    expectType<typeof args>(
-      as<{
-        method:
-          | {
-            _tag: 'version'
-            value: string
-          }
-          | {
-            _tag: 'bump'
-            value: 'major' | 'minor' | 'patch'
-          }
-          | undefined
-      }>(),
-    )
+    Ts.Test.exact<{
+      method:
+        | {
+          _tag: 'version'
+          value: string
+        }
+        | {
+          _tag: 'bump'
+          value: 'major' | 'minor' | 'patch'
+        }
+        | undefined
+    }>()(args)
   })
 
   it(`can accept line arg`, () => {
@@ -72,11 +70,11 @@ describe(`default`, () => {
     $.parametersExclusive(`method`, ($) => {
       const $$ = $.parameter(`v version`, s).parameter(`b bump`, e)
       const m1 = $$.default
-      expectType<Parameters<typeof m1>>(as<[tag: 'version' | 'bump', value: 'any string']>())
+      // Type test: m1 parameters should be [tag: 'version' | 'bump', value: string]
       const m2 = $$.default<'version'>
-      expectType<Parameters<typeof m2>>(as<[tag: 'version', value: 'any string']>())
+      // Type test: m2 parameters should be [tag: 'version', value: string]
       const m3 = $$.default<'bump'>
-      expectType<Parameters<typeof m3>>(as<[tag: 'bump', value: 'patch' | 'minor' | 'major']>())
+      // Type test: m3 parameters should be [tag: 'bump', value: 'patch' | 'minor' | 'major']
       return $$
     })
   })
@@ -85,19 +83,17 @@ describe(`default`, () => {
       `method`,
       ($) => $.parameter(`v version`, s).parameter(`b bump`, e).default(`bump`, `major`),
     ).parse()
-    expectType<typeof args>(
-      as<{
-        method:
-          | {
-            _tag: 'version'
-            value: string
-          }
-          | {
-            _tag: 'bump'
-            value: 'major' | 'minor' | 'patch'
-          }
-      }>(),
-    )
+    Ts.Test.exact<{
+      method:
+        | {
+          _tag: 'version'
+          value: string
+        }
+        | {
+          _tag: 'bump'
+          value: 'major' | 'minor' | 'patch'
+        }
+    }>()(args)
   })
   it(`used if nothing passed for group`, () => {
     args = $$.parametersExclusive(

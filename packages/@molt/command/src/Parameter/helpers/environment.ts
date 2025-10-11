@@ -1,5 +1,5 @@
 import type { Cli } from '@wollybeard/kit'
-import camelCase from 'lodash.camelcase'
+import { Str } from '@wollybeard/kit'
 import type { Settings } from '../../Settings/index.js'
 import type { Environment } from './types.js'
 
@@ -15,7 +15,7 @@ export const processEnvironment = (settings: Settings.Output, name: Cli.FlagName
       namespaces: (
         settings.parameters.environment[name.canonical]?.prefix
           ?? settings.parameters.environment.$default.prefix
-      ).map((_) => camelCase(_)),
+      ).map((_) => Str.Case.camel(_)),
     }
     : null
 }

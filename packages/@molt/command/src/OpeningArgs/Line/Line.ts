@@ -1,4 +1,4 @@
-import camelCase from 'lodash.camelcase'
+import { Str } from '@wollybeard/kit'
 import { Errors } from '../../Errors/index.js'
 import { stripeNegatePrefixLoose } from '../../helpers.js'
 import type { Index } from '../../lib/prelude.js'
@@ -56,7 +56,7 @@ export const parse = (rawLineInputs: RawInputs, parameters: Parameter[]): Parsed
         pendingReport.value = {
           value: true,
           _tag: `boolean`,
-          negated: isNegated(camelCase(pendingReport.source.name)),
+          negated: isNegated(Str.Case.camel(pendingReport.source.name)),
         }
       } else {
         pendingReport.errors.push(new Errors.ErrorMissingArgument({ parameter: pendingReport.parameter }))
@@ -74,7 +74,7 @@ export const parse = (rawLineInputs: RawInputs, parameters: Parameter[]): Parsed
       }
 
       const flagNameNoDashPrefix = stripeDashPrefix(rawLineInput)
-      const flagNameNoDashPrefixCamel = camelCase(flagNameNoDashPrefix)
+      const flagNameNoDashPrefixCamel = Str.Case.camel(flagNameNoDashPrefix)
       const flagNameNoDashPrefixNoNegate = stripeNegatePrefixLoose(flagNameNoDashPrefixCamel)
       const parameter = findByName(flagNameNoDashPrefixCamel, parameters)
       if (!parameter) {

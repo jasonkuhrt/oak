@@ -1,4 +1,4 @@
-import snakeCase from 'lodash.snakecase'
+import { Str } from '@wollybeard/kit'
 import stringLength from 'string-length'
 
 export type Line = string
@@ -96,7 +96,7 @@ export const row = (columns: ColSpec[]): string => {
   return lines.join(chars.newline)
 }
 
-export const toEnvarNameCase = (name: string) => snakeCase(name).toUpperCase()
+export const toEnvarNameCase = (name: string) => Str.Case.snake(name).toUpperCase()
 
 export const lines = (width: number, text: string): string[] => {
   const lines: string[] = text.split(`\n`)

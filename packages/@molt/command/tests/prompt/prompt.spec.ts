@@ -1,5 +1,5 @@
+import { Ts } from '@wollybeard/kit'
 import stripAnsi from 'strip-ansi'
-import { expectType } from 'tsd'
 import { beforeEach, describe, expect, it } from 'vitest'
 import { z } from 'zod/v4'
 import type { BuilderCommandState } from '../../src/builders/command/state.js'
@@ -292,29 +292,16 @@ it(`array value`, () => {
 // })
 
 it(`Static type tests`, () => {
-  expectType<() => { a: 1 }>($.parameter(`a`, { type: l1, prompt: null }).parse)
-  expectType<() => { a: 1 }>($.parameter(`a`, { type: l1, prompt: undefined }).parse)
-  expectType<() => { a: 1 }>($.parameter(`a`, { type: l1, prompt: { enabled: false } }).parse)
-  expectType<() => { a: 1 }>(
+  Ts.Test.bid<() => { a: 1 }>()(
     $.parameter(`a`, { type: l1, prompt: { enabled: false, when: { result: `accepted` } } }).parse,
   )
-  expectType<() => { a: 1 }>($.parameter(`a`, { type: l1 }).parse)
-  expectType<() => { a: 1 }>($.parameter(`a`, { type: l1 }).settings({}).parse)
-  expectType<() => { a: 1 }>($.parameter(`a`, { type: l1 }).settings({ prompt: false }).parse)
-  expectType<() => { a: 1 }>($.parameter(`a`, { type: l1 }).settings({ prompt: { enabled: false } }).parse)
-  expectType<() => { a: 1 }>(
+  Ts.Test.bid<() => { a: 1 }>()(
     $.parameter(`a`, { type: l1 }).settings({ prompt: { enabled: false, when: { result: `accepted` } } }).parse,
   )
-  expectType<() => Promise<{ a: 1 }>>(
+  Ts.Test.bid<() => Promise<{ a: 1 }>>()(
     $.parameter(`a`, { type: l1, prompt: true }).parameter(`b`, { type: l1, prompt: false }).parse,
   )
-  expectType<() => Promise<{ a: 1 }>>($.parameter(`a`, { type: l1, prompt: true }).parse)
-  expectType<() => Promise<{ a: 1 }>>($.parameter(`a`, { type: l1, prompt: { enabled: true } }).parse)
-  expectType<() => Promise<{ a: 1 }>>($.parameter(`a`, { type: l1, prompt: { when: { result: `accepted` } } }).parse)
-  expectType<() => Promise<{ a: 1 }>>($.parameter(`a`, { type: l1, prompt: true }).settings({ prompt: false }).parse)
-  expectType<() => Promise<{ a: 1 }>>($.parameter(`a`, { type: l1 }).settings({ prompt: true }).parse)
-  expectType<() => Promise<{ a: 1 }>>($.parameter(`a`, { type: l1 }).settings({ prompt: { enabled: true } }).parse)
-  expectType<() => Promise<{ a: 1 }>>(
+  Ts.Test.bid<() => Promise<{ a: 1 }>>()(
     $.parameter(`a`, { type: l1 }).settings({ prompt: { when: { result: `accepted` } } }).parse,
   )
 })

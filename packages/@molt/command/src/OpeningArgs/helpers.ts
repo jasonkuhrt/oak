@@ -1,5 +1,5 @@
+import { Str } from '@wollybeard/kit'
 import { Either } from 'effect'
-import camelCase from 'lodash.camelcase'
 import { negateNamePattern } from '../helpers.js'
 import type { Parameter } from '../Parameter/types.js'
 import * as SchemaRuntime from '../schema/schema-runtime.js'
@@ -45,7 +45,7 @@ export const isNegated = (name: string): boolean => {
 
 const stripeNamespace = (name: string, spec: Parameter): string => {
   for (const namespace of spec.environment?.namespaces ?? []) {
-    if (name.startsWith(namespace)) return camelCase(name.slice(namespace.length))
+    if (name.startsWith(namespace)) return Str.Case.camel(name.slice(namespace.length))
   }
   return name
 }

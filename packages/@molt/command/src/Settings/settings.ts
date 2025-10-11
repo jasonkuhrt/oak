@@ -1,4 +1,4 @@
-import snakeCase from 'lodash.snakecase'
+import { Str } from '@wollybeard/kit'
 import type { BuilderCommandState } from '../builders/command/state.js'
 import type { EventPatternsInput, EventPatternsInputAtLeastOne } from '../eventPatterns.js'
 import { eventPatterns } from '../eventPatterns.js'
@@ -181,9 +181,9 @@ export const change = (
                 } else if (spec.prefix === true) {
                   spec_.prefix = defaultParameterNamePrefixes
                 } else if (typeof spec.prefix === `string`) {
-                  spec_.prefix = [snakeCase(spec.prefix).toLowerCase()]
+                  spec_.prefix = [Str.Case.snake(spec.prefix).toLowerCase()]
                 } else {
-                  spec_.prefix = spec.prefix.map((prefix) => snakeCase(prefix).toLowerCase())
+                  spec_.prefix = spec.prefix.map((prefix) => Str.Case.snake(prefix).toLowerCase())
                 }
               }
             }

@@ -1,5 +1,5 @@
+import { Str } from '@wollybeard/kit'
 import { Either } from 'effect'
-import camelCase from 'lodash.camelcase'
 
 export const BooleanLookup = {
   true: true,
@@ -43,7 +43,7 @@ export const negateNamePattern = /^no([A-Z].+)/
 export const stripeNegatePrefix = (name: string): null | string => {
   const withoutPrefix = name.match(negateNamePattern)?.[1]
   if (!withoutPrefix) return null
-  const withCamelCase = camelCase(withoutPrefix)
+  const withCamelCase = Str.Case.camel(withoutPrefix)
   return withCamelCase
 }
 
