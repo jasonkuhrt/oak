@@ -1,12 +1,13 @@
 import { Either } from 'effect'
 import { stripeNegatePrefix } from '../../helpers.js'
-import type { Type } from '../../Type/index.js'
-import type { ValidationResult } from '../../Type/Type.js'
+import * as SchemaRuntime from '../../schema/schema-runtime.js'
 import type { Parameter } from '../types.js'
 
-export const validate = <T>(parameter: Parameter, value: unknown): ValidationResult<T> => {
-  if (parameter.type.optionality._tag === `optional` && value === undefined) return Either.right(value as T)
-  return parameter.type.validate(value)
+export const validate = <T>(parameter: Parameter, value: unknown) => {
+  if (parameter.type.metadata.optionality._tag === `optional` && value === undefined) {
+    return Either.right(value as T)
+  }
+  return SchemaRuntime.validate(parameter.type, value) as any
 }
 
 export const findByName = (name: string, specs: Parameter[]): null | Parameter => {
@@ -57,10 +58,32 @@ export const hasName = (parameter: Parameter, name: string): null | NameHit => {
   return result
 }
 
-export const isOrHasType = (parameter: Parameter, typeTag: Type.Type['_tag']): boolean => {
-  return parameter.type._tag === `TypeUnion`
-    ? (parameter.type as Type.Union).members.find((_) => _._tag === typeTag) !== undefined
-    : parameter.type._tag === typeTag
+export const isOrHasType = (parameter: Parameter, typeTag: string): boolean => {
+  const schema = parameter.type.metadata.schema
+
+  // Convert typeTag to schema _tag format (e.g., 'TypeBoolean' -> 'boolean')
+  const schemaTag = typeTag.replace(`Type`, ``).toLowerCase()
+
+  // Check if this schema is the target type
+  if (schema._tag === schemaTag) {
+    return true
+  }
+
+  // For union types, check if any member is the target type
+  if (schema._tag === `union`) {
+    return schema.members.some((member) => {
+      if (member._tag === schemaTag) {
+        return true
+      }
+      // Recursively check nested unions
+      if (member._tag === `union`) {
+        return member.members.some((m) => m._tag === schemaTag)
+      }
+      return false
+    })
+  }
+
+  return false
 }
 
 const parameterSpecHasNameDo = (

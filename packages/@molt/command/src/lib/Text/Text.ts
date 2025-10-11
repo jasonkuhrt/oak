@@ -1,4 +1,4 @@
-import snakeCase from 'lodash.snakecase'
+import { Str } from '@wollybeard/kit'
 import stringLength from 'string-length'
 
 export type Line = string
@@ -96,7 +96,7 @@ export const row = (columns: ColSpec[]): string => {
   return lines.join(chars.newline)
 }
 
-export const toEnvarNameCase = (name: string) => snakeCase(name).toUpperCase()
+export const toEnvarNameCase = (name: string) => Str.Case.snake(name).toUpperCase()
 
 export const lines = (width: number, text: string): string[] => {
   const lines: string[] = text.split(`\n`)
@@ -195,7 +195,6 @@ export const visualStringTakeWords = (string: string, size: number): { taken: st
   const words = splitWords(string)
   let taken = ``
 
-  // eslint-disable-next-line no-constant-condition
   while (true) {
     // There are no words (empty string)
     if (words.length === 0) {

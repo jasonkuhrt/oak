@@ -1,7 +1,8 @@
+import { Str } from '@wollybeard/kit'
 import { Either } from 'effect'
-import camelCase from 'lodash.camelcase'
 import { negateNamePattern } from '../helpers.js'
 import type { Parameter } from '../Parameter/types.js'
+import * as SchemaRuntime from '../schema/schema-runtime.js'
 import type { Value } from './types.js'
 
 export const stripeDashPrefix = (flagNameInput: string): string => {
@@ -9,13 +10,14 @@ export const stripeDashPrefix = (flagNameInput: string): string => {
 }
 
 export const parseSerializedValue = (name: string, serializedValue: string, spec: Parameter): Value => {
-  const either = spec.type.deserialize(serializedValue)
+  const either = SchemaRuntime.deserialize(spec.type, serializedValue)
+
   if (Either.isLeft(either)) {
-    const expectedTypes = spec.type._tag
-    throw new Error(`Failed to parse input ${name} with value ${serializedValue}. Expected type of ${expectedTypes}.`)
+    // Preserve the actual validation error message from the schema
+    throw either.left
   }
   // TODO make return unknown
-  const value = either.right // eslint-disable-line
+  const value = either.right
   const type = typeof value
   if (type === `string`) return { _tag: `string`, value: value as string }
   if (type === `number`) return { _tag: `number`, value: value as number }
@@ -43,7 +45,7 @@ export const isNegated = (name: string): boolean => {
 
 const stripeNamespace = (name: string, spec: Parameter): string => {
   for (const namespace of spec.environment?.namespaces ?? []) {
-    if (name.startsWith(namespace)) return camelCase(name.slice(namespace.length))
+    if (name.startsWith(namespace)) return Str.Case.camel(name.slice(namespace.length))
   }
   return name
 }

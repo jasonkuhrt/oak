@@ -1,10 +1,10 @@
-import type { Name as MoltName } from '@molt/name'
-import { Name } from '@molt/name'
+import { Cli } from '@wollybeard/kit'
 import { Alge } from 'alge'
 import type { BuilderCommandState } from '../builders/command/state.js'
+import { S } from '../deps/effect.js'
 import type { Pam } from '../lib/Pam/index.js'
+import type { MoltSchema } from '../schema/molt-schema.js'
 import type { Settings } from '../Settings/index.js'
-import type { Type } from '../Type/index.js'
 import { processEnvironment } from './helpers/environment.js'
 import type { Environment } from './helpers/types.js'
 
@@ -20,14 +20,14 @@ export interface ParameterExclusiveInput<
   description?: string
   parameters: {
     nameExpression: string
-    type: $State['Type']
+    type: MoltSchema
   }[]
 }
 
 export interface ParameterExclusive {
   _tag: 'Exclusive'
-  name: MoltName.Data.NameParsed
-  type: Type.Type
+  name: Cli.FlagName
+  type: MoltSchema
   description: string | null
   environment: Environment
   group: ParameterExclusiveGroup
@@ -50,16 +50,16 @@ export const parameterExclusiveCreate = (
   settings: Settings.Output,
 ): ParameterExclusive[] => {
   const parameters: ParameterExclusive[] = input.parameters.map((_) => {
-    const name = Name.parse(_.nameExpression)
+    const name = S.decodeSync(Cli.FlagName.String)(_.nameExpression)
     const environment = processEnvironment(settings, name)
     return {
       _tag: `Exclusive`,
-      description: _.type.description,
+      description: _.type.metadata.description ?? null,
       type: _.type,
       environment,
       name,
       // See comment/code below: (1)
-      group: null as any, // eslint-disable-line
+      group: null as any,
     }
   })
 

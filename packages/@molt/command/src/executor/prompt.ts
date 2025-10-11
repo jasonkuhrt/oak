@@ -3,6 +3,7 @@ import { Effect } from 'effect'
 import type { Prompter } from '../lib/Prompter/index.js'
 import { Tex } from '../lib/Tex/index_.js'
 import { Text } from '../lib/Text/index.js'
+import * as SchemaRuntime from '../schema/schema-runtime.js'
 import { Term } from '../term.js'
 import type { ParseProgressPostPrompt, ParseProgressPostPromptAnnotation } from './parse.js'
 
@@ -12,7 +13,7 @@ import type { ParseProgressPostPrompt, ParseProgressPostPromptAnnotation } from 
 export const prompt = (
   parseProgress: ParseProgressPostPromptAnnotation,
   prompter: null | Prompter.Prompter,
-): Effect.Effect<never, never, ParseProgressPostPrompt> =>
+): Effect.Effect<ParseProgressPostPrompt> =>
   Effect.gen(function*(_) {
     if (prompter === null) return parseProgress as ParseProgressPostPrompt
 
@@ -30,24 +31,27 @@ export const prompt = (
         .block((__) =>
           __.block(
             Term.colors.positive(parameter.name.canonical)
-              + `${parameter.type.optionality._tag === `required` ? `` : chalk.dim(` optional (press esc to skip)`)}`,
+              + `${
+                parameter.type.metadata.optionality._tag === `required`
+                  ? ``
+                  : chalk.dim(` optional (press esc to skip)`)
+              }`,
           )
-            .block((parameter.type.description && Term.colors.dim(parameter.type.description)) ?? null)
+            .block(
+              (parameter.type.metadata.description && Term.colors.dim(parameter.type.metadata.description)) ?? null,
+            )
         )
         .render()
-      // eslint-disable-next-line no-constant-condition
       while (true) {
         const asking = prompter.ask({
           question,
           prompt: `❯ `,
           marginLeft: gutterWidth,
-          parameter: parameter,
+          parameter: parameter as any,
         })
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
         const arg = yield* _(asking)
-        const validationResult = parameter.type.validate(arg)
+        const validationResult = SchemaRuntime.validate(parameter.type, arg)
         if (validationResult._tag === `Right`) {
-          // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
           args[parameter.name.canonical] = validationResult.right
           prompter.say(``) // newline
           indexCurrent++
@@ -68,7 +72,7 @@ export const prompt = (
     // todo do not mutate
     const parseProgressPostPrompt = parseProgress as ParseProgressPostPrompt
     for (const [parameterName, arg] of Object.entries(args)) {
-      parseProgressPostPrompt.basicParameters[parameterName]!.prompt.arg = arg // eslint-disable-line
+      parseProgressPostPrompt.basicParameters[parameterName]!.prompt.arg = arg
     }
 
     return parseProgressPostPrompt

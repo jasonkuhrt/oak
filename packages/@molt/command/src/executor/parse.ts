@@ -135,7 +135,6 @@ export const parse = (
     }
   }
 
-  // eslint-disable-next-line
   const askedForHelp = `help` in openingArgsResult.basicParameters
     && openingArgsResult.basicParameters[`help`]._tag === `supplied`
     && openingArgsResult.basicParameters[`help`].value === true
@@ -178,7 +177,8 @@ export const parse = (
     }
     if (settings.onError === `exit` && !testDebuggingNoExit) {
       process.exit(1)
-      return undefined as never // When testing, with process.exit mock, we will reach this case
+      // @ts-expect-error TS7027 - Reachable in tests when process.exit is mocked
+      return undefined as never
     }
     const allErrors = [
       ...openingArgsResult.globalErrors,

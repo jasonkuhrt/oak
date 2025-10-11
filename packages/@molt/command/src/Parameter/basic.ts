@@ -1,9 +1,9 @@
-import { Name } from '@molt/name'
+import { Cli } from '@wollybeard/kit'
 import type { BuilderCommandState } from '../builders/command/state.js'
-import type { HKT } from '../helpers.js'
+import { S } from '../deps/effect.js'
 import type { Pam } from '../lib/Pam/index.js'
+import type { MoltSchema } from '../schema/molt-schema.js'
 import type { Settings } from '../Settings/index.js'
-import type { Optionality } from '../Type/Type.js'
 import { processEnvironment } from './helpers/environment.js'
 import type { Environment, Prompt } from './helpers/types.js'
 
@@ -12,8 +12,8 @@ export interface ParameterBasicInput<
 > {
   _tag: 'Basic'
   nameExpression: string
-  type: $State['Type']
-  prompt: Prompt<HKT.Call<$State['TypeMapper'], $State['Type']>>
+  type: MoltSchema
+  prompt: Prompt<$State['Schema']>
 }
 
 export interface ParameterBasic extends Omit<Pam.Parameter, '_tag'> {
@@ -26,9 +26,9 @@ export const parameterBasicCreate = (
   input: ParameterBasicInput,
   settings: Settings.Output,
 ): ParameterBasic => {
-  const name = Name.parse(input.nameExpression)
+  const name = S.decodeSync(Cli.FlagName.String)(input.nameExpression)
   const environment = processEnvironment(settings, name)
-  const prompt = input.prompt as boolean | null | { enabled?: boolean; when?: object } // eslint-disable-line
+  const prompt = input.prompt as boolean | null | { enabled?: boolean; when?: object }
   const promptEnabled = prompt === true
     ? true
     : prompt === false
@@ -43,7 +43,7 @@ export const parameterBasicCreate = (
     name,
     prompt: {
       enabled: promptEnabled,
-      when: promptEnabledWhen as any, // eslint-disable-line
+      when: promptEnabledWhen as any,
     },
     type: input.type,
   }
@@ -51,5 +51,5 @@ export const parameterBasicCreate = (
 
 export type ParameterBasicData = Omit<ParameterBasic, '_tag'> & {
   _tag: 'BasicData'
-  optionality: Optionality['_tag']
+  optionality: MoltSchema['metadata']['optionality']['_tag']
 }

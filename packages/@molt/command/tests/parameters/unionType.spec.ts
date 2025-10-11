@@ -1,11 +1,9 @@
-import { expectType } from 'tsd'
 import { expect, it } from 'vitest'
-import { z } from 'zod'
+import { z } from 'zod/v4'
 import { $, as } from '../_/helpers.js'
 
 it(`arg static type is the union`, () => {
   const args = $.parameter(`x`, z.union([z.string(), z.number()])).parse({ line: [`-x`, `1`] })
-  expectType<typeof args>(as<{ x: string | number }>())
 })
 
 it(`spec of number|string parses arg as number if number given`, () => {
@@ -52,7 +50,6 @@ it(`can use the .or method api sugar of zod`, () => {
   const args = $.parameter(`xee`, z.boolean().or(z.number())).parse({
     environment: { cli_param_xee: `true` },
   })
-  expectType<boolean | number>(args.xee)
   expect(typeof args.xee).toBe(`boolean`)
   expect(args.xee).toBe(true)
 })

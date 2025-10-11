@@ -1,9 +1,9 @@
-import type { Type } from '../../Type/index.js'
+import type { InferOutput } from '../../schema/standard-schema.js'
 import type { BuilderCommandState } from '../command/state.js'
 import type { BuilderParameterExclusiveState, ExclusiveBuilderStateSymbol } from './state.js'
 
 export interface ExclusiveParameterConfiguration<$State extends BuilderCommandState.Base> {
-  type: $State['Type']
+  type: $State['Schema']
 }
 
 interface Parameter<$State extends BuilderCommandState.Base, Label extends string> {
@@ -15,12 +15,11 @@ interface Parameter<$State extends BuilderCommandState.Base, Label extends strin
     Label
   >
 
-  <NameExpression extends string, $Type extends $State['Type']>(
+  <NameExpression extends string, $Schema extends $State['Schema']>(
     name: BuilderCommandState.ValidateNameExpression<$State, NameExpression>,
-    type: $Type,
-  ): // BuilderCommandState.AddExclusiveParameter<$State, Label, NameExpression, { type: $Type }>
-  BuilderExclusiveInitial<
-    BuilderCommandState.AddExclusiveParameter<$State, Label, NameExpression, { type: $Type }>,
+    type: $Schema,
+  ): BuilderExclusiveInitial<
+    BuilderCommandState.AddExclusiveParameter<$State, Label, NameExpression, { type: $Schema }>,
     Label
   >
 }
@@ -31,7 +30,7 @@ export interface BuilderExclusiveInitial<$State extends BuilderCommandState.Base
   optional: () => BuilderExclusiveAfterOptional<BuilderCommandState.SetExclusiveOptional<$State, Label, true>>
   default: <Tag extends keyof $State['ParametersExclusive'][Label]['Parameters']>(
     tag: Tag,
-    value: Type.Infer<$State['ParametersExclusive'][Label]['Parameters'][Tag]['Type']>,
+    value: InferOutput<$State['ParametersExclusive'][Label]['Parameters'][Tag]['Schema']>,
   ) => BuilderExclusiveAfterDefault<BuilderCommandState.SetExclusiveOptional<$State, Label, false>>
 }
 
@@ -44,8 +43,8 @@ export type BuilderExclusiveAfterDefault<$State extends BuilderCommandState.Base
 }
 
 export interface SomeParameter<$State extends BuilderCommandState.Base> {
-  (nameExpression: any, type: $State['Type']): any // eslint-disable-line
-  (nameExpression: any, configuration: ExclusiveParameterConfiguration<$State>): any // eslint-disable-line
+  (nameExpression: any, type: $State['Schema']): any
+  (nameExpression: any, configuration: ExclusiveParameterConfiguration<$State>): any
 }
 
 export type SomeBuilderExclusiveInitial<
@@ -53,8 +52,8 @@ export type SomeBuilderExclusiveInitial<
 > = {
   [ExclusiveBuilderStateSymbol]: BuilderParameterExclusiveState<$State>
   parameter: SomeParameter<$State>
-  optional: any // eslint-disable-line
-  default: (tag: any, value: any) => any // eslint-disable-line
+  optional: any
+  default: (tag: any, value: any) => any
 }
 
 export type BuilderMutuallyExclusiveAfterOptional<$State extends BuilderCommandState.Base> =

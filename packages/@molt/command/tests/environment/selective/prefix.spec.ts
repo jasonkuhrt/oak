@@ -1,6 +1,6 @@
 import { expect } from 'vitest'
 import { it } from 'vitest'
-import { z } from 'zod'
+import { z } from 'zod/v4'
 import { $, s } from '../../_/helpers.js'
 import { environmentManager } from '../__helpers__.js'
 

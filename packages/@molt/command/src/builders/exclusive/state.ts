@@ -14,6 +14,6 @@ export const createState = (label: string): BuilderParameterExclusiveState => {
     _tag: `Exclusive`,
     optionality: { _tag: `required` },
     parameters: [],
-    commandBuilderState: undefined as any, // eslint-disable-line
+    commandBuilderState: undefined as any,
   }
 }

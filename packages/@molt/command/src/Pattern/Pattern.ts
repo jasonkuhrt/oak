@@ -1,4 +1,4 @@
-import type { Simplify } from 'type-fest'
+import type { Ts } from '@wollybeard/kit'
 
 export const _ = `*`
 
@@ -18,14 +18,14 @@ export type PatternForValue<Data extends SomeData> = Data extends SomeDataScalar
 
 export type PatternForObject<Data extends SomeDataObject, DiscriminantProperty extends null | keyof Data = null> =
   & {
-    [K in Exclude<keyof Data, DiscriminantProperty>]?: Simplify<
+    [K in Exclude<keyof Data, DiscriminantProperty>]?: Ts.Simplify<
       Data[K] extends Array<any> ? Or<PatternForValue<Data[K][number]>[]>
         : Data[K] extends SomeDataObject ? Or<PatternForObject<Data[K]>>
         : Or<Data[K]>
     >
   }
   & (
-    null extends DiscriminantProperty ? {} // eslint-disable-line
+    null extends DiscriminantProperty ? {}
       : { [K in Exclude<DiscriminantProperty, null>]: Data[K] }
   )
 
@@ -80,7 +80,6 @@ export const match = <D extends SomeData, P extends Pattern<D> | undefined>(data
         if (!(key in data)) {
           return false
         }
-        // eslint-disable-next-line
         return match((data as any)[key], valuePattern)
       })
       .reduce((all, next) => all && next, true)

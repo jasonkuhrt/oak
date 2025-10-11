@@ -1,4 +1,4 @@
-import { z } from 'zod'
+import { z } from 'zod/v4'
 import { Command } from '../../src/_entrypoints/default.js'
 import { Zod } from '../../src/_entrypoints/extensions.js'
 import { isPromiseLikeValue } from '../../src/lib/prelude.js'
@@ -6,8 +6,8 @@ import { isPromiseLikeValue } from '../../src/lib/prelude.js'
 // todo enable throw on all tests
 export const $ = Command.create().use(Zod) // .settings({ onError: `throw` })
 
-export const assertAssignable = <T>(_: T): [T] => 0 as any // eslint-disable-line
-export const as = <T>(): T => undefined as any // eslint-disable-line
+export const assertAssignable = <T>(_: T): [T] => 0 as any
+export const as = <T>(): T => undefined as any
 export const n = z.number()
 export const s = z.string()
 export const b = z.boolean()
@@ -17,7 +17,7 @@ export const tryCatch = <T, E extends Error = Error>(
   fn: () => T,
 ): T extends Promise<any> ? Promise<Awaited<T> | E> : T | E => {
   try {
-    const result = fn() as any // eslint-disable-line
+    const result = fn() as any
     if (isPromiseLikeValue(result)) {
       return result.catch((error) => {
         return errorFromMaybeError(error)

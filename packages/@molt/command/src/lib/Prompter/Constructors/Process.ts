@@ -12,7 +12,7 @@ export const createProcessPrompter = () => {
     output: (value) => process.stdout.write(value),
     readKeyPresses: <K extends KeyPress.Key>(params?: PromptEngine.ReadKeyPressesParams<K>) =>
       KeyPress.readMany().pipe(
-        Stream.filter((event): event is Exit.Exit<never, void> | KeyPressEvent<K> => {
+        Stream.filter((event): event is Exit.Exit<void> | KeyPressEvent<K> => {
           if (Exit.isExit(event)) return true
           return params?.matching?.includes(event.name as any) ?? true
         }),

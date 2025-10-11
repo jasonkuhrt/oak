@@ -1,5 +1,5 @@
+import { Str } from '@wollybeard/kit'
 import { Either } from 'effect'
-import camelCase from 'lodash.camelcase'
 
 export const BooleanLookup = {
   true: true,
@@ -23,9 +23,8 @@ export const getLowerCaseEnvironment = (): NodeJS.ProcessEnv => lowerCaseObjectK
 export const lowerCaseObjectKeys = (obj: object) =>
   Object.fromEntries(Object.entries(obj).map(([k, v]) => [k.toLowerCase(), v]))
 
-export const parseEnvironmentVariableBoolean = (serializedValue: string): Either.Either<Error, boolean> => {
+export const parseEnvironmentVariableBoolean = (serializedValue: string): Either.Either<boolean, Error> => {
   // @ts-expect-error ignore
-  // eslint-disable-next-line
   const value = environmentVariableBooleanLookup[serializedValue]
   if (value === undefined) return Either.left(new Error(`Invalid boolean value: ${value}`))
   return Either.right(value)
@@ -42,10 +41,9 @@ export const parseEnvironmentVariableBooleanOrThrow = (value: string) => {
 export const negateNamePattern = /^no([A-Z].+)/
 
 export const stripeNegatePrefix = (name: string): null | string => {
-  // eslint-disable-next-line
-  const withoutPrefix = name.match(negateNamePattern)?.[1]!
+  const withoutPrefix = name.match(negateNamePattern)?.[1]
   if (!withoutPrefix) return null
-  const withCamelCase = camelCase(withoutPrefix)
+  const withCamelCase = Str.Case.camel(withoutPrefix)
   return withCamelCase
 }
 
@@ -73,7 +71,7 @@ export const entries = <O extends object>(
 ): Exclude<{ [k in keyof O]: [k, O[k]] }[keyof O], undefined>[] => Object.entries(obj) as any
 
 export const casesExhausted = (_: never): never => {
-  throw new Error(`Cases exhausted: ${_}`) // eslint-disable-line
+  throw new Error(`Cases exhausted: ${_}`)
 }
 
 export namespace HKT {

@@ -1,5 +1,5 @@
 import { expect, it } from 'vitest'
-import { z } from 'zod'
+import { z } from 'zod/v4'
 import { $ } from '../../_/helpers.js'
 
 it(`works`, () => {

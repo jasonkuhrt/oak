@@ -1,5 +1,4 @@
-import camelCase from 'lodash.camelcase'
-import snakecase from 'lodash.snakecase'
+import { Str } from '@wollybeard/kit'
 import { Errors } from '../../Errors/index.js'
 import type { Index, RequireField } from '../../lib/prelude.js'
 import { getNames } from '../../Parameter/helpers/CommandParameter.js'
@@ -11,7 +10,7 @@ export const defaultParameterNamePrefixes = [`cli_parameter`, `cli_param`]
 
 export type RawInputs = Record<string, string | undefined>
 
-export type LocalParseErrors = Errors.ErrorDuplicateEnvArg
+export type LocalParseErrors = Errors.ErrorDuplicateEnvArg | Errors.ErrorInvalidArgument
 
 export type GlobalParseErrors = Errors.Global.ErrorUnknownParameterViaEnvironment
 
@@ -63,11 +62,28 @@ export const parse = (environment: RawInputs, specs: Parameter[]): ParsedInputs 
       }
 
       // Case 3
-      const value = parseSerializedValue(match.nameWithNegation, match.value, parameter)
+      const errors: LocalParseErrors[] = []
+      let value
+      try {
+        value = parseSerializedValue(match.nameWithNegation, match.value, parameter)
+      } catch (error) {
+        // Validation errors during deserialization are captured here and wrapped in ErrorInvalidArgument
+        const errorMessage = error instanceof Error
+          ? error.message.replace(/^Deserialization failed: /, ``)
+          : String(error)
+        errors.push(
+          new Errors.ErrorInvalidArgument({
+            spec: parameter,
+            environmentVariableName: envar.name.raw,
+            validationErrors: [errorMessage],
+            value: match.value,
+          }),
+        )
+      }
       result.reports[parameter.name.canonical] = {
         parameter,
-        value,
-        errors: [],
+        value: value as any, // May be undefined if parse failed
+        errors,
         source: {
           _tag: `environment`,
           name: envar.name.raw,
@@ -85,7 +101,7 @@ export const lookupEnvironmentVariableArgument = (
   environment: Record<string, string | undefined>,
   parameterName: string,
 ): null | { name: string; value: string } => {
-  const parameterNameSnakeCase = snakecase(parameterName)
+  const parameterNameSnakeCase = Str.Case.snake(parameterName)
   const parameterNames = prefixes.length === 0
     ? [parameterNameSnakeCase]
     // TODO add test coverage for the snake case conversion of a parameter name
@@ -105,7 +121,6 @@ export const lookupEnvironmentVariableArgument = (
 
   // dump(prefixes, environment, parameterName)
 
-  // eslint-disable-next-line
   const environmentVariable = args[0]!
   return environmentVariable
 }
@@ -128,7 +143,7 @@ const checkInputMatch = (envar: Envar, spec: ParameterSpecOutputWithEnvironment)
   for (const name of specParameterNames) {
     if (spec.environment.namespaces.length > 0) {
       for (const namespace of spec.environment.namespaces) {
-        const nameNamespaced = camelCase(`${namespace}_${name}`)
+        const nameNamespaced = Str.Case.camel(`${namespace}_${name}`)
 
         if (nameNamespaced === envar.name.camel) {
           return {
@@ -204,7 +219,7 @@ const normalizeEnvironment = (environment: RawInputs): Envar[] => {
           value,
           name: {
             raw: name,
-            camel: camelCase(name),
+            camel: Str.Case.camel(name),
           },
         }
     )

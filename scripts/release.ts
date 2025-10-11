@@ -15,8 +15,8 @@ const args = Command.create()
   .parameter(`githubToken`, z.string())
   .parameter(`publish`, z.boolean().default(true))
   .parameter(`githubRelease`, z.boolean().default(true))
-  .parameter(`p package`, z.enum([`@molt/command`, `@molt/name`, `molt`]))
-  .parametersExclusive(`method`, (__) =>
+  .parameter(`p package`, z.enum([`@molt/command`, `molt`]))
+  .parametersExclusive(`method`, (__: any) =>
     __
       .parameter(`v version`, z.string().regex(semverRegex()))
       .parameter(`b bump`, z.enum([`major`, `minor`, `patch`])))
@@ -28,6 +28,10 @@ const args = Command.create()
     },
   })
   .parse()
+
+if (typeof args.package !== `string`) {
+  throw new Error(`Expected package to be a string, got: ${JSON.stringify(args.package)}`)
+}
 
 const cwd = Path.join(Path.dirname(url.fileURLToPath(import.meta.url)), `../packages`, args.package)
 const $Fs = Fs.cwd(cwd)
@@ -44,11 +48,15 @@ const pkg = (await $Fs.readAsync(`package.json`, `json`)) as {
   repository: string
 }
 
-if (!args.method) throw new Error(``)
+if (!args.method) throw new Error(`Method is required`)
 
-const newVersion = Alge.match(args.method)
-  .bump((_) => Semver.inc(pkg.version, _.value)!) // eslint-disable-line
-  .version((_) => _.value)
+type MethodType =
+  | { _tag: 'bump'; value: 'major' | 'minor' | 'patch' }
+  | { _tag: 'version'; value: string }
+
+const newVersion = Alge.match(args.method as MethodType)
+  .bump((method) => Semver.inc(pkg.version, method.value)!)
+  .version((method) => method.value)
   .done()
 
 const gitTagName = `${args.package}@${newVersion}`
@@ -58,9 +66,7 @@ const match = workspacePkg.repository.match(/git@github.com:(.+)\/(.+)\.git/)
 if (!match) throw new Error(`Invalid repository URL: ${workspacePkg.repository}`)
 
 const repo = {
-  // eslint-disable-next-line
   owner: match[1]!,
-  // eslint-disable-next-line
   name: match[2]!,
 }
 

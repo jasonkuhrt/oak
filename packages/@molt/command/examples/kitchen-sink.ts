@@ -1,7 +1,9 @@
-import { z } from 'zod'
+import { z } from 'zod/v4'
 import { Command } from '../src/_entrypoints/default.js'
 import { Zod } from '../src/_entrypoints/extensions.js'
 
+// Type instantiation depth exceeded - see https://github.com/jasonkuhrt/molt/issues/XXX
+// @ts-ignore - builder type inference
 const args = Command.create()
   .use(Zod)
   .description(
@@ -91,7 +93,7 @@ const args = Command.create()
       .default(false)
       .describe(`Delete the original file after it has been converted.`),
   )
-  .parametersExclusive(`desert`, (_) =>
+  .parametersExclusive(`desert`, (_: any) =>
     _.parameter(
       `cake`,
       z

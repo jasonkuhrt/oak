@@ -1,22 +1,21 @@
-import snakeCase from 'lodash.snakecase'
+import { Str } from '@wollybeard/kit'
 import type { BuilderCommandState } from '../builders/command/state.js'
 import type { EventPatternsInput, EventPatternsInputAtLeastOne } from '../eventPatterns.js'
 import { eventPatterns } from '../eventPatterns.js'
 import type { Values } from '../helpers.js'
 import { parseEnvironmentVariableBooleanOrThrow } from '../helpers.js'
 import { defaultParameterNamePrefixes } from '../OpeningArgs/Environment/Environment.js'
-import type { Type } from '../Type/index.js'
+import type { MoltSchema } from '../schema/molt-schema.js'
 
 export type OnErrorReaction = 'exit' | 'throw'
 
-export type PromptInput<T extends Type.Type> =
+export type PromptInput<$Schema = unknown> =
   | boolean
   | {
     enabled?: boolean
-    when?: EventPatternsInputAtLeastOne<T>
+    when?: EventPatternsInputAtLeastOne<$Schema>
   }
 
-// eslint-disable-next-line
 export interface Input<$State extends BuilderCommandState.Base = BuilderCommandState.BaseEmpty> {
   description?: string
   help?: boolean
@@ -48,10 +47,9 @@ export interface Input<$State extends BuilderCommandState.Base = BuilderCommandS
 }
 
 export interface Output {
-  typeMapper: (value: unknown) => Type.Type
   prompt: {
     enabled: boolean
-    when: EventPatternsInput<Type.Type>
+    when: EventPatternsInput<MoltSchema>
   }
   description?: string | undefined
   help: boolean
@@ -91,7 +89,6 @@ interface Environment {
   [name: string]: string | undefined
 }
 
-// eslint-disable-next-line
 export const change = (
   current: Output,
   input: Input<BuilderCommandState.BaseEmpty>,
@@ -103,7 +100,6 @@ export const change = (
     } else {
       if (input.prompt.enabled !== undefined) current.prompt.enabled = input.prompt.enabled
       if (input.prompt.when !== undefined) {
-        // @ts-expect-error fixme
         current.prompt.when = input.prompt.when
         // Passing object makes enabled default to true
         if (input.prompt.enabled === undefined) current.prompt.enabled = true
@@ -185,9 +181,9 @@ export const change = (
                 } else if (spec.prefix === true) {
                   spec_.prefix = defaultParameterNamePrefixes
                 } else if (typeof spec.prefix === `string`) {
-                  spec_.prefix = [snakeCase(spec.prefix).toLowerCase()]
+                  spec_.prefix = [Str.Case.snake(spec.prefix).toLowerCase()]
                 } else {
-                  spec_.prefix = spec.prefix.map((prefix) => snakeCase(prefix).toLowerCase())
+                  spec_.prefix = spec.prefix.map((prefix) => Str.Case.snake(prefix).toLowerCase())
                 }
               }
             }
@@ -200,23 +196,12 @@ export const change = (
 
 const isEnvironmentEnabled = (lowercaseEnv: NodeJS.ProcessEnv) => {
   return lowercaseEnv[`cli_settings_read_arguments_from_environment`]
-    // eslint-disable-next-line
     ? parseEnvironmentVariableBooleanOrThrow(lowercaseEnv[`cli_settings_read_arguments_from_environment`]!)
-    // : processEnvLowerCase[`cli_environment_arguments`]
-    // ? //eslint-disable-next-line
-    //   parseEnvironmentVariableBoolean(processEnvLowerCase[`cli_environment_arguments`]!)
-    // : processEnvLowerCase[`cli_env_args`]
-    // ? //eslint-disable-next-line
-    //   parseEnvironmentVariableBoolean(processEnvLowerCase[`cli_env_args`]!)
-    // : processEnvLowerCase[`cli_env_arguments`]
-    // ? //eslint-disable-next-line
-    //   parseEnvironmentVariableBoolean(processEnvLowerCase[`cli_env_arguments`]!)
     : true
 }
 
 export const getDefaults = (lowercaseEnv: NodeJS.ProcessEnv): Output => {
   return {
-    typeMapper: (t) => t as any,
     prompt: {
       enabled: false,
       when: eventPatterns.rejectedMissingOrInvalid,

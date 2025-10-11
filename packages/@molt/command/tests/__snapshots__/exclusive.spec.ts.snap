@@ -1,7 +1,7 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`optional > if two args then error 1`] = `"Arguments given to multiple mutually exclusive parameters: version, bump"`;
+exports[`optional > if two args then error 1`] = `[ErrorArgumentsToMutuallyExclusiveParameters: Arguments given to multiple mutually exclusive parameters: version, bump]`;
 
-exports[`required > if no arg given then error 1`] = `"Missing argument for one of the following parameters: version, bump"`;
+exports[`required > if no arg given then error 1`] = `[ErrorMissingArgumentForMutuallyExclusiveParameters: Missing argument for one of the following parameters: version, bump]`;
 
-exports[`required > if two args then error 1`] = `"Arguments given to multiple mutually exclusive parameters: version, bump"`;
+exports[`required > if two args then error 1`] = `[ErrorArgumentsToMutuallyExclusiveParameters: Arguments given to multiple mutually exclusive parameters: version, bump]`;

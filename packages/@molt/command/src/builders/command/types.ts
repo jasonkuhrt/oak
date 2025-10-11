@@ -1,21 +1,20 @@
+import type { Obj } from '@wollybeard/kit'
 import type { SomeExtension } from '../../extension.js'
 import type { HKT } from '../../helpers.js'
 import type { Prompter } from '../../lib/Prompter/Prompter.js'
 import type { OpeningArgs } from '../../OpeningArgs/index.js'
 import type { Prompt } from '../../Parameter/types.js'
+import type { MoltSchema } from '../../schema/molt-schema.js'
 import type { Settings } from '../../Settings/index.js'
 import type { ExclusiveBuilderStateSymbol } from '../exclusive/state.js'
 import type { BuilderExclusive, BuilderExclusiveInitial } from '../exclusive/types.js'
 import type { BuilderCommandState } from './state.js'
-// todo
-// eslint-disable-next-line
-import type { Objects, Pipe } from 'hotscript'
 
 export interface ParameterConfiguration<
   $State extends BuilderCommandState.Base = BuilderCommandState.BaseEmpty,
 > {
-  type: $State['Type']
-  prompt?: Prompt<HKT.Call<$State['TypeMapper'], this['type']>>
+  type: $State['Schema']
+  prompt?: Prompt<this['type']>
 }
 
 export type IsHasKey<Obj extends object, Key> = Key extends keyof Obj ? true : false
@@ -36,24 +35,25 @@ export type IsPromptEnabled<P extends Prompt<any> | undefined> = P extends undef
   : true
 
 export interface CommandBuilder<$State extends BuilderCommandState.Base = BuilderCommandState.BaseEmpty> {
-  use<$Extension extends SomeExtension>(extension: $Extension): CommandBuilder<{
-    IsPromptEnabled: $State['IsPromptEnabled']
-    Parameters: $State['Parameters']
-    ParametersExclusive: $State['ParametersExclusive']
-    Type: $Extension['types']['type']
-    TypeMapper: $Extension['types']['typeMapper']
-  }>
+  use<$Extension extends SomeExtension>(
+    extension: $Extension,
+  ): CommandBuilder<
+    Obj.Replace<$State, {
+      // Store the extension's type constraint (e.g., z.ZodType) for compile-time validation
+      Schema: $Extension extends { type: infer __type__ } ? __type__ : $State['Schema']
+    }>
+  >
   description(this: void, description: string): CommandBuilder<$State>
   parameter<NameExpression extends string, const Configuration extends ParameterConfiguration<$State>>(
     this: void,
     name: BuilderCommandState.ValidateNameExpression<$State, NameExpression>,
     configuration: Configuration,
   ): CommandBuilder<BuilderCommandState.AddParameter<$State, NameExpression, Configuration>>
-  parameter<NameExpression extends string, $Type extends $State['Type']>(
+  parameter<NameExpression extends string, $Schema extends $State['Schema']>(
     this: void,
     name: BuilderCommandState.ValidateNameExpression<$State, NameExpression>,
-    type: $Type,
-  ): CommandBuilder<BuilderCommandState.AddParameter<$State, NameExpression, { type: $Type }>>
+    type: $Schema,
+  ): CommandBuilder<BuilderCommandState.AddParameter<$State, NameExpression, { type: $Schema }>>
   parametersExclusive<Label extends string, $BuilderExclusive extends BuilderExclusive<$State>>(
     this: void,
     label: Label,
@@ -63,12 +63,9 @@ export interface CommandBuilder<$State extends BuilderCommandState.Base = Builde
     this: void,
     newSettings: S,
   ): CommandBuilder<
-    Pipe<$State, [
-      Objects.Update<
-        'IsPromptEnabled',
-        Objects.Assign<$State['IsPromptEnabled'] extends true ? true : IsPromptEnabledInCommandSettings<S>>
-      >,
-    ]>
+    Obj.Replace<$State, {
+      IsPromptEnabled: $State['IsPromptEnabled'] extends true ? true : IsPromptEnabledInCommandSettings<S>
+    }>
   >
   parse(this: void, inputs?: RawArgInputs): BuilderCommandState.ToArgs<$State>
 }

@@ -1,0 +1,15 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "env": {
+    "node": true,
+    "es2023": true
+  },
+  "rules": {
+    "eslint/no-unused-vars": "off",
+    "eslint/no-unused-expressions": "off",
+    "eslint/no-console": "off",
+    "eslint/eqeqeq": ["error", "always"],
+    "eslint/prefer-const": "error",
+    "eslint-plugin-unicorn/no-empty-file": "off"
+  }
+}

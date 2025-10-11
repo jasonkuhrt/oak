@@ -1,4 +1,4 @@
-import camelCase from 'lodash.camelcase'
+import { Str } from '@wollybeard/kit'
 import { Errors } from '../../Errors/index.js'
 import { stripeNegatePrefixLoose } from '../../helpers.js'
 import type { Index } from '../../lib/prelude.js'
@@ -11,7 +11,7 @@ export type RawInputs = string[]
 
 export type GlobalParseErrors = Errors.Global.ErrorUnknownFlag
 
-export type LocalParseErrors = Errors.ErrorMissingArgument | Errors.ErrorDuplicateLineArg
+export type LocalParseErrors = Errors.ErrorMissingArgument | Errors.ErrorDuplicateLineArg | Errors.ErrorInvalidArgument
 
 interface ParsedInputs {
   globalErrors: GlobalParseErrors[]
@@ -56,7 +56,7 @@ export const parse = (rawLineInputs: RawInputs, parameters: Parameter[]): Parsed
         pendingReport.value = {
           value: true,
           _tag: `boolean`,
-          negated: isNegated(camelCase(pendingReport.source.name)),
+          negated: isNegated(Str.Case.camel(pendingReport.source.name)),
         }
       } else {
         pendingReport.errors.push(new Errors.ErrorMissingArgument({ parameter: pendingReport.parameter }))
@@ -74,7 +74,7 @@ export const parse = (rawLineInputs: RawInputs, parameters: Parameter[]): Parsed
       }
 
       const flagNameNoDashPrefix = stripeDashPrefix(rawLineInput)
-      const flagNameNoDashPrefixCamel = camelCase(flagNameNoDashPrefix)
+      const flagNameNoDashPrefixCamel = Str.Case.camel(flagNameNoDashPrefix)
       const flagNameNoDashPrefixNoNegate = stripeNegatePrefixLoose(flagNameNoDashPrefixCamel)
       const parameter = findByName(flagNameNoDashPrefixCamel, parameters)
       if (!parameter) {
@@ -99,7 +99,7 @@ export const parse = (rawLineInputs: RawInputs, parameters: Parameter[]): Parsed
       currentReport = {
         parameter,
         errors: [],
-        value: PENDING_VALUE, // eslint-disable-line
+        value: PENDING_VALUE,
         source: {
           _tag: `line`,
           name: flagNameNoDashPrefix,
@@ -110,12 +110,25 @@ export const parse = (rawLineInputs: RawInputs, parameters: Parameter[]): Parsed
 
       continue
     } else if (currentReport) {
-      // TODO catch error and put into errors array
-      currentReport.value = parseSerializedValue(
-        currentReport.parameter.name.canonical,
-        rawLineInput,
-        currentReport.parameter,
-      )
+      try {
+        currentReport.value = parseSerializedValue(
+          currentReport.parameter.name.canonical,
+          rawLineInput,
+          currentReport.parameter,
+        )
+      } catch (error) {
+        // Validation errors during deserialization are captured here and wrapped in ErrorInvalidArgument
+        const errorMessage = error instanceof Error
+          ? error.message.replace(/^Deserialization failed: /, ``)
+          : String(error)
+        currentReport.errors.push(
+          new Errors.ErrorInvalidArgument({
+            spec: currentReport.parameter,
+            validationErrors: [errorMessage],
+            value: rawLineInput,
+          }),
+        )
+      }
       currentReport = null
       continue
     } else {
@@ -144,5 +157,4 @@ const stripeShortFlagPrefixUnsafe = (lineInput: string) => lineInput.trim().slic
 
 const addShortFlagPrefix = (lineInput: string) => `-${lineInput}`
 
-// eslint-disable-next-line
 const PENDING_VALUE = `__PENDING__` as any

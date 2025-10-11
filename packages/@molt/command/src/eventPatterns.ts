@@ -3,17 +3,13 @@ import type { ArgumentValue } from './executor/types.js'
 import type { OpeningArgs } from './OpeningArgs/index.js'
 import type { ParameterBasicData } from './Parameter/basic.js'
 import type { Pattern } from './Pattern/Pattern.js'
-import type { Type } from './Type/index.js'
+import type { MoltSchema } from './schema/molt-schema.js'
 
-export type EventPatternsInputAtLeastOne<T extends Type.Type> = 'optional' extends T['optionality']['_tag']
-  ? Pattern<BasicParameterParseEvent, 'result'>
-  : 'default' extends T['optionality']['_tag'] ? Pattern<BasicParameterParseEvent, 'result'>
-  : Pattern<BasicParameterParseEventAccepted | BasicParameterParseEventRejected, 'result'>
+// Event patterns are runtime-only, so we accept any schema type
+// At runtime, the actual MoltSchema will be used for pattern matching
+export type EventPatternsInputAtLeastOne<$Schema = unknown> = Pattern<BasicParameterParseEvent, 'result'>
 
-export type EventPatternsInput<T extends Type.Type> = T['optionality']['_tag'] extends 'optional'
-  ? Pattern<BasicParameterParseEvent, 'result'>
-  : T['optionality']['_tag'] extends 'default' ? Pattern<BasicParameterParseEvent, 'result'>
-  : Pattern<BasicParameterParseEventAccepted | BasicParameterParseEventRejected, 'result'>
+export type EventPatternsInput<$Schema = unknown> = Pattern<BasicParameterParseEvent, 'result'>
 
 export type BasicParameterParseEvent =
   | BasicParameterParseEventAccepted
@@ -41,7 +37,7 @@ export const createEvent = (parseResult: OpeningArgs.ParseResultBasic) => {
   const specData: ParameterBasicData = {
     ...parseResult.parameter,
     _tag: `BasicData` as const,
-    optionality: parseResult.parameter.type.optionality[`_tag`],
+    optionality: parseResult.parameter.type.metadata.optionality[`_tag`],
   }
   // : {
   //     ...parseResult.spec,

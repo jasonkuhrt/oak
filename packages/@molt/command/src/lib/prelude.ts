@@ -54,7 +54,6 @@ export function groupBy<Item extends object, Key extends keyof Item>(
   key: Key,
 ): { [k in Item[Key] & string]?: Include<Item, { [_ in Key]: k }>[] }
 
-// eslint-disable-next-line
 export function groupBy<Item extends object, Key extends keyof Item>(
   items: Item[],
   key: Key | ((item: Item) => string),
@@ -70,11 +69,10 @@ export function groupBy<Item extends object, Key extends keyof Item>(
       throw Error(message)
     }
     if (!Array.isArray(result[keyValue])) result[keyValue] = []
-    result[keyValue]!.push(item) // eslint-disable-line
+    result[keyValue]!.push(item)
   }
 
-  // eslint-disable-next-line
-  return result as any // eslint-disable-line
+  return result as any
 }
 
 export type RenameKey<Obj, Old extends keyof Obj, New extends string> = {

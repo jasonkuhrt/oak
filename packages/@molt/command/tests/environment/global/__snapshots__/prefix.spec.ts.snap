@@ -5,7 +5,7 @@ exports[`default environment argument parameter name prefix > when both argument
   [
     "Cannot run command, you made some mistakes:
 
-The parameter \\"foo\\" was passed an argument multiple times via different parameter aliases in the environment.
+The parameter "foo" was passed an argument multiple times via different parameter aliases in the environment.
 
 Here are the docs for this command:
 
@@ -15,18 +15,18 @@ Here are the docs for this command:
     "
 PARAMETERS
                                                                       
-  [4m[90mName[39m[24m     [4m[90mType[39m[24m              [4m[90mDefault[39m[24m       [4m[90mEnvironment (1)[39m[24m
+  Name     Type              Default       Environment (1)
                                                           
-  [1m[32mfoo[39m[22m      [32mstring[39m            [1m[30m[101m REQUIRED [49m[39m[22m    [34m✓[39m              
+  foo      string             REQUIRED     ✓              
                                                           
-  [2m[90m[39m[22m
-  [2m[90mNOTES                                                                           [39m[22m
-  [2m[90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[39m[22m
-  [2m[90m(1) Parameters can be passed arguments via environment variables. Command line  [39m[22m
-  [2m[90m    arguments take precedence. Environment variable names are snake cased       [39m[22m
-  [2m[90m    versions of the parameter name (or its aliases), case insensitive. They must[39m[22m
-  [2m[90m    be prefixed with [34mCLI_PARAMETER_[39m[90m or [34mCLI_PARAM_[39m[90m (case insensitive). Examples: [39m[22m
-  [2m[90m      → [34mCLI_PARAMETER_[39m[90m[32mFOO[39m[90m=\\"...\\"                                                 [39m[22m
+  
+  NOTES                                                                           
+  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  (1) Parameters can be passed arguments via environment variables. Command line  
+      arguments take precedence. Environment variable names are snake cased       
+      versions of the parameter name (or its aliases), case insensitive. They must
+      be prefixed with CLI_PARAMETER_ or CLI_PARAM_ (case insensitive). Examples: 
+        → CLI_PARAMETER_FOO="..."                                                 
 ",
   ],
 ]
@@ -37,8 +37,8 @@ exports[`error > when using multiple prefixes and args passed for all param vari
   [
     "Cannot run command, you made some mistakes:
 
-The parameter \\"foo\\" was passed an argument multiple times via different parameter aliases in the environment.
-X The parameter \\"bar\\" was passed an argument multiple times via different parameter aliases in the environment.
+The parameter "foo" was passed an argument multiple times via different parameter aliases in the environment.
+X The parameter "bar" was passed an argument multiple times via different parameter aliases in the environment.
 
 Here are the docs for this command:
 
@@ -48,21 +48,21 @@ Here are the docs for this command:
     "
 PARAMETERS
                                                                       
-  [4m[90mName[39m[24m     [4m[90mType[39m[24m              [4m[90mDefault[39m[24m       [4m[90mEnvironment (1)[39m[24m
+  Name     Type              Default       Environment (1)
                                                           
-  [1m[32mbar[39m[22m      [32mstring[39m            [1m[30m[101m REQUIRED [49m[39m[22m    [34m✓[39m              
+  bar      string             REQUIRED     ✓              
                                                           
-  [1m[32mfoo[39m[22m      [32mstring[39m            [1m[30m[101m REQUIRED [49m[39m[22m    [34m✓[39m              
+  foo      string             REQUIRED     ✓              
                                                           
-  [2m[90m[39m[22m
-  [2m[90mNOTES                                                                           [39m[22m
-  [2m[90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[39m[22m
-  [2m[90m(1) Parameters can be passed arguments via environment variables. Command line  [39m[22m
-  [2m[90m    arguments take precedence. Environment variable names are snake cased       [39m[22m
-  [2m[90m    versions of the parameter name (or its aliases), case insensitive. They must[39m[22m
-  [2m[90m    be prefixed with [34mCLI_PARAMETER_[39m[90m or [34mCLI_PARAM_[39m[90m (case insensitive). Examples: [39m[22m
-  [2m[90m      → [34mCLI_PARAMETER_[39m[90m[32mBAR[39m[90m=\\"...\\"                                                 [39m[22m
-  [2m[90m      → [34mCLI_PARAMETER_[39m[90m[32mFOO[39m[90m=\\"...\\"                                                 [39m[22m
+  
+  NOTES                                                                           
+  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  (1) Parameters can be passed arguments via environment variables. Command line  
+      arguments take precedence. Environment variable names are snake cased       
+      versions of the parameter name (or its aliases), case insensitive. They must
+      be prefixed with CLI_PARAMETER_ or CLI_PARAM_ (case insensitive). Examples: 
+        → CLI_PARAMETER_BAR="..."                                                 
+        → CLI_PARAMETER_FOO="..."                                                 
 ",
   ],
 ]
@@ -73,7 +73,7 @@ exports[`error > when using prefix and there is a typo 1`] = `
   [
     "Cannot run command, you made some mistakes:
 
-Missing argument for flag \\"foo\\".
+Missing argument for flag "foo".
 
 Here are the docs for this command:
 
@@ -83,18 +83,18 @@ Here are the docs for this command:
     "
 PARAMETERS
                                                                       
-  [4m[90mName[39m[24m     [4m[90mType[39m[24m              [4m[90mDefault[39m[24m       [4m[90mEnvironment (1)[39m[24m
+  Name     Type              Default       Environment (1)
                                                           
-  [1m[32mfoo[39m[22m      [32mstring[39m            [1m[30m[101m REQUIRED [49m[39m[22m    [34m✓[39m              
+  foo      string             REQUIRED     ✓              
                                                           
-  [2m[90m[39m[22m
-  [2m[90mNOTES                                                                           [39m[22m
-  [2m[90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[39m[22m
-  [2m[90m(1) Parameters can be passed arguments via environment variables. Command line  [39m[22m
-  [2m[90m    arguments take precedence. Environment variable names are snake cased       [39m[22m
-  [2m[90m    versions of the parameter name (or its aliases), case insensitive. They must[39m[22m
-  [2m[90m    be prefixed with [34mCLI_PARAMETER_[39m[90m or [34mCLI_PARAM_[39m[90m (case insensitive). Examples: [39m[22m
-  [2m[90m      → [34mCLI_PARAMETER_[39m[90m[32mFOO[39m[90m=\\"...\\"                                                 [39m[22m
+  
+  NOTES                                                                           
+  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  (1) Parameters can be passed arguments via environment variables. Command line  
+      arguments take precedence. Environment variable names are snake cased       
+      versions of the parameter name (or its aliases), case insensitive. They must
+      be prefixed with CLI_PARAMETER_ or CLI_PARAM_ (case insensitive). Examples: 
+        → CLI_PARAMETER_FOO="..."                                                 
 ",
   ],
 ]

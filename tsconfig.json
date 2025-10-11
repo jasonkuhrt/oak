@@ -1,34 +1,40 @@
 {
-  "extends": "@tsconfig/node16/tsconfig.json",
+  "extends": [
+    "@tsconfig/strictest/tsconfig.json",
+    "@tsconfig/node-lts/tsconfig.json"
+  ],
   "compilerOptions": {
-    "lib": ["es2022"],
-    // Use ESM
-    "module": "NodeNext",
+    // Package
+    "module": "nodenext",
     "moduleResolution": "nodenext",
+    "lib": ["es2023"],
 
-    // Make the compiler stricter, catch more errors
-    "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true,
-    "noUncheckedIndexedAccess": true,
-    "noImplicitOverride": true,
-    "noPropertyAccessFromIndexSignature": true,
-    "exactOptionalPropertyTypes": false,
-    // We handle these with ESLint:
-    // "noUnusedLocals": false,
-    // "noUnusedParameters": false,
+    // Output
+    "verbatimModuleSyntax": true,
+    "allowImportingTsExtensions": true,
+    "noEmit": true,
 
     // DX
+    "moduleDetection": "force",
+    "tsBuildInfoFile": "node_modules/.cache/.tsbuildinfo",
+    "noErrorTruncation": true,
+    "incremental": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "forceConsistentCasingInFileNames": true,
+    "noImplicitReturns": false,
+    "exactOptionalPropertyTypes": false,
+    "noPropertyAccessFromIndexSignature": false,
+
+    // DX covered by linter:
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+
+    // DX for Downstream
+    "isolatedModules": true,
     "sourceMap": true,
     "declaration": true,
-    "declarationMap": true,
-    "incremental": true,
-    "noErrorTruncation": true,
-    // Other
-    "baseUrl": ".",
-    "paths": {
-      // "@molt/parameters": ["packages/parameters/src/_entrypoints/default.ts"],
-      // "@molt/name": ["packages/types/src/_entrypoints/default.ts"],
-      // "molt": ["packages/molt/src/_entrypoints/default.ts"]
-    }
-  }
+    "declarationMap": true
+  },
+  "exclude": ["**/build/**", "**/node_modules/**"]
 }

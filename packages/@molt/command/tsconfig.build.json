@@ -1,13 +1,12 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "outDir": "build/cjs",
-    "module": "commonjs",
-    "moduleResolution": "node",
+    "outDir": "build",
     "rootDir": "src",
+    "tsBuildInfoFile": "node_modules/.cache/build.tsbuildinfo",
     "noEmit": false,
     "allowImportingTsExtensions": false
   },
   "include": ["src"],
-  "exclude": ["**/*.spec.*"]
+  "exclude": ["**/*.spec.*", "**/*.test.*"]
 }

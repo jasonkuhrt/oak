@@ -3,7 +3,6 @@ import type { SomeExtension } from '../../extension.js'
 import { getLowerCaseEnvironment, lowerCaseObjectKeys } from '../../helpers.js'
 import type { ParameterBasicInput } from '../../Parameter/basic.js'
 import { Settings } from '../../Settings/index.js'
-import type { Type } from '../../Type/index.js'
 import * as ExclusiveBuilder from '../exclusive/constructor.js'
 import { ExclusiveBuilderStateSymbol } from '../exclusive/state.js'
 import type { BuilderCommandState } from './state.js'
@@ -14,16 +13,18 @@ export const create = (): CommandBuilder => {
   return create_(createState())
 }
 
-const create_ = (state: BuilderCommandState): CommandBuilder => {
-  const builder: InternalRootBuilder = {
-    use: (extension) => {
-      const newState = {
+const create_ = (state: BuilderCommandState): any => {
+  // Cast to any internally - the type system tracks state transformations correctly
+  // at the public API level, but the implementation is too complex for TS to verify
+  const builder = {
+    use: (extension: SomeExtension) => {
+      const newState: BuilderCommandState = {
         ...state,
-        typeMapper: extension.typeMapper,
+        extension,
       }
-      return create_(newState) as any
+      return create_(newState)
     },
-    description: (description) => {
+    description: (description: string) => {
       const newState = {
         ...state,
         newSettingsBuffer: [
@@ -33,25 +34,46 @@ const create_ = (state: BuilderCommandState): CommandBuilder => {
           },
         ],
       }
-      return create_(newState) as any
+      return create_(newState)
     },
-    settings: (newSettings) => {
+    settings: (newSettings: any) => {
       const newState = {
         ...state,
         newSettingsBuffer: [...state.newSettingsBuffer, newSettings],
       }
-      return create_(newState) as any
+      return create_(newState)
     },
-    parameter: (nameExpression, typeOrConfiguration) => {
-      const configuration = `type` in typeOrConfiguration ? typeOrConfiguration : { type: typeOrConfiguration }
+    parameter: (nameExpression: string, typeOrConfiguration: any) => {
+      // Check if this is a schema (has ~standard property) or a configuration object
+      // Standard Schema V1 schemas have a '~standard' property
+      const isSchema = typeOrConfiguration && typeof typeOrConfiguration === `object`
+        && `~standard` in typeOrConfiguration
+      const configuration = isSchema
+        ? { type: typeOrConfiguration }
+        : typeOrConfiguration
       const prompt = configuration.prompt ?? null
-      const type = state.typeMapper(configuration.type)
-      const parameter = {
+
+      // Convert raw schema to MoltSchema using extension
+      if (!state.extension) {
+        throw new Error(`No extension configured. Call .use() first (e.g., .use(Zod)).`)
+      }
+      const standardSchema = state.extension.toStandardSchema(configuration.type)
+      const metadata = state.extension.extractMetadata?.(configuration.type) ?? {
+        description: undefined,
+        optionality: { _tag: `required` } as const,
+        schema: { _tag: `string` } as const,
+      }
+      const moltSchema = {
+        standardSchema,
+        metadata,
+      }
+
+      const parameter: ParameterBasicInput = {
         _tag: `Basic`,
-        type,
+        type: moltSchema,
         nameExpression,
-        prompt: prompt as any, // eslint-disable-line
-      } satisfies ParameterBasicInput
+        prompt: prompt as any,
+      }
       const newState = {
         ...state,
         parameterInputs: {
@@ -59,20 +81,20 @@ const create_ = (state: BuilderCommandState): CommandBuilder => {
           [nameExpression]: parameter,
         },
       }
-      return create_(newState) as any
+      return create_(newState)
     },
-    parametersExclusive: (label, builderContainer) => {
-      const exclusiveBuilderState = builderContainer(ExclusiveBuilder.create(label, state))[ExclusiveBuilderStateSymbol] // eslint-disable-line
+    parametersExclusive: (label: string, builderContainer: any) => {
+      const exclusiveBuilderState = builderContainer(ExclusiveBuilder.create(label, state))[ExclusiveBuilderStateSymbol]
       const newState = {
         ...state,
         parameterInputs: {
           ...state.parameterInputs,
-          [label]: exclusiveBuilderState, // eslint-disable-line
+          [label]: exclusiveBuilderState,
         },
       }
-      return create_(newState) as any
+      return create_(newState)
     },
-    parse: (argInputs) => {
+    parse: (argInputs?: RawArgInputs) => {
       const argInputsEnvironment = argInputs?.environment
         ? lowerCaseObjectKeys(argInputs.environment)
         : getLowerCaseEnvironment()
@@ -82,28 +104,9 @@ const create_ = (state: BuilderCommandState): CommandBuilder => {
       state.newSettingsBuffer.forEach((newSettings) =>
         Settings.change(state.settings!, newSettings, argInputsEnvironment)
       )
-      state.settings.typeMapper = state.typeMapper
-      return parse(state.settings, state.parameterInputs, argInputs)
+      return parse(state.settings, state.parameterInputs, argInputs as any)
     },
   }
 
   return builder as any
-}
-
-//
-// Internal Types
-//
-
-interface Parameter {
-  (nameExpression: string, type: Type.Type): InternalRootBuilder
-  (nameExpression: string, configuration: ParameterConfiguration): InternalRootBuilder
-}
-
-interface InternalRootBuilder {
-  use: (extension: SomeExtension) => InternalRootBuilder
-  description: (description: string) => InternalRootBuilder
-  settings: (newSettings: Settings.Input) => InternalRootBuilder
-  parameter: Parameter
-  parametersExclusive: (label: string, builderContainer: any) => InternalRootBuilder
-  parse: (args: RawArgInputs) => object
 }
