@@ -44,9 +44,15 @@ export default defineConfig({
           text: 'Core Concepts',
           items: [
             { text: 'Immutability', link: '/guides/immutability' },
+          ],
+        },
+        {
+          text: 'Parameters',
+          items: [
             { text: 'Parameter Naming', link: '/guides/parameter-naming' },
             { text: 'Parameter Types', link: '/guides/parameter-types' },
             { text: 'Parameter Prompts', link: '/guides/prompts' },
+            { text: 'Mutually Exclusive Parameters', link: '/guides/mutually-exclusive-parameters' },
           ],
         },
         {
@@ -59,7 +65,6 @@ export default defineConfig({
         {
           text: 'Advanced',
           items: [
-            { text: 'Mutually Exclusive Parameters', link: '/guides/mutually-exclusive-parameters' },
             { text: 'Description', link: '/guides/description' },
             { text: 'Settings', link: '/guides/settings' },
           ],
