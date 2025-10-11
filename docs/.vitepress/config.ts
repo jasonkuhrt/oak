@@ -6,53 +6,22 @@ export default defineConfig({
   base: '/molt/',
 
   themeConfig: {
-    logo: '/logo.svg',
-
     nav: [
       { text: 'Guide', link: '/guide/getting-started' },
-      { text: 'API', link: '/api/' },
       { text: 'Examples', link: '/examples/' },
     ],
 
     sidebar: {
       '/guide/': [
         {
-          text: 'Introduction',
+          text: 'Guide',
           items: [
-            { text: 'Getting Started', link: '/guide/getting-started' },
+            { text: 'Quick Start', link: '/guide/getting-started' },
             { text: 'Installation', link: '/guide/installation' },
-          ],
-        },
-        {
-          text: 'Core Concepts',
-          items: [
-            { text: 'Parameters', link: '/guide/parameters' },
-            { text: 'Prompts', link: '/guide/prompts' },
-            { text: 'Environment Variables', link: '/guide/environment' },
-            { text: 'Schemas & Validation', link: '/guide/schemas' },
-          ],
-        },
-        {
-          text: 'Advanced',
-          items: [
-            { text: 'Exclusive Parameters', link: '/guide/exclusive-parameters' },
-            { text: 'Extensions', link: '/guide/extensions' },
-          ],
-        },
-        {
-          text: 'Migration',
-          items: [
-            { text: 'From @molt/command', link: '/guide/migration' },
-          ],
-        },
-      ],
-      '/api/': [
-        {
-          text: 'API Reference',
-          items: [
-            { text: 'Command', link: '/api/command' },
-            { text: 'Parameter', link: '/api/parameter' },
-            { text: 'Settings', link: '/api/settings' },
+            { text: 'Examples', link: '/examples/' },
+            { text: 'Documentation', link: '/guide/documentation' },
+            { text: 'Alternatives', link: '/guide/alternatives' },
+            { text: 'Migration from @molt/command', link: '/guide/migration' },
           ],
         },
       ],
@@ -60,9 +29,7 @@ export default defineConfig({
         {
           text: 'Examples',
           items: [
-            { text: 'Basic Usage', link: '/examples/intro' },
-            { text: 'Interactive Prompts', link: '/examples/prompts' },
-            { text: 'Kitchen Sink', link: '/examples/kitchen-sink' },
+            { text: 'Overview', link: '/examples/' },
           ],
         },
       ],

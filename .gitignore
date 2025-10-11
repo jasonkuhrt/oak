@@ -100,3 +100,4 @@ dist
 
 # This library
 build
+docs/.vitepress/cache

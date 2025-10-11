@@ -3,8 +3,7 @@ layout: home
 
 hero:
   name: "@wollybeard/cli"
-  text: "Type-safe CLI Framework"
-  tagline: Build command-line interfaces with full TypeScript support and runtime validation
+  text: "Type-safe CLI command definition and execution"
   actions:
     - theme: brand
       text: Get Started
@@ -16,25 +15,21 @@ hero:
 features:
   - icon: 🔒
     title: Type-safe
-    details: Full TypeScript support with strong type inference. Your CLI parameters are fully typed from definition to runtime.
+    details: Full TypeScript support with strong type inference
 
   - icon: 🎨
-    title: Interactive Prompts
-    details: Built-in prompt support for missing parameters. Create interactive CLIs with zero additional dependencies.
+    title: Interactive prompts
+    details: Built-in prompt support for missing parameters
 
   - icon: 🌍
-    title: Environment Variables
-    details: Automatic environment variable parsing with configurable prefixes. CLI arguments take precedence.
+    title: Environment variables
+    details: Automatic environment variable parsing
 
   - icon: 📝
-    title: Auto-generated Help
-    details: Beautiful help documentation generated automatically from your parameter definitions.
-
-  - icon: ✨
-    title: Schema Validation
-    details: Built-in Zod integration for runtime validation. Extensible architecture supports custom schemas.
+    title: Auto-generated help
+    details: Beautiful help documentation generated automatically
 
   - icon: 🔌
     title: Extensible
-    details: Plugin system for custom type validators and extensions. Bring your own validation library.
+    details: Support for custom schemas via extensions (Zod included)
 ---
