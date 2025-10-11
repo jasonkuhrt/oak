@@ -21,7 +21,6 @@ export default defineConfig({
             { text: 'Examples', link: '/examples/' },
             { text: 'Documentation', link: '/guide/documentation' },
             { text: 'Alternatives', link: '/guide/alternatives' },
-            { text: 'Migration from @molt/command', link: '/guide/migration' },
           ],
         },
       ],
