@@ -1,0 +1,16 @@
+[build]
+  command = "pnpm docs:build"
+  publish = "docs/.vitepress/dist"
+
+[build.environment]
+  NODE_VERSION = "24"
+  # Tell VitePress to use root path for Netlify
+  NETLIFY = "true"
+
+# Deploy previews for pull requests
+[context.deploy-preview]
+  command = "pnpm docs:build"
+
+# Production builds
+[context.production]
+  command = "pnpm docs:build"
