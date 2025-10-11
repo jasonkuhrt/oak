@@ -1,11 +1,88 @@
-# molt
+# @wollybeard/cli
 
-A set of packages related to building CLIs. Each package has its own docs.
+Type-safe CLI command definition and execution.
 
-| 📛 | Package                                                                  | Description                                                                | Use Case                                                                         | Alternatives                                                                                                       |
-| -- | ------------------------------------------------------------------------ | -------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
-| 🌲 | `molt`</br> [packages/molt](./packages/molt/)                            | Batteries included CLI framework. Builds on top of the `@molt/*` packages. | Building a CLI with multiple commands, sub-commands, etc.                        | [OClif](https://oclif.io) [Commander](https://github.com/tj/commander.js/) [Yargs](https://github.com/yargs/yargs) |
-| 🌱 | `@molt/command`</br> [packages/@molt/command](./packages/@molt/command/) | Type-safe CLI command definition and execution.                            | Just want to setup a quick and dirty script, build a small one-command CLI, etc. | [Arg](https://github.com/vercel/arg)                                                                               |
+## Installation
 
-> [!NOTE]
-> `@molt/name` has been deprecated. For flag name parsing, use [`@wollybeard/kit`](https://github.com/jasonkuhrt/kit)'s FlagName instead.
+```bash
+npm install @wollybeard/cli zod
+# or
+pnpm add @wollybeard/cli zod
+# or
+yarn add @wollybeard/cli zod
+```
+
+> **Note:** `zod` v4 is a peer dependency.
+
+## Features
+
+- 🔒 **Type-safe** - Full TypeScript support with strong type inference
+- 🎨 **Interactive prompts** - Built-in prompt support for missing parameters
+- 🌍 **Environment variables** - Automatic environment variable parsing
+- 📝 **Auto-generated help** - Beautiful help documentation generated automatically
+- 🔌 **Extensible** - Support for custom schemas via extensions (Zod included)
+
+## Quick Start
+
+```typescript
+import { Command } from '@wollybeard/cli'
+import { Zod } from '@wollybeard/cli/extensions'
+import { z } from 'zod/v4'
+
+const args = Command.create()
+  .use(Zod)
+  .parameter('name', z.string())
+  .parameter('age', z.number().optional())
+  .parse()
+
+console.log(`Hello ${args.name}!`)
+if (args.age) console.log(`You are ${args.age} years old.`)
+```
+
+## Examples
+
+Check out the [examples](./examples) directory for more usage patterns:
+
+- [intro.ts](./examples/intro.ts) - Basic usage
+- [prompt.ts](./examples/prompt.ts) - Interactive prompts
+- [kitchen-sink.ts](./examples/kitchen-sink.ts) - Advanced features
+- [publish.ts](./examples/publish.ts) - Real-world example
+
+## Documentation
+
+For detailed documentation, see the JSDoc comments in the source code.
+
+## Alternatives
+
+- [OClif](https://oclif.io) - Full-featured CLI framework
+- [Commander](https://github.com/tj/commander.js/) - Popular CLI framework
+- [Yargs](https://github.com/yargs/yargs) - Traditional CLI parser
+- [Arg](https://github.com/vercel/arg) - Simple argument parser
+
+## Migration from `@molt/command`
+
+This package was previously published as `@molt/command`. To migrate:
+
+1. Update your imports:
+   ```typescript
+   // Before
+   import { Command } from '@molt/command'
+
+   // After
+   import { Command } from '@wollybeard/cli'
+   ```
+
+2. Update your package.json:
+   ```json
+   {
+     "dependencies": {
+       "@wollybeard/cli": "^0.9.0"
+     }
+   }
+   ```
+
+The API remains the same - only the package name has changed.
+
+## License
+
+MIT
