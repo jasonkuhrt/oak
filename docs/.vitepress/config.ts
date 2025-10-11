@@ -5,7 +5,8 @@ import { defineConfig } from 'vitepress'
 export default defineConfig({
   title: '@wollybeard/oak',
   description: 'Type-safe CLI command definition and execution',
-  base: '/oak/',
+  // Use root path for Netlify, /oak/ for GitHub Pages
+  base: process.env.NETLIFY ? '/' : '/oak/',
 
   markdown: {
     codeTransformers: [
