@@ -1,5 +1,5 @@
 import { transformerNotationDiff, transformerNotationHighlight } from '@shikijs/transformers'
-// import { transformerTwoslash } from '@shikijs/vitepress-twoslash'
+import { transformerTwoslash } from '@shikijs/vitepress-twoslash'
 import { defineConfig } from 'vitepress'
 
 export default defineConfig({
@@ -14,8 +14,7 @@ export default defineConfig({
 
   markdown: {
     codeTransformers: [
-      // TODO: Re-enable Twoslash once package is published or module resolution is fixed
-      // transformerTwoslash(),
+      transformerTwoslash(),
       transformerNotationDiff(),
       transformerNotationHighlight(),
     ],
@@ -31,7 +30,6 @@ export default defineConfig({
 
     nav: [
       { text: 'Guide', link: '/guide/getting-started' },
-      { text: 'Extensions', link: '/extensions/zod' },
     ],
 
     sidebar: {
@@ -74,12 +72,10 @@ export default defineConfig({
             { text: 'Alternatives', link: '/guide/alternatives' },
           ],
         },
-      ],
-      '/extensions/': [
         {
           text: 'Extensions',
           items: [
-            { text: 'Zod', link: '/extensions/zod' },
+            { text: 'Zod', link: '/guide/extensions/zod' },
           ],
         },
       ],

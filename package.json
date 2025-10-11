@@ -49,6 +49,7 @@
     "ansi-escapes": "^7.1.1",
     "chalk": "^5.6.2",
     "effect": "^3.18.4",
+    "jasonkuhrt": "link:..",
     "string-length": "^6.0.0",
     "strip-ansi": "^7.1.2"
   },

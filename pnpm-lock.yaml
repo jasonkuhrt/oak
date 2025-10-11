@@ -26,6 +26,9 @@ importers:
       effect:
         specifier: ^3.18.4
         version: 3.18.4
+      jasonkuhrt:
+        specifier: link:..
+        version: link:..
       string-length:
         specifier: ^6.0.0
         version: 6.0.0
