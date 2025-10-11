@@ -1,10 +1,10 @@
 {
-  "name": "@wollybeard/cli",
+  "name": "@wollybeard/oak",
   "version": "0.9.0",
   "description": "Type-safe CLI command definition and execution.",
-  "repository": "git@github.com:jasonkuhrt/molt.git",
-  "bugs": "https://github.com/jasonkuhrt/molt/issues",
-  "homepage": "https://github.com/jasonkuhrt/molt#readme",
+  "repository": "git@github.com:jasonkuhrt/oak.git",
+  "bugs": "https://github.com/jasonkuhrt/oak/issues",
+  "homepage": "https://github.com/jasonkuhrt/oak#readme",
   "author": "Jason Kuhrt",
   "license": "MIT",
   "type": "module",
@@ -57,6 +57,8 @@
   },
   "devDependencies": {
     "@octokit/core": "^5.0.1",
+    "@shikijs/transformers": "^3.13.0",
+    "@shikijs/vitepress-twoslash": "^3.13.0",
     "@tsconfig/node-lts": "^22.0.2",
     "@tsconfig/strictest": "^2.0.6",
     "@types/node": "20.8.7",

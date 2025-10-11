@@ -1,5 +1,5 @@
 import { Effect } from 'effect'
-import type { MoltSchema } from '../../../schema/molt-schema.js'
+import type { OakSchema } from '../../../schema/oak-schema.js'
 import type { InferOutput } from '../../../schema/standard-schema.js'
 import { Term } from '../../../term.js'
 import type { KeyPress } from '../../KeyPress/index.js'
@@ -16,7 +16,7 @@ export interface Prompter {
    * Receive input from the user.
    * TODO remove prompt config from here.
    */
-  ask: <$Schema extends MoltSchema>(params: {
+  ask: <$Schema extends OakSchema>(params: {
     parameter: Pam.Parameter<$Schema>
     prompt: string
     question: string
@@ -29,7 +29,7 @@ export const create = (channels: PromptEngine.Channels): Prompter => {
     say: (value: string) => {
       channels.output(value + Text.chars.newline)
     },
-    ask: <$Schema extends MoltSchema>(params: {
+    ask: <$Schema extends OakSchema>(params: {
       parameter: Pam.Parameter<$Schema>
       prompt: string
       question: string

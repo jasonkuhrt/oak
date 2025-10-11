@@ -84,7 +84,7 @@ export const parse = ({
           }
         })
         .else((argReportValue) => {
-          // Note: MoltSchema doesn't have transform, we just validate directly
+          // Note: OakSchema doesn't have transform, we just validate directly
           const validationResult = SchemaRuntime.validate(parameter.type, argReportValue.value)
           return Alge.match(validationResult)
             .Right((result) => {

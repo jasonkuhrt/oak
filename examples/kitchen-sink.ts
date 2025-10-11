@@ -2,12 +2,12 @@ import { z } from 'zod/v4'
 import { Command } from '../src/_entrypoints/default.js'
 import { Zod } from '../src/_entrypoints/extensions.js'
 
-// Type instantiation depth exceeded - see https://github.com/jasonkuhrt/molt/issues/XXX
+// Type instantiation depth exceeded - see https://github.com/jasonkuhrt/oak/issues/XXX
 // @ts-ignore - builder type inference
 const args = Command.create()
   .use(Zod)
   .description(
-    `This is a so-called "kitchen-sink" Molt Command example. Many features are demonstrated here though the overall CLI itself makes no sense. Take a look around, see how the help renders, try running with different inputs, etc.`,
+    `This is a so-called "kitchen-sink" Oak example. Many features are demonstrated here though the overall CLI itself makes no sense. Take a look around, see how the help renders, try running with different inputs, etc.`,
   )
   .parameter(
     `badDefault`,

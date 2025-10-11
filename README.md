@@ -1,15 +1,15 @@
-# @wollybeard/cli
+# @wollybeard/oak
 
 Type-safe CLI command definition and execution.
 
 ## Installation
 
 ```bash
-npm install @wollybeard/cli zod
+npm install @wollybeard/oak zod
 # or
-pnpm add @wollybeard/cli zod
+pnpm add @wollybeard/oak zod
 # or
-yarn add @wollybeard/cli zod
+yarn add @wollybeard/oak zod
 ```
 
 > **Note:** `zod` v4 is a peer dependency.
@@ -25,8 +25,8 @@ yarn add @wollybeard/cli zod
 ## Quick Start
 
 ```typescript
-import { Command } from '@wollybeard/cli'
-import { Zod } from '@wollybeard/cli/extensions'
+import { Command } from '@wollybeard/oak'
+import { Zod } from '@wollybeard/oak/extensions'
 import { z } from 'zod/v4'
 
 const args = Command.create()
@@ -69,14 +69,14 @@ This package was previously published as `@molt/command`. To migrate:
    import { Command } from '@molt/command'
 
    // After
-   import { Command } from '@wollybeard/cli'
+   import { Command } from '@wollybeard/oak'
    ```
 
 2. Update your package.json:
    ```json
    {
      "dependencies": {
-       "@wollybeard/cli": "^0.9.0"
+       "@wollybeard/oak": "^0.9.0"
      }
    }
    ```

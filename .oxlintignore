@@ -4,6 +4,3 @@ build
 **/*.test.ts
 **/*.spec.ts
 **/examples/**
-packages/molt/src/index.ts
-packages/@molt/command/src/TypeBuilder
-packages/@molt/command/src/CommandParameter/output.ts

@@ -3,7 +3,7 @@ import { Alge } from 'alge'
 import type { BuilderCommandState } from '../builders/command/state.js'
 import { S } from '../deps/effect.js'
 import type { Pam } from '../lib/Pam/index.js'
-import type { MoltSchema } from '../schema/molt-schema.js'
+import type { OakSchema } from '../schema/oak-schema.js'
 import type { Settings } from '../Settings/index.js'
 import { processEnvironment } from './helpers/environment.js'
 import type { Environment } from './helpers/types.js'
@@ -20,14 +20,14 @@ export interface ParameterExclusiveInput<
   description?: string
   parameters: {
     nameExpression: string
-    type: MoltSchema
+    type: OakSchema
   }[]
 }
 
 export interface ParameterExclusive {
   _tag: 'Exclusive'
   name: Cli.FlagName
-  type: MoltSchema
+  type: OakSchema
   description: string | null
   environment: Environment
   group: ParameterExclusiveGroup

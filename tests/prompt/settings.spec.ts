@@ -1,11 +1,11 @@
 import stripAnsi from 'strip-ansi'
 import { describe, expect, it } from 'vitest'
 import type { Settings } from '../../src/_entrypoints/default.js'
-import type { MoltSchema } from '../../src/schema/molt-schema.js'
+import type { OakSchema } from '../../src/schema/oak-schema.js'
 import { $, s, tryCatch } from '../_/helpers.js'
 import { memoryPrompter } from '../_/mocks/tty.js'
 
-const S = <$Schema extends MoltSchema>(settings: Settings.PromptInput<$Schema>) => settings
+const S = <$Schema extends OakSchema>(settings: Settings.PromptInput<$Schema>) => settings
 const foo = [
   { ctrl: false, meta: false, sequence: `f`, shift: false, name: `f` },
   { ctrl: false, meta: false, sequence: `o`, shift: false, name: `o` },

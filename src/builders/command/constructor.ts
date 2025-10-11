@@ -53,7 +53,7 @@ const create_ = (state: BuilderCommandState): any => {
         : typeOrConfiguration
       const prompt = configuration.prompt ?? null
 
-      // Convert raw schema to MoltSchema using extension
+      // Convert raw schema to OakSchema using extension
       if (!state.extension) {
         throw new Error(`No extension configured. Call .use() first (e.g., .use(Zod)).`)
       }
@@ -63,14 +63,14 @@ const create_ = (state: BuilderCommandState): any => {
         optionality: { _tag: `required` } as const,
         schema: { _tag: `string` } as const,
       }
-      const moltSchema = {
+      const oakSchema = {
         standardSchema,
         metadata,
       }
 
       const parameter: ParameterBasicInput = {
         _tag: `Basic`,
-        type: moltSchema,
+        type: oakSchema,
         nameExpression,
         prompt: prompt as any,
       }

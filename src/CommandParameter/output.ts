@@ -18,5 +18,5 @@
 
 //   export type Environment = null | { enabled: boolean; namespaces: string[] }
 
-//   export type Name = MoltName.Data.NameParsed
+//   export type Name = OakName.Data.NameParsed
 // }

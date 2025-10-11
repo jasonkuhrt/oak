@@ -7,7 +7,7 @@ import type { z } from 'zod/v4'
  * This works with:
  * - Zod schemas (via Standard Schema V1 type parameters)
  * - Standard Schema V1 compliant schemas (extracts Output type parameter)
- * - MoltSchema (extracts from nested standardSchema)
+ * - OakSchema (extracts from nested standardSchema)
  *
  * We use Standard Schema V1's type parameters rather than library-specific inference
  * (like z.infer) to support multiple schema libraries through a common interface.

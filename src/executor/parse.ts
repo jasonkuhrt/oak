@@ -71,7 +71,7 @@ export const parse = (
   parameterInputs: Record<string, ParameterBasicInput | ParameterExclusiveInput>,
   argInputs: RawArgInputs,
 ) => {
-  const testDebuggingNoExit = process.env[`testing_molt`] === `true`
+  const testDebuggingNoExit = process.env[`testing_oak`] === `true`
   const argInputsPrompter = argInputs?.tty ?? (process.stdout.isTTY ? Prompter.createProcessPrompter() : null)
   const argInputsLine = argInputs?.line ?? process.argv.slice(2)
   const argInputsEnvironment = argInputs?.environment

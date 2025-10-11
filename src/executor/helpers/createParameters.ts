@@ -5,7 +5,7 @@ import { parameterBasicCreate } from '../../Parameter/basic.js'
 import type { ParameterExclusive, ParameterExclusiveInput } from '../../Parameter/exclusive.js'
 import { parameterExclusiveCreate } from '../../Parameter/exclusive.js'
 import type { Parameter } from '../../Parameter/types.js'
-import type { MoltSchema } from '../../schema/molt-schema.js'
+import type { OakSchema } from '../../schema/oak-schema.js'
 import type { Settings } from '../../Settings/index.js'
 
 /**
@@ -33,11 +33,11 @@ export const createParameters = (
 }
 
 // Simple boolean schema for the built-in help parameter
-const booleanSchema: MoltSchema<boolean, boolean> = {
+const booleanSchema: OakSchema<boolean, boolean> = {
   standardSchema: {
     '~standard': {
       version: 1,
-      vendor: `molt`,
+      vendor: `oak`,
       validate: (value) => {
         if (typeof value === `boolean`) {
           return { value }

@@ -1,7 +1,7 @@
 import type { Cli } from '@wollybeard/kit'
-import type { MoltSchema } from '../../schema/molt-schema.js'
+import type { OakSchema } from '../../schema/oak-schema.js'
 
-export interface Parameter<$Schema extends MoltSchema = MoltSchema> {
+export interface Parameter<$Schema extends OakSchema = OakSchema> {
   _tag: 'Basic'
   name: Cli.FlagName
   type: $Schema

@@ -1,7 +1,7 @@
 import type { StandardSchemaV1 } from '@standard-schema/spec'
 import type { z } from 'zod/v4'
 import { createExtension } from '../../extension.js'
-import type { Optionality, SchemaType } from '../../schema/molt-schema.js'
+import type { Optionality, SchemaType } from '../../schema/oak-schema.js'
 import {
   isBoolean,
   isDefault,

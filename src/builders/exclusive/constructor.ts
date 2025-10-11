@@ -23,7 +23,7 @@ const create_ = (
         ? { type: typeOrConfiguration }
         : typeOrConfiguration
 
-      // Convert raw schema to MoltSchema using extension
+      // Convert raw schema to OakSchema using extension
       if (!commandState.extension) {
         throw new Error(`No extension configured. Call .use() first (e.g., .use(Zod)).`)
       }
@@ -33,7 +33,7 @@ const create_ = (
         optionality: { _tag: `required` } as const,
         schema: { _tag: `string` } as const,
       }
-      const moltSchema = {
+      const oakSchema = {
         standardSchema,
         metadata,
       }
@@ -44,7 +44,7 @@ const create_ = (
           ...state.parameters,
           {
             nameExpression,
-            type: moltSchema,
+            type: oakSchema,
           },
         ],
       }

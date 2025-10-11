@@ -2,7 +2,7 @@ import { Cli } from '@wollybeard/kit'
 import type { BuilderCommandState } from '../builders/command/state.js'
 import { S } from '../deps/effect.js'
 import type { Pam } from '../lib/Pam/index.js'
-import type { MoltSchema } from '../schema/molt-schema.js'
+import type { OakSchema } from '../schema/oak-schema.js'
 import type { Settings } from '../Settings/index.js'
 import { processEnvironment } from './helpers/environment.js'
 import type { Environment, Prompt } from './helpers/types.js'
@@ -12,7 +12,7 @@ export interface ParameterBasicInput<
 > {
   _tag: 'Basic'
   nameExpression: string
-  type: MoltSchema
+  type: OakSchema
   prompt: Prompt<$State['Schema']>
 }
 
@@ -51,5 +51,5 @@ export const parameterBasicCreate = (
 
 export type ParameterBasicData = Omit<ParameterBasic, '_tag'> & {
   _tag: 'BasicData'
-  optionality: MoltSchema['metadata']['optionality']['_tag']
+  optionality: OakSchema['metadata']['optionality']['_tag']
 }

@@ -5,7 +5,7 @@ import { eventPatterns } from '../eventPatterns.js'
 import type { Values } from '../helpers.js'
 import { parseEnvironmentVariableBooleanOrThrow } from '../helpers.js'
 import { defaultParameterNamePrefixes } from '../OpeningArgs/Environment/Environment.js'
-import type { MoltSchema } from '../schema/molt-schema.js'
+import type { OakSchema } from '../schema/oak-schema.js'
 
 export type OnErrorReaction = 'exit' | 'throw'
 
@@ -49,7 +49,7 @@ export interface Input<$State extends BuilderCommandState.Base = BuilderCommandS
 export interface Output {
   prompt: {
     enabled: boolean
-    when: EventPatternsInput<MoltSchema>
+    when: EventPatternsInput<OakSchema>
   }
   description?: string | undefined
   help: boolean

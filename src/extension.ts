@@ -1,5 +1,5 @@
 import type { StandardSchemaV1 } from '@standard-schema/spec'
-import type { MoltSchema } from './schema/molt-schema.js'
+import type { OakSchema } from './schema/oak-schema.js'
 
 export type SomeExtension = Extension<any>
 
@@ -38,7 +38,7 @@ export interface Extension<Type = unknown> {
    * This is optional but enables better help text generation.
    * Extracts information like descriptions, default values, type names, etc.
    */
-  extractMetadata?: (schema: unknown) => MoltSchema<any, any>['metadata']
+  extractMetadata?: (schema: unknown) => OakSchema<any, any>['metadata']
 }
 
 /**

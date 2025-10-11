@@ -11,7 +11,7 @@ export type Optionality<___T = unknown> =
 /**
  * Structured schema type information extracted from the underlying schema library.
  *
- * This provides type structure for Molt's internal logic (type detection, deserialization, etc.)
+ * This provides type structure for Oak's internal logic (type detection, deserialization, etc.)
  * without relying on string parsing.
  */
 export type SchemaType =
@@ -23,11 +23,11 @@ export type SchemaType =
   | { _tag: 'union'; members: SchemaType[] }
 
 /**
- * Molt's internal schema representation.
+ * Oak's internal schema representation.
  *
  * Wraps a Standard Schema V1 compliant schema with CLI-specific metadata.
  */
-export interface MoltSchema<___Input = unknown, ___Output = ___Input> {
+export interface OakSchema<___Input = unknown, ___Output = ___Input> {
   /**
    * The Standard Schema V1 compliant schema used for validation.
    */
@@ -48,7 +48,7 @@ export interface MoltSchema<___Input = unknown, ___Output = ___Input> {
     optionality: Optionality<___Output>
 
     /**
-     * Structured type information for internal Molt logic.
+     * Structured type information for internal Oak logic.
      *
      * Used for type detection, deserialization, and CLI behavior.
      */

@@ -1,19 +1,19 @@
 import { Either as Ef } from 'effect'
-import type { MoltSchema } from './molt-schema.js'
+import type { OakSchema } from './oak-schema.js'
 import { isFailure, isSuccess, validateWithStandardSchema } from './standard-schema.js'
 
 /**
- * Validate a value using a MoltSchema.
+ * Validate a value using a OakSchema.
  *
  * Returns Either.Right on success or Either.Left with validation errors.
  *
- * Note: Assumes synchronous validation. Molt only uses synchronous schemas (via Zod).
+ * Note: Assumes synchronous validation. Oak only uses synchronous schemas (via Zod).
  */
 export const validate = <___Input, ___Output>(
-  schema: MoltSchema<___Input, ___Output>,
+  schema: OakSchema<___Input, ___Output>,
   value: unknown,
 ): Ef.Either<___Output | undefined, { value: unknown; errors: string[] }> => {
-  // Cast to synchronous result - molt only uses sync schemas
+  // Cast to synchronous result - oak only uses sync schemas
   const result = validateWithStandardSchema(schema.standardSchema, value) as any
 
   if (isSuccess(result)) {
@@ -34,7 +34,7 @@ export const validate = <___Input, ___Output>(
  * Uses structured schema metadata to determine how to parse the string value.
  */
 export const deserialize = <___Input, ___Output>(
-  schema: MoltSchema<___Input, ___Output>,
+  schema: OakSchema<___Input, ___Output>,
   serializedValue: string,
 ): Ef.Either<___Output, Error> => {
   let parsedValue: unknown
@@ -98,7 +98,7 @@ export const deserialize = <___Input, ___Output>(
   }
 
   // Validate the parsed value
-  // Cast to synchronous result - molt only uses sync schemas
+  // Cast to synchronous result - oak only uses sync schemas
   const result = validateWithStandardSchema(schema.standardSchema, parsedValue) as any
 
   if (isSuccess(result)) {
@@ -117,14 +117,14 @@ export const deserialize = <___Input, ___Output>(
 /**
  * Get the display type string for help output.
  */
-export const display = <___Input, ___Output>(schema: MoltSchema<___Input, ___Output>): string => {
+export const display = <___Input, ___Output>(schema: OakSchema<___Input, ___Output>): string => {
   return schema.metadata.helpHints?.displayType ?? `unknown`
 }
 
 /**
  * Get the expanded display type string for help output.
  */
-export const displayExpanded = <___Input, ___Output>(schema: MoltSchema<___Input, ___Output>): string => {
+export const displayExpanded = <___Input, ___Output>(schema: OakSchema<___Input, ___Output>): string => {
   return schema.metadata.helpHints?.displayTypeExpanded ?? display(schema)
 }
 
@@ -133,7 +133,7 @@ export const displayExpanded = <___Input, ___Output>(schema: MoltSchema<___Input
  *
  * Uses structured schema metadata instead of parsing display strings.
  */
-export const getTag = <___Input, ___Output>(schema: MoltSchema<___Input, ___Output>): string => {
+export const getTag = <___Input, ___Output>(schema: OakSchema<___Input, ___Output>): string => {
   switch (schema.metadata.schema._tag) {
     case `boolean`:
       return `TypeBoolean`
@@ -157,7 +157,7 @@ export const getTag = <___Input, ___Output>(schema: MoltSchema<___Input, ___Outp
  * Returns formatted text showing type, description, and refinements.
  */
 export const help = <___Input, ___Output>(
-  schema: MoltSchema<___Input, ___Output>,
+  schema: OakSchema<___Input, ___Output>,
   _settings?: any,
 ): string => {
   const parts: string[] = []

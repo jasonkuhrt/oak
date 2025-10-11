@@ -3,10 +3,10 @@ import type { ArgumentValue } from './executor/types.js'
 import type { OpeningArgs } from './OpeningArgs/index.js'
 import type { ParameterBasicData } from './Parameter/basic.js'
 import type { Pattern } from './Pattern/Pattern.js'
-import type { MoltSchema } from './schema/molt-schema.js'
+import type { OakSchema } from './schema/oak-schema.js'
 
 // Event patterns are runtime-only, so we accept any schema type
-// At runtime, the actual MoltSchema will be used for pattern matching
+// At runtime, the actual OakSchema will be used for pattern matching
 export type EventPatternsInputAtLeastOne<$Schema = unknown> = Pattern<BasicParameterParseEvent, 'result'>
 
 export type EventPatternsInput<$Schema = unknown> = Pattern<BasicParameterParseEvent, 'result'>
