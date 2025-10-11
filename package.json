@@ -33,6 +33,9 @@
     "fixcheck": "pnpm run '/fix:.*/' && pnpm run '/check:.*/'",
     "check": "pnpm run '/check:.*/'",
     "fix": "pnpm run '/fix:.*/'",
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "vitepress preview docs",
     "examples:intro": "tsx examples/intro.ts",
     "examples:prompt": "tsx examples/prompt.ts",
     "examples:kitchen-sink": "tsx examples/kitchen-sink.ts",
@@ -67,6 +70,7 @@
     "semver-regex": "4.0.5",
     "tsx": "^4.0.0",
     "typescript": "5.9.3",
+    "vitepress": "^1.6.4",
     "vitest": "^3.2.4",
     "vitest-mock-process": "^1.0.4",
     "zod": "^4.0.0"
