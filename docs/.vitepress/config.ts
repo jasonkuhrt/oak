@@ -14,7 +14,7 @@ export default defineConfig({
 
   markdown: {
     codeTransformers: [
-      // TODO: Re-enable Twoslash once we figure out module resolution
+      // TODO: Re-enable Twoslash once package is published or module resolution is fixed
       // transformerTwoslash(),
       transformerNotationDiff(),
       transformerNotationHighlight(),
