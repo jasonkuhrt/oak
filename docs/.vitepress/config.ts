@@ -1,5 +1,5 @@
 import { transformerNotationDiff, transformerNotationHighlight } from '@shikijs/transformers'
-import { transformerTwoslash } from '@shikijs/vitepress-twoslash'
+// import { transformerTwoslash } from '@shikijs/vitepress-twoslash'
 import { defineConfig } from 'vitepress'
 
 export default defineConfig({
@@ -10,7 +10,8 @@ export default defineConfig({
 
   markdown: {
     codeTransformers: [
-      transformerTwoslash(),
+      // TODO: Re-enable Twoslash once we figure out module resolution
+      // transformerTwoslash(),
       transformerNotationDiff(),
       transformerNotationHighlight(),
     ],
