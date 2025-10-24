@@ -77,6 +77,8 @@ export const render = (parameters_: Parameter[], settings: Settings.Output, _set
   // Child blocks can now safely specify partial spanRange (kit #36 fixed)
   // TODO: Use cleaner API when kit #37 ships: Cli.Tex.Tex({ terminalWidth: 120 })
   const HELP_TERMINAL_WIDTH = 120
+  console.log(`[Help.render] Explicitly setting spanRange.cross.max = ${HELP_TERMINAL_WIDTH}`)
+  console.log(`[Help.render] process.stdout.columns = ${process.stdout.columns}`)
   const output = Cli.Tex.Tex({ spanRange: { cross: { max: HELP_TERMINAL_WIDTH } } })
     .block(($) => {
       if (!settings.description) return null
