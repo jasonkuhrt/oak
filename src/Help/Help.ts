@@ -73,14 +73,10 @@ export const render = (parameters_: Parameter[], settings: Settings.Output, _set
     )
   }
 
-  // Use explicit terminal width for deterministic output across all environments
-  // Child blocks must NOT specify partial spanRange to avoid merge conflicts
+  // Child blocks must NOT specify partial spanRange to avoid merge conflicts with kit's shallow spread
   // See: https://github.com/jasonkuhrt/kit/issues/36
-  const HELP_TERMINAL_WIDTH = 120
-  console.log(
-    `[HELP DEBUG] process.stdout.columns=${process.stdout.columns}, HELP_TERMINAL_WIDTH=${HELP_TERMINAL_WIDTH}`,
-  )
-  const output = Cli.Tex.Tex({ spanRange: { cross: { max: HELP_TERMINAL_WIDTH } } })
+  // Terminal width uses process.stdout.columns (mocked to 120 in tests)
+  const output = Cli.Tex.Tex()
     .block(($) => {
       if (!settings.description) return null
       return $.block({ padding: [1, 0] }, `ABOUT`).block(
