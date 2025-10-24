@@ -1,9 +1,10 @@
 import stripAnsi from 'strip-ansi'
+import type { Mock } from 'vitest'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { $, s } from '../_/helpers.js'
 import { createState } from '../environment/__helpers__.js'
 
-let exitSpy: ReturnType<typeof vi.spyOn>
+let exitSpy: Mock
 
 const output = createState<string>({
   value: (values) => values.join(``),
