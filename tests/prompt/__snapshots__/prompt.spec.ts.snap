@@ -7,42 +7,19 @@ exports[`boolean > required > can be toggled to "yes" > args 1`] = `
 }
 `;
 
-exports[`boolean > required > can be toggled to "yes" > tty 1`] = `
-[
-  "1/1  a
-",
-  "[?25l",
-  "",
-  "[1G",
-  "     ❯ yes / no",
-  "[2K[G",
-  "[1G",
-  "     ❯ yes / no",
-  "
-",
-  "[?25h",
-  "
-",
-]
-`;
+exports[`boolean > required > can be toggled to "yes" > tty output 1`] = `
+"1/1a
 
-exports[`boolean > required > can be toggled to "yes" > tty strip ansi 1`] = `
-[
-  "1/1  a
-",
-  "",
-  "",
-  "",
-  "     ❯ yes / no",
-  "",
-  "",
-  "     ❯ yes / no",
-  "
-",
-  "",
-  "
-",
-]
+
+
+
+
+
+     ❯ yes / no
+
+
+     ❯ yes / no
+"
 `;
 
 exports[`boolean > required > can be toggled to "yes" and then back to "no" > args 1`] = `
@@ -52,48 +29,22 @@ exports[`boolean > required > can be toggled to "yes" and then back to "no" > ar
 }
 `;
 
-exports[`boolean > required > can be toggled to "yes" and then back to "no" > tty 1`] = `
-[
-  "1/1  a
-",
-  "[?25l",
-  "",
-  "[1G",
-  "     ❯ yes / no",
-  "[2K[G",
-  "[1G",
-  "     ❯ yes / no",
-  "[2K[G",
-  "[1G",
-  "     ❯ yes / no",
-  "
-",
-  "[?25h",
-  "
-",
-]
-`;
+exports[`boolean > required > can be toggled to "yes" and then back to "no" > tty output 1`] = `
+"1/1a
 
-exports[`boolean > required > can be toggled to "yes" and then back to "no" > tty strip ansi 1`] = `
-[
-  "1/1  a
-",
-  "",
-  "",
-  "",
-  "     ❯ yes / no",
-  "",
-  "",
-  "     ❯ yes / no",
-  "",
-  "",
-  "     ❯ yes / no",
-  "
-",
-  "",
-  "
-",
-]
+
+
+
+
+
+     ❯ yes / no
+
+
+     ❯ yes / no
+
+
+     ❯ yes / no
+"
 `;
 
 exports[`boolean > required > can use tab to toggle between "yes" and "no" > args 1`] = `
@@ -103,48 +54,22 @@ exports[`boolean > required > can use tab to toggle between "yes" and "no" > arg
 }
 `;
 
-exports[`boolean > required > can use tab to toggle between "yes" and "no" > tty 1`] = `
-[
-  "1/1  a
-",
-  "[?25l",
-  "",
-  "[1G",
-  "     ❯ yes / no",
-  "[2K[G",
-  "[1G",
-  "     ❯ yes / no",
-  "[2K[G",
-  "[1G",
-  "     ❯ yes / no",
-  "
-",
-  "[?25h",
-  "
-",
-]
-`;
+exports[`boolean > required > can use tab to toggle between "yes" and "no" > tty output 1`] = `
+"1/1a
 
-exports[`boolean > required > can use tab to toggle between "yes" and "no" > tty strip ansi 1`] = `
-[
-  "1/1  a
-",
-  "",
-  "",
-  "",
-  "     ❯ yes / no",
-  "",
-  "",
-  "     ❯ yes / no",
-  "",
-  "",
-  "     ❯ yes / no",
-  "
-",
-  "",
-  "
-",
-]
+
+
+
+
+
+     ❯ yes / no
+
+
+     ❯ yes / no
+
+
+     ❯ yes / no
+"
 `;
 
 exports[`boolean > required > defaults to "no" > args 1`] = `
@@ -154,49 +79,25 @@ exports[`boolean > required > defaults to "no" > args 1`] = `
 }
 `;
 
-exports[`boolean > required > defaults to "no" > tty 1`] = `
-[
-  "1/1  a
-",
-  "[?25l",
-  "",
-  "[1G",
-  "     ❯ yes / no",
-  "
-",
-  "[?25h",
-  "
-",
-]
-`;
+exports[`boolean > required > defaults to "no" > tty output 1`] = `
+"1/1a
 
-exports[`boolean > required > defaults to "no" > tty strip ansi 1`] = `
-[
-  "1/1  a
-",
-  "",
-  "",
-  "",
-  "     ❯ yes / no",
-  "
-",
-  "",
-  "
-",
-]
+
+
+
+
+
+     ❯ yes / no
+"
 `;
 
 exports[`can be explicitly disabled > args 1`] = `[ErrorMissingArgument: Missing argument for flag "a".]`;
 
-exports[`can be explicitly disabled > tty 1`] = `[]`;
-
-exports[`can be explicitly disabled > tty strip ansi 1`] = `[]`;
+exports[`can be explicitly disabled > tty output 1`] = `""`;
 
 exports[`can be explicitly disabled with a "when" condition present > args 1`] = `[ErrorMissingArgument: Missing argument for flag "a".]`;
 
-exports[`can be explicitly disabled with a "when" condition present > tty 1`] = `[]`;
-
-exports[`can be explicitly disabled with a "when" condition present > tty strip ansi 1`] = `[]`;
+exports[`can be explicitly disabled with a "when" condition present > tty output 1`] = `""`;
 
 exports[`enumeration > required > can select member leftward with left key > args 1`] = `
 {
@@ -205,48 +106,22 @@ exports[`enumeration > required > can select member leftward with left key > arg
 }
 `;
 
-exports[`enumeration > required > can select member leftward with left key > tty 1`] = `
-[
-  "1/1  a
-",
-  "[?25l",
-  "",
-  "[1G",
-  "     ❯ major / minor / patch",
-  "[2K[G",
-  "[1G",
-  "     ❯ major / minor / patch",
-  "[2K[G",
-  "[1G",
-  "     ❯ major / minor / patch",
-  "
-",
-  "[?25h",
-  "
-",
-]
-`;
+exports[`enumeration > required > can select member leftward with left key > tty output 1`] = `
+"1/1a
 
-exports[`enumeration > required > can select member leftward with left key > tty strip ansi 1`] = `
-[
-  "1/1  a
-",
-  "",
-  "",
-  "",
-  "     ❯ major / minor / patch",
-  "",
-  "",
-  "     ❯ major / minor / patch",
-  "",
-  "",
-  "     ❯ major / minor / patch",
-  "
-",
-  "",
-  "
-",
-]
+
+
+
+
+
+     ❯ major / minor / patch
+
+
+     ❯ major / minor / patch
+
+
+     ❯ major / minor / patch
+"
 `;
 
 exports[`enumeration > required > can select member rightward with right key > args 1`] = `
@@ -256,42 +131,19 @@ exports[`enumeration > required > can select member rightward with right key > a
 }
 `;
 
-exports[`enumeration > required > can select member rightward with right key > tty 1`] = `
-[
-  "1/1  a
-",
-  "[?25l",
-  "",
-  "[1G",
-  "     ❯ major / minor / patch",
-  "[2K[G",
-  "[1G",
-  "     ❯ major / minor / patch",
-  "
-",
-  "[?25h",
-  "
-",
-]
-`;
+exports[`enumeration > required > can select member rightward with right key > tty output 1`] = `
+"1/1a
 
-exports[`enumeration > required > can select member rightward with right key > tty strip ansi 1`] = `
-[
-  "1/1  a
-",
-  "",
-  "",
-  "",
-  "     ❯ major / minor / patch",
-  "",
-  "",
-  "     ❯ major / minor / patch",
-  "
-",
-  "",
-  "
-",
-]
+
+
+
+
+
+     ❯ major / minor / patch
+
+
+     ❯ major / minor / patch
+"
 `;
 
 exports[`enumeration > required > defaults to first member > args 1`] = `
@@ -301,36 +153,16 @@ exports[`enumeration > required > defaults to first member > args 1`] = `
 }
 `;
 
-exports[`enumeration > required > defaults to first member > tty 1`] = `
-[
-  "1/1  a
-",
-  "[?25l",
-  "",
-  "[1G",
-  "     ❯ major / minor / patch",
-  "
-",
-  "[?25h",
-  "
-",
-]
-`;
+exports[`enumeration > required > defaults to first member > tty output 1`] = `
+"1/1a
 
-exports[`enumeration > required > defaults to first member > tty strip ansi 1`] = `
-[
-  "1/1  a
-",
-  "",
-  "",
-  "",
-  "     ❯ major / minor / patch",
-  "
-",
-  "",
-  "
-",
-]
+
+
+
+
+
+     ❯ major / minor / patch
+"
 `;
 
 exports[`enumeration > required > loop > left key on first member loops to last member > args 1`] = `
@@ -340,42 +172,19 @@ exports[`enumeration > required > loop > left key on first member loops to last 
 }
 `;
 
-exports[`enumeration > required > loop > left key on first member loops to last member > tty 1`] = `
-[
-  "1/1  a
-",
-  "[?25l",
-  "",
-  "[1G",
-  "     ❯ major / minor / patch",
-  "[2K[G",
-  "[1G",
-  "     ❯ major / minor / patch",
-  "
-",
-  "[?25h",
-  "
-",
-]
-`;
+exports[`enumeration > required > loop > left key on first member loops to last member > tty output 1`] = `
+"1/1a
 
-exports[`enumeration > required > loop > left key on first member loops to last member > tty strip ansi 1`] = `
-[
-  "1/1  a
-",
-  "",
-  "",
-  "",
-  "     ❯ major / minor / patch",
-  "",
-  "",
-  "     ❯ major / minor / patch",
-  "
-",
-  "",
-  "
-",
-]
+
+
+
+
+
+     ❯ major / minor / patch
+
+
+     ❯ major / minor / patch
+"
 `;
 
 exports[`enumeration > required > loop > right key on last member loops to first member > args 1`] = `
@@ -385,54 +194,25 @@ exports[`enumeration > required > loop > right key on last member loops to first
 }
 `;
 
-exports[`enumeration > required > loop > right key on last member loops to first member > tty 1`] = `
-[
-  "1/1  a
-",
-  "[?25l",
-  "",
-  "[1G",
-  "     ❯ major / minor / patch",
-  "[2K[G",
-  "[1G",
-  "     ❯ major / minor / patch",
-  "[2K[G",
-  "[1G",
-  "     ❯ major / minor / patch",
-  "[2K[G",
-  "[1G",
-  "     ❯ major / minor / patch",
-  "
-",
-  "[?25h",
-  "
-",
-]
-`;
+exports[`enumeration > required > loop > right key on last member loops to first member > tty output 1`] = `
+"1/1a
 
-exports[`enumeration > required > loop > right key on last member loops to first member > tty strip ansi 1`] = `
-[
-  "1/1  a
-",
-  "",
-  "",
-  "",
-  "     ❯ major / minor / patch",
-  "",
-  "",
-  "     ❯ major / minor / patch",
-  "",
-  "",
-  "     ❯ major / minor / patch",
-  "",
-  "",
-  "     ❯ major / minor / patch",
-  "
-",
-  "",
-  "
-",
-]
+
+
+
+
+
+     ❯ major / minor / patch
+
+
+     ❯ major / minor / patch
+
+
+     ❯ major / minor / patch
+
+
+     ❯ major / minor / patch
+"
 `;
 
 exports[`enumeration > required > tab > can select member leftward with shift+tab key > args 1`] = `
@@ -442,48 +222,22 @@ exports[`enumeration > required > tab > can select member leftward with shift+ta
 }
 `;
 
-exports[`enumeration > required > tab > can select member leftward with shift+tab key > tty 1`] = `
-[
-  "1/1  a
-",
-  "[?25l",
-  "",
-  "[1G",
-  "     ❯ major / minor / patch",
-  "[2K[G",
-  "[1G",
-  "     ❯ major / minor / patch",
-  "[2K[G",
-  "[1G",
-  "     ❯ major / minor / patch",
-  "
-",
-  "[?25h",
-  "
-",
-]
-`;
+exports[`enumeration > required > tab > can select member leftward with shift+tab key > tty output 1`] = `
+"1/1a
 
-exports[`enumeration > required > tab > can select member leftward with shift+tab key > tty strip ansi 1`] = `
-[
-  "1/1  a
-",
-  "",
-  "",
-  "",
-  "     ❯ major / minor / patch",
-  "",
-  "",
-  "     ❯ major / minor / patch",
-  "",
-  "",
-  "     ❯ major / minor / patch",
-  "
-",
-  "",
-  "
-",
-]
+
+
+
+
+
+     ❯ major / minor / patch
+
+
+     ❯ major / minor / patch
+
+
+     ❯ major / minor / patch
+"
 `;
 
 exports[`enumeration > required > tab > can select member rightward with tab key > args 1`] = `
@@ -493,42 +247,19 @@ exports[`enumeration > required > tab > can select member rightward with tab key
 }
 `;
 
-exports[`enumeration > required > tab > can select member rightward with tab key > tty 1`] = `
-[
-  "1/1  a
-",
-  "[?25l",
-  "",
-  "[1G",
-  "     ❯ major / minor / patch",
-  "[2K[G",
-  "[1G",
-  "     ❯ major / minor / patch",
-  "
-",
-  "[?25h",
-  "
-",
-]
-`;
+exports[`enumeration > required > tab > can select member rightward with tab key > tty output 1`] = `
+"1/1a
 
-exports[`enumeration > required > tab > can select member rightward with tab key > tty strip ansi 1`] = `
-[
-  "1/1  a
-",
-  "",
-  "",
-  "",
-  "     ❯ major / minor / patch",
-  "",
-  "",
-  "     ❯ major / minor / patch",
-  "
-",
-  "",
-  "
-",
-]
+
+
+
+
+
+     ❯ major / minor / patch
+
+
+     ❯ major / minor / patch
+"
 `;
 
 exports[`number > optional > when esc is pressed the question is skipped > args 1`] = `
@@ -538,36 +269,16 @@ exports[`number > optional > when esc is pressed the question is skipped > args 
 }
 `;
 
-exports[`number > optional > when esc is pressed the question is skipped > tty 1`] = `
-[
-  "1/1  a optional (press esc to skip)
-",
-  "[?25l",
-  "",
-  "[1G",
-  "     ❯ ",
-  "
-",
-  "[?25h",
-  "
-",
-]
-`;
+exports[`number > optional > when esc is pressed the question is skipped > tty output 1`] = `
+"1/1a optional (press esc to skip)
 
-exports[`number > optional > when esc is pressed the question is skipped > tty strip ansi 1`] = `
-[
-  "1/1  a optional (press esc to skip)
-",
-  "",
-  "",
-  "",
-  "     ❯ ",
-  "
-",
-  "",
-  "
-",
-]
+
+
+
+
+
+     ❯
+"
 `;
 
 exports[`number > optional > when nothing entered then value is undefined > args 1`] = `
@@ -577,36 +288,16 @@ exports[`number > optional > when nothing entered then value is undefined > args
 }
 `;
 
-exports[`number > optional > when nothing entered then value is undefined > tty 1`] = `
-[
-  "1/1  a optional (press esc to skip)
-",
-  "[?25l",
-  "",
-  "[1G",
-  "     ❯ ",
-  "
-",
-  "[?25h",
-  "
-",
-]
-`;
+exports[`number > optional > when nothing entered then value is undefined > tty output 1`] = `
+"1/1a optional (press esc to skip)
 
-exports[`number > optional > when nothing entered then value is undefined > tty strip ansi 1`] = `
-[
-  "1/1  a optional (press esc to skip)
-",
-  "",
-  "",
-  "",
-  "     ❯ ",
-  "
-",
-  "",
-  "
-",
-]
+
+
+
+
+
+     ❯
+"
 `;
 
 exports[`prompt when invalid input > args 1`] = `
@@ -616,54 +307,25 @@ exports[`prompt when invalid input > args 1`] = `
 }
 `;
 
-exports[`prompt when invalid input > tty 1`] = `
-[
-  "1/1  a
-",
-  "[?25l",
-  "",
-  "[1G",
-  "     ❯ ",
-  "[2K[G",
-  "[1G",
-  "     ❯ f",
-  "[2K[G",
-  "[1G",
-  "     ❯ fo",
-  "[2K[G",
-  "[1G",
-  "     ❯ foo",
-  "
-",
-  "[?25h",
-  "
-",
-]
-`;
+exports[`prompt when invalid input > tty output 1`] = `
+"1/1a
 
-exports[`prompt when invalid input > tty strip ansi 1`] = `
-[
-  "1/1  a
-",
-  "",
-  "",
-  "",
-  "     ❯ ",
-  "",
-  "",
-  "     ❯ f",
-  "",
-  "",
-  "     ❯ fo",
-  "",
-  "",
-  "     ❯ foo",
-  "
-",
-  "",
-  "
-",
-]
+
+
+
+
+
+     ❯
+
+
+     ❯ f
+
+
+     ❯ fo
+
+
+     ❯ foo
+"
 `;
 
 exports[`prompt when invalid input OR missing input > args 1`] = `
@@ -673,54 +335,25 @@ exports[`prompt when invalid input OR missing input > args 1`] = `
 }
 `;
 
-exports[`prompt when invalid input OR missing input > tty 1`] = `
-[
-  "1/1  a
-",
-  "[?25l",
-  "",
-  "[1G",
-  "     ❯ ",
-  "[2K[G",
-  "[1G",
-  "     ❯ f",
-  "[2K[G",
-  "[1G",
-  "     ❯ fo",
-  "[2K[G",
-  "[1G",
-  "     ❯ foo",
-  "
-",
-  "[?25h",
-  "
-",
-]
-`;
+exports[`prompt when invalid input OR missing input > tty output 1`] = `
+"1/1a
 
-exports[`prompt when invalid input OR missing input > tty strip ansi 1`] = `
-[
-  "1/1  a
-",
-  "",
-  "",
-  "",
-  "     ❯ ",
-  "",
-  "",
-  "     ❯ f",
-  "",
-  "",
-  "     ❯ fo",
-  "",
-  "",
-  "     ❯ foo",
-  "
-",
-  "",
-  "
-",
-]
+
+
+
+
+
+     ❯
+
+
+     ❯ f
+
+
+     ❯ fo
+
+
+     ❯ foo
+"
 `;
 
 exports[`prompt when missing input > args 1`] = `
@@ -730,54 +363,25 @@ exports[`prompt when missing input > args 1`] = `
 }
 `;
 
-exports[`prompt when missing input > tty 1`] = `
-[
-  "1/1  a
-",
-  "[?25l",
-  "",
-  "[1G",
-  "     ❯ ",
-  "[2K[G",
-  "[1G",
-  "     ❯ f",
-  "[2K[G",
-  "[1G",
-  "     ❯ fo",
-  "[2K[G",
-  "[1G",
-  "     ❯ foo",
-  "
-",
-  "[?25h",
-  "
-",
-]
-`;
+exports[`prompt when missing input > tty output 1`] = `
+"1/1a
 
-exports[`prompt when missing input > tty strip ansi 1`] = `
-[
-  "1/1  a
-",
-  "",
-  "",
-  "",
-  "     ❯ ",
-  "",
-  "",
-  "     ❯ f",
-  "",
-  "",
-  "     ❯ fo",
-  "",
-  "",
-  "     ❯ foo",
-  "
-",
-  "",
-  "
-",
-]
+
+
+
+
+
+     ❯
+
+
+     ❯ f
+
+
+     ❯ fo
+
+
+     ❯ foo
+"
 `;
 
 exports[`prompt when omitted > args 1`] = `
@@ -787,54 +391,25 @@ exports[`prompt when omitted > args 1`] = `
 }
 `;
 
-exports[`prompt when omitted > tty 1`] = `
-[
-  "1/1  a optional (press esc to skip)
-",
-  "[?25l",
-  "",
-  "[1G",
-  "     ❯ ",
-  "[2K[G",
-  "[1G",
-  "     ❯ f",
-  "[2K[G",
-  "[1G",
-  "     ❯ fo",
-  "[2K[G",
-  "[1G",
-  "     ❯ foo",
-  "
-",
-  "[?25h",
-  "
-",
-]
-`;
+exports[`prompt when omitted > tty output 1`] = `
+"1/1a optional (press esc to skip)
 
-exports[`prompt when omitted > tty strip ansi 1`] = `
-[
-  "1/1  a optional (press esc to skip)
-",
-  "",
-  "",
-  "",
-  "     ❯ ",
-  "",
-  "",
-  "     ❯ f",
-  "",
-  "",
-  "     ❯ fo",
-  "",
-  "",
-  "     ❯ foo",
-  "
-",
-  "",
-  "
-",
-]
+
+
+
+
+
+     ❯
+
+
+     ❯ f
+
+
+     ❯ fo
+
+
+     ❯ foo
+"
 `;
 
 exports[`string > optional > when esc is pressed the question is skipped > args 1`] = `
@@ -844,36 +419,16 @@ exports[`string > optional > when esc is pressed the question is skipped > args 
 }
 `;
 
-exports[`string > optional > when esc is pressed the question is skipped > tty 1`] = `
-[
-  "1/1  a optional (press esc to skip)
-",
-  "[?25l",
-  "",
-  "[1G",
-  "     ❯ ",
-  "
-",
-  "[?25h",
-  "
-",
-]
-`;
+exports[`string > optional > when esc is pressed the question is skipped > tty output 1`] = `
+"1/1a optional (press esc to skip)
 
-exports[`string > optional > when esc is pressed the question is skipped > tty strip ansi 1`] = `
-[
-  "1/1  a optional (press esc to skip)
-",
-  "",
-  "",
-  "",
-  "     ❯ ",
-  "
-",
-  "",
-  "
-",
-]
+
+
+
+
+
+     ❯
+"
 `;
 
 exports[`string > optional > when nothing entered then value is undefined > args 1`] = `
@@ -883,36 +438,16 @@ exports[`string > optional > when nothing entered then value is undefined > args
 }
 `;
 
-exports[`string > optional > when nothing entered then value is undefined > tty 1`] = `
-[
-  "1/1  a optional (press esc to skip)
-",
-  "[?25l",
-  "",
-  "[1G",
-  "     ❯ ",
-  "
-",
-  "[?25h",
-  "
-",
-]
-`;
+exports[`string > optional > when nothing entered then value is undefined > tty output 1`] = `
+"1/1a optional (press esc to skip)
 
-exports[`string > optional > when nothing entered then value is undefined > tty strip ansi 1`] = `
-[
-  "1/1  a optional (press esc to skip)
-",
-  "",
-  "",
-  "",
-  "     ❯ ",
-  "
-",
-  "",
-  "
-",
-]
+
+
+
+
+
+     ❯
+"
 `;
 
 exports[`union > required > asks user to select member to use" > args 1`] = `
@@ -922,64 +457,31 @@ exports[`union > required > asks user to select member to use" > args 1`] = `
 }
 `;
 
-exports[`union > required > asks user to select member to use" > tty 1`] = `
-[
-  "1/1  a
-",
-  "[?25l",
-  "",
-  "[1G",
-  "     ❯ select type: number / boolean / string",
-  "[2K[G",
-  "[1G",
-  "     ❯ select type: number / boolean / string",
-  "
-",
-  "[?25h",
-  "1/1  a
-",
-  "[?25l",
-  "",
-  "[1G",
-  "     ❯ yes / no",
-  "[2K[G",
-  "[1G",
-  "     ❯ yes / no",
-  "
-",
-  "[?25h",
-  "
-",
-]
-`;
+exports[`union > required > asks user to select member to use" > tty output 1`] = `
+"1/1a
 
-exports[`union > required > asks user to select member to use" > tty strip ansi 1`] = `
-[
-  "1/1  a
-",
-  "",
-  "",
-  "",
-  "     ❯ select type: number / boolean / string",
-  "",
-  "",
-  "     ❯ select type: number / boolean / string",
-  "
-",
-  "",
-  "1/1  a
-",
-  "",
-  "",
-  "",
-  "     ❯ yes / no",
-  "",
-  "",
-  "     ❯ yes / no",
-  "
-",
-  "",
-  "
-",
-]
+
+
+
+
+
+     ❯ select type: number / boolean / string
+
+
+     ❯ select type: number / boolean / string
+
+
+
+1/1a
+
+
+
+
+
+
+     ❯ yes / no
+
+
+     ❯ yes / no
+"
 `;

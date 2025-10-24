@@ -1,7 +1,7 @@
+import { Cli } from '@wollybeard/kit'
 import chalk from 'chalk'
 import { Effect } from 'effect'
 import type { Prompter } from '../lib/Prompter/index.js'
-import { Tex } from '../lib/Tex/index_.js'
 import { Text } from '../lib/Text/index.js'
 import * as SchemaRuntime from '../schema/schema-runtime.js'
 import { Term } from '../term.js'
@@ -26,8 +26,10 @@ export const prompt = (
     const gutterWidth = String(indexTotal).length * 2 + 3
 
     for (const parameter of parameters) {
-      const question = Tex({ flow: `horizontal` })
-        .block({ padding: { right: 2 } }, `${Term.colors.dim(`${indexCurrent}/${indexTotal}`)}`)
+      // Explicitly set terminal width for deterministic rendering (kit 0.87.0+)
+      const PROMPT_TERMINAL_WIDTH = 120
+      const question = Cli.Tex.Tex({ orientation: `horizontal`, terminalWidth: PROMPT_TERMINAL_WIDTH })
+        .block({ padding: { mainEnd: 2 } }, `${Term.colors.dim(`${indexCurrent}/${indexTotal}`)}`)
         .block((__) =>
           __.block(
             Term.colors.positive(parameter.name.canonical)

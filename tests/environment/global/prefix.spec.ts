@@ -1,10 +1,19 @@
-import { beforeEach, expect } from 'vitest'
+import { beforeEach, expect, vi } from 'vitest'
 import { describe, it } from 'vitest'
 import { $, s } from '../../_/helpers.js'
-import { stdout } from '../../_/mocks.js'
-import { environmentManager } from '../__helpers__.js'
+import { createState, environmentManager } from '../__helpers__.js'
+
+const output = createState<string>({
+  value: (values) => values.join(``),
+})
+
+const onOutput = output.set
 
 let args
+
+beforeEach(() => {
+  vi.spyOn(process, 'exit').mockImplementation(() => undefined as never)
+})
 
 it(`can be disabled`, () => {
   args = $.parameter(`--foo`, s)
@@ -37,19 +46,20 @@ it(`defaults to CLI_PARAM or CLI_PARAMETERS`, () => {
     })
   expect(args).toMatchObject({ foo: `qux1`, bar: `qux2` })
 })
-describe(`error`, () => {
+// TODO: Remove skipIf once kit#41 is fixed
+describe.skipIf(process.env.CI === 'true')(`error`, () => {
   it(`when using prefix and there is a typo`, () => {
     // TODO show not just envar prefix in error message json
     $.parameter(`--foo`, s)
-      .settings({ helpOnNoArguments: false })
+      .settings({ helpOnNoArguments: false, onOutput })
       .parse({ line: [], environment: { cli_param_bar: `qux1` } })
-    // Skip ANSI snapshots in CI due to environment differences
-    if (!process.env.CI) expect(stdout.mock.calls).toMatchSnapshot()
+    expect([[output.value]]).toMatchSnapshot()
   })
   it(`when using multiple prefixes and args passed for all param variations`, () => {
     // TODO show not just envar prefix in error message json
     $.parameter(`--foo`, s)
       .parameter(`--bar`, s)
+      .settings({ onOutput })
       .parse({
         line: [],
         environment: {
@@ -59,8 +69,7 @@ describe(`error`, () => {
           cli_parameter_foo: `qux2`,
         },
       })
-    // Skip ANSI snapshots in CI due to environment differences
-    if (!process.env.CI) expect(stdout.mock.calls).toMatchSnapshot()
+    expect([[output.value]]).toMatchSnapshot()
   })
   it.todo(`when argument collision and typo then both errors are shown`)
 })
@@ -78,11 +87,14 @@ describe(`default environment argument parameter name prefix`, () => {
     args = $.parameter(`--foo`, s).parse({ line: [] })
     expect(args).toMatchObject({ foo: `bar` })
   })
-  it(`when both argument CLI_PARAM and CLI_PARAMETER are passed then an error is thrown`, () => {
-    environmentManager.set(`cli_param_foo`, `bar1`)
-    environmentManager.set(`cli_parameter_foo`, `bar2`)
-    $.parameter(`--foo`, s).settings({ helpOnNoArguments: false }).parse({ line: [] })
-    // Skip ANSI snapshots in CI due to environment differences
-    if (!process.env.CI) expect(stdout.mock.calls).toMatchSnapshot()
-  })
+  // TODO: Remove skipIf once kit#41 is fixed
+  it.skipIf(process.env.CI === 'true')(
+    `when both argument CLI_PARAM and CLI_PARAMETER are passed then an error is thrown`,
+    () => {
+      environmentManager.set(`cli_param_foo`, `bar1`)
+      environmentManager.set(`cli_parameter_foo`, `bar2`)
+      $.parameter(`--foo`, s).settings({ helpOnNoArguments: false, onOutput }).parse({ line: [] })
+      expect([[output.value]]).toMatchSnapshot()
+    },
+  )
 })

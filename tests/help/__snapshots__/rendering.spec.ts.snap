@@ -1,395 +1,167 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`enum > enum members are listed > monochrome 1`] = `
-"
-PARAMETERS
-                                                                      
-  Name     Type                                   Default       Environment (1)
-                                                                               
-  foo      'apple' | 'dolphin' | 'cab'             REQUIRED     ✓              
-                                                                               
-  
-  NOTES                                                                           
-  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  (1) Parameters can be passed arguments via environment variables. Command line  
-      arguments take precedence. Environment variable names are snake cased       
-      versions of the parameter name (or its aliases), case insensitive. They must
-      be prefixed with CLI_PARAMETER_ or CLI_PARAM_ (case insensitive). Examples: 
-        → CLI_PARAMETER_FOO="..."                                                 
+exports[`Help rendering (skipped in CI - kit#41) > enum > enum members are listed > monochrome 1`] = `
+"                                                                                                                        
+PARAMETERS                                                                                                              
+                                                                                                                        
+  Name     Type                                   Default       Environment (1)                                         
+                                                                                                                        
+  foo      'apple' | 'dolphin' | 'cab'             REQUIRED     ✓                                                       
+                                                                                                                        
+                                                                                                                        
+  NOTES                                                                                                                 
+  ━━━━━                                                                                                                 
+  (1)   Parameters can be passed arguments via environment variables. Command line arguments take precedence. Environmen
+        → CLI_PARAMETER_FOO="..."                                                                                       
 "
 `;
 
-exports[`enum > enum members are listed > polychrome 1`] = `
-"
-PARAMETERS
-                                                                      
-  Name     Type                                   Default       Environment (1)
-                                                                               
-  foo      'apple' | 'dolphin' | 'cab'             REQUIRED     ✓              
-                                                                               
-  
-  NOTES                                                                           
-  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  (1) Parameters can be passed arguments via environment variables. Command line  
-      arguments take precedence. Environment variable names are snake cased       
-      versions of the parameter name (or its aliases), case insensitive. They must
-      be prefixed with CLI_PARAMETER_ or CLI_PARAM_ (case insensitive). Examples: 
-        → CLI_PARAMETER_FOO="..."                                                 
+exports[`Help rendering (skipped in CI - kit#41) > enum > optional enum members are listed > monochrome 1`] = `
+"                                                                                                                        
+PARAMETERS                                                                                                              
+                                                                                                                        
+  Name     Type                                   Default       Environment (1)                                         
+                                                                                                                        
+  foo      'apple' | 'dolphin' | 'cab'            undefined     ✓                                                       
+                                                                                                                        
+                                                                                                                        
+  NOTES                                                                                                                 
+  ━━━━━                                                                                                                 
+  (1)   Parameters can be passed arguments via environment variables. Command line arguments take precedence. Environmen
+        → CLI_PARAMETER_FOO="..."                                                                                       
 "
 `;
 
-exports[`enum > optional enum members are listed > monochrome 1`] = `
-"
-PARAMETERS
-                                                                      
-  Name     Type                                   Default       Environment (1)
-                                                                               
-  foo      'apple' | 'dolphin' | 'cab'            undefined     ✓              
-                                                                               
-  
-  NOTES                                                                           
-  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  (1) Parameters can be passed arguments via environment variables. Command line  
-      arguments take precedence. Environment variable names are snake cased       
-      versions of the parameter name (or its aliases), case insensitive. They must
-      be prefixed with CLI_PARAMETER_ or CLI_PARAM_ (case insensitive). Examples: 
-        → CLI_PARAMETER_FOO="..."                                                 
+exports[`Help rendering (skipped in CI - kit#41) > enum > when there are many members they wrap > monochrome 1`] = `
+"                                                                                                                        
+PARAMETERS                                                                                                              
+                                                                                                                        
+  Name     Type                                                                                                         
+                                                                                                                        
+  foo      'apple' | 'baby' | 'cannabis' | 'dinosaur' | 'elephant' | 'fanna' | 'goat' | 'house' | 'island' | 'jake' | 'k
+                                                                                                                        
+                                                                                                                        
+  NOTES                                                                                                                 
+  ━━━━━                                                                                                                 
+  (1)   Parameters can be passed arguments via environment variables. Command line arguments take precedence. Environmen
+        → CLI_PARAMETER_FOO="..."                                                                                       
 "
 `;
 
-exports[`enum > optional enum members are listed > polychrome 1`] = `
-"
-PARAMETERS
-                                                                      
-  Name     Type                                   Default       Environment (1)
-                                                                               
-  foo      'apple' | 'dolphin' | 'cab'            undefined     ✓              
-                                                                               
-  
-  NOTES                                                                           
-  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  (1) Parameters can be passed arguments via environment variables. Command line  
-      arguments take precedence. Environment variable names are snake cased       
-      versions of the parameter name (or its aliases), case insensitive. They must
-      be prefixed with CLI_PARAMETER_ or CLI_PARAM_ (case insensitive). Examples: 
-        → CLI_PARAMETER_FOO="..."                                                 
+exports[`Help rendering (skipped in CI - kit#41) > enum > when there is only one enum member it is prefixed with "enum:" to avoid confusion of it looking like the name of a kind of type > monochrome 1`] = `
+"                                                                                                                        
+PARAMETERS                                                                                                              
+                                                                                                                        
+  Name     Type               Default       Environment (1)                                                             
+                                                                                                                        
+  foo      'apple'             REQUIRED     ✓                                                                           
+                                                                                                                        
+                                                                                                                        
+  NOTES                                                                                                                 
+  ━━━━━                                                                                                                 
+  (1)   Parameters can be passed arguments via environment variables. Command line arguments take precedence. Environmen
+        → CLI_PARAMETER_FOO="..."                                                                                       
 "
 `;
 
-exports[`enum > when there are many members they wrap > monochrome 1`] = `
-"
-PARAMETERS
-                                                                              
-  Name     Type                                              Default       Environment (1)
-                                                                                          
-  foo      'apple' | 'baby' | 'cannabis' |                    REQUIRED     ✓              
-           'dinosaur' | 'elephant' | 'fanna' |                                            
-           'goat' | 'house' | 'island' | 'jake' |                                         
-           'kilomanjara'                                                                  
-                                                                                          
-  
-  NOTES                                                                           
-  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  (1) Parameters can be passed arguments via environment variables. Command line  
-      arguments take precedence. Environment variable names are snake cased       
-      versions of the parameter name (or its aliases), case insensitive. They must
-      be prefixed with CLI_PARAMETER_ or CLI_PARAM_ (case insensitive). Examples: 
-        → CLI_PARAMETER_FOO="..."                                                 
+exports[`Help rendering (skipped in CI - kit#41) > enums do not mess up alignment when they are widest line in the column > monochrome 1`] = `
+"                                                                                                                        
+PARAMETERS                                                                                                              
+                                                                                                                        
+  Name     Type                                                                                                         
+                                                                                                                        
+  foo      'a' | 'b' | 'c' | 'd' | 'e' | 'f' | 'g' | 'h' | 'i' | 'j' | 'k' | 'l' | 'm' | 'n' | 'o' | 'p' | 'q' | 'r' | '
+                                                                                                                        
+  bar      string                                                                                                       
+                                                                                                                        
+                                                                                                                        
+  NOTES                                                                                                                 
+  ━━━━━                                                                                                                 
+  (1)   Parameters can be passed arguments via environment variables. Command line arguments take precedence. Environmen
+        → CLI_PARAMETER_FOO="..."                                                                                       
+        → CLI_PARAMETER_BAR="..."                                                                                       
 "
 `;
 
-exports[`enum > when there are many members they wrap > polychrome 1`] = `
-"
-PARAMETERS
-                                                                              
-  Name     Type                                              Default       Environment (1)
-                                                                                          
-  foo      'apple' | 'baby' | 'cannabis' |                    REQUIRED     ✓              
-           'dinosaur' | 'elephant' | 'fanna' |                                            
-           'goat' | 'house' | 'island' | 'jake' |                                         
-           'kilomanjara'                                                                  
-                                                                                          
-  
-  NOTES                                                                           
-  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  (1) Parameters can be passed arguments via environment variables. Command line  
-      arguments take precedence. Environment variable names are snake cased       
-      versions of the parameter name (or its aliases), case insensitive. They must
-      be prefixed with CLI_PARAMETER_ or CLI_PARAM_ (case insensitive). Examples: 
-        → CLI_PARAMETER_FOO="..."                                                 
+exports[`Help rendering (skipped in CI - kit#41) > environment > when environment has custom prefix it is displayed > monochrome 1`] = `
+"                                                                                                                        
+PARAMETERS                                                                                                              
+                                                                                                                        
+  Name     Type              Default       Environment (1)                                                              
+                                                                                                                        
+  bar      string             REQUIRED     ✓                                                                            
+                                                                                                                        
+  foo      string             REQUIRED     ✓ MOO_FOO                                                                    
+                                                                                                                        
+                                                                                                                        
+  NOTES                                                                                                                 
+  ━━━━━                                                                                                                 
+  (1)   Parameters can be passed arguments via environment variables. Command line arguments take precedence. Environmen
+        → CLI_PARAMETER_BAR="..."                                                                                       
+        → MOO_FOO="..."                                                                                                 
 "
 `;
 
-exports[`enum > when there is only one enum member it is prefixed with "enum:" to avoid confusion of it looking like the name of a kind of type > monochrome 1`] = `
-"
-PARAMETERS
-                                                                      
-  Name     Type               Default       Environment (1)
-                                                           
-  foo      'apple'             REQUIRED     ✓              
-                                                           
-  
-  NOTES                                                                           
-  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  (1) Parameters can be passed arguments via environment variables. Command line  
-      arguments take precedence. Environment variable names are snake cased       
-      versions of the parameter name (or its aliases), case insensitive. They must
-      be prefixed with CLI_PARAMETER_ or CLI_PARAM_ (case insensitive). Examples: 
-        → CLI_PARAMETER_FOO="..."                                                 
-"
-`;
-
-exports[`enum > when there is only one enum member it is prefixed with "enum:" to avoid confusion of it looking like the name of a kind of type > polychrome 1`] = `
-"
-PARAMETERS
-                                                                      
-  Name     Type               Default       Environment (1)
-                                                           
-  foo      'apple'             REQUIRED     ✓              
-                                                           
-  
-  NOTES                                                                           
-  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  (1) Parameters can be passed arguments via environment variables. Command line  
-      arguments take precedence. Environment variable names are snake cased       
-      versions of the parameter name (or its aliases), case insensitive. They must
-      be prefixed with CLI_PARAMETER_ or CLI_PARAM_ (case insensitive). Examples: 
-        → CLI_PARAMETER_FOO="..."                                                 
+exports[`Help rendering (skipped in CI - kit#41) > environment > when environment has multiple custom prefix they are displayed > monochrome 1`] = `
+"                                                                                                                        
+PARAMETERS                                                                                                              
+                                                                                                                        
+  Name     Type              Default       Environment (1)                                                              
+                                                                                                                        
+  bar      string             REQUIRED     ✓                                                                            
+                                                                                                                        
+  foo      string             REQUIRED     ✓ MOO_FOO | BOO_FOO                                                          
+                                                                                                                        
+                                                                                                                        
+  NOTES                                                                                                                 
+  ━━━━━                                                                                                                 
+  (1)   Parameters can be passed arguments via environment variables. Command line arguments take precedence. Environmen
+        → CLI_PARAMETER_BAR="..."                                                                                       
+        → MOO_FOO="..."                                                                                                 
 "
 `;
 
-exports[`enums do not mess up alignment when they are widest line in the column > monochrome 1`] = `
-"
-PARAMETERS
-                                                                               
-  Name     Type                                               Default       Environment (1)
-                                                                                           
-  foo      'a' | 'b' | 'c' | 'd' | 'e' | 'f' | 'g'             REQUIRED     ✓              
-           | 'h' | 'i' | 'j' | 'k' | 'l' | 'm' |                                           
-           'n' | 'o' | 'p' | 'q' | 'r' | 's' | 't'                                         
-           | 'u' | 'v' | 'w' | 'x' | 'y' | 'z'                                             
-                                                                                           
-  bar      string                                             undefined     ✓              
-                                                                                           
-  
-  NOTES                                                                           
-  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  (1) Parameters can be passed arguments via environment variables. Command line  
-      arguments take precedence. Environment variable names are snake cased       
-      versions of the parameter name (or its aliases), case insensitive. They must
-      be prefixed with CLI_PARAMETER_ or CLI_PARAM_ (case insensitive). Examples: 
-        → CLI_PARAMETER_FOO="..."                                                 
-        → CLI_PARAMETER_BAR="..."                                                 
+exports[`Help rendering (skipped in CI - kit#41) > environment > when environment has no prefix it is displayed > monochrome 1`] = `
+"                                                                                                                        
+PARAMETERS                                                                                                              
+                                                                                                                        
+  Name     Type              Default       Environment (1)                                                              
+                                                                                                                        
+  bar      string             REQUIRED     ✓                                                                            
+                                                                                                                        
+  foo      string             REQUIRED     ✓ FOO                                                                        
+                                                                                                                        
+                                                                                                                        
+  NOTES                                                                                                                 
+  ━━━━━                                                                                                                 
+  (1)   Parameters can be passed arguments via environment variables. Command line arguments take precedence. Environmen
+        → CLI_PARAMETER_BAR="..."                                                                                       
+        → FOO="..."                                                                                                     
 "
 `;
 
-exports[`enums do not mess up alignment when they are widest line in the column > polychrome 1`] = `
-"
-PARAMETERS
-                                                                               
-  Name     Type                                               Default       Environment (1)
-                                                                                           
-  foo      'a' | 'b' | 'c' | 'd' | 'e' | 'f' | 'g'             REQUIRED     ✓              
-           | 'h' | 'i' | 'j' | 'k' | 'l' | 'm' |                                           
-           'n' | 'o' | 'p' | 'q' | 'r' | 's' | 't'                                         
-           | 'u' | 'v' | 'w' | 'x' | 'y' | 'z'                                             
-                                                                                           
-  bar      string                                             undefined     ✓              
-                                                                                           
-  
-  NOTES                                                                           
-  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  (1) Parameters can be passed arguments via environment variables. Command line  
-      arguments take precedence. Environment variable names are snake cased       
-      versions of the parameter name (or its aliases), case insensitive. They must
-      be prefixed with CLI_PARAMETER_ or CLI_PARAM_ (case insensitive). Examples: 
-        → CLI_PARAMETER_FOO="..."                                                 
-        → CLI_PARAMETER_BAR="..."                                                 
+exports[`Help rendering (skipped in CI - kit#41) > environment > when environment is disabled for one parameter it has X indicating that > monochrome 1`] = `
+"                                                                                                                        
+PARAMETERS                                                                                                              
+                                                                                                                        
+  Name     Type              Default       Environment (1)                                                              
+                                                                                                                        
+  bar      string             REQUIRED     ✓                                                                            
+                                                                                                                        
+  foo      string             REQUIRED     ✕                                                                            
+                                                                                                                        
+                                                                                                                        
+  NOTES                                                                                                                 
+  ━━━━━                                                                                                                 
+  (1)   Parameters can be passed arguments via environment variables. Command line arguments take precedence. Environmen
+        → CLI_PARAMETER_BAR="..."                                                                                       
 "
 `;
 
-exports[`environment > when environment has custom prefix it is displayed > monochrome 1`] = `
+exports[`Help rendering (skipped in CI - kit#41) > environment > when environment is disabled then environment doc is not shown > monochrome 1`] = `
 "
 PARAMETERS
-                                                                      
-  Name     Type              Default       Environment (1)
-                                                          
-  bar      string             REQUIRED     ✓              
-                                                          
-  foo      string             REQUIRED     ✓ MOO_FOO      
-                                                          
-  
-  NOTES                                                                           
-  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  (1) Parameters can be passed arguments via environment variables. Command line
-      arguments take precedence. Environment variable names are snake cased     
-      versions of the parameter name (or its aliases), case insensitive. By     
-      default they must be prefixed with CLI_PARAMETER_ or CLI_PARAM_ (case     
-      insensitive), though some parameters deviate (shown in docs). Examples:   
-        → CLI_PARAMETER_BAR="..."                                               
-        → MOO_FOO="..."                                                         
-"
-`;
 
-exports[`environment > when environment has custom prefix it is displayed > polychrome 1`] = `
-"
-PARAMETERS
-                                                                      
-  Name     Type              Default       Environment (1)
-                                                          
-  bar      string             REQUIRED     ✓              
-                                                          
-  foo      string             REQUIRED     ✓ MOO_FOO      
-                                                          
-  
-  NOTES                                                                           
-  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  (1) Parameters can be passed arguments via environment variables. Command line
-      arguments take precedence. Environment variable names are snake cased     
-      versions of the parameter name (or its aliases), case insensitive. By     
-      default they must be prefixed with CLI_PARAMETER_ or CLI_PARAM_ (case     
-      insensitive), though some parameters deviate (shown in docs). Examples:   
-        → CLI_PARAMETER_BAR="..."                                               
-        → MOO_FOO="..."                                                         
-"
-`;
-
-exports[`environment > when environment has multiple custom prefix they are displayed > monochrome 1`] = `
-"
-PARAMETERS
-                                                                      
-  Name     Type              Default       Environment (1)    
-                                                              
-  bar      string             REQUIRED     ✓                  
-                                                              
-  foo      string             REQUIRED     ✓ MOO_FOO | BOO_FOO
-                                                              
-  
-  NOTES                                                                           
-  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  (1) Parameters can be passed arguments via environment variables. Command line
-      arguments take precedence. Environment variable names are snake cased     
-      versions of the parameter name (or its aliases), case insensitive. By     
-      default they must be prefixed with CLI_PARAMETER_ or CLI_PARAM_ (case     
-      insensitive), though some parameters deviate (shown in docs). Examples:   
-        → CLI_PARAMETER_BAR="..."                                               
-        → MOO_FOO="..."                                                         
-"
-`;
-
-exports[`environment > when environment has multiple custom prefix they are displayed > polychrome 1`] = `
-"
-PARAMETERS
-                                                                      
-  Name     Type              Default       Environment (1)    
-                                                              
-  bar      string             REQUIRED     ✓                  
-                                                              
-  foo      string             REQUIRED     ✓ MOO_FOO | BOO_FOO
-                                                              
-  
-  NOTES                                                                           
-  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  (1) Parameters can be passed arguments via environment variables. Command line
-      arguments take precedence. Environment variable names are snake cased     
-      versions of the parameter name (or its aliases), case insensitive. By     
-      default they must be prefixed with CLI_PARAMETER_ or CLI_PARAM_ (case     
-      insensitive), though some parameters deviate (shown in docs). Examples:   
-        → CLI_PARAMETER_BAR="..."                                               
-        → MOO_FOO="..."                                                         
-"
-`;
-
-exports[`environment > when environment has no prefix it is displayed > monochrome 1`] = `
-"
-PARAMETERS
-                                                                      
-  Name     Type              Default       Environment (1)
-                                                          
-  bar      string             REQUIRED     ✓              
-                                                          
-  foo      string             REQUIRED     ✓ FOO          
-                                                          
-  
-  NOTES                                                                           
-  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  (1) Parameters can be passed arguments via environment variables. Command line  
-      arguments take precedence. Environment variable names are snake cased       
-      versions of the parameter name (or its aliases), case insensitive. They must
-      be prefixed with CLI_PARAMETER_ or CLI_PARAM_ (case insensitive). Examples: 
-        → CLI_PARAMETER_BAR="..."                                                 
-        → FOO="..."                                                               
-"
-`;
-
-exports[`environment > when environment has no prefix it is displayed > polychrome 1`] = `
-"
-PARAMETERS
-                                                                      
-  Name     Type              Default       Environment (1)
-                                                          
-  bar      string             REQUIRED     ✓              
-                                                          
-  foo      string             REQUIRED     ✓ FOO          
-                                                          
-  
-  NOTES                                                                           
-  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  (1) Parameters can be passed arguments via environment variables. Command line  
-      arguments take precedence. Environment variable names are snake cased       
-      versions of the parameter name (or its aliases), case insensitive. They must
-      be prefixed with CLI_PARAMETER_ or CLI_PARAM_ (case insensitive). Examples: 
-        → CLI_PARAMETER_BAR="..."                                                 
-        → FOO="..."                                                               
-"
-`;
-
-exports[`environment > when environment is disabled for one parameter it has X indicating that > monochrome 1`] = `
-"
-PARAMETERS
-                                                                      
-  Name     Type              Default       Environment (1)
-                                                          
-  bar      string             REQUIRED     ✓              
-                                                          
-  foo      string             REQUIRED     ✕              
-                                                          
-  
-  NOTES                                                                           
-  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  (1) Parameters can be passed arguments via environment variables. Command line  
-      arguments take precedence. Environment variable names are snake cased       
-      versions of the parameter name (or its aliases), case insensitive. They must
-      be prefixed with CLI_PARAMETER_ or CLI_PARAM_ (case insensitive). Examples: 
-        → CLI_PARAMETER_BAR="..."                                                 
-"
-`;
-
-exports[`environment > when environment is disabled for one parameter it has X indicating that > polychrome 1`] = `
-"
-PARAMETERS
-                                                                      
-  Name     Type              Default       Environment (1)
-                                                          
-  bar      string             REQUIRED     ✓              
-                                                          
-  foo      string             REQUIRED     ✕              
-                                                          
-  
-  NOTES                                                                           
-  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  (1) Parameters can be passed arguments via environment variables. Command line  
-      arguments take precedence. Environment variable names are snake cased       
-      versions of the parameter name (or its aliases), case insensitive. They must
-      be prefixed with CLI_PARAMETER_ or CLI_PARAM_ (case insensitive). Examples: 
-        → CLI_PARAMETER_BAR="..."                                                 
-"
-`;
-
-exports[`environment > when environment is disabled then environment doc is not shown > monochrome 1`] = `
-"
-PARAMETERS
-                            
   Name     Type              Default    
                                         
   foo      string             REQUIRED  
@@ -397,10 +169,544 @@ PARAMETERS
 "
 `;
 
-exports[`environment > when environment is disabled then environment doc is not shown > polychrome 1`] = `
+exports[`Help rendering (skipped in CI - kit#41) > environment > when environment is enabled it shows as the last column > monochrome 1`] = `
+"                                                                                                                        
+PARAMETERS                                                                                                              
+                                                                                                                        
+  Name     Type              Default       Environment (1)                                                              
+                                                                                                                        
+  foo      string             REQUIRED     ✓                                                                            
+                                                                                                                        
+                                                                                                                        
+  NOTES                                                                                                                 
+  ━━━━━                                                                                                                 
+  (1)   Parameters can be passed arguments via environment variables. Command line arguments take precedence. Environmen
+        → CLI_PARAMETER_FOO="..."                                                                                       
+"
+`;
+
+exports[`Help rendering (skipped in CI - kit#41) > exclusive > default > shows the group default > monochrome 1`] = `
+"                                                                                                                        
+PARAMETERS                                                                                                              
+                                                                                                                        
+  Name        Type            Default           Environment (1)                                                         
+                                                                                                                        
+  ┌─foo (2)                       bar@bar_default                                                                       
+                                                                                                                        
+  ◒ bar       string          –                 ✓                                                                       
+  │ b                                                                                                                   
+  ◒ baz       string          –                 ✓                                                                       
+  │ z                                                                                                                   
+  └─                                                                                                                    
+                                                                                                                        
+  NOTES                                                                                                                 
+  ━━━━━                                                                                                                 
+  (1)   Parameters can be passed arguments via environment variables. Command line arguments take precedence. Environmen
+        → CLI_PARAMETER_BAZ="..."                                                                                       
+        → CLI_PARAMETER_BAR="..."                                                                                       
+  (2) This is a set of mutually exclusive parameters. Only one can be provided at a time. If more than one is provided, 
+"
+`;
+
+exports[`Help rendering (skipped in CI - kit#41) > exclusive > default with long value > shows the group default > monochrome 1`] = `
+"                                                                                                                        
+PARAMETERS                                                                                                              
+                                                                                                                        
+  Name        Type            Default                               Environment (1)                                     
+                                                                                                                        
+  ┌─foo (2)                       bar@bar_defaulttttttttttttttttttttt                                                   
+                                                                                                                        
+  ◒ bar       string          –                                     ✓                                                   
+  │ b                                                                                                                   
+  ◒ baz       string          –                                     ✓                                                   
+  │ z                                                                                                                   
+  └─                                                                                                                    
+                                                                                                                        
+  NOTES                                                                                                                 
+  ━━━━━                                                                                                                 
+  (1)   Parameters can be passed arguments via environment variables. Command line arguments take precedence. Environmen
+        → CLI_PARAMETER_BAZ="..."                                                                                       
+        → CLI_PARAMETER_BAR="..."                                                                                       
+  (2) This is a set of mutually exclusive parameters. Only one can be provided at a time. If more than one is provided, 
+"
+`;
+
+exports[`Help rendering (skipped in CI - kit#41) > exclusive > optional > shows exclusive parameters as a group > monochrome 1`] = `
+"                                                                                                                        
+PARAMETERS                                                                                                              
+                                                                                                                        
+  Name        Type            Default       Environment (1)                                                             
+                                                                                                                        
+  ┌─foo (2)                       undefined                                                                             
+                                                                                                                        
+  ◒ bar       string          –             ✓                                                                           
+  │ b                                                                                                                   
+  ◒ baz       string          –             ✓                                                                           
+  │ z                                                                                                                   
+  └─                                                                                                                    
+                                                                                                                        
+  NOTES                                                                                                                 
+  ━━━━━                                                                                                                 
+  (1)   Parameters can be passed arguments via environment variables. Command line arguments take precedence. Environmen
+        → CLI_PARAMETER_BAR="..."                                                                                       
+        → CLI_PARAMETER_BAZ="..."                                                                                       
+  (2) This is a set of mutually exclusive parameters. Only one can be provided at a time. If more than one is provided, 
+"
+`;
+
+exports[`Help rendering (skipped in CI - kit#41) > exclusive > with environment disabled > shows the group default > monochrome 1`] = `
+"                                                                                                                        
+PARAMETERS                                                                                                              
+                                                                                                                        
+  Name        Type            Default                                                                                   
+                                                                                                                        
+  ┌─foo (2)                       bar@bar_default                                                                       
+                                                                                                                        
+  ◒ bar       string          –                                                                                         
+  │ b                                                                                                                   
+  ◒ baz       string          –                                                                                         
+  │ z                                                                                                                   
+  └─                                                                                                                    
+                                                                                                                        
+  NOTES                                                                                                                 
+  ━━━━━                                                                                                                 
+  (1) This is a set of mutually exclusive parameters. Only one can be provided at a time. If more than one is provided, 
+"
+`;
+
+exports[`Help rendering (skipped in CI - kit#41) > if command has description it is shown > monochrome 1`] = `
+"                                                                                                                        
+ABOUT                                                                                                                   
+                                                                                                                        
+  Blah blah blah                                                                                                        
+                                                                                                                        
+PARAMETERS                                                                                                              
+                                                                                                                        
+  Name     Type              Default       Environment (1)                                                              
+                                                                                                                        
+  foo      string            undefined     ✓                                                                            
+                                                                                                                        
+                                                                                                                        
+  NOTES                                                                                                                 
+  ━━━━━                                                                                                                 
+  (1)   Parameters can be passed arguments via environment variables. Command line arguments take precedence. Environmen
+        → CLI_PARAMETER_FOO="..."                                                                                       
+"
+`;
+
+exports[`Help rendering (skipped in CI - kit#41) > if parameter has default it is shown > monochrome 1`] = `
+"                                                                                                                        
+PARAMETERS                                                                                                              
+                                                                                                                        
+  Name     Type              Default       Environment (1)                                                              
+                                                                                                                        
+  foo      string            bar           ✓                                                                            
+                                                                                                                        
+                                                                                                                        
+  NOTES                                                                                                                 
+  ━━━━━                                                                                                                 
+  (1)   Parameters can be passed arguments via environment variables. Command line arguments take precedence. Environmen
+        → CLI_PARAMETER_FOO="..."                                                                                       
+"
+`;
+
+exports[`Help rendering (skipped in CI - kit#41) > if parameter has description it is shown > monochrome 1`] = `
+"                                                                                                                        
+PARAMETERS                                                                                                              
+                                                                                                                        
+  Name     Type/Description           Default       Environment (1)                                                     
+                                                                                                                        
+  a        string                     undefined     ✓                                                                   
+  a        Blah blah blah.                                                                                              
+                                                                                                                        
+                                                                                                                        
+  NOTES                                                                                                                 
+  ━━━━━                                                                                                                 
+  (1)   Parameters can be passed arguments via environment variables. Command line arguments take precedence. Environmen
+        → CLI_PARAMETER_A="..."                                                                                         
+"
+`;
+
+exports[`Help rendering (skipped in CI - kit#41) > if parameter is optional without default then its default shows up as "undefined" > monochrome 1`] = `
+"                                                                                                                        
+PARAMETERS                                                                                                              
+                                                                                                                        
+  Name     Type              Default       Environment (1)                                                              
+                                                                                                                        
+  foo      string            undefined     ✓                                                                            
+                                                                                                                        
+                                                                                                                        
+  NOTES                                                                                                                 
+  ━━━━━                                                                                                                 
+  (1)   Parameters can be passed arguments via environment variables. Command line arguments take precedence. Environmen
+        → CLI_PARAMETER_FOO="..."                                                                                       
+"
+`;
+
+exports[`Help rendering (skipped in CI - kit#41) > if there is an error trying to get default then a nice message is shown > monochrome 1`] = `
+"                                                                                                                        
+PARAMETERS                                                                                                              
+                                                                                                                        
+  Name     Type              Default                                       Environment (1)                              
+                                                                                                                        
+  foo      string            Error trying to render this default: whoops   ✓                                            
+                                                                                                                        
+                                                                                                                        
+  NOTES                                                                                                                 
+  ━━━━━                                                                                                                 
+  (1)   Parameters can be passed arguments via environment variables. Command line arguments take precedence. Environmen
+        → CLI_PARAMETER_FOO="..."                                                                                       
+"
+`;
+
+exports[`Help rendering (skipped in CI - kit#41) > if there is an error trying to get default then a nice message is shown > monochrome 2`] = `
+"                                                                                                                        
+PARAMETERS                                                                                                              
+                                                                                                                        
+  Name     Type              Default                                       Environment (1)                              
+                                                                                                                        
+  foo      string            Error trying to render this default: whoops   ✓                                            
+                                                                                                                        
+                                                                                                                        
+  NOTES                                                                                                                 
+  ━━━━━                                                                                                                 
+  (1)   Parameters can be passed arguments via environment variables. Command line arguments take precedence. Environmen
+        → CLI_PARAMETER_FOO="..."                                                                                       
+"
+`;
+
+exports[`Help rendering (skipped in CI - kit#41) > if there is optional param it is shown > monochrome 1`] = `
+"                                                                                                                        
+PARAMETERS                                                                                                              
+                                                                                                                        
+  Name     Type              Default       Environment (1)                                                              
+                                                                                                                        
+  a        string            undefined     ✓                                                                            
+  a                                                                                                                     
+                                                                                                                        
+                                                                                                                        
+  NOTES                                                                                                                 
+  ━━━━━                                                                                                                 
+  (1)   Parameters can be passed arguments via environment variables. Command line arguments take precedence. Environmen
+        → CLI_PARAMETER_A="..."                                                                                         
+"
+`;
+
+exports[`Help rendering (skipped in CI - kit#41) > long description wraps within column > monochrome 1`] = `
+"                                                                                                                        
+PARAMETERS                                                                                                              
+                                                                                                                        
+  Name     Type/Description                                           Default       Environment (1)                     
+                                                                                                                        
+  a        string                                                     undefined     ✓                                   
+  a        Blah blah blah. Blah blah blah. Blah blah blah.                                                              
+                                                                                                                        
+                                                                                                                        
+  NOTES                                                                                                                 
+  ━━━━━                                                                                                                 
+  (1)   Parameters can be passed arguments via environment variables. Command line arguments take precedence. Environmen
+        → CLI_PARAMETER_A="..."                                                                                         
+"
+`;
+
+exports[`Help rendering (skipped in CI - kit#41) > union parameter > condensed pipe style > used when no descriptions given for anything > monochrome 1`] = `
+"                                                                                                                        
+PARAMETERS                                                                                                              
+                                                                                                                        
+  Name     Type                       Default       Environment (1)                                                     
+                                                                                                                        
+  bar      string | number             REQUIRED     ✓                                                                   
+  b                                                                                                                     
+                                                                                                                        
+                                                                                                                        
+  NOTES                                                                                                                 
+  ━━━━━                                                                                                                 
+  (1)   Parameters can be passed arguments via environment variables. Command line arguments take precedence. Environmen
+        → CLI_PARAMETER_BAR="..."                                                                                       
+"
+`;
+
+exports[`Help rendering (skipped in CI - kit#41) > union parameter > condensed pipe style > used when only overall description given > monochrome 1`] = `
+"                                                                                                                        
+PARAMETERS                                                                                                              
+                                                                                                                        
+  Name     Type/Description           Default       Environment (1)                                                     
+                                                                                                                        
+  bar      string | number             REQUIRED     ✓                                                                   
+  b        Blah blah blah.                                                                                              
+                                                                                                                        
+                                                                                                                        
+  NOTES                                                                                                                 
+  ━━━━━                                                                                                                 
+  (1)   Parameters can be passed arguments via environment variables. Command line arguments take precedence. Environmen
+        → CLI_PARAMETER_BAR="..."                                                                                       
+"
+`;
+
+exports[`Help rendering (skipped in CI - kit#41) > union parameter > expanded style > can be forced via settings > monochrome 1`] = `
+"                                                                                                                        
+PARAMETERS                                                                                                              
+                                                                                                                        
+  Name     Type                       Default       Environment (1)                                                     
+                                                                                                                        
+  bar      string | number             REQUIRED     ✓                                                                   
+  b                                                                                                                     
+                                                                                                                        
+                                                                                                                        
+  NOTES                                                                                                                 
+  ━━━━━                                                                                                                 
+  (1)   Parameters can be passed arguments via environment variables. Command line arguments take precedence. Environmen
+        → CLI_PARAMETER_BAR="..."                                                                                       
+"
+`;
+
+exports[`Help rendering (skipped in CI - kit#41) > union parameter > expanded style > shows member on each line if at least one has description > monochrome 1`] = `
+"                                                                                                                        
+PARAMETERS                                                                                                              
+                                                                                                                        
+  Name     Type                       Default       Environment (1)                                                     
+                                                                                                                        
+  bar      string | number             REQUIRED     ✓                                                                   
+  b                                                                                                                     
+                                                                                                                        
+                                                                                                                        
+  NOTES                                                                                                                 
+  ━━━━━                                                                                                                 
+  (1)   Parameters can be passed arguments via environment variables. Command line arguments take precedence. Environmen
+        → CLI_PARAMETER_BAR="..."                                                                                       
+"
+`;
+
+exports[`Help rendering (skipped in CI - kit#41) > union parameter > expanded style > shows member on each line if each has description > monochrome 1`] = `
+"                                                                                                                        
+PARAMETERS                                                                                                              
+                                                                                                                        
+  Name     Type                       Default       Environment (1)                                                     
+                                                                                                                        
+  bar      string | number             REQUIRED     ✓                                                                   
+  b                                                                                                                     
+                                                                                                                        
+                                                                                                                        
+  NOTES                                                                                                                 
+  ━━━━━                                                                                                                 
+  (1)   Parameters can be passed arguments via environment variables. Command line arguments take precedence. Environmen
+        → CLI_PARAMETER_BAR="..."                                                                                       
+"
+`;
+
+exports[`Help rendering (skipped in CI - kit#41) > union parameter > expanded style > shows overall description above all members when members also have descriptions > monochrome 1`] = `
+"                                                                                                                        
+PARAMETERS                                                                                                              
+                                                                                                                        
+  Name     Type/Description                   Default       Environment (1)                                             
+                                                                                                                        
+  bar      string | number                     REQUIRED     ✓                                                           
+  b        Blah blah blah overall.                                                                                      
+                                                                                                                        
+                                                                                                                        
+  NOTES                                                                                                                 
+  ━━━━━                                                                                                                 
+  (1)   Parameters can be passed arguments via environment variables. Command line arguments take precedence. Environmen
+        → CLI_PARAMETER_BAR="..."                                                                                       
+"
+`;
+
+exports[`Help rendering (skipped in CI - kit#41) > union parameter > shows default as undefined when overall optional > monochrome 1`] = `
+"                                                                                                                        
+PARAMETERS                                                                                                              
+                                                                                                                        
+  Name     Type/Description                   Default       Environment (1)                                             
+                                                                                                                        
+  bar      string | number                    undefined     ✓                                                           
+  b        Blah blah blah overall.                                                                                      
+                                                                                                                        
+                                                                                                                        
+  NOTES                                                                                                                 
+  ━━━━━                                                                                                                 
+  (1)   Parameters can be passed arguments via environment variables. Command line arguments take precedence. Environmen
+        → CLI_PARAMETER_BAR="..."                                                                                       
+"
+`;
+
+exports[`Help rendering (skipped in CI - kit#41) > union parameter > shows default when overall has a default > monochrome 1`] = `
+"                                                                                                                        
+PARAMETERS                                                                                                              
+                                                                                                                        
+  Name     Type/Description                   Default       Environment (1)                                             
+                                                                                                                        
+  bar      string | number                    1             ✓                                                           
+  b        Blah blah blah overall.                                                                                      
+                                                                                                                        
+                                                                                                                        
+  NOTES                                                                                                                 
+  ━━━━━                                                                                                                 
+  (1)   Parameters can be passed arguments via environment variables. Command line arguments take precedence. Environmen
+        → CLI_PARAMETER_BAR="..."                                                                                       
+"
+`;
+
+exports[`enum > enum members are listed > monochrome 1`] = `
+"                                                                                                                        
+PARAMETERS                                                                                                              
+                                                                                                                        
+  Name     Type                                   Default       Environment (1)                                         
+                                                                                                                        
+  foo      'apple' | 'dolphin' | 'cab'             REQUIRED     ✓                                                       
+                                                                                                                        
+                                                                                                                        
+  NOTES                                                                                                                 
+  ━━━━━                                                                                                                 
+  (1)   Parameters can be passed arguments via environment variables. Command line arguments take precedence. Environmen
+        → CLI_PARAMETER_FOO="..."                                                                                       
+"
+`;
+
+exports[`enum > optional enum members are listed > monochrome 1`] = `
+"                                                                                                                        
+PARAMETERS                                                                                                              
+                                                                                                                        
+  Name     Type                                   Default       Environment (1)                                         
+                                                                                                                        
+  foo      'apple' | 'dolphin' | 'cab'            undefined     ✓                                                       
+                                                                                                                        
+                                                                                                                        
+  NOTES                                                                                                                 
+  ━━━━━                                                                                                                 
+  (1)   Parameters can be passed arguments via environment variables. Command line arguments take precedence. Environmen
+        → CLI_PARAMETER_FOO="..."                                                                                       
+"
+`;
+
+exports[`enum > when there are many members they wrap > monochrome 1`] = `
+"                                                                                                                        
+PARAMETERS                                                                                                              
+                                                                                                                        
+  Name     Type                                                                                                         
+                                                                                                                        
+  foo      'apple' | 'baby' | 'cannabis' | 'dinosaur' | 'elephant' | 'fanna' | 'goat' | 'house' | 'island' | 'jake' | 'k
+                                                                                                                        
+                                                                                                                        
+  NOTES                                                                                                                 
+  ━━━━━                                                                                                                 
+  (1)   Parameters can be passed arguments via environment variables. Command line arguments take precedence. Environmen
+        → CLI_PARAMETER_FOO="..."                                                                                       
+"
+`;
+
+exports[`enum > when there is only one enum member it is prefixed with "enum:" to avoid confusion of it looking like the name of a kind of type > monochrome 1`] = `
+"                                                                                                                        
+PARAMETERS                                                                                                              
+                                                                                                                        
+  Name     Type               Default       Environment (1)                                                             
+                                                                                                                        
+  foo      'apple'             REQUIRED     ✓                                                                           
+                                                                                                                        
+                                                                                                                        
+  NOTES                                                                                                                 
+  ━━━━━                                                                                                                 
+  (1)   Parameters can be passed arguments via environment variables. Command line arguments take precedence. Environmen
+        → CLI_PARAMETER_FOO="..."                                                                                       
+"
+`;
+
+exports[`enums do not mess up alignment when they are widest line in the column > monochrome 1`] = `
+"                                                                                                                        
+PARAMETERS                                                                                                              
+                                                                                                                        
+  Name     Type                                                                                                         
+                                                                                                                        
+  foo      'a' | 'b' | 'c' | 'd' | 'e' | 'f' | 'g' | 'h' | 'i' | 'j' | 'k' | 'l' | 'm' | 'n' | 'o' | 'p' | 'q' | 'r' | '
+                                                                                                                        
+  bar      string                                                                                                       
+                                                                                                                        
+                                                                                                                        
+  NOTES                                                                                                                 
+  ━━━━━                                                                                                                 
+  (1)   Parameters can be passed arguments via environment variables. Command line arguments take precedence. Environmen
+        → CLI_PARAMETER_FOO="..."                                                                                       
+        → CLI_PARAMETER_BAR="..."                                                                                       
+"
+`;
+
+exports[`environment > when environment has custom prefix it is displayed > monochrome 1`] = `
+"                                                                                                                        
+PARAMETERS                                                                                                              
+                                                                                                                        
+  Name     Type              Default       Environment (1)                                                              
+                                                                                                                        
+  bar      string             REQUIRED     ✓                                                                            
+                                                                                                                        
+  foo      string             REQUIRED     ✓ MOO_FOO                                                                    
+                                                                                                                        
+                                                                                                                        
+  NOTES                                                                                                                 
+  ━━━━━                                                                                                                 
+  (1)   Parameters can be passed arguments via environment variables. Command line arguments take precedence. Environmen
+        → CLI_PARAMETER_BAR="..."                                                                                       
+        → MOO_FOO="..."                                                                                                 
+"
+`;
+
+exports[`environment > when environment has multiple custom prefix they are displayed > monochrome 1`] = `
+"                                                                                                                        
+PARAMETERS                                                                                                              
+                                                                                                                        
+  Name     Type              Default       Environment (1)                                                              
+                                                                                                                        
+  bar      string             REQUIRED     ✓                                                                            
+                                                                                                                        
+  foo      string             REQUIRED     ✓ MOO_FOO | BOO_FOO                                                          
+                                                                                                                        
+                                                                                                                        
+  NOTES                                                                                                                 
+  ━━━━━                                                                                                                 
+  (1)   Parameters can be passed arguments via environment variables. Command line arguments take precedence. Environmen
+        → CLI_PARAMETER_BAR="..."                                                                                       
+        → MOO_FOO="..."                                                                                                 
+"
+`;
+
+exports[`environment > when environment has no prefix it is displayed > monochrome 1`] = `
+"                                                                                                                        
+PARAMETERS                                                                                                              
+                                                                                                                        
+  Name     Type              Default       Environment (1)                                                              
+                                                                                                                        
+  bar      string             REQUIRED     ✓                                                                            
+                                                                                                                        
+  foo      string             REQUIRED     ✓ FOO                                                                        
+                                                                                                                        
+                                                                                                                        
+  NOTES                                                                                                                 
+  ━━━━━                                                                                                                 
+  (1)   Parameters can be passed arguments via environment variables. Command line arguments take precedence. Environmen
+        → CLI_PARAMETER_BAR="..."                                                                                       
+        → FOO="..."                                                                                                     
+"
+`;
+
+exports[`environment > when environment is disabled for one parameter it has X indicating that > monochrome 1`] = `
+"                                                                                                                        
+PARAMETERS                                                                                                              
+                                                                                                                        
+  Name     Type              Default       Environment (1)                                                              
+                                                                                                                        
+  bar      string             REQUIRED     ✓                                                                            
+                                                                                                                        
+  foo      string             REQUIRED     ✕                                                                            
+                                                                                                                        
+                                                                                                                        
+  NOTES                                                                                                                 
+  ━━━━━                                                                                                                 
+  (1)   Parameters can be passed arguments via environment variables. Command line arguments take precedence. Environmen
+        → CLI_PARAMETER_BAR="..."                                                                                       
+"
+`;
+
+exports[`environment > when environment is disabled then environment doc is not shown > monochrome 1`] = `
 "
 PARAMETERS
-                            
+
   Name     Type              Default    
                                         
   foo      string             REQUIRED  
@@ -409,883 +715,377 @@ PARAMETERS
 `;
 
 exports[`environment > when environment is enabled it shows as the last column > monochrome 1`] = `
-"
-PARAMETERS
-                                                                      
-  Name     Type              Default       Environment (1)
-                                                          
-  foo      string             REQUIRED     ✓              
-                                                          
-  
-  NOTES                                                                           
-  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  (1) Parameters can be passed arguments via environment variables. Command line  
-      arguments take precedence. Environment variable names are snake cased       
-      versions of the parameter name (or its aliases), case insensitive. They must
-      be prefixed with CLI_PARAMETER_ or CLI_PARAM_ (case insensitive). Examples: 
-        → CLI_PARAMETER_FOO="..."                                                 
-"
-`;
-
-exports[`environment > when environment is enabled it shows as the last column > polychrome 1`] = `
-"
-PARAMETERS
-                                                                      
-  Name     Type              Default       Environment (1)
-                                                          
-  foo      string             REQUIRED     ✓              
-                                                          
-  
-  NOTES                                                                           
-  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  (1) Parameters can be passed arguments via environment variables. Command line  
-      arguments take precedence. Environment variable names are snake cased       
-      versions of the parameter name (or its aliases), case insensitive. They must
-      be prefixed with CLI_PARAMETER_ or CLI_PARAM_ (case insensitive). Examples: 
-        → CLI_PARAMETER_FOO="..."                                                 
+"                                                                                                                        
+PARAMETERS                                                                                                              
+                                                                                                                        
+  Name     Type              Default       Environment (1)                                                              
+                                                                                                                        
+  foo      string             REQUIRED     ✓                                                                            
+                                                                                                                        
+                                                                                                                        
+  NOTES                                                                                                                 
+  ━━━━━                                                                                                                 
+  (1)   Parameters can be passed arguments via environment variables. Command line arguments take precedence. Environmen
+        → CLI_PARAMETER_FOO="..."                                                                                       
 "
 `;
 
 exports[`exclusive > default > shows the group default > monochrome 1`] = `
-"
-PARAMETERS
-                                                                      
-  Name        Type            Default           Environment (1)
-                                                               
-  ┌─foo (2)                   bar@bar_default
-  ◒ bar       string          –                 ✓              
-  │ b                                                          
-  ◒ baz       string          –                 ✓              
-  │ z                                                          
-  └─       
-  
-  NOTES                                                                           
-  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  (1) Parameters can be passed arguments via environment variables. Command line  
-      arguments take precedence. Environment variable names are snake cased       
-      versions of the parameter name (or its aliases), case insensitive. They must
-      be prefixed with CLI_PARAMETER_ or CLI_PARAM_ (case insensitive). Examples: 
-        → CLI_PARAMETER_BAZ="..."                                                 
-        → CLI_PARAMETER_BAR="..."                                                 
-  (2) This is a set of mutually exclusive parameters. Only one can be provided at
-      a time. If more than one is provided, execution will fail with an input    
-      error.                                                                     
-"
-`;
-
-exports[`exclusive > default > shows the group default > polychrome 1`] = `
-"
-PARAMETERS
-                                                                      
-  Name        Type            Default           Environment (1)
-                                                               
-  ┌─foo (2)                   bar@bar_default
-  ◒ bar       string          –                 ✓              
-  │ b                                                          
-  ◒ baz       string          –                 ✓              
-  │ z                                                          
-  └─       
-  
-  NOTES                                                                           
-  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  (1) Parameters can be passed arguments via environment variables. Command line  
-      arguments take precedence. Environment variable names are snake cased       
-      versions of the parameter name (or its aliases), case insensitive. They must
-      be prefixed with CLI_PARAMETER_ or CLI_PARAM_ (case insensitive). Examples: 
-        → CLI_PARAMETER_BAZ="..."                                                 
-        → CLI_PARAMETER_BAR="..."                                                 
-  (2) This is a set of mutually exclusive parameters. Only one can be provided at
-      a time. If more than one is provided, execution will fail with an input    
-      error.                                                                     
+"                                                                                                                        
+PARAMETERS                                                                                                              
+                                                                                                                        
+  Name        Type            Default           Environment (1)                                                         
+                                                                                                                        
+  ┌─foo (2)                       bar@bar_default                                                                       
+                                                                                                                        
+  ◒ bar       string          –                 ✓                                                                       
+  │ b                                                                                                                   
+  ◒ baz       string          –                 ✓                                                                       
+  │ z                                                                                                                   
+  └─                                                                                                                    
+                                                                                                                        
+  NOTES                                                                                                                 
+  ━━━━━                                                                                                                 
+  (1)   Parameters can be passed arguments via environment variables. Command line arguments take precedence. Environmen
+        → CLI_PARAMETER_BAZ="..."                                                                                       
+        → CLI_PARAMETER_BAR="..."                                                                                       
+  (2) This is a set of mutually exclusive parameters. Only one can be provided at a time. If more than one is provided, 
 "
 `;
 
 exports[`exclusive > default with long value > shows the group default > monochrome 1`] = `
-"
-PARAMETERS
-                                                                       
-  Name        Type            Default                               Environment (1)
-                                                                                   
-  ┌─foo (2)                   bar@bar_defaulttttttttttttttttttttt
-  ◒ bar       string          –                                     ✓              
-  │ b                                                                              
-  ◒ baz       string          –                                     ✓              
-  │ z                                                                              
-  └─       
-  
-  NOTES                                                                           
-  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  (1) Parameters can be passed arguments via environment variables. Command line  
-      arguments take precedence. Environment variable names are snake cased       
-      versions of the parameter name (or its aliases), case insensitive. They must
-      be prefixed with CLI_PARAMETER_ or CLI_PARAM_ (case insensitive). Examples: 
-        → CLI_PARAMETER_BAZ="..."                                                 
-        → CLI_PARAMETER_BAR="..."                                                 
-  (2) This is a set of mutually exclusive parameters. Only one can be provided at
-      a time. If more than one is provided, execution will fail with an input    
-      error.                                                                     
-"
-`;
-
-exports[`exclusive > default with long value > shows the group default > polychrome 1`] = `
-"
-PARAMETERS
-                                                                       
-  Name        Type            Default                               Environment (1)
-                                                                                   
-  ┌─foo (2)                   bar@bar_defaulttttttttttttttttttttt
-  ◒ bar       string          –                                     ✓              
-  │ b                                                                              
-  ◒ baz       string          –                                     ✓              
-  │ z                                                                              
-  └─       
-  
-  NOTES                                                                           
-  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  (1) Parameters can be passed arguments via environment variables. Command line  
-      arguments take precedence. Environment variable names are snake cased       
-      versions of the parameter name (or its aliases), case insensitive. They must
-      be prefixed with CLI_PARAMETER_ or CLI_PARAM_ (case insensitive). Examples: 
-        → CLI_PARAMETER_BAZ="..."                                                 
-        → CLI_PARAMETER_BAR="..."                                                 
-  (2) This is a set of mutually exclusive parameters. Only one can be provided at
-      a time. If more than one is provided, execution will fail with an input    
-      error.                                                                     
+"                                                                                                                        
+PARAMETERS                                                                                                              
+                                                                                                                        
+  Name        Type            Default                               Environment (1)                                     
+                                                                                                                        
+  ┌─foo (2)                       bar@bar_defaulttttttttttttttttttttt                                                   
+                                                                                                                        
+  ◒ bar       string          –                                     ✓                                                   
+  │ b                                                                                                                   
+  ◒ baz       string          –                                     ✓                                                   
+  │ z                                                                                                                   
+  └─                                                                                                                    
+                                                                                                                        
+  NOTES                                                                                                                 
+  ━━━━━                                                                                                                 
+  (1)   Parameters can be passed arguments via environment variables. Command line arguments take precedence. Environmen
+        → CLI_PARAMETER_BAZ="..."                                                                                       
+        → CLI_PARAMETER_BAR="..."                                                                                       
+  (2) This is a set of mutually exclusive parameters. Only one can be provided at a time. If more than one is provided, 
 "
 `;
 
 exports[`exclusive > optional > shows exclusive parameters as a group > monochrome 1`] = `
-"
-PARAMETERS
-                                                                      
-  Name        Type            Default       Environment (1)
-                                                           
-  ┌─foo (2)                   undefined  
-  ◒ bar       string          –             ✓              
-  │ b                                                      
-  ◒ baz       string          –             ✓              
-  │ z                                                      
-  └─       
-  
-  NOTES                                                                           
-  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  (1) Parameters can be passed arguments via environment variables. Command line  
-      arguments take precedence. Environment variable names are snake cased       
-      versions of the parameter name (or its aliases), case insensitive. They must
-      be prefixed with CLI_PARAMETER_ or CLI_PARAM_ (case insensitive). Examples: 
-        → CLI_PARAMETER_BAR="..."                                                 
-        → CLI_PARAMETER_BAZ="..."                                                 
-  (2) This is a set of mutually exclusive parameters. Only one can be provided at
-      a time. If more than one is provided, execution will fail with an input    
-      error.                                                                     
-"
-`;
-
-exports[`exclusive > optional > shows exclusive parameters as a group > polychrome 1`] = `
-"
-PARAMETERS
-                                                                      
-  Name        Type            Default       Environment (1)
-                                                           
-  ┌─foo (2)                   undefined  
-  ◒ bar       string          –             ✓              
-  │ b                                                      
-  ◒ baz       string          –             ✓              
-  │ z                                                      
-  └─       
-  
-  NOTES                                                                           
-  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  (1) Parameters can be passed arguments via environment variables. Command line  
-      arguments take precedence. Environment variable names are snake cased       
-      versions of the parameter name (or its aliases), case insensitive. They must
-      be prefixed with CLI_PARAMETER_ or CLI_PARAM_ (case insensitive). Examples: 
-        → CLI_PARAMETER_BAR="..."                                                 
-        → CLI_PARAMETER_BAZ="..."                                                 
-  (2) This is a set of mutually exclusive parameters. Only one can be provided at
-      a time. If more than one is provided, execution will fail with an input    
-      error.                                                                     
+"                                                                                                                        
+PARAMETERS                                                                                                              
+                                                                                                                        
+  Name        Type            Default       Environment (1)                                                             
+                                                                                                                        
+  ┌─foo (2)                       undefined                                                                             
+                                                                                                                        
+  ◒ bar       string          –             ✓                                                                           
+  │ b                                                                                                                   
+  ◒ baz       string          –             ✓                                                                           
+  │ z                                                                                                                   
+  └─                                                                                                                    
+                                                                                                                        
+  NOTES                                                                                                                 
+  ━━━━━                                                                                                                 
+  (1)   Parameters can be passed arguments via environment variables. Command line arguments take precedence. Environmen
+        → CLI_PARAMETER_BAR="..."                                                                                       
+        → CLI_PARAMETER_BAZ="..."                                                                                       
+  (2) This is a set of mutually exclusive parameters. Only one can be provided at a time. If more than one is provided, 
 "
 `;
 
 exports[`exclusive > with environment disabled > shows the group default > monochrome 1`] = `
-"
-PARAMETERS
-                                                                      
-  Name        Type            Default        
-                                             
-  ┌─foo (2)                   bar@bar_default
-  ◒ bar       string          –              
-  │ b                                        
-  ◒ baz       string          –              
-  │ z                                        
-  └─       
-  
-  NOTES                                                                           
-  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  (1) This is a set of mutually exclusive parameters. Only one can be provided at
-      a time. If more than one is provided, execution will fail with an input    
-      error.                                                                     
-"
-`;
-
-exports[`exclusive > with environment disabled > shows the group default > polychrome 1`] = `
-"
-PARAMETERS
-                                                                      
-  Name        Type            Default        
-                                             
-  ┌─foo (2)                   bar@bar_default
-  ◒ bar       string          –              
-  │ b                                        
-  ◒ baz       string          –              
-  │ z                                        
-  └─       
-  
-  NOTES                                                                           
-  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  (1) This is a set of mutually exclusive parameters. Only one can be provided at
-      a time. If more than one is provided, execution will fail with an input    
-      error.                                                                     
+"                                                                                                                        
+PARAMETERS                                                                                                              
+                                                                                                                        
+  Name        Type            Default                                                                                   
+                                                                                                                        
+  ┌─foo (2)                       bar@bar_default                                                                       
+                                                                                                                        
+  ◒ bar       string          –                                                                                         
+  │ b                                                                                                                   
+  ◒ baz       string          –                                                                                         
+  │ z                                                                                                                   
+  └─                                                                                                                    
+                                                                                                                        
+  NOTES                                                                                                                 
+  ━━━━━                                                                                                                 
+  (1) This is a set of mutually exclusive parameters. Only one can be provided at a time. If more than one is provided, 
 "
 `;
 
 exports[`if command has description it is shown > monochrome 1`] = `
-"
-ABOUT
-         
-  Blah blah blah                                                 
-
-PARAMETERS
-                                                                      
-  Name     Type              Default       Environment (1)
-                                                          
-  foo      string            undefined     ✓              
-                                                          
-  
-  NOTES                                                                           
-  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  (1) Parameters can be passed arguments via environment variables. Command line  
-      arguments take precedence. Environment variable names are snake cased       
-      versions of the parameter name (or its aliases), case insensitive. They must
-      be prefixed with CLI_PARAMETER_ or CLI_PARAM_ (case insensitive). Examples: 
-        → CLI_PARAMETER_FOO="..."                                                 
-"
-`;
-
-exports[`if command has description it is shown > polychrome 1`] = `
-"
-ABOUT
-         
-  Blah blah blah                                                 
-
-PARAMETERS
-                                                                      
-  Name     Type              Default       Environment (1)
-                                                          
-  foo      string            undefined     ✓              
-                                                          
-  
-  NOTES                                                                           
-  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  (1) Parameters can be passed arguments via environment variables. Command line  
-      arguments take precedence. Environment variable names are snake cased       
-      versions of the parameter name (or its aliases), case insensitive. They must
-      be prefixed with CLI_PARAMETER_ or CLI_PARAM_ (case insensitive). Examples: 
-        → CLI_PARAMETER_FOO="..."                                                 
+"                                                                                                                        
+ABOUT                                                                                                                   
+                                                                                                                        
+  Blah blah blah                                                                                                        
+                                                                                                                        
+PARAMETERS                                                                                                              
+                                                                                                                        
+  Name     Type              Default       Environment (1)                                                              
+                                                                                                                        
+  foo      string            undefined     ✓                                                                            
+                                                                                                                        
+                                                                                                                        
+  NOTES                                                                                                                 
+  ━━━━━                                                                                                                 
+  (1)   Parameters can be passed arguments via environment variables. Command line arguments take precedence. Environmen
+        → CLI_PARAMETER_FOO="..."                                                                                       
 "
 `;
 
 exports[`if parameter has default it is shown > monochrome 1`] = `
-"
-PARAMETERS
-                                                                      
-  Name     Type              Default       Environment (1)
-                                                          
-  foo      string            bar           ✓              
-                                                          
-  
-  NOTES                                                                           
-  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  (1) Parameters can be passed arguments via environment variables. Command line  
-      arguments take precedence. Environment variable names are snake cased       
-      versions of the parameter name (or its aliases), case insensitive. They must
-      be prefixed with CLI_PARAMETER_ or CLI_PARAM_ (case insensitive). Examples: 
-        → CLI_PARAMETER_FOO="..."                                                 
-"
-`;
-
-exports[`if parameter has default it is shown > polychrome 1`] = `
-"
-PARAMETERS
-                                                                      
-  Name     Type              Default       Environment (1)
-                                                          
-  foo      string            bar           ✓              
-                                                          
-  
-  NOTES                                                                           
-  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  (1) Parameters can be passed arguments via environment variables. Command line  
-      arguments take precedence. Environment variable names are snake cased       
-      versions of the parameter name (or its aliases), case insensitive. They must
-      be prefixed with CLI_PARAMETER_ or CLI_PARAM_ (case insensitive). Examples: 
-        → CLI_PARAMETER_FOO="..."                                                 
+"                                                                                                                        
+PARAMETERS                                                                                                              
+                                                                                                                        
+  Name     Type              Default       Environment (1)                                                              
+                                                                                                                        
+  foo      string            bar           ✓                                                                            
+                                                                                                                        
+                                                                                                                        
+  NOTES                                                                                                                 
+  ━━━━━                                                                                                                 
+  (1)   Parameters can be passed arguments via environment variables. Command line arguments take precedence. Environmen
+        → CLI_PARAMETER_FOO="..."                                                                                       
 "
 `;
 
 exports[`if parameter has description it is shown > monochrome 1`] = `
-"
-PARAMETERS
-                                                                      
-  Name     Type/Description           Default       Environment (1)
-                                                                   
-  a        string                     undefined     ✓              
-  a        Blah blah blah.                                         
-                                                                   
-  
-  NOTES                                                                           
-  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  (1) Parameters can be passed arguments via environment variables. Command line  
-      arguments take precedence. Environment variable names are snake cased       
-      versions of the parameter name (or its aliases), case insensitive. They must
-      be prefixed with CLI_PARAMETER_ or CLI_PARAM_ (case insensitive). Examples: 
-        → CLI_PARAMETER_A="..."                                                   
-"
-`;
-
-exports[`if parameter has description it is shown > polychrome 1`] = `
-"
-PARAMETERS
-                                                                      
-  Name     Type/Description           Default       Environment (1)
-                                                                   
-  a        string                     undefined     ✓              
-  a        Blah blah blah.                                         
-                                                                   
-  
-  NOTES                                                                           
-  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  (1) Parameters can be passed arguments via environment variables. Command line  
-      arguments take precedence. Environment variable names are snake cased       
-      versions of the parameter name (or its aliases), case insensitive. They must
-      be prefixed with CLI_PARAMETER_ or CLI_PARAM_ (case insensitive). Examples: 
-        → CLI_PARAMETER_A="..."                                                   
+"                                                                                                                        
+PARAMETERS                                                                                                              
+                                                                                                                        
+  Name     Type/Description           Default       Environment (1)                                                     
+                                                                                                                        
+  a        string                     undefined     ✓                                                                   
+  a        Blah blah blah.                                                                                              
+                                                                                                                        
+                                                                                                                        
+  NOTES                                                                                                                 
+  ━━━━━                                                                                                                 
+  (1)   Parameters can be passed arguments via environment variables. Command line arguments take precedence. Environmen
+        → CLI_PARAMETER_A="..."                                                                                         
 "
 `;
 
 exports[`if parameter is optional without default then its default shows up as "undefined" > monochrome 1`] = `
-"
-PARAMETERS
-                                                                      
-  Name     Type              Default       Environment (1)
-                                                          
-  foo      string            undefined     ✓              
-                                                          
-  
-  NOTES                                                                           
-  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  (1) Parameters can be passed arguments via environment variables. Command line  
-      arguments take precedence. Environment variable names are snake cased       
-      versions of the parameter name (or its aliases), case insensitive. They must
-      be prefixed with CLI_PARAMETER_ or CLI_PARAM_ (case insensitive). Examples: 
-        → CLI_PARAMETER_FOO="..."                                                 
-"
-`;
-
-exports[`if parameter is optional without default then its default shows up as "undefined" > polychrome 1`] = `
-"
-PARAMETERS
-                                                                      
-  Name     Type              Default       Environment (1)
-                                                          
-  foo      string            undefined     ✓              
-                                                          
-  
-  NOTES                                                                           
-  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  (1) Parameters can be passed arguments via environment variables. Command line  
-      arguments take precedence. Environment variable names are snake cased       
-      versions of the parameter name (or its aliases), case insensitive. They must
-      be prefixed with CLI_PARAMETER_ or CLI_PARAM_ (case insensitive). Examples: 
-        → CLI_PARAMETER_FOO="..."                                                 
+"                                                                                                                        
+PARAMETERS                                                                                                              
+                                                                                                                        
+  Name     Type              Default       Environment (1)                                                              
+                                                                                                                        
+  foo      string            undefined     ✓                                                                            
+                                                                                                                        
+                                                                                                                        
+  NOTES                                                                                                                 
+  ━━━━━                                                                                                                 
+  (1)   Parameters can be passed arguments via environment variables. Command line arguments take precedence. Environmen
+        → CLI_PARAMETER_FOO="..."                                                                                       
 "
 `;
 
 exports[`if there is an error trying to get default then a nice message is shown > monochrome 1`] = `
-"
-PARAMETERS
-                                                                      
-  Name     Type              Default                  Environment (1)
-                                                                     
-  foo      string            Error trying to render   ✓              
-                             this default: whoops                    
-  
-  NOTES                                                                           
-  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  (1) Parameters can be passed arguments via environment variables. Command line  
-      arguments take precedence. Environment variable names are snake cased       
-      versions of the parameter name (or its aliases), case insensitive. They must
-      be prefixed with CLI_PARAMETER_ or CLI_PARAM_ (case insensitive). Examples: 
-        → CLI_PARAMETER_FOO="..."                                                 
+"                                                                                                                        
+PARAMETERS                                                                                                              
+                                                                                                                        
+  Name     Type              Default                                       Environment (1)                              
+                                                                                                                        
+  foo      string            Error trying to render this default: whoops   ✓                                            
+                                                                                                                        
+                                                                                                                        
+  NOTES                                                                                                                 
+  ━━━━━                                                                                                                 
+  (1)   Parameters can be passed arguments via environment variables. Command line arguments take precedence. Environmen
+        → CLI_PARAMETER_FOO="..."                                                                                       
 "
 `;
 
 exports[`if there is an error trying to get default then a nice message is shown > monochrome 2`] = `
-"
-PARAMETERS
-                                                                      
-  Name     Type              Default                  Environment (1)
-                                                                     
-  foo      string            Error trying to render   ✓              
-                             this default: whoops                    
-  
-  NOTES                                                                           
-  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  (1) Parameters can be passed arguments via environment variables. Command line  
-      arguments take precedence. Environment variable names are snake cased       
-      versions of the parameter name (or its aliases), case insensitive. They must
-      be prefixed with CLI_PARAMETER_ or CLI_PARAM_ (case insensitive). Examples: 
-        → CLI_PARAMETER_FOO="..."                                                 
-"
-`;
-
-exports[`if there is an error trying to get default then a nice message is shown > polychrome 1`] = `
-"
-PARAMETERS
-                                                                      
-  Name     Type              Default                  Environment (1)
-                                                                     
-  foo      string            Error trying to render   ✓              
-                             this default: whoops                    
-  
-  NOTES                                                                           
-  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  (1) Parameters can be passed arguments via environment variables. Command line  
-      arguments take precedence. Environment variable names are snake cased       
-      versions of the parameter name (or its aliases), case insensitive. They must
-      be prefixed with CLI_PARAMETER_ or CLI_PARAM_ (case insensitive). Examples: 
-        → CLI_PARAMETER_FOO="..."                                                 
-"
-`;
-
-exports[`if there is an error trying to get default then a nice message is shown > polychrome 2`] = `
-"
-PARAMETERS
-                                                                      
-  Name     Type              Default                  Environment (1)
-                                                                     
-  foo      string            Error trying to render   ✓              
-                             this default: whoops                    
-  
-  NOTES                                                                           
-  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  (1) Parameters can be passed arguments via environment variables. Command line  
-      arguments take precedence. Environment variable names are snake cased       
-      versions of the parameter name (or its aliases), case insensitive. They must
-      be prefixed with CLI_PARAMETER_ or CLI_PARAM_ (case insensitive). Examples: 
-        → CLI_PARAMETER_FOO="..."                                                 
+"                                                                                                                        
+PARAMETERS                                                                                                              
+                                                                                                                        
+  Name     Type              Default                                       Environment (1)                              
+                                                                                                                        
+  foo      string            Error trying to render this default: whoops   ✓                                            
+                                                                                                                        
+                                                                                                                        
+  NOTES                                                                                                                 
+  ━━━━━                                                                                                                 
+  (1)   Parameters can be passed arguments via environment variables. Command line arguments take precedence. Environmen
+        → CLI_PARAMETER_FOO="..."                                                                                       
 "
 `;
 
 exports[`if there is optional param it is shown > monochrome 1`] = `
-"
-PARAMETERS
-                                                                      
-  Name     Type              Default       Environment (1)
-                                                          
-  a        string            undefined     ✓              
-  a                                                       
-                                                          
-  
-  NOTES                                                                           
-  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  (1) Parameters can be passed arguments via environment variables. Command line  
-      arguments take precedence. Environment variable names are snake cased       
-      versions of the parameter name (or its aliases), case insensitive. They must
-      be prefixed with CLI_PARAMETER_ or CLI_PARAM_ (case insensitive). Examples: 
-        → CLI_PARAMETER_A="..."                                                   
-"
-`;
-
-exports[`if there is optional param it is shown > polychrome 1`] = `
-"
-PARAMETERS
-                                                                      
-  Name     Type              Default       Environment (1)
-                                                          
-  a        string            undefined     ✓              
-  a                                                       
-                                                          
-  
-  NOTES                                                                           
-  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  (1) Parameters can be passed arguments via environment variables. Command line  
-      arguments take precedence. Environment variable names are snake cased       
-      versions of the parameter name (or its aliases), case insensitive. They must
-      be prefixed with CLI_PARAMETER_ or CLI_PARAM_ (case insensitive). Examples: 
-        → CLI_PARAMETER_A="..."                                                   
+"                                                                                                                        
+PARAMETERS                                                                                                              
+                                                                                                                        
+  Name     Type              Default       Environment (1)                                                              
+                                                                                                                        
+  a        string            undefined     ✓                                                                            
+  a                                                                                                                     
+                                                                                                                        
+                                                                                                                        
+  NOTES                                                                                                                 
+  ━━━━━                                                                                                                 
+  (1)   Parameters can be passed arguments via environment variables. Command line arguments take precedence. Environmen
+        → CLI_PARAMETER_A="..."                                                                                         
 "
 `;
 
 exports[`long description wraps within column > monochrome 1`] = `
-"
-PARAMETERS
-                                                                            
-  Name     Type/Description                                Default       Environment (1)
-                                                                                        
-  a        string                                          undefined     ✓              
-  a        Blah blah blah. Blah blah blah. Blah                                         
-           blah blah.                                                                   
-                                                                                        
-  
-  NOTES                                                                           
-  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  (1) Parameters can be passed arguments via environment variables. Command line  
-      arguments take precedence. Environment variable names are snake cased       
-      versions of the parameter name (or its aliases), case insensitive. They must
-      be prefixed with CLI_PARAMETER_ or CLI_PARAM_ (case insensitive). Examples: 
-        → CLI_PARAMETER_A="..."                                                   
-"
-`;
-
-exports[`long description wraps within column > polychrome 1`] = `
-"
-PARAMETERS
-                                                                            
-  Name     Type/Description                                Default       Environment (1)
-                                                                                        
-  a        string                                          undefined     ✓              
-  a        Blah blah blah. Blah blah blah. Blah                                         
-           blah blah.                                                                   
-                                                                                        
-  
-  NOTES                                                                           
-  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  (1) Parameters can be passed arguments via environment variables. Command line  
-      arguments take precedence. Environment variable names are snake cased       
-      versions of the parameter name (or its aliases), case insensitive. They must
-      be prefixed with CLI_PARAMETER_ or CLI_PARAM_ (case insensitive). Examples: 
-        → CLI_PARAMETER_A="..."                                                   
+"                                                                                                                        
+PARAMETERS                                                                                                              
+                                                                                                                        
+  Name     Type/Description                                           Default       Environment (1)                     
+                                                                                                                        
+  a        string                                                     undefined     ✓                                   
+  a        Blah blah blah. Blah blah blah. Blah blah blah.                                                              
+                                                                                                                        
+                                                                                                                        
+  NOTES                                                                                                                 
+  ━━━━━                                                                                                                 
+  (1)   Parameters can be passed arguments via environment variables. Command line arguments take precedence. Environmen
+        → CLI_PARAMETER_A="..."                                                                                         
 "
 `;
 
 exports[`union parameter > condensed pipe style > used when no descriptions given for anything > monochrome 1`] = `
-"
-PARAMETERS
-                                                                      
-  Name     Type                       Default       Environment (1)
-                                                                   
-  bar      string | number             REQUIRED     ✓              
-  b                                                                
-                                                                   
-  
-  NOTES                                                                           
-  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  (1) Parameters can be passed arguments via environment variables. Command line  
-      arguments take precedence. Environment variable names are snake cased       
-      versions of the parameter name (or its aliases), case insensitive. They must
-      be prefixed with CLI_PARAMETER_ or CLI_PARAM_ (case insensitive). Examples: 
-        → CLI_PARAMETER_BAR="..."                                                 
-"
-`;
-
-exports[`union parameter > condensed pipe style > used when no descriptions given for anything > polychrome 1`] = `
-"
-PARAMETERS
-                                                                      
-  Name     Type                       Default       Environment (1)
-                                                                   
-  bar      string | number             REQUIRED     ✓              
-  b                                                                
-                                                                   
-  
-  NOTES                                                                           
-  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  (1) Parameters can be passed arguments via environment variables. Command line  
-      arguments take precedence. Environment variable names are snake cased       
-      versions of the parameter name (or its aliases), case insensitive. They must
-      be prefixed with CLI_PARAMETER_ or CLI_PARAM_ (case insensitive). Examples: 
-        → CLI_PARAMETER_BAR="..."                                                 
+"                                                                                                                        
+PARAMETERS                                                                                                              
+                                                                                                                        
+  Name     Type                       Default       Environment (1)                                                     
+                                                                                                                        
+  bar      string | number             REQUIRED     ✓                                                                   
+  b                                                                                                                     
+                                                                                                                        
+                                                                                                                        
+  NOTES                                                                                                                 
+  ━━━━━                                                                                                                 
+  (1)   Parameters can be passed arguments via environment variables. Command line arguments take precedence. Environmen
+        → CLI_PARAMETER_BAR="..."                                                                                       
 "
 `;
 
 exports[`union parameter > condensed pipe style > used when only overall description given > monochrome 1`] = `
-"
-PARAMETERS
-                                                                      
-  Name     Type/Description           Default       Environment (1)
-                                                                   
-  bar      string | number             REQUIRED     ✓              
-  b        Blah blah blah.                                         
-                                                                   
-  
-  NOTES                                                                           
-  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  (1) Parameters can be passed arguments via environment variables. Command line  
-      arguments take precedence. Environment variable names are snake cased       
-      versions of the parameter name (or its aliases), case insensitive. They must
-      be prefixed with CLI_PARAMETER_ or CLI_PARAM_ (case insensitive). Examples: 
-        → CLI_PARAMETER_BAR="..."                                                 
-"
-`;
-
-exports[`union parameter > condensed pipe style > used when only overall description given > polychrome 1`] = `
-"
-PARAMETERS
-                                                                      
-  Name     Type/Description           Default       Environment (1)
-                                                                   
-  bar      string | number             REQUIRED     ✓              
-  b        Blah blah blah.                                         
-                                                                   
-  
-  NOTES                                                                           
-  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  (1) Parameters can be passed arguments via environment variables. Command line  
-      arguments take precedence. Environment variable names are snake cased       
-      versions of the parameter name (or its aliases), case insensitive. They must
-      be prefixed with CLI_PARAMETER_ or CLI_PARAM_ (case insensitive). Examples: 
-        → CLI_PARAMETER_BAR="..."                                                 
+"                                                                                                                        
+PARAMETERS                                                                                                              
+                                                                                                                        
+  Name     Type/Description           Default       Environment (1)                                                     
+                                                                                                                        
+  bar      string | number             REQUIRED     ✓                                                                   
+  b        Blah blah blah.                                                                                              
+                                                                                                                        
+                                                                                                                        
+  NOTES                                                                                                                 
+  ━━━━━                                                                                                                 
+  (1)   Parameters can be passed arguments via environment variables. Command line arguments take precedence. Environmen
+        → CLI_PARAMETER_BAR="..."                                                                                       
 "
 `;
 
 exports[`union parameter > expanded style > can be forced via settings > monochrome 1`] = `
-"
-PARAMETERS
-                                                                      
-  Name     Type                       Default       Environment (1)
-                                                                   
-  bar      string | number             REQUIRED     ✓              
-  b                                                                
-                                                                   
-  
-  NOTES                                                                           
-  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  (1) Parameters can be passed arguments via environment variables. Command line  
-      arguments take precedence. Environment variable names are snake cased       
-      versions of the parameter name (or its aliases), case insensitive. They must
-      be prefixed with CLI_PARAMETER_ or CLI_PARAM_ (case insensitive). Examples: 
-        → CLI_PARAMETER_BAR="..."                                                 
-"
-`;
-
-exports[`union parameter > expanded style > can be forced via settings > polychrome 1`] = `
-"
-PARAMETERS
-                                                                      
-  Name     Type                       Default       Environment (1)
-                                                                   
-  bar      string | number             REQUIRED     ✓              
-  b                                                                
-                                                                   
-  
-  NOTES                                                                           
-  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  (1) Parameters can be passed arguments via environment variables. Command line  
-      arguments take precedence. Environment variable names are snake cased       
-      versions of the parameter name (or its aliases), case insensitive. They must
-      be prefixed with CLI_PARAMETER_ or CLI_PARAM_ (case insensitive). Examples: 
-        → CLI_PARAMETER_BAR="..."                                                 
+"                                                                                                                        
+PARAMETERS                                                                                                              
+                                                                                                                        
+  Name     Type                       Default       Environment (1)                                                     
+                                                                                                                        
+  bar      string | number             REQUIRED     ✓                                                                   
+  b                                                                                                                     
+                                                                                                                        
+                                                                                                                        
+  NOTES                                                                                                                 
+  ━━━━━                                                                                                                 
+  (1)   Parameters can be passed arguments via environment variables. Command line arguments take precedence. Environmen
+        → CLI_PARAMETER_BAR="..."                                                                                       
 "
 `;
 
 exports[`union parameter > expanded style > shows member on each line if at least one has description > monochrome 1`] = `
-"
-PARAMETERS
-                                                                      
-  Name     Type                       Default       Environment (1)
-                                                                   
-  bar      string | number             REQUIRED     ✓              
-  b                                                                
-                                                                   
-  
-  NOTES                                                                           
-  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  (1) Parameters can be passed arguments via environment variables. Command line  
-      arguments take precedence. Environment variable names are snake cased       
-      versions of the parameter name (or its aliases), case insensitive. They must
-      be prefixed with CLI_PARAMETER_ or CLI_PARAM_ (case insensitive). Examples: 
-        → CLI_PARAMETER_BAR="..."                                                 
-"
-`;
-
-exports[`union parameter > expanded style > shows member on each line if at least one has description > polychrome 1`] = `
-"
-PARAMETERS
-                                                                      
-  Name     Type                       Default       Environment (1)
-                                                                   
-  bar      string | number             REQUIRED     ✓              
-  b                                                                
-                                                                   
-  
-  NOTES                                                                           
-  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  (1) Parameters can be passed arguments via environment variables. Command line  
-      arguments take precedence. Environment variable names are snake cased       
-      versions of the parameter name (or its aliases), case insensitive. They must
-      be prefixed with CLI_PARAMETER_ or CLI_PARAM_ (case insensitive). Examples: 
-        → CLI_PARAMETER_BAR="..."                                                 
+"                                                                                                                        
+PARAMETERS                                                                                                              
+                                                                                                                        
+  Name     Type                       Default       Environment (1)                                                     
+                                                                                                                        
+  bar      string | number             REQUIRED     ✓                                                                   
+  b                                                                                                                     
+                                                                                                                        
+                                                                                                                        
+  NOTES                                                                                                                 
+  ━━━━━                                                                                                                 
+  (1)   Parameters can be passed arguments via environment variables. Command line arguments take precedence. Environmen
+        → CLI_PARAMETER_BAR="..."                                                                                       
 "
 `;
 
 exports[`union parameter > expanded style > shows member on each line if each has description > monochrome 1`] = `
-"
-PARAMETERS
-                                                                      
-  Name     Type                       Default       Environment (1)
-                                                                   
-  bar      string | number             REQUIRED     ✓              
-  b                                                                
-                                                                   
-  
-  NOTES                                                                           
-  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  (1) Parameters can be passed arguments via environment variables. Command line  
-      arguments take precedence. Environment variable names are snake cased       
-      versions of the parameter name (or its aliases), case insensitive. They must
-      be prefixed with CLI_PARAMETER_ or CLI_PARAM_ (case insensitive). Examples: 
-        → CLI_PARAMETER_BAR="..."                                                 
-"
-`;
-
-exports[`union parameter > expanded style > shows member on each line if each has description > polychrome 1`] = `
-"
-PARAMETERS
-                                                                      
-  Name     Type                       Default       Environment (1)
-                                                                   
-  bar      string | number             REQUIRED     ✓              
-  b                                                                
-                                                                   
-  
-  NOTES                                                                           
-  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  (1) Parameters can be passed arguments via environment variables. Command line  
-      arguments take precedence. Environment variable names are snake cased       
-      versions of the parameter name (or its aliases), case insensitive. They must
-      be prefixed with CLI_PARAMETER_ or CLI_PARAM_ (case insensitive). Examples: 
-        → CLI_PARAMETER_BAR="..."                                                 
+"                                                                                                                        
+PARAMETERS                                                                                                              
+                                                                                                                        
+  Name     Type                       Default       Environment (1)                                                     
+                                                                                                                        
+  bar      string | number             REQUIRED     ✓                                                                   
+  b                                                                                                                     
+                                                                                                                        
+                                                                                                                        
+  NOTES                                                                                                                 
+  ━━━━━                                                                                                                 
+  (1)   Parameters can be passed arguments via environment variables. Command line arguments take precedence. Environmen
+        → CLI_PARAMETER_BAR="..."                                                                                       
 "
 `;
 
 exports[`union parameter > expanded style > shows overall description above all members when members also have descriptions > monochrome 1`] = `
-"
-PARAMETERS
-                                                                      
-  Name     Type/Description                   Default       Environment (1)
-                                                                           
-  bar      string | number                     REQUIRED     ✓              
-  b        Blah blah blah overall.                                         
-                                                                           
-  
-  NOTES                                                                           
-  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  (1) Parameters can be passed arguments via environment variables. Command line  
-      arguments take precedence. Environment variable names are snake cased       
-      versions of the parameter name (or its aliases), case insensitive. They must
-      be prefixed with CLI_PARAMETER_ or CLI_PARAM_ (case insensitive). Examples: 
-        → CLI_PARAMETER_BAR="..."                                                 
-"
-`;
-
-exports[`union parameter > expanded style > shows overall description above all members when members also have descriptions > polychrome 1`] = `
-"
-PARAMETERS
-                                                                      
-  Name     Type/Description                   Default       Environment (1)
-                                                                           
-  bar      string | number                     REQUIRED     ✓              
-  b        Blah blah blah overall.                                         
-                                                                           
-  
-  NOTES                                                                           
-  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  (1) Parameters can be passed arguments via environment variables. Command line  
-      arguments take precedence. Environment variable names are snake cased       
-      versions of the parameter name (or its aliases), case insensitive. They must
-      be prefixed with CLI_PARAMETER_ or CLI_PARAM_ (case insensitive). Examples: 
-        → CLI_PARAMETER_BAR="..."                                                 
+"                                                                                                                        
+PARAMETERS                                                                                                              
+                                                                                                                        
+  Name     Type/Description                   Default       Environment (1)                                             
+                                                                                                                        
+  bar      string | number                     REQUIRED     ✓                                                           
+  b        Blah blah blah overall.                                                                                      
+                                                                                                                        
+                                                                                                                        
+  NOTES                                                                                                                 
+  ━━━━━                                                                                                                 
+  (1)   Parameters can be passed arguments via environment variables. Command line arguments take precedence. Environmen
+        → CLI_PARAMETER_BAR="..."                                                                                       
 "
 `;
 
 exports[`union parameter > shows default as undefined when overall optional > monochrome 1`] = `
-"
-PARAMETERS
-                                                                      
-  Name     Type/Description                   Default       Environment (1)
-                                                                           
-  bar      string | number                    undefined     ✓              
-  b        Blah blah blah overall.                                         
-                                                                           
-  
-  NOTES                                                                           
-  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  (1) Parameters can be passed arguments via environment variables. Command line  
-      arguments take precedence. Environment variable names are snake cased       
-      versions of the parameter name (or its aliases), case insensitive. They must
-      be prefixed with CLI_PARAMETER_ or CLI_PARAM_ (case insensitive). Examples: 
-        → CLI_PARAMETER_BAR="..."                                                 
-"
-`;
-
-exports[`union parameter > shows default as undefined when overall optional > polychrome 1`] = `
-"
-PARAMETERS
-                                                                      
-  Name     Type/Description                   Default       Environment (1)
-                                                                           
-  bar      string | number                    undefined     ✓              
-  b        Blah blah blah overall.                                         
-                                                                           
-  
-  NOTES                                                                           
-  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  (1) Parameters can be passed arguments via environment variables. Command line  
-      arguments take precedence. Environment variable names are snake cased       
-      versions of the parameter name (or its aliases), case insensitive. They must
-      be prefixed with CLI_PARAMETER_ or CLI_PARAM_ (case insensitive). Examples: 
-        → CLI_PARAMETER_BAR="..."                                                 
+"                                                                                                                        
+PARAMETERS                                                                                                              
+                                                                                                                        
+  Name     Type/Description                   Default       Environment (1)                                             
+                                                                                                                        
+  bar      string | number                    undefined     ✓                                                           
+  b        Blah blah blah overall.                                                                                      
+                                                                                                                        
+                                                                                                                        
+  NOTES                                                                                                                 
+  ━━━━━                                                                                                                 
+  (1)   Parameters can be passed arguments via environment variables. Command line arguments take precedence. Environmen
+        → CLI_PARAMETER_BAR="..."                                                                                       
 "
 `;
 
 exports[`union parameter > shows default when overall has a default > monochrome 1`] = `
-"
-PARAMETERS
-                                                                      
-  Name     Type/Description                   Default       Environment (1)
-                                                                           
-  bar      string | number                    1             ✓              
-  b        Blah blah blah overall.                                         
-                                                                           
-  
-  NOTES                                                                           
-  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  (1) Parameters can be passed arguments via environment variables. Command line  
-      arguments take precedence. Environment variable names are snake cased       
-      versions of the parameter name (or its aliases), case insensitive. They must
-      be prefixed with CLI_PARAMETER_ or CLI_PARAM_ (case insensitive). Examples: 
-        → CLI_PARAMETER_BAR="..."                                                 
-"
-`;
-
-exports[`union parameter > shows default when overall has a default > polychrome 1`] = `
-"
-PARAMETERS
-                                                                      
-  Name     Type/Description                   Default       Environment (1)
-                                                                           
-  bar      string | number                    1             ✓              
-  b        Blah blah blah overall.                                         
-                                                                           
-  
-  NOTES                                                                           
-  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  (1) Parameters can be passed arguments via environment variables. Command line  
-      arguments take precedence. Environment variable names are snake cased       
-      versions of the parameter name (or its aliases), case insensitive. They must
-      be prefixed with CLI_PARAMETER_ or CLI_PARAM_ (case insensitive). Examples: 
-        → CLI_PARAMETER_BAR="..."                                                 
+"                                                                                                                        
+PARAMETERS                                                                                                              
+                                                                                                                        
+  Name     Type/Description                   Default       Environment (1)                                             
+                                                                                                                        
+  bar      string | number                    1             ✓                                                           
+  b        Blah blah blah overall.                                                                                      
+                                                                                                                        
+                                                                                                                        
+  NOTES                                                                                                                 
+  ━━━━━                                                                                                                 
+  (1)   Parameters can be passed arguments via environment variables. Command line arguments take precedence. Environmen
+        → CLI_PARAMETER_BAR="..."                                                                                       
 "
 `;

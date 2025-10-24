@@ -1,7 +1,6 @@
-import { Str } from '@wollybeard/kit'
+import { Cli, Str } from '@wollybeard/kit'
 import chalk from 'chalk'
 import { groupBy } from '../lib/prelude.js'
-import { Tex } from '../lib/Tex/index.js'
 import { Text } from '../lib/Text/index.js'
 import type { Parameter } from '../Parameter/types.js'
 import * as SchemaRuntime from '../schema/schema-runtime.js'
@@ -62,7 +61,7 @@ export const render = (parameters_: Parameter[], settings: Settings.Output, _set
     (_) => _[0]!.group,
   )
 
-  const noteItems: (Tex.Block | string | null)[] = []
+  const noteItems: (Cli.Tex.Block | string | null)[] = []
 
   if (isAcceptsAnyEnvironmentArgs) {
     noteItems.push(environmentNote(allParametersWithoutHelp, settings))
@@ -74,41 +73,45 @@ export const render = (parameters_: Parameter[], settings: Settings.Output, _set
     )
   }
 
-  const output = Tex.Tex({ maxWidth: 82, padding: { bottom: 0, top: 0 } })
+  // Explicitly set terminal width for deterministic rendering (kit 0.87.0+)
+  // Global read happens at module load time, not per-render
+  // Child blocks can safely specify partial spanRange (kit #36 fixed)
+  const HELP_TERMINAL_WIDTH = 120
+  const output = Cli.Tex.Tex({ terminalWidth: HELP_TERMINAL_WIDTH })
     .block(($) => {
       if (!settings.description) return null
-      return $.block({ padding: { top: 1, bottom: 1 } }, `ABOUT`).block(
-        { padding: { left: 2 } },
+      return $.block({ padding: [1, 0] }, `ABOUT`).block(
+        { padding: { crossStart: 2 } },
         settings.description,
       )
     })
-    .block({ padding: { top: 1, bottom: 1 } }, title(`PARAMETERS`))
+    .block({ padding: [1, 0] }, title(`PARAMETERS`))
     .block(
-      { padding: { left: 2 } },
+      { padding: { crossStart: 2 } },
       (__) =>
         __.table(
           { separators: { column: `   `, row: null } },
           (__) =>
-            __.header({ padding: { right: 2, bottom: 1 } }, chalk.underline(Term.colors.mute(columnTitles.name)))
+            __.header({ padding: { mainEnd: 1, crossEnd: 2 } }, chalk.underline(Term.colors.mute(columnTitles.name)))
               .header(
                 {
-                  minWidth: 8,
-                  padding: { right: 5 },
+                  spanRange: { cross: { min: 8 } },
+                  padding: { crossEnd: 5 },
                 },
                 chalk.underline(Term.colors.mute(columnTitles.typeDescription)),
               )
-              .header({ padding: { right: 4 } }, chalk.underline(Term.colors.mute(columnTitles.default)))
+              .header({ padding: { crossEnd: 4 } }, chalk.underline(Term.colors.mute(columnTitles.default)))
               .header(
                 columnTitles.environment ? chalk.underline(Term.colors.mute(columnTitles.environment)) : null,
               )
               .rows([
                 ...parametersBasicWithoutHelp.map((parameter) => [
                   parameterName(parameter),
-                  Tex.block(
-                    { maxWidth: 40, padding: { right: 9, bottom: 1 } },
+                  Cli.Tex.block(
+                    { padding: { crossEnd: 9, mainEnd: 1 } },
                     SchemaRuntime.help(parameter.type, settings),
                   ),
-                  Tex.block({ maxWidth: 24 }, parameterDefault(parameter)),
+                  Cli.Tex.block({}, parameterDefault(parameter)),
                   ...(isEnvironmentEnabled ? [parameterEnvironment(parameter, settings)] : []),
                 ]),
                 ...parametersExclusiveGroups.flatMap((parametersExclusive) => {
@@ -123,8 +126,8 @@ export const render = (parameters_: Parameter[], settings: Settings.Output, _set
                     : labels.required
                   return [
                     [
-                      Tex.block(
-                        { border: { left: Term.colors.dim(`┌`) } },
+                      Cli.Tex.block(
+                        { border: { edges: { left: Term.colors.dim(`┌`) } } },
                         Term.colors.dim(`─${parametersExclusive.label} ${`(2)`}`),
                       ),
                       ``,
@@ -136,7 +139,7 @@ export const render = (parameters_: Parameter[], settings: Settings.Output, _set
                       parameterDefault(parameter),
                       ...(isEnvironmentEnabled ? [parameterEnvironment(parameter, settings)] : []),
                     ]),
-                    [Tex.block({ border: { left: Term.colors.dim(`└`) } }, Term.colors.dim(`─`))],
+                    [Cli.Tex.block({ border: { edges: { left: Term.colors.dim(`└`) } } }, Term.colors.dim(`─`))],
                   ]
                 }),
               ]),
@@ -144,7 +147,10 @@ export const render = (parameters_: Parameter[], settings: Settings.Output, _set
           if (noteItems.length === 0) {
             return null
           }
-          return $.block({ padding: { top: 1 }, border: { bottom: `━` }, width: `100%` }, `NOTES`).list(
+          return $.block(
+            { padding: { mainStart: 1 }, border: { edges: { bottom: `━` } }, span: { cross: 100n } },
+            `NOTES`,
+          ).list(
             {
               bullet: {
                 graphic: (index) => `(${index + 1})`,
@@ -216,17 +222,15 @@ const environmentNote = (parameters: Parameter[], settings: Settings.Output) => 
     )
     .map((_) => `${_}="..."`)
 
-  return Tex.block(($) =>
+  return Cli.Tex.block({ padding: { crossStart: 2 } }, ($) =>
     $.text(content).list(
       {
-        padding: { left: 2 },
         bullet: {
           graphic: Text.chars.arrowRight,
         },
       },
       examples,
-    )
-  )
+    ))
 }
 
 const parameterDefault = (parameter: Parameter) => {
@@ -258,22 +262,24 @@ const parameterName = (parameter: Parameter) => {
   const isRequired = (parameter._tag === `Basic` && parameter.type.metadata.optionality._tag === `required`)
     || (parameter._tag === `Exclusive` && parameter.group.optionality._tag === `required`)
 
-  const parameters: Tex.BlockParameters = parameter._tag === `Exclusive`
+  const parameters: Cli.Tex.BlockParameters = parameter._tag === `Exclusive`
     ? {
       border: {
-        left: (lineNumber) =>
-          lineNumber === 0
-            ? Term.colors.accent(`◒ `)
-            : Term.colors.dim(`${Text.chars.borders.vertical} `),
+        edges: {
+          left: (ctx) =>
+            ctx.lineIndex === 0
+              ? Term.colors.accent(`◒ `)
+              : Term.colors.dim(`${Text.chars.borders.vertical} `),
+        },
       },
     }
     : {
       padding: {
-        bottom: 1,
+        mainEnd: 1,
       },
     }
 
-  return Tex.block(parameters, (__) =>
+  return Cli.Tex.block(parameters, (__) =>
     __.block(
       isRequired
         ? Term.colors.positiveBold(parameter.name.canonical)

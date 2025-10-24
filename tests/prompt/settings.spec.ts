@@ -1,9 +1,9 @@
-import stripAnsi from 'strip-ansi'
 import { describe, expect, it } from 'vitest'
 import type { Settings } from '../../src/_entrypoints/default.js'
 import type { OakSchema } from '../../src/schema/oak-schema.js'
 import { $, s, tryCatch } from '../_/helpers.js'
 import { memoryPrompter } from '../_/mocks/tty.js'
+import { normalizeTerminalOutput } from '../_/snapshotSerializer.js'
 
 const S = <$Schema extends OakSchema>(settings: Settings.PromptInput<$Schema>) => settings
 const foo = [
@@ -22,8 +22,7 @@ describe(`parameter level`, () => {
         .parse({ line: [], tty: memoryPrompter })
     )
     expect(args).toMatchSnapshot(`args`)
-    if (!process.env.CI) expect(memoryPrompter.history.all).toMatchSnapshot(`tty`)
-    expect(memoryPrompter.history.all.map((_) => stripAnsi(_))).toMatchSnapshot(`tty strip ansi`)
+    expect(normalizeTerminalOutput(memoryPrompter.history.all)).toMatchSnapshot(`tty output`)
   })
 })
 
@@ -35,8 +34,7 @@ describe(`command level`, () => {
       .settings({ onError: `throw`, helpOnError: false, prompt: { when: { result: `rejected` } } })
       .parse({ line: [], tty: memoryPrompter })
     expect(args).toMatchSnapshot(`args`)
-    if (!process.env.CI) expect(memoryPrompter.history.all).toMatchSnapshot(`tty`)
-    expect(memoryPrompter.history.all.map((_) => stripAnsi(_))).toMatchSnapshot(`tty strip ansi`)
+    expect(normalizeTerminalOutput(memoryPrompter.history.all)).toMatchSnapshot(`tty output`)
   })
 })
 
@@ -47,8 +45,7 @@ it(`prompt is disabled by default`, () => {
       .parse({ line: [], tty: memoryPrompter })
   )
   expect(args).toMatchSnapshot(`args`)
-  if (!process.env.CI) expect(memoryPrompter.history.all).toMatchSnapshot(`tty`)
-  expect(memoryPrompter.history.all.map((_) => stripAnsi(_))).toMatchSnapshot(`tty strip ansi`)
+  expect(normalizeTerminalOutput(memoryPrompter.history.all)).toMatchSnapshot(`tty output`)
 })
 
 it(`prompt can be enabled by default`, async () => {
@@ -59,8 +56,7 @@ it(`prompt can be enabled by default`, async () => {
       .parse({ line: [], tty: memoryPrompter })
   )
   expect(args).toMatchSnapshot(`args`)
-  if (!process.env.CI) expect(memoryPrompter.history.all).toMatchSnapshot(`tty`)
-  expect(memoryPrompter.history.all.map((_) => stripAnsi(_))).toMatchSnapshot(`tty strip ansi`)
+  expect(normalizeTerminalOutput(memoryPrompter.history.all)).toMatchSnapshot(`tty output`)
 })
 
 it(`parameter settings overrides default settings`, () => {
@@ -70,8 +66,7 @@ it(`parameter settings overrides default settings`, () => {
       .parse({ line: [], tty: memoryPrompter })
   )
   expect(args).toMatchSnapshot(`args`)
-  if (!process.env.CI) expect(memoryPrompter.history.all).toMatchSnapshot(`tty`)
-  expect(memoryPrompter.history.all.map((_) => stripAnsi(_))).toMatchSnapshot(`tty strip ansi`)
+  expect(normalizeTerminalOutput(memoryPrompter.history.all)).toMatchSnapshot(`tty output`)
 })
 
 describe(`prompt can be toggled by check on error`, () => {
@@ -88,8 +83,7 @@ describe(`prompt can be toggled by check on error`, () => {
           .parse({ line: [], tty: memoryPrompter })
       )
       expect(args).toMatchSnapshot(`args`)
-      if (!process.env.CI) expect(memoryPrompter.history.all).toMatchSnapshot(`tty`)
-      expect(memoryPrompter.history.all.map((_) => stripAnsi(_))).toMatchSnapshot(`tty strip ansi`)
+      expect(normalizeTerminalOutput(memoryPrompter.history.all)).toMatchSnapshot(`tty output`)
     })
     it(`check does not match`, () => {
       const args = tryCatch(() =>
@@ -98,8 +92,7 @@ describe(`prompt can be toggled by check on error`, () => {
           .parse({ line: [], tty: memoryPrompter })
       )
       expect(args).toMatchSnapshot(`args`)
-      if (!process.env.CI) expect(memoryPrompter.history.all).toMatchSnapshot(`tty`)
-      expect(memoryPrompter.history.all.map((_) => stripAnsi(_))).toMatchSnapshot(`tty strip ansi`)
+      expect(normalizeTerminalOutput(memoryPrompter.history.all)).toMatchSnapshot(`tty output`)
     })
   })
 })
@@ -122,8 +115,7 @@ it(`parameter defaults to custom settings`, async () => {
       .parse({ line: [], tty: memoryPrompter })
   )
   expect(args).toMatchSnapshot(`args`)
-  if (!process.env.CI) expect(memoryPrompter.history.all).toMatchSnapshot(`tty`)
-  expect(memoryPrompter.history.all.map((_) => stripAnsi(_))).toMatchSnapshot(`tty strip ansi`)
+  expect(normalizeTerminalOutput(memoryPrompter.history.all)).toMatchSnapshot(`tty output`)
 })
 
 it(`can be stack of conditional prompts`, async () => {
@@ -148,6 +140,5 @@ it(`can be stack of conditional prompts`, async () => {
       .parse({ line: [`-a`, `1`], tty: memoryPrompter })
   )
   expect(args).toMatchSnapshot(`args`)
-  if (!process.env.CI) expect(memoryPrompter.history.all).toMatchSnapshot(`tty`)
-  expect(memoryPrompter.history.all.map((_) => stripAnsi(_))).toMatchSnapshot(`tty strip ansi`)
+  expect(normalizeTerminalOutput(memoryPrompter.history.all)).toMatchSnapshot(`tty output`)
 })

@@ -9,24 +9,18 @@ The parameter "foo" was passed an argument multiple times via different paramete
 
 Here are the docs for this command:
 
-",
-  ],
-  [
-    "
-PARAMETERS
-                                                                      
-  Name     Type              Default       Environment (1)
-                                                          
-  foo      string             REQUIRED     ✓              
-                                                          
-  
-  NOTES                                                                           
-  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  (1) Parameters can be passed arguments via environment variables. Command line  
-      arguments take precedence. Environment variable names are snake cased       
-      versions of the parameter name (or its aliases), case insensitive. They must
-      be prefixed with CLI_PARAMETER_ or CLI_PARAM_ (case insensitive). Examples: 
-        → CLI_PARAMETER_FOO="..."                                                 
+                                                                                                                        
+PARAMETERS                                                                                                              
+                                                                                                                        
+  Name     Type              Default       Environment (1)                                                              
+                                                                                                                        
+  foo      string             REQUIRED     ✓                                                                            
+                                                                                                                        
+                                                                                                                        
+  NOTES                                                                                                                 
+  ━━━━━                                                                                                                 
+  (1)   Parameters can be passed arguments via environment variables. Command line arguments take precedence. Environmen
+        → CLI_PARAMETER_FOO="..."                                                                                       
 ",
   ],
 ]
@@ -42,27 +36,21 @@ X The parameter "bar" was passed an argument multiple times via different parame
 
 Here are the docs for this command:
 
-",
-  ],
-  [
-    "
-PARAMETERS
-                                                                      
-  Name     Type              Default       Environment (1)
-                                                          
-  bar      string             REQUIRED     ✓              
-                                                          
-  foo      string             REQUIRED     ✓              
-                                                          
-  
-  NOTES                                                                           
-  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  (1) Parameters can be passed arguments via environment variables. Command line  
-      arguments take precedence. Environment variable names are snake cased       
-      versions of the parameter name (or its aliases), case insensitive. They must
-      be prefixed with CLI_PARAMETER_ or CLI_PARAM_ (case insensitive). Examples: 
-        → CLI_PARAMETER_BAR="..."                                                 
-        → CLI_PARAMETER_FOO="..."                                                 
+                                                                                                                        
+PARAMETERS                                                                                                              
+                                                                                                                        
+  Name     Type              Default       Environment (1)                                                              
+                                                                                                                        
+  bar      string             REQUIRED     ✓                                                                            
+                                                                                                                        
+  foo      string             REQUIRED     ✓                                                                            
+                                                                                                                        
+                                                                                                                        
+  NOTES                                                                                                                 
+  ━━━━━                                                                                                                 
+  (1)   Parameters can be passed arguments via environment variables. Command line arguments take precedence. Environmen
+        → CLI_PARAMETER_BAR="..."                                                                                       
+        → CLI_PARAMETER_FOO="..."                                                                                       
 ",
   ],
 ]
@@ -77,24 +65,18 @@ Missing argument for flag "foo".
 
 Here are the docs for this command:
 
-",
-  ],
-  [
-    "
-PARAMETERS
-                                                                      
-  Name     Type              Default       Environment (1)
-                                                          
-  foo      string             REQUIRED     ✓              
-                                                          
-  
-  NOTES                                                                           
-  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  (1) Parameters can be passed arguments via environment variables. Command line  
-      arguments take precedence. Environment variable names are snake cased       
-      versions of the parameter name (or its aliases), case insensitive. They must
-      be prefixed with CLI_PARAMETER_ or CLI_PARAM_ (case insensitive). Examples: 
-        → CLI_PARAMETER_FOO="..."                                                 
+                                                                                                                        
+PARAMETERS                                                                                                              
+                                                                                                                        
+  Name     Type              Default       Environment (1)                                                              
+                                                                                                                        
+  foo      string             REQUIRED     ✓                                                                            
+                                                                                                                        
+                                                                                                                        
+  NOTES                                                                                                                 
+  ━━━━━                                                                                                                 
+  (1)   Parameters can be passed arguments via environment variables. Command line arguments take precedence. Environmen
+        → CLI_PARAMETER_FOO="..."                                                                                       
 ",
   ],
 ]

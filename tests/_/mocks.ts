@@ -1,10 +1,8 @@
-import { beforeEach } from 'vitest'
-import { mockProcessExit, mockProcessStdout } from 'vitest-mock-process'
+import type { Mock } from 'vitest'
+import { beforeEach, vi } from 'vitest'
 
-export let stdout: ReturnType<typeof mockProcessStdout>
-export let exit: ReturnType<typeof mockProcessExit>
+export let exit: Mock
 
 beforeEach(() => {
-  stdout = mockProcessStdout()
-  exit = mockProcessExit()
+  exit = vi.spyOn(process, 'exit').mockImplementation(() => undefined as never)
 })
