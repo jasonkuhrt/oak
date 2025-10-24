@@ -13,3 +13,6 @@ Object.defineProperty(process.stdout, 'columns', {
   configurable: true,
   enumerable: originalDescriptor?.enumerable ?? false,
 })
+
+// Debug: Verify setup executed and value was set
+console.log(`[setup] Terminal width set to: ${process.stdout.columns}`)
