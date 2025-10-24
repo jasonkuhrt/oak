@@ -89,7 +89,7 @@ export const render = (parameters_: Parameter[], settings: Settings.Output, _set
     })
     .block({ padding: [1, 0] }, title(`PARAMETERS`))
     .block(
-      { padding: { crossStart: 2 } },
+      { padding: { crossStart: 2 }, spanRange: { cross: { max: HELP_TERMINAL_WIDTH } } },
       (__) =>
         __.table(
           { separators: { column: `   `, row: null } },
