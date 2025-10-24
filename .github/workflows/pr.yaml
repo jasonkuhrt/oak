@@ -18,11 +18,6 @@ jobs:
       - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
       - uses: ./.github/actions/setup
       - run: pnpm build
-      - name: Setup SSH debugging session
-        uses: mxschmitt/action-tmate@v3
-        with:
-          limit-access-to-actor: true
-          timeout-minutes: 30
       - run: pnpm tsx repro-kit-width.ts
       - run: FORCE_COLOR=3 pnpm vitest --run --no-coverage
   lint:
