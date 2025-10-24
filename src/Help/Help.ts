@@ -73,10 +73,10 @@ export const render = (parameters_: Parameter[], settings: Settings.Output, _set
     )
   }
 
-  // Explicitly set terminal width to avoid shallow spread issues in kit's parameter merging
-  // See: https://github.com/jasonkuhrt/kit/issues/35
-  const terminalWidth = process.stdout.columns ?? 120
-  const output = Cli.Tex.Tex({ spanRange: { cross: { max: terminalWidth } } })
+  // Use fixed terminal width for deterministic output across all environments
+  // This ensures snapshots are consistent between local and CI
+  const HELP_TERMINAL_WIDTH = 120
+  const output = Cli.Tex.Tex({ spanRange: { cross: { max: HELP_TERMINAL_WIDTH } } })
     .block(($) => {
       if (!settings.description) return null
       return $.block({ padding: [1, 0] }, `ABOUT`).block(
