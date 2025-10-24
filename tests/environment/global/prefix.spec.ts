@@ -88,10 +88,13 @@ describe(`default environment argument parameter name prefix`, () => {
     expect(args).toMatchObject({ foo: `bar` })
   })
   // TODO: Remove skipIf once kit#41 is fixed
-  it.skipIf(process.env.CI === 'true')(`when both argument CLI_PARAM and CLI_PARAMETER are passed then an error is thrown`, () => {
-    environmentManager.set(`cli_param_foo`, `bar1`)
-    environmentManager.set(`cli_parameter_foo`, `bar2`)
-    $.parameter(`--foo`, s).settings({ helpOnNoArguments: false, onOutput }).parse({ line: [] })
-    expect([[output.value]]).toMatchSnapshot()
-  })
+  it.skipIf(process.env.CI === 'true')(
+    `when both argument CLI_PARAM and CLI_PARAMETER are passed then an error is thrown`,
+    () => {
+      environmentManager.set(`cli_param_foo`, `bar1`)
+      environmentManager.set(`cli_parameter_foo`, `bar2`)
+      $.parameter(`--foo`, s).settings({ helpOnNoArguments: false, onOutput }).parse({ line: [] })
+      expect([[output.value]]).toMatchSnapshot()
+    },
+  )
 })
