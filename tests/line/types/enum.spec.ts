@@ -19,7 +19,9 @@ describe(`errors`, () => {
     expect([[output.value]]).toMatchSnapshot()
   })
   it(`when argument missing (non-last position)`, () => {
-    $.parameter(`--name`, s).parameter(`--mode`, z.enum([`a`, `b`])).settings({ onOutput }).parse({ line: [` --mode`, `--name`, `joe`] })
+    $.parameter(`--name`, s).parameter(`--mode`, z.enum([`a`, `b`])).settings({ onOutput }).parse({
+      line: [` --mode`, `--name`, `joe`],
+    })
     expect([[output.value]]).toMatchSnapshot()
   })
   it(`is validated`, () => {
