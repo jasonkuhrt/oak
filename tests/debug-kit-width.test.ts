@@ -36,6 +36,37 @@ test('actual rendered width with explicit terminalWidth: 120', () => {
   console.log('Line length:', headerLine?.length)
 })
 
+test('width with conditional null block (like Help.ts)', () => {
+  const output = Cli.Tex.Tex({ terminalWidth: 120 })
+    .block(($) => {
+      // Mimic Help.ts conditional description block
+      return null
+    })
+    .block({ padding: [1, 0] }, 'PARAMETERS')
+    .block(
+      { padding: { crossStart: 2 } },
+      ($) =>
+        $.table(
+          { separators: { column: '   ', row: null } },
+          ($) =>
+            $.header('Name')
+              .header({ spanRange: { cross: { min: 8 } } }, 'Type')
+              .header('Default')
+              .header('Environment (1)')  // ← Critical test
+              .rows([['foo', 'string', 'undefined', '✓']]),
+        ),
+    )
+    .render()
+
+  const lines = output.split('\n')
+  const headerLine = lines.find(l => l.includes('Name'))
+
+  console.log('=== WITH NULL BLOCK ===')
+  console.log('Header line:', JSON.stringify(headerLine))
+  console.log('Has full text?', headerLine?.includes('Environment (1)'))
+  console.log('Line length:', headerLine?.length)
+})
+
 test('check builder internal state', () => {
   const builder = Cli.Tex.Tex({ terminalWidth: 120 })
   const params = (builder as any)._.node.parameters
