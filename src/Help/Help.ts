@@ -73,10 +73,8 @@ export const render = (parameters_: Parameter[], settings: Settings.Output, _set
     )
   }
 
-  // Child blocks must NOT specify partial spanRange to avoid merge conflicts with kit's shallow spread
-  // See: https://github.com/jasonkuhrt/kit/issues/36
   // Terminal width uses process.stdout.columns (mocked to 120 in tests)
-  console.log(`[HELP] Creating Tex, process.stdout.columns = ${process.stdout.columns}`)
+  // Child blocks can now safely specify partial spanRange (kit #36 fixed)
   const output = Cli.Tex.Tex()
     .block(($) => {
       if (!settings.description) return null
@@ -94,7 +92,10 @@ export const render = (parameters_: Parameter[], settings: Settings.Output, _set
           (__) =>
             __.header({ padding: { mainEnd: 1, crossEnd: 2 } }, chalk.underline(Term.colors.mute(columnTitles.name)))
               .header(
-                { padding: { crossEnd: 5 } },
+                {
+                  spanRange: { cross: { min: 8 } },
+                  padding: { crossEnd: 5 },
+                },
                 chalk.underline(Term.colors.mute(columnTitles.typeDescription)),
               )
               .header({ padding: { crossEnd: 4 } }, chalk.underline(Term.colors.mute(columnTitles.default)))

@@ -3,8 +3,6 @@
 
 const TERMINAL_WIDTH = 120
 
-console.log(`[SETUP] BEFORE: process.stdout.columns = ${process.stdout.columns}`)
-
 // Store original descriptor
 const originalDescriptor = Object.getOwnPropertyDescriptor(process.stdout, 'columns')
 
@@ -15,5 +13,3 @@ Object.defineProperty(process.stdout, 'columns', {
   configurable: true,
   enumerable: originalDescriptor?.enumerable ?? false,
 })
-
-console.log(`[SETUP] AFTER: process.stdout.columns = ${process.stdout.columns}`)
