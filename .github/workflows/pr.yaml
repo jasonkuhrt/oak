@@ -6,31 +6,31 @@ on:
   - pull_request
 jobs:
   format:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
+      - uses: actions/checkout@v4
       - uses: ./.github/actions/setup
       - run: pnpm add dprint
       - run: pnpm check:format
   test:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
+      - uses: actions/checkout@v4
       - uses: ./.github/actions/setup
       - run: pnpm build
       - run: pnpm tsx repro-kit-width.ts
       - run: FORCE_COLOR=3 pnpm vitest --run --no-coverage
   lint:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
+      - uses: actions/checkout@v4
       - uses: ./.github/actions/setup
       - run: pnpm build
       - run: pnpm check:lint
   types:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
+      - uses: actions/checkout@v4
       - uses: ./.github/actions/setup
       - run: pnpm build
       - run: pnpm check:types
