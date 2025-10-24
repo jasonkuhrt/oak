@@ -1,21 +1,12 @@
 import { Ts } from '@wollybeard/kit'
 import stripAnsi from 'strip-ansi'
-import { beforeAll, beforeEach, describe, expect, it } from 'vitest'
+import { beforeEach, describe, expect, it } from 'vitest'
 import { z } from 'zod/v4'
 import type { BuilderCommandState } from '../../src/builders/command/state.js'
 import type { CommandBuilder } from '../../src/builders/command/types.js'
 import type { KeyPress } from '../../src/lib/KeyPress/index.js'
 import { $, b, e, l1, n, s, tryCatch } from '../_/helpers.js'
 import { memoryPrompter } from '../_/mocks/tty.js'
-
-beforeAll(() => {
-  // Mock terminal width to ensure consistent snapshots across environments
-  Object.defineProperty(process.stdout, 'columns', {
-    value: 82,
-    writable: true,
-    configurable: true,
-  })
-})
 
 // TODO test that prompt order is based on order of parameter definition
 

@@ -1,22 +1,11 @@
 import stripAnsi from 'strip-ansi'
-import { beforeAll, describe, expect, it } from 'vitest'
+import { describe, expect, it } from 'vitest'
 import { mockProcessExit } from 'vitest-mock-process'
 import { z } from 'zod/v4'
 import { $, s } from '../_/helpers.js'
 import { createState } from '../environment/__helpers__.js'
 
 mockProcessExit()
-
-beforeAll(() => {
-  // Mock terminal width as undefined so the explicit spanRange in Help.ts takes effect
-  // Without this, in CI environments process.stdout.columns would be undefined but
-  // the kit's Cli.Tex would set a default that differs from our explicit 82-char width
-  Object.defineProperty(process.stdout, 'columns', {
-    value: 82,
-    writable: true,
-    configurable: true,
-  })
-})
 
 const output = createState<string>({
   value: (values) => values.join(``),

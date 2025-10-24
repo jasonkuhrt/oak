@@ -1,18 +1,9 @@
 import stripAnsi from 'strip-ansi'
-import { beforeAll, describe, expect, it } from 'vitest'
+import { describe, expect, it } from 'vitest'
 import type { Settings } from '../../src/_entrypoints/default.js'
 import type { OakSchema } from '../../src/schema/oak-schema.js'
 import { $, s, tryCatch } from '../_/helpers.js'
 import { memoryPrompter } from '../_/mocks/tty.js'
-
-beforeAll(() => {
-  // Mock terminal width to ensure consistent snapshots across environments
-  Object.defineProperty(process.stdout, 'columns', {
-    value: 82,
-    writable: true,
-    configurable: true,
-  })
-})
 
 const S = <$Schema extends OakSchema>(settings: Settings.PromptInput<$Schema>) => settings
 const foo = [
