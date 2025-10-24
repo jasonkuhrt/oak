@@ -76,6 +76,7 @@ export const render = (parameters_: Parameter[], settings: Settings.Output, _set
   // Child blocks must NOT specify partial spanRange to avoid merge conflicts with kit's shallow spread
   // See: https://github.com/jasonkuhrt/kit/issues/36
   // Terminal width uses process.stdout.columns (mocked to 120 in tests)
+  console.log(`[HELP] Creating Tex, process.stdout.columns = ${process.stdout.columns}`)
   const output = Cli.Tex.Tex()
     .block(($) => {
       if (!settings.description) return null
