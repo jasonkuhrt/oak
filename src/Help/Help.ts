@@ -76,6 +76,7 @@ export const render = (parameters_: Parameter[], settings: Settings.Output, _set
   // Use fixed terminal width for deterministic output across all environments
   // This ensures snapshots are consistent between local and CI
   const HELP_TERMINAL_WIDTH = 120
+  console.log(`[HELP] Creating Tex with width: ${HELP_TERMINAL_WIDTH}, process.stdout.columns: ${process.stdout.columns}`)
   const output = Cli.Tex.Tex({ spanRange: { cross: { max: HELP_TERMINAL_WIDTH } } })
     .block(($) => {
       if (!settings.description) return null
