@@ -100,3 +100,8 @@ dist
 
 # This library
 build
+docs/.vitepress/cache
+.serena
+
+# Local Netlify folder
+.netlify

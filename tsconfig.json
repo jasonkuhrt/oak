@@ -36,5 +36,6 @@
     "declaration": true,
     "declarationMap": true
   },
+  "include": ["./src", "./tests"],
   "exclude": ["**/build/**", "**/node_modules/**"]
 }

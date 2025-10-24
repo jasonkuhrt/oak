@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="514" height="514" viewBox="0 0 514 514" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    @media (prefers-color-scheme: dark) {
+      .theme-aware {
+        filter: invert(1);
+      }
+    }
+    :root.dark .theme-aware {
+      filter: invert(1);
+    }
+  </style>
+  <g class="theme-aware">
+    <!-- Outer rounded square border (double line effect) -->
+    <rect x="10" y="10" width="494" height="494" rx="80" ry="80"
+          fill="none" stroke="#333333" stroke-width="20"/>
+
+    <!-- Inner rounded square background -->
+    <rect x="50" y="50" width="414" height="414" rx="60" ry="60"
+          fill="#333333"/>
+
+    <!-- Oak leaf design centered -->
+    <path fill="#FFFFFF"
+          d="M 257 105
+             C 275 120, 290 130, 305 140
+             C 315 147, 323 157, 323 170
+             C 323 177, 320 183, 315 187
+             C 335 190, 350 200, 360 217
+             C 365 227, 365 237, 360 247
+             C 355 257, 345 263, 333 265
+             C 348 273, 358 287, 358 305
+             C 358 323, 348 337, 333 347
+             C 323 353, 310 355, 300 350
+             C 300 370, 290 385, 270 400
+             C 255 411, 257 425, 257 440
+             C 257 425, 259 411, 244 400
+             C 224 385, 214 370, 214 350
+             C 204 355, 191 353, 181 347
+             C 166 337, 156 323, 156 305
+             C 156 287, 166 273, 181 265
+             C 169 263, 159 257, 154 247
+             C 149 237, 149 227, 154 217
+             C 164 200, 179 190, 199 187
+             C 194 183, 191 177, 191 170
+             C 191 157, 199 147, 209 140
+             C 224 130, 239 120, 257 105 Z"
+          stroke="#FFFFFF"
+          stroke-width="4"/>
+  </g>
+</svg>

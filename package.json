@@ -1,11 +1,30 @@
 {
-  "name": "molt",
-  "repository": "git@github.com:jasonkuhrt/molt.git",
+  "name": "@wollybeard/oak",
+  "version": "0.9.0",
+  "description": "Type-safe CLI command definition and execution.",
+  "repository": "git@github.com:jasonkuhrt/oak.git",
+  "bugs": "https://github.com/jasonkuhrt/oak/issues",
+  "homepage": "https://github.com/jasonkuhrt/oak#readme",
   "author": "Jason Kuhrt",
-  "packageManager": "pnpm@8.15.2",
   "license": "MIT",
   "type": "module",
+  "packageManager": "pnpm@8.15.2",
+  "files": [
+    "src",
+    "build"
+  ],
+  "exports": {
+    ".": "./build/_entrypoints/default.js",
+    "./types": "./build/_entrypoints/types.js",
+    "./extensions": "./build/_entrypoints/extensions.js"
+  },
   "scripts": {
+    "vitest": "vitest",
+    "test": "vitest",
+    "build": "tsc --build tsconfig.build.json",
+    "build:toc": "markdown-toc README.md -i --maxdepth 4 && dprint fmt README.md",
+    "clean": "tsc --build --clean",
+    "prepublishOnly": "pnpm build",
     "fix:format": "dprint fmt",
     "fix:lint": "oxlint --fix --fix-suggestions .",
     "check:format": "dprint check",
@@ -14,32 +33,49 @@
     "fixcheck": "pnpm run '/fix:.*/' && pnpm run '/check:.*/'",
     "check": "pnpm run '/check:.*/'",
     "fix": "pnpm run '/fix:.*/'",
-    "release:@molt/command": "pnpm release --package @molt/command",
-    "release:molt": "pnpm release --package molt",
-    "release": "tsx scripts/release.ts"
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "vitepress preview docs",
+    "examples:intro": "tsx examples/intro.ts",
+    "examples:prompt": "tsx examples/prompt.ts",
+    "examples:kitchen-sink": "tsx examples/kitchen-sink.ts",
+    "examples:publish": "tsx examples/publish.ts"
+  },
+  "keywords": [],
+  "dependencies": {
+    "@standard-schema/spec": "^1.0.0",
+    "@wollybeard/kit": "^0.85.3",
+    "alge": "0.8.1",
+    "ansi-escapes": "^7.1.1",
+    "chalk": "^5.6.2",
+    "effect": "^3.18.4",
+    "jasonkuhrt": "link:..",
+    "string-length": "^6.0.0",
+    "strip-ansi": "^7.1.2"
+  },
+  "peerDependencies": {
+    "zod": "^4.0.0"
   },
   "devDependencies": {
     "@octokit/core": "^5.0.1",
-    "@swc/core": "1.3.94",
+    "@shikijs/transformers": "^3.13.0",
+    "@shikijs/vitepress-twoslash": "^3.13.0",
     "@tsconfig/node-lts": "^22.0.2",
-    "@tsconfig/recommended": "1.0.3",
     "@tsconfig/strictest": "^2.0.6",
     "@types/node": "20.8.7",
     "@types/semver": "^7.5.4",
-    "execa": "8.0.1",
-    "fast-glob": "3.3.1",
+    "execa": "9.6.0",
+    "fast-glob": "3.3.3",
     "fs-jetpack": "5.1.0",
     "markdown-toc": "^1.2.0",
-    "nodemon": "^3.0.1",
     "oxlint": "^1.19.0",
     "semver": "^7.5.4",
     "semver-regex": "4.0.5",
     "tsx": "^4.0.0",
     "typescript": "5.9.3",
-    "vitest": "0.34.6",
+    "vitepress": "^1.6.4",
+    "vitest": "^3.2.4",
+    "vitest-mock-process": "^1.0.4",
     "zod": "^4.0.0"
-  },
-  "dependencies": {
-    "alge": "0.8.1"
   }
 }

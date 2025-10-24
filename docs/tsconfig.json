@@ -1,0 +1,11 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@wollybeard/oak": ["../src/_entrypoints/default.ts"],
+      "@wollybeard/oak/extensions": ["../src/_entrypoints/extensions.ts"]
+    }
+  },
+  "include": [".vitepress/**/*", "**/*.md"]
+}
