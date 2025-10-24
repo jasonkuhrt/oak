@@ -67,6 +67,43 @@ test('width with conditional null block (like Help.ts)', () => {
   console.log('Line length:', headerLine?.length)
 })
 
+test('width with chalk formatting (like Help.ts)', async () => {
+  const chalk = await import('chalk')
+  const Term = await import('../src/term.js')
+
+  const columnTitles = {
+    name: `Name`,
+    type: `Type`,
+    default: `Default`,
+    environment: `Environment (1)`,
+  }
+
+  const output = Cli.Tex.Tex({ terminalWidth: 120 })
+    .block({ padding: [1, 0] }, 'PARAMETERS')
+    .block(
+      { padding: { crossStart: 2 } },
+      ($) =>
+        $.table(
+          { separators: { column: `   `, row: null } },
+          ($) =>
+            $.header({ padding: { mainEnd: 1, crossEnd: 2 } }, chalk.default.underline(Term.Term.colors.mute(columnTitles.name)))
+              .header({ spanRange: { cross: { min: 8 } }, padding: { crossEnd: 5 } }, chalk.default.underline(Term.Term.colors.mute(columnTitles.type)))
+              .header({ padding: { crossEnd: 4 } }, chalk.default.underline(Term.Term.colors.mute(columnTitles.default)))
+              .header(chalk.default.underline(Term.Term.colors.mute(columnTitles.environment)))
+              .rows([['foo', 'string', 'undefined', '✓']]),
+        ),
+    )
+    .render()
+
+  const lines = output.split('\n')
+  const headerLine = lines.find(l => l.includes('Name'))
+
+  console.log('=== WITH CHALK FORMATTING ===')
+  console.log('Header line:', JSON.stringify(headerLine))
+  console.log('Has full text?', headerLine?.includes('Environment (1)'))
+  console.log('Line length:', headerLine?.length)
+})
+
 test('check builder internal state', () => {
   const builder = Cli.Tex.Tex({ terminalWidth: 120 })
   const params = (builder as any)._.node.parameters
