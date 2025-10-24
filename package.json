@@ -57,12 +57,12 @@
     "zod": "^4.0.0"
   },
   "devDependencies": {
-    "@octokit/core": "^5.0.1",
+    "@octokit/core": "^7.0.0",
     "@shikijs/transformers": "^3.13.0",
     "@shikijs/vitepress-twoslash": "^3.13.0",
     "@tsconfig/node-lts": "^22.0.2",
     "@tsconfig/strictest": "^2.0.6",
-    "@types/node": "20.8.7",
+    "@types/node": "22.18.12",
     "@types/semver": "^7.5.4",
     "execa": "9.6.0",
     "fast-glob": "3.3.3",
@@ -74,7 +74,7 @@
     "tsx": "^4.0.0",
     "typescript": "5.9.3",
     "vitepress": "^1.6.4",
-    "vitest": "^3.2.4",
+    "vitest": "^4.0.0",
     "vitest-mock-process": "^1.0.4",
     "zod": "^4.0.0"
   }
