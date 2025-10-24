@@ -143,7 +143,10 @@ export const render = (parameters_: Parameter[], settings: Settings.Output, _set
           if (noteItems.length === 0) {
             return null
           }
-          return $.block({ padding: { mainStart: 1 }, border: { edges: { bottom: `━` } }, span: { cross: 100n } }, `NOTES`).list(
+          return $.block(
+            { padding: { mainStart: 1 }, border: { edges: { bottom: `━` } }, span: { cross: 100n } },
+            `NOTES`,
+          ).list(
             {
               bullet: {
                 graphic: (index) => `(${index + 1})`,
@@ -223,8 +226,7 @@ const environmentNote = (parameters: Parameter[], settings: Settings.Output) => 
         },
       },
       examples,
-    )
-  )
+    ))
 }
 
 const parameterDefault = (parameter: Parameter) => {
