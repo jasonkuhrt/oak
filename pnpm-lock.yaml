@@ -12,8 +12,8 @@ importers:
         specifier: ^1.0.0
         version: 1.0.0
       '@wollybeard/kit':
-        specifier: ^0.85.2
-        version: 0.85.2(@effect/platform@0.92.1)(effect@3.18.4)
+        specifier: ^0.85.3
+        version: 0.85.3(@effect/platform@0.92.1)(effect@3.18.4)
       alge:
         specifier: 0.8.1
         version: 0.8.1
@@ -2117,8 +2117,8 @@ packages:
       type-fest: 5.0.1
     dev: false
 
-  /@wollybeard/kit@0.85.2(@effect/platform@0.92.1)(effect@3.18.4):
-    resolution: {integrity: sha512-wxq/G8HOJNwBp7iqPpmV5Yk0QEM+JWR9WGh3zCTQ3xwjhf5uiiKueP7NoU7vWJSUHhtdTKpXdFNx94cbvf2umw==}
+  /@wollybeard/kit@0.85.3(@effect/platform@0.92.1)(effect@3.18.4):
+    resolution: {integrity: sha512-hB7gpJTJfSdI6ys2jU/ifHWeYOWoKz/yqkuvJScVSmfqr7zGZ3AlRHxmo8Q+9RYPcUh6dlIayFWcq+jUp5cZbw==}
     peerDependencies:
       '@effect/platform': '>=0.90.0 <1.0.0'
       effect: ^3.17.0
