@@ -90,9 +90,6 @@ importers:
       vitest:
         specifier: ^4.0.2
         version: 4.0.2(@types/node@24.9.1)(tsx@4.20.6)
-      vitest-mock-process:
-        specifier: ^1.0.4
-        version: 1.0.4(vitest@4.0.2)
       zod:
         specifier: ^4.1.12
         version: 4.1.12
@@ -4953,15 +4950,6 @@ packages:
     dependencies:
       deep-clone-fn: 1.1.0
       vitest: 3.2.4(@types/node@20.8.7)(tsx@4.0.0)
-    dev: true
-
-  /vitest-mock-process@1.0.4(vitest@4.0.2):
-    resolution: {integrity: sha512-WFoSE8MLTanQJkZUZSEd2/9+O1RJKqYn5tUNh3mW/SAh1VL7D7cfcxkn2F7DlhsFI0ZPILxto0OI6XEmGYFyRA==}
-    peerDependencies:
-      vitest: <1
-    dependencies:
-      deep-clone-fn: 1.1.0
-      vitest: 4.0.2(@types/node@24.9.1)(tsx@4.20.6)
     dev: true
 
   /vitest@3.2.4(@types/node@20.8.7)(tsx@4.0.0):

@@ -1,11 +1,13 @@
 import stripAnsi from 'strip-ansi'
-import { describe, expect, it } from 'vitest'
-import { mockProcessExit } from 'vitest-mock-process'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { z } from 'zod/v4'
 import { $, s } from '../_/helpers.js'
 import { createState } from '../environment/__helpers__.js'
 
-mockProcessExit()
+// Prevent process.exit() from killing the test runner
+beforeEach(() => {
+  vi.spyOn(process, 'exit').mockImplementation(() => undefined as never)
+})
 
 const output = createState<string>({
   value: (values) => values.join(``),

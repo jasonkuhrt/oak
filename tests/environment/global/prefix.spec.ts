@@ -1,7 +1,7 @@
 import { beforeEach, expect } from 'vitest'
 import { describe, it } from 'vitest'
 import { $, s } from '../../_/helpers.js'
-import { stdout } from '../../_/mocks.js'
+import { getStdoutCalls } from '../../_/mocks.js'
 import { environmentManager } from '../__helpers__.js'
 
 let args
@@ -44,7 +44,7 @@ describe(`error`, () => {
       .settings({ helpOnNoArguments: false })
       .parse({ line: [], environment: { cli_param_bar: `qux1` } })
     // Skip ANSI snapshots in CI due to environment differences
-    expect(stdout.mock.calls).toMatchSnapshot()
+    expect(getStdoutCalls()).toMatchSnapshot()
   })
   it(`when using multiple prefixes and args passed for all param variations`, () => {
     // TODO show not just envar prefix in error message json
@@ -60,7 +60,7 @@ describe(`error`, () => {
         },
       })
     // Skip ANSI snapshots in CI due to environment differences
-    expect(stdout.mock.calls).toMatchSnapshot()
+    expect(getStdoutCalls()).toMatchSnapshot()
   })
   it.todo(`when argument collision and typo then both errors are shown`)
 })
@@ -83,6 +83,6 @@ describe(`default environment argument parameter name prefix`, () => {
     environmentManager.set(`cli_parameter_foo`, `bar2`)
     $.parameter(`--foo`, s).settings({ helpOnNoArguments: false }).parse({ line: [] })
     // Skip ANSI snapshots in CI due to environment differences
-    expect(stdout.mock.calls).toMatchSnapshot()
+    expect(getStdoutCalls()).toMatchSnapshot()
   })
 })

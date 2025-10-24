@@ -5,14 +5,51 @@ exports[`default environment argument parameter name prefix > when both argument
   [
     "Cannot run command, you made some mistakes:
 
+Missing argument for flag "foo".
+
+Here are the docs for this command:
+
+                                                                                                                        
+PARAMETERS                                                                                                              
+                                                                                                                        
+  Name     Type              Default       Environment (1)                                                              
+                                                                                                                        
+  foo      string             REQUIRED     ✓                                                                            
+                                                                                                                        
+                                                                                                                        
+  NOTES                                                                                                                 
+  ━━━━━                                                                                                                 
+  (1)   Parameters can be passed arguments via environment variables. Command line arguments take precedence. Environmen
+        → CLI_PARAMETER_FOO="..."                                                                                       
+Cannot run command, you made some mistakes:
+
+The parameter "foo" was passed an argument multiple times via different parameter aliases in the environment.
+X The parameter "bar" was passed an argument multiple times via different parameter aliases in the environment.
+
+Here are the docs for this command:
+
+                                                                                                                        
+PARAMETERS                                                                                                              
+                                                                                                                        
+  Name     Type              Default       Environment (1)                                                              
+                                                                                                                        
+  bar      string             REQUIRED     ✓                                                                            
+                                                                                                                        
+  foo      string             REQUIRED     ✓                                                                            
+                                                                                                                        
+                                                                                                                        
+  NOTES                                                                                                                 
+  ━━━━━                                                                                                                 
+  (1)   Parameters can be passed arguments via environment variables. Command line arguments take precedence. Environmen
+        → CLI_PARAMETER_BAR="..."                                                                                       
+        → CLI_PARAMETER_FOO="..."                                                                                       
+Cannot run command, you made some mistakes:
+
 The parameter "foo" was passed an argument multiple times via different parameter aliases in the environment.
 
 Here are the docs for this command:
 
-",
-  ],
-  [
-    "                                                                                                                        
+                                                                                                                        
 PARAMETERS                                                                                                              
                                                                                                                         
   Name     Type              Default       Environment (1)                                                              
@@ -34,15 +71,30 @@ exports[`error > when using multiple prefixes and args passed for all param vari
   [
     "Cannot run command, you made some mistakes:
 
+Missing argument for flag "foo".
+
+Here are the docs for this command:
+
+                                                                                                                        
+PARAMETERS                                                                                                              
+                                                                                                                        
+  Name     Type              Default       Environment (1)                                                              
+                                                                                                                        
+  foo      string             REQUIRED     ✓                                                                            
+                                                                                                                        
+                                                                                                                        
+  NOTES                                                                                                                 
+  ━━━━━                                                                                                                 
+  (1)   Parameters can be passed arguments via environment variables. Command line arguments take precedence. Environmen
+        → CLI_PARAMETER_FOO="..."                                                                                       
+Cannot run command, you made some mistakes:
+
 The parameter "foo" was passed an argument multiple times via different parameter aliases in the environment.
 X The parameter "bar" was passed an argument multiple times via different parameter aliases in the environment.
 
 Here are the docs for this command:
 
-",
-  ],
-  [
-    "                                                                                                                        
+                                                                                                                        
 PARAMETERS                                                                                                              
                                                                                                                         
   Name     Type              Default       Environment (1)                                                              
@@ -71,10 +123,7 @@ Missing argument for flag "foo".
 
 Here are the docs for this command:
 
-",
-  ],
-  [
-    "                                                                                                                        
+                                                                                                                        
 PARAMETERS                                                                                                              
                                                                                                                         
   Name     Type              Default       Environment (1)                                                              

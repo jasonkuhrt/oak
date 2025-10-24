@@ -5,15 +5,51 @@ exports[`errors > is validated 1`] = `
   [
     "Cannot run command, you made some mistakes:
 
+Missing argument for flag "mode".
+
+Here are the docs for this command:
+
+                                                                                                                        
+PARAMETERS                                                                                                              
+                                                                                                                        
+  Name     Type                 Default       Environment (1)                                                           
+                                                                                                                        
+  mode     'a' | 'b'             REQUIRED     ✓                                                                         
+                                                                                                                        
+                                                                                                                        
+  NOTES                                                                                                                 
+  ━━━━━                                                                                                                 
+  (1)   Parameters can be passed arguments via environment variables. Command line arguments take precedence. Environmen
+        → CLI_PARAMETER_MODE="..."                                                                                      
+Cannot run command, you made some mistakes:
+
+Missing argument for flag "mode".
+
+Here are the docs for this command:
+
+                                                                                                                        
+PARAMETERS                                                                                                              
+                                                                                                                        
+  Name     Type                 Default       Environment (1)                                                           
+                                                                                                                        
+  mode     'a' | 'b'             REQUIRED     ✓                                                                         
+                                                                                                                        
+  name     string                REQUIRED     ✓                                                                         
+                                                                                                                        
+                                                                                                                        
+  NOTES                                                                                                                 
+  ━━━━━                                                                                                                 
+  (1)   Parameters can be passed arguments via environment variables. Command line arguments take precedence. Environmen
+        → CLI_PARAMETER_MODE="..."                                                                                      
+        → CLI_PARAMETER_NAME="..."                                                                                      
+Cannot run command, you made some mistakes:
+
 Invalid argument for parameter: "mode". The error was:
 Invalid option: expected one of "a"|"b"|"c"
 
 Here are the docs for this command:
 
-",
-  ],
-  [
-    "                                                                                                                        
+                                                                                                                        
 PARAMETERS                                                                                                              
                                                                                                                         
   Name     Type                       Default       Environment (1)                                                     
@@ -39,10 +75,7 @@ Missing argument for flag "mode".
 
 Here are the docs for this command:
 
-",
-  ],
-  [
-    "                                                                                                                        
+                                                                                                                        
 PARAMETERS                                                                                                              
                                                                                                                         
   Name     Type                 Default       Environment (1)                                                           
@@ -68,10 +101,25 @@ Missing argument for flag "mode".
 
 Here are the docs for this command:
 
-",
-  ],
-  [
-    "                                                                                                                        
+                                                                                                                        
+PARAMETERS                                                                                                              
+                                                                                                                        
+  Name     Type                 Default       Environment (1)                                                           
+                                                                                                                        
+  mode     'a' | 'b'             REQUIRED     ✓                                                                         
+                                                                                                                        
+                                                                                                                        
+  NOTES                                                                                                                 
+  ━━━━━                                                                                                                 
+  (1)   Parameters can be passed arguments via environment variables. Command line arguments take precedence. Environmen
+        → CLI_PARAMETER_MODE="..."                                                                                      
+Cannot run command, you made some mistakes:
+
+Missing argument for flag "mode".
+
+Here are the docs for this command:
+
+                                                                                                                        
 PARAMETERS                                                                                                              
                                                                                                                         
   Name     Type                 Default       Environment (1)                                                           
