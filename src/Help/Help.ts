@@ -73,10 +73,10 @@ export const render = (parameters_: Parameter[], settings: Settings.Output, _set
     )
   }
 
-  // Use fixed terminal width for deterministic output across all environments
-  // This ensures snapshots are consistent between local and CI
+  // Use explicit terminal width for deterministic output across all environments
+  // Child blocks must NOT specify partial spanRange to avoid merge conflicts
+  // See: https://github.com/jasonkuhrt/kit/issues/36
   const HELP_TERMINAL_WIDTH = 120
-  console.log(`[HELP] Creating Tex with width: ${HELP_TERMINAL_WIDTH}, process.stdout.columns: ${process.stdout.columns}`)
   const output = Cli.Tex.Tex({ spanRange: { cross: { max: HELP_TERMINAL_WIDTH } } })
     .block(($) => {
       if (!settings.description) return null
@@ -94,10 +94,7 @@ export const render = (parameters_: Parameter[], settings: Settings.Output, _set
           (__) =>
             __.header({ padding: { mainEnd: 1, crossEnd: 2 } }, chalk.underline(Term.colors.mute(columnTitles.name)))
               .header(
-                {
-                  spanRange: { cross: { min: 8 } },
-                  padding: { crossEnd: 5 },
-                },
+                { padding: { crossEnd: 5 } },
                 chalk.underline(Term.colors.mute(columnTitles.typeDescription)),
               )
               .header({ padding: { crossEnd: 4 } }, chalk.underline(Term.colors.mute(columnTitles.default)))

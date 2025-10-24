@@ -189,13 +189,13 @@ exports[`exclusive > default > shows the group default > monochrome 1`] = `
 "                                                                                                                        
 PARAMETERS                                                                                                              
                                                                                                                         
-  Name        Type            Default           Environment (1)                                                         
+  Name        Type        Default           Environment (1)                                                             
                                                                                                                         
-  ┌─foo (2)                       bar@bar_default                                                                       
+  ┌─foo (2)               bar@bar_default                                                                               
                                                                                                                         
-  ◒ bar       string          –                 ✓                                                                       
+  ◒ bar       string      –                 ✓                                                                           
   │ b                                                                                                                   
-  ◒ baz       string          –                 ✓                                                                       
+  ◒ baz       string      –                 ✓                                                                           
   │ z                                                                                                                   
   └─                                                                                                                    
                                                                                                                         
@@ -212,13 +212,13 @@ exports[`exclusive > default with long value > shows the group default > monochr
 "                                                                                                                        
 PARAMETERS                                                                                                              
                                                                                                                         
-  Name        Type            Default                               Environment (1)                                     
+  Name        Type        Default                               Environment (1)                                         
                                                                                                                         
-  ┌─foo (2)                       bar@bar_defaulttttttttttttttttttttt                                                   
+  ┌─foo (2)               bar@bar_defaulttttttttttttttttttttt                                                           
                                                                                                                         
-  ◒ bar       string          –                                     ✓                                                   
+  ◒ bar       string      –                                     ✓                                                       
   │ b                                                                                                                   
-  ◒ baz       string          –                                     ✓                                                   
+  ◒ baz       string      –                                     ✓                                                       
   │ z                                                                                                                   
   └─                                                                                                                    
                                                                                                                         
@@ -235,13 +235,13 @@ exports[`exclusive > optional > shows exclusive parameters as a group > monochro
 "                                                                                                                        
 PARAMETERS                                                                                                              
                                                                                                                         
-  Name        Type            Default       Environment (1)                                                             
+  Name        Type        Default       Environment (1)                                                                 
                                                                                                                         
-  ┌─foo (2)                       undefined                                                                             
+  ┌─foo (2)               undefined                                                                                     
                                                                                                                         
-  ◒ bar       string          –             ✓                                                                           
+  ◒ bar       string      –             ✓                                                                               
   │ b                                                                                                                   
-  ◒ baz       string          –             ✓                                                                           
+  ◒ baz       string      –             ✓                                                                               
   │ z                                                                                                                   
   └─                                                                                                                    
                                                                                                                         
@@ -258,13 +258,13 @@ exports[`exclusive > with environment disabled > shows the group default > monoc
 "                                                                                                                        
 PARAMETERS                                                                                                              
                                                                                                                         
-  Name        Type            Default                                                                                   
+  Name        Type        Default                                                                                       
                                                                                                                         
-  ┌─foo (2)                       bar@bar_default                                                                       
+  ┌─foo (2)               bar@bar_default                                                                               
                                                                                                                         
-  ◒ bar       string          –                                                                                         
+  ◒ bar       string      –                                                                                             
   │ b                                                                                                                   
-  ◒ baz       string          –                                                                                         
+  ◒ baz       string      –                                                                                             
   │ z                                                                                                                   
   └─                                                                                                                    
                                                                                                                         
