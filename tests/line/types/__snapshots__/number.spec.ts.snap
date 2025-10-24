@@ -12,20 +12,17 @@ Here are the docs for this command:
 ",
   ],
   [
-    "
-PARAMETERS
-                                                                      
-  Name     Type              Default       Environment (1)
-                                                          
-  age      number             REQUIRED     ✓              
-                                                          
-  
+    "                                                                                  
+PARAMETERS                                                                        
+                                                                                  
+  Name     Type              Default       Environment (1)                        
+                                                                                  
+  age      number             REQUIRED     ✓                                      
+                                                                                  
+                                                                                  
   NOTES                                                                           
-  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  (1) Parameters can be passed arguments via environment variables. Command line  
-      arguments take precedence. Environment variable names are snake cased       
-      versions of the parameter name (or its aliases), case insensitive. They must
-      be prefixed with CLI_PARAMETER_ or CLI_PARAM_ (case insensitive). Examples: 
+  ━━━━━                                                                           
+  (1)   Parameters can be passed arguments via environment variables. Command line
         → CLI_PARAMETER_AGE="..."                                                 
 ",
   ],
@@ -44,22 +41,19 @@ Here are the docs for this command:
 ",
   ],
   [
-    "
-PARAMETERS
-                                                                      
-  Name     Type              Default       Environment (1)
-                                                          
-  age      number             REQUIRED     ✓              
-                                                          
-  name     string             REQUIRED     ✓              
-                                                          
-  
+    "                                                                                  
+PARAMETERS                                                                        
+                                                                                  
+  Name     Type              Default       Environment (1)                        
+                                                                                  
+  age      number             REQUIRED     ✓                                      
+                                                                                  
+  name     string             REQUIRED     ✓                                      
+                                                                                  
+                                                                                  
   NOTES                                                                           
-  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  (1) Parameters can be passed arguments via environment variables. Command line  
-      arguments take precedence. Environment variable names are snake cased       
-      versions of the parameter name (or its aliases), case insensitive. They must
-      be prefixed with CLI_PARAMETER_ or CLI_PARAM_ (case insensitive). Examples: 
+  ━━━━━                                                                           
+  (1)   Parameters can be passed arguments via environment variables. Command line
         → CLI_PARAMETER_AGE="..."                                                 
         → CLI_PARAMETER_NAME="..."                                                
 ",
@@ -80,20 +74,17 @@ Here are the docs for this command:
 ",
   ],
   [
-    "
-PARAMETERS
-                                                                      
-  Name     Type              Default       Environment (1)
-                                                          
-  age      number             REQUIRED     ✓              
-                                                          
-  
+    "                                                                                  
+PARAMETERS                                                                        
+                                                                                  
+  Name     Type              Default       Environment (1)                        
+                                                                                  
+  age      number             REQUIRED     ✓                                      
+                                                                                  
+                                                                                  
   NOTES                                                                           
-  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  (1) Parameters can be passed arguments via environment variables. Command line  
-      arguments take precedence. Environment variable names are snake cased       
-      versions of the parameter name (or its aliases), case insensitive. They must
-      be prefixed with CLI_PARAMETER_ or CLI_PARAM_ (case insensitive). Examples: 
+  ━━━━━                                                                           
+  (1)   Parameters can be passed arguments via environment variables. Command line
         → CLI_PARAMETER_AGE="..."                                                 
 ",
   ],

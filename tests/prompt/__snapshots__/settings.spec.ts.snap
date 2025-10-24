@@ -9,7 +9,9 @@ exports[`can be stack of conditional prompts > args 1`] = `
 
 exports[`can be stack of conditional prompts > tty 1`] = `
 [
-  "1/1  a optional (press esc to skip)
+  "1/1a optional (press esc to skip)
+                                 
+                                 
 ",
   "[?25l",
   "",
@@ -34,7 +36,9 @@ exports[`can be stack of conditional prompts > tty 1`] = `
 
 exports[`can be stack of conditional prompts > tty strip ansi 1`] = `
 [
-  "1/1  a optional (press esc to skip)
+  "1/1a optional (press esc to skip)
+                                 
+                                 
 ",
   "",
   "",
@@ -66,7 +70,9 @@ exports[`command level > passing object makes enabled default to true > args 1`]
 
 exports[`command level > passing object makes enabled default to true > tty 1`] = `
 [
-  "1/1  a
+  "1/1a
+    
+    
 ",
   "[?25l",
   "",
@@ -91,7 +97,9 @@ exports[`command level > passing object makes enabled default to true > tty 1`] 
 
 exports[`command level > passing object makes enabled default to true > tty strip ansi 1`] = `
 [
-  "1/1  a
+  "1/1a
+    
+    
 ",
   "",
   "",
@@ -123,7 +131,9 @@ exports[`parameter defaults to custom settings > args 1`] = `
 
 exports[`parameter defaults to custom settings > tty 1`] = `
 [
-  "1/1  a
+  "1/1a
+    
+    
 ",
   "[?25l",
   "",
@@ -148,7 +158,9 @@ exports[`parameter defaults to custom settings > tty 1`] = `
 
 exports[`parameter defaults to custom settings > tty strip ansi 1`] = `
 [
-  "1/1  a
+  "1/1a
+    
+    
 ",
   "",
   "",
@@ -180,7 +192,9 @@ exports[`parameter level > can be passed object > args 1`] = `
 
 exports[`parameter level > can be passed object > tty 1`] = `
 [
-  "1/1  a
+  "1/1a
+    
+    
 ",
   "[?25l",
   "",
@@ -205,7 +219,9 @@ exports[`parameter level > can be passed object > tty 1`] = `
 
 exports[`parameter level > can be passed object > tty strip ansi 1`] = `
 [
-  "1/1  a
+  "1/1a
+    
+    
 ",
   "",
   "",
@@ -243,7 +259,9 @@ exports[`prompt can be enabled by default > args 1`] = `
 
 exports[`prompt can be enabled by default > tty 1`] = `
 [
-  "1/1  a
+  "1/1a
+    
+    
 ",
   "[?25l",
   "",
@@ -268,7 +286,9 @@ exports[`prompt can be enabled by default > tty 1`] = `
 
 exports[`prompt can be enabled by default > tty strip ansi 1`] = `
 [
-  "1/1  a
+  "1/1a
+    
+    
 ",
   "",
   "",
@@ -300,7 +320,9 @@ exports[`prompt can be toggled by check on error > toggle to enabled > check doe
 
 exports[`prompt can be toggled by check on error > toggle to enabled > check does match > tty 1`] = `
 [
-  "1/1  a
+  "1/1a
+    
+    
 ",
   "[?25l",
   "",
@@ -325,7 +347,9 @@ exports[`prompt can be toggled by check on error > toggle to enabled > check doe
 
 exports[`prompt can be toggled by check on error > toggle to enabled > check does match > tty strip ansi 1`] = `
 [
-  "1/1  a
+  "1/1a
+    
+    
 ",
   "",
   "",
