@@ -26,7 +26,7 @@ export const parameterBasicCreate = (
   input: ParameterBasicInput,
   settings: Settings.Output,
 ): ParameterBasic => {
-  const name = S.decodeSync(Cli.FlagName.String)(input.nameExpression)
+  const name = S.decodeSync(Cli.Param.String)(input.nameExpression)
   const environment = processEnvironment(settings, name)
   const prompt = input.prompt as boolean | null | { enabled?: boolean; when?: object }
   const promptEnabled = prompt === true

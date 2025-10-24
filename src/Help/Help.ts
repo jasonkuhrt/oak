@@ -73,13 +73,11 @@ export const render = (parameters_: Parameter[], settings: Settings.Output, _set
     )
   }
 
-  // Explicitly set terminal width to avoid relying on process.stdout.columns global state
-  // Child blocks can now safely specify partial spanRange (kit #36 fixed)
-  // TODO: Use cleaner API when kit #37 ships: Cli.Tex.Tex({ terminalWidth: 120 })
+  // Explicitly set terminal width for deterministic rendering (kit 0.87.0+)
+  // Global read happens at module load time, not per-render
+  // Child blocks can safely specify partial spanRange (kit #36 fixed)
   const HELP_TERMINAL_WIDTH = 120
-  console.log(`[Help.render] Explicitly setting spanRange.cross.max = ${HELP_TERMINAL_WIDTH}`)
-  console.log(`[Help.render] process.stdout.columns = ${process.stdout.columns}`)
-  const output = Cli.Tex.Tex({ spanRange: { cross: { max: HELP_TERMINAL_WIDTH } } })
+  const output = Cli.Tex.Tex({ terminalWidth: HELP_TERMINAL_WIDTH })
     .block(($) => {
       if (!settings.description) return null
       return $.block({ padding: [1, 0] }, `ABOUT`).block(
@@ -89,7 +87,7 @@ export const render = (parameters_: Parameter[], settings: Settings.Output, _set
     })
     .block({ padding: [1, 0] }, title(`PARAMETERS`))
     .block(
-      { padding: { crossStart: 2 }, spanRange: { cross: { max: HELP_TERMINAL_WIDTH } } },
+      { padding: { crossStart: 2 } },
       (__) =>
         __.table(
           { separators: { column: `   `, row: null } },
