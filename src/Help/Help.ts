@@ -107,10 +107,10 @@ export const render = (parameters_: Parameter[], settings: Settings.Output, _set
                 ...parametersBasicWithoutHelp.map((parameter) => [
                   parameterName(parameter),
                   Cli.Tex.block(
-                    { spanRange: { cross: { max: 40 } }, padding: { crossEnd: 9, mainEnd: 1 } },
+                    { padding: { crossEnd: 9, mainEnd: 1 } },
                     SchemaRuntime.help(parameter.type, settings),
                   ),
-                  Cli.Tex.block({ spanRange: { cross: { max: 24 } } }, parameterDefault(parameter)),
+                  Cli.Tex.block({}, parameterDefault(parameter)),
                   ...(isEnvironmentEnabled ? [parameterEnvironment(parameter, settings)] : []),
                 ]),
                 ...parametersExclusiveGroups.flatMap((parametersExclusive) => {

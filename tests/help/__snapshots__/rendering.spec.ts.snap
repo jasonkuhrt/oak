@@ -36,9 +36,9 @@ exports[`enum > when there are many members they wrap > monochrome 1`] = `
 "                                                                                                                        
 PARAMETERS                                                                                                              
                                                                                                                         
-  Name     Type                                                Default       Environment (1)                            
+  Name     Type                                                                                                         
                                                                                                                         
-  foo      'apple' | 'baby' | 'cannabis' | 'dinosau             REQUIRED     ✓                                          
+  foo      'apple' | 'baby' | 'cannabis' | 'dinosaur' | 'elephant' | 'fanna' | 'goat' | 'house' | 'island' | 'jake' | 'k
                                                                                                                         
                                                                                                                         
   NOTES                                                                                                                 
@@ -68,11 +68,11 @@ exports[`enums do not mess up alignment when they are widest line in the column 
 "                                                                                                                        
 PARAMETERS                                                                                                              
                                                                                                                         
-  Name     Type                                                Default       Environment (1)                            
+  Name     Type                                                                                                         
                                                                                                                         
-  foo      'a' | 'b' | 'c' | 'd' | 'e' | 'f' | 'g'              REQUIRED     ✓                                          
+  foo      'a' | 'b' | 'c' | 'd' | 'e' | 'f' | 'g' | 'h' | 'i' | 'j' | 'k' | 'l' | 'm' | 'n' | 'o' | 'p' | 'q' | 'r' | '
                                                                                                                         
-  bar      string                                              undefined     ✓                                          
+  bar      string                                                                                                       
                                                                                                                         
                                                                                                                         
   NOTES                                                                                                                 
@@ -347,9 +347,9 @@ exports[`if there is an error trying to get default then a nice message is shown
 "                                                                                                                        
 PARAMETERS                                                                                                              
                                                                                                                         
-  Name     Type              Default                    Environment (1)                                                 
+  Name     Type              Default                                       Environment (1)                              
                                                                                                                         
-  foo      string            Error trying to render t   ✓                                                               
+  foo      string            Error trying to render this default: whoops   ✓                                            
                                                                                                                         
                                                                                                                         
   NOTES                                                                                                                 
@@ -363,9 +363,9 @@ exports[`if there is an error trying to get default then a nice message is shown
 "                                                                                                                        
 PARAMETERS                                                                                                              
                                                                                                                         
-  Name     Type              Default                    Environment (1)                                                 
+  Name     Type              Default                                       Environment (1)                              
                                                                                                                         
-  foo      string            Error trying to render t   ✓                                                               
+  foo      string            Error trying to render this default: whoops   ✓                                            
                                                                                                                         
                                                                                                                         
   NOTES                                                                                                                 
@@ -396,10 +396,10 @@ exports[`long description wraps within column > monochrome 1`] = `
 "                                                                                                                        
 PARAMETERS                                                                                                              
                                                                                                                         
-  Name     Type/Description                                    Default       Environment (1)                            
+  Name     Type/Description                                           Default       Environment (1)                     
                                                                                                                         
-  a        string                                              undefined     ✓                                          
-  a        Blah blah blah. Blah blah blah. Blah bla                                                                     
+  a        string                                                     undefined     ✓                                   
+  a        Blah blah blah. Blah blah blah. Blah blah blah.                                                              
                                                                                                                         
                                                                                                                         
   NOTES                                                                                                                 
