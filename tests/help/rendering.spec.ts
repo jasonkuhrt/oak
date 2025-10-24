@@ -1,11 +1,20 @@
 import stripAnsi from 'strip-ansi'
-import { describe, expect, it } from 'vitest'
+import { beforeAll, describe, expect, it } from 'vitest'
 import { mockProcessExit } from 'vitest-mock-process'
 import { z } from 'zod/v4'
 import { $, s } from '../_/helpers.js'
 import { createState } from '../environment/__helpers__.js'
 
 mockProcessExit()
+
+beforeAll(() => {
+  // Mock terminal width to ensure consistent snapshots across environments
+  Object.defineProperty(process.stdout, 'columns', {
+    value: 120,
+    writable: true,
+    configurable: true,
+  })
+})
 
 const output = createState<string>({
   value: (values) => values.join(``),
