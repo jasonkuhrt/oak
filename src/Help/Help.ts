@@ -73,10 +73,11 @@ export const render = (parameters_: Parameter[], settings: Settings.Output, _set
     )
   }
 
-  // Terminal width uses process.stdout.columns (mocked to 120 in tests)
+  // Explicitly set terminal width to avoid relying on process.stdout.columns global state
   // Child blocks can now safely specify partial spanRange (kit #36 fixed)
-  console.log(`[Help.render] process.stdout.columns = ${process.stdout.columns}`)
-  const output = Cli.Tex.Tex()
+  // TODO: Use cleaner API when kit #37 ships: Cli.Tex.Tex({ terminalWidth: 120 })
+  const HELP_TERMINAL_WIDTH = 120
+  const output = Cli.Tex.Tex({ spanRange: { cross: { max: HELP_TERMINAL_WIDTH } } })
     .block(($) => {
       if (!settings.description) return null
       return $.block({ padding: [1, 0] }, `ABOUT`).block(

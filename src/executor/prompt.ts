@@ -26,7 +26,10 @@ export const prompt = (
     const gutterWidth = String(indexTotal).length * 2 + 3
 
     for (const parameter of parameters) {
-      const question = Cli.Tex.Tex({ orientation: `horizontal` })
+      // Explicitly set terminal width to avoid relying on process.stdout.columns global state
+      // TODO: Use cleaner API when kit #37 ships: Cli.Tex.Tex({ terminalWidth: 120, orientation: 'horizontal' })
+      const PROMPT_TERMINAL_WIDTH = 120
+      const question = Cli.Tex.Tex({ orientation: `horizontal`, spanRange: { cross: { max: PROMPT_TERMINAL_WIDTH } } })
         .block({ padding: { mainEnd: 2 } }, `${Term.colors.dim(`${indexCurrent}/${indexTotal}`)}`)
         .block((__) =>
           __.block(
