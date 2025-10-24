@@ -68,6 +68,12 @@ export namespace BuilderCommandState {
 
   export type GetUsedNames<State extends Base> = Values<State['Parameters']>['NameUnion']
 
+  /**
+   * Extract canonical name from Param.Analyze result, for use as mapped type key.
+   * Returns `never` if parse failed (error type can't be used as object key).
+   */
+  type GetCanonicalName<$result> = $result extends Cli.Param ? $result['canonical'] : never
+
   export type ParametersConfigBase = Record<
     string,
     {
@@ -120,7 +126,7 @@ export namespace BuilderCommandState {
         [_ in Label]: {
           Optional: $State['ParametersExclusive'][_]['Optional']
           Parameters: {
-            [_ in NameExpression as Cli.Param.GetCanonicalNameOrError<Cli.Param.Analyze<NameExpression>>]: {
+            [_ in NameExpression as GetCanonicalName<Cli.Param.Analyze<NameExpression>>]: {
               // Store the schema as StandardSchemaV1 to extract Output type
               Schema: Configuration['type'] extends StandardSchemaV1 ? Configuration['type'] : never
               NameParsed: Cli.Param.Analyze<

@@ -34,7 +34,7 @@ const output = Cli.Tex.Tex({ spanRange: { cross: { max: TERMINAL_WIDTH } } })
               'Type/Description',
             )
             .header({ padding: { crossEnd: 4 } }, 'Default')
-            .header('Environment (1)')  // ← This gets truncated in CI
+            .header('Environment (1)') // ← This gets truncated in CI
             .rows([
               ['foo', 'string', 'undefined', '✓'],
             ]),
