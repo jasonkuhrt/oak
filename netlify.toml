@@ -1,5 +1,5 @@
 [build]
-command = "pnpm docs:build"
+command = "pnpm build && pnpm docs:build"
 publish = "docs/.vitepress/dist"
 
 [build.environment]
@@ -9,8 +9,8 @@ NETLIFY = "true"
 
 # Deploy previews for pull requests
 [context.deploy-preview]
-command = "pnpm docs:build"
+command = "pnpm build && pnpm docs:build"
 
 # Production builds
 [context.production]
-command = "pnpm docs:build"
+command = "pnpm build && pnpm docs:build"
