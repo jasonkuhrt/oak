@@ -8,9 +8,11 @@ import { createState } from '../environment/__helpers__.js'
 mockProcessExit()
 
 beforeAll(() => {
-  // Mock terminal width to ensure consistent snapshots across environments
+  // Mock terminal width as undefined so the explicit spanRange in Help.ts takes effect
+  // Without this, in CI environments process.stdout.columns would be undefined but
+  // the kit's Cli.Tex would set a default that differs from our explicit 82-char width
   Object.defineProperty(process.stdout, 'columns', {
-    value: 120,
+    value: 82,
     writable: true,
     configurable: true,
   })
