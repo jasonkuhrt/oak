@@ -32,3 +32,38 @@ test('exact Help.render path - basic test from rendering.spec.ts', () => {
   console.log('Has just "Environment"?', headerLine?.includes('Environment') && !headerLine?.includes('(1)'))
   console.log('Line length:', headerLine?.length)
 })
+
+test('ISOLATED: table with Cli.Tex.block cells like Help.ts does', async () => {
+  const chalk = await import('chalk')
+  const { Cli } = await import('@wollybeard/kit')
+
+  const output = Cli.Tex.Tex({ terminalWidth: 120 })
+    .block({ padding: [1, 0] }, 'PARAMETERS')
+    .block(
+      { padding: { crossStart: 2 } },
+      ($) =>
+        $.table(
+          { separators: { column: `   `, row: null } },
+          ($) =>
+            $.header({ padding: { mainEnd: 1, crossEnd: 2 } }, 'Name')
+              .header({ spanRange: { cross: { min: 8 } }, padding: { crossEnd: 5 } }, 'Type')
+              .header({ padding: { crossEnd: 4 } }, 'Default')
+              .header('Environment (1)')
+              .rows([[
+                'foo',
+                Cli.Tex.block({ padding: { crossEnd: 9, mainEnd: 1 } }, 'string'),  // ← Like Help.ts!
+                Cli.Tex.block({}, 'undefined'),
+                '✓',
+              ]]),
+        ),
+    )
+    .render()
+
+  const lines = output.split('\n')
+  const headerLine = lines.find(l => l.includes('Name'))
+
+  console.log('=== WITH CLI.TEX.BLOCK CELLS ===')
+  console.log('Header:', JSON.stringify(headerLine))
+  console.log('Has full "Environment (1)"?', headerLine?.includes('Environment (1)'))
+  console.log('Length:', headerLine?.length)
+})
