@@ -12,18 +12,18 @@ Here are the docs for this command:
 ",
   ],
   [
-    "                                                                                  
-PARAMETERS                                                                        
-                                                                                  
-  Name     Type              Default       Environment (1)                        
-                                                                                  
-  age      number             REQUIRED     ✓                                      
-                                                                                  
-                                                                                  
-  NOTES                                                                           
-  ━━━━━                                                                           
-  (1)   Parameters can be passed arguments via environment variables. Command line
-        → CLI_PARAMETER_AGE="..."                                                 
+    "                                                                                                                        
+PARAMETERS                                                                                                              
+                                                                                                                        
+  Name     Type              Default       Environment (1)                                                              
+                                                                                                                        
+  age      number             REQUIRED     ✓                                                                            
+                                                                                                                        
+                                                                                                                        
+  NOTES                                                                                                                 
+  ━━━━━                                                                                                                 
+  (1)   Parameters can be passed arguments via environment variables. Command line arguments take precedence. Environmen
+        → CLI_PARAMETER_AGE="..."                                                                                       
 ",
   ],
 ]
@@ -41,21 +41,21 @@ Here are the docs for this command:
 ",
   ],
   [
-    "                                                                                  
-PARAMETERS                                                                        
-                                                                                  
-  Name     Type              Default       Environment (1)                        
-                                                                                  
-  age      number             REQUIRED     ✓                                      
-                                                                                  
-  name     string             REQUIRED     ✓                                      
-                                                                                  
-                                                                                  
-  NOTES                                                                           
-  ━━━━━                                                                           
-  (1)   Parameters can be passed arguments via environment variables. Command line
-        → CLI_PARAMETER_AGE="..."                                                 
-        → CLI_PARAMETER_NAME="..."                                                
+    "                                                                                                                        
+PARAMETERS                                                                                                              
+                                                                                                                        
+  Name     Type              Default       Environment (1)                                                              
+                                                                                                                        
+  age      number             REQUIRED     ✓                                                                            
+                                                                                                                        
+  name     string             REQUIRED     ✓                                                                            
+                                                                                                                        
+                                                                                                                        
+  NOTES                                                                                                                 
+  ━━━━━                                                                                                                 
+  (1)   Parameters can be passed arguments via environment variables. Command line arguments take precedence. Environmen
+        → CLI_PARAMETER_AGE="..."                                                                                       
+        → CLI_PARAMETER_NAME="..."                                                                                      
 ",
   ],
 ]
@@ -74,18 +74,18 @@ Here are the docs for this command:
 ",
   ],
   [
-    "                                                                                  
-PARAMETERS                                                                        
-                                                                                  
-  Name     Type              Default       Environment (1)                        
-                                                                                  
-  age      number             REQUIRED     ✓                                      
-                                                                                  
-                                                                                  
-  NOTES                                                                           
-  ━━━━━                                                                           
-  (1)   Parameters can be passed arguments via environment variables. Command line
-        → CLI_PARAMETER_AGE="..."                                                 
+    "                                                                                                                        
+PARAMETERS                                                                                                              
+                                                                                                                        
+  Name     Type              Default       Environment (1)                                                              
+                                                                                                                        
+  age      number             REQUIRED     ✓                                                                            
+                                                                                                                        
+                                                                                                                        
+  NOTES                                                                                                                 
+  ━━━━━                                                                                                                 
+  (1)   Parameters can be passed arguments via environment variables. Command line arguments take precedence. Environmen
+        → CLI_PARAMETER_AGE="..."                                                                                       
 ",
   ],
 ]

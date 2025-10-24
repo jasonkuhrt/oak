@@ -12,18 +12,18 @@ Here are the docs for this command:
 ",
   ],
   [
-    "                                                                                  
-PARAMETERS                                                                        
-                                                                                  
-  Name     Type              Default       Environment (1)                        
-                                                                                  
-  foo      string             REQUIRED     ✓                                      
-                                                                                  
-                                                                                  
-  NOTES                                                                           
-  ━━━━━                                                                           
-  (1)   Parameters can be passed arguments via environment variables. Command line
-        → CLI_PARAMETER_FOO="..."                                                 
+    "                                                                                                                        
+PARAMETERS                                                                                                              
+                                                                                                                        
+  Name     Type              Default       Environment (1)                                                              
+                                                                                                                        
+  foo      string             REQUIRED     ✓                                                                            
+                                                                                                                        
+                                                                                                                        
+  NOTES                                                                                                                 
+  ━━━━━                                                                                                                 
+  (1)   Parameters can be passed arguments via environment variables. Command line arguments take precedence. Environmen
+        → CLI_PARAMETER_FOO="..."                                                                                       
 ",
   ],
 ]
@@ -42,21 +42,21 @@ Here are the docs for this command:
 ",
   ],
   [
-    "                                                                                  
-PARAMETERS                                                                        
-                                                                                  
-  Name     Type              Default       Environment (1)                        
-                                                                                  
-  bar      string             REQUIRED     ✓                                      
-                                                                                  
-  foo      string             REQUIRED     ✓                                      
-                                                                                  
-                                                                                  
-  NOTES                                                                           
-  ━━━━━                                                                           
-  (1)   Parameters can be passed arguments via environment variables. Command line
-        → CLI_PARAMETER_BAR="..."                                                 
-        → CLI_PARAMETER_FOO="..."                                                 
+    "                                                                                                                        
+PARAMETERS                                                                                                              
+                                                                                                                        
+  Name     Type              Default       Environment (1)                                                              
+                                                                                                                        
+  bar      string             REQUIRED     ✓                                                                            
+                                                                                                                        
+  foo      string             REQUIRED     ✓                                                                            
+                                                                                                                        
+                                                                                                                        
+  NOTES                                                                                                                 
+  ━━━━━                                                                                                                 
+  (1)   Parameters can be passed arguments via environment variables. Command line arguments take precedence. Environmen
+        → CLI_PARAMETER_BAR="..."                                                                                       
+        → CLI_PARAMETER_FOO="..."                                                                                       
 ",
   ],
 ]
@@ -74,18 +74,18 @@ Here are the docs for this command:
 ",
   ],
   [
-    "                                                                                  
-PARAMETERS                                                                        
-                                                                                  
-  Name     Type              Default       Environment (1)                        
-                                                                                  
-  foo      string             REQUIRED     ✓                                      
-                                                                                  
-                                                                                  
-  NOTES                                                                           
-  ━━━━━                                                                           
-  (1)   Parameters can be passed arguments via environment variables. Command line
-        → CLI_PARAMETER_FOO="..."                                                 
+    "                                                                                                                        
+PARAMETERS                                                                                                              
+                                                                                                                        
+  Name     Type              Default       Environment (1)                                                              
+                                                                                                                        
+  foo      string             REQUIRED     ✓                                                                            
+                                                                                                                        
+                                                                                                                        
+  NOTES                                                                                                                 
+  ━━━━━                                                                                                                 
+  (1)   Parameters can be passed arguments via environment variables. Command line arguments take precedence. Environmen
+        → CLI_PARAMETER_FOO="..."                                                                                       
 ",
   ],
 ]

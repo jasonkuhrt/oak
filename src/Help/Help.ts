@@ -73,7 +73,7 @@ export const render = (parameters_: Parameter[], settings: Settings.Output, _set
     )
   }
 
-  const output = Cli.Tex.Tex({ spanRange: { cross: { max: 82 } } })
+  const output = Cli.Tex.Tex()
     .block(($) => {
       if (!settings.description) return null
       return $.block({ padding: [1, 0] }, `ABOUT`).block(
