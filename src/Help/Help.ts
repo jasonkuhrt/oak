@@ -75,6 +75,7 @@ export const render = (parameters_: Parameter[], settings: Settings.Output, _set
 
   // Terminal width uses process.stdout.columns (mocked to 120 in tests)
   // Child blocks can now safely specify partial spanRange (kit #36 fixed)
+  console.log(`[Help.render] process.stdout.columns = ${process.stdout.columns}`)
   const output = Cli.Tex.Tex()
     .block(($) => {
       if (!settings.description) return null
