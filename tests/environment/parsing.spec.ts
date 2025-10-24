@@ -76,7 +76,7 @@ describe(`enum can be parsed`, () => {
     environmentManager.set(`cli_param_foo`, `d`)
     $.parameter(`--foo`, z.enum([`a`, `b`, `c`])).parse({ line: [] })
     // Skip ANSI snapshots in CI due to environment differences
-    if (!process.env.CI) expect(stdout.mock.calls).toMatchSnapshot()
+    expect(stdout.mock.calls).toMatchSnapshot()
   })
 })
 

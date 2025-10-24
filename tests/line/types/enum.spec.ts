@@ -7,12 +7,12 @@ describe(`errors`, () => {
   it(`when argument missing (last position)`, () => {
     $.parameter(`--mode`, z.enum([`a`, `b`])).parse({ line: [`--mode`] })
     // Skip ANSI snapshots in CI due to environment differences
-    if (!process.env.CI) expect(stdout.mock.calls).toMatchSnapshot()
+    expect(stdout.mock.calls).toMatchSnapshot()
   })
   it(`when argument missing (non-last position)`, () => {
     $.parameter(`--name`, s).parameter(`--mode`, z.enum([`a`, `b`])).parse({ line: [` --mode`, `--name`, `joe`] })
     // Skip ANSI snapshots in CI due to environment differences
-    if (!process.env.CI) expect(stdout.mock.calls).toMatchSnapshot()
+    expect(stdout.mock.calls).toMatchSnapshot()
   })
   it(`is validated`, () => {
     // const args = Parameters.create({ '--mode': z.enum([`a`, `b`, `c`]) }).parse({line:[`--mode`, `bad`]})
@@ -20,6 +20,6 @@ describe(`errors`, () => {
     // expect(args).toMatchObject({ mode: true })
     $.parameter(`--mode`, z.enum([`a`, `b`, `c`])).parse({ line: [`--mode`, `bad`] })
     // Skip ANSI snapshots in CI due to environment differences
-    if (!process.env.CI) expect(stdout.mock.calls).toMatchSnapshot()
+    expect(stdout.mock.calls).toMatchSnapshot()
   })
 })

@@ -54,5 +54,5 @@ it(`environment supersedes settings`, () => {
       })
   ).toThrowErrorMatchingSnapshot()
   // Skip ANSI snapshots in CI due to environment differences
-  if (!process.env.CI) expect(output.value).toMatchSnapshot()
+  expect(output.value).toMatchSnapshot()
 })

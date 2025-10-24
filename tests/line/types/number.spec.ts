@@ -14,12 +14,12 @@ describe(`errors`, () => {
   it(`validates the  input`, () => {
     $.parameter(`--age`, n.int()).parse({ line: [`--age`, `1.1`] })
     // Skip ANSI snapshots in CI due to environment differences
-    if (!process.env.CI) expect(stdout.mock.calls).toMatchSnapshot()
+    expect(stdout.mock.calls).toMatchSnapshot()
   })
   it(`throws error when argument missing (last position)`, () => {
     $.parameter(`--age`, n).parse({ line: [`--age`] })
     // Skip ANSI snapshots in CI due to environment differences
-    if (!process.env.CI) expect(stdout.mock.calls).toMatchSnapshot()
+    expect(stdout.mock.calls).toMatchSnapshot()
   })
   it(`throws error when argument missing (non-last position)`, () => {
     $.parameter(`--name`, s)
@@ -28,6 +28,6 @@ describe(`errors`, () => {
         line: [` --age`, `--name`, `joe`],
       })
     // Skip ANSI snapshots in CI due to environment differences
-    if (!process.env.CI) expect(stdout.mock.calls).toMatchSnapshot()
+    expect(stdout.mock.calls).toMatchSnapshot()
   })
 })
