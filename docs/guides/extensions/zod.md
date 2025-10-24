@@ -14,8 +14,8 @@ npm add zod
 
 The supported Zod types and their mapping is as follows:
 
-| Zod                                                                               | Oak Type                                    |
-| --------------------------------------------------------------------------------- | ------------------------------------------- |
+| Zod                                                                               | Oak Type                                     |
+| --------------------------------------------------------------------------------- | -------------------------------------------- |
 | [`boolean`](https://github.com/colinhacks/zod#booleans)                           | [`boolean`](/guides/parameter-types#boolean) |
 | [`string`](https://github.com/colinhacks/zod#strings)                             | [`string`](/guides/parameter-types#string)   |
 | [`number`](https://github.com/colinhacks/zod#numbers)                             | [`number`](/guides/parameter-types#number)   |

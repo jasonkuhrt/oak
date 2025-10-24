@@ -159,14 +159,14 @@ export namespace BuilderCommandState {
   export type ToArgs<$State extends Base> = $State['IsPromptEnabled'] extends true ? Promise<ToArgs_<$State>>
     : ToArgs_<$State>
 
-  type ToArgs_<$State extends Base> = Ts.Simplify<
+  type ToArgs_<$State extends Base> = Ts.Simplify.Top<
     & {
       [Name in keyof $State['Parameters'] & string as $State['Parameters'][Name]['NameParsed']['canonical']]:
         InferOutput<$State['Parameters'][Name]['Schema']>
     }
     & {
       [Label in keyof $State['ParametersExclusive'] & string]:
-        | Ts.Simplify<
+        | Ts.Simplify.Top<
           Values<
             {
               [Name in keyof $State['ParametersExclusive'][Label]['Parameters']]: {

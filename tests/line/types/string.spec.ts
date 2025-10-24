@@ -23,12 +23,12 @@ describe(`errors`, () => {
 describe(`optional`, () => {
   it(`specified input can be omitted, missing key is possible`, () => {
     const args = $.parameter(`--foo`, s.optional()).parse({ line: [] })
-    true as Ts.Test.bid<{ foo: string | undefined }, typeof args>
+    true as Ts.Assert.equiv<{ foo: string | undefined }, typeof args>
     expect(Object.keys(args)).not.toContain(`foo`)
   })
   it(`input can be given`, () => {
     const args = $.parameter(`--foo`, s.optional()).parse({ line: [`--foo`, `bar`] })
-    true as Ts.Test.bid<{ foo: string | undefined }, typeof args>
+    true as Ts.Assert.equiv<{ foo: string | undefined }, typeof args>
     expect(args).toMatchObject({ foo: `bar` })
   })
 })

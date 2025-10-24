@@ -9,7 +9,7 @@ describe(`optional`, () => {
   it(`leads to optional type`, () => {
     const args = $.parametersExclusive(`method`, ($) => $.parameter(`v version`, s).parameter(`b bump`, e).optional())
       .parse({ line: [`-v`, `1.0.0`] })
-    Ts.Test.exact<{
+    Ts.Assert.exact.ofAs<{
       method:
         | {
           _tag: 'version'
@@ -20,7 +20,7 @@ describe(`optional`, () => {
           value: 'major' | 'minor' | 'patch'
         }
         | undefined
-    }>()(args)
+    }>().on(args)
   })
 
   it(`can accept line arg`, () => {
@@ -83,7 +83,7 @@ describe(`default`, () => {
       `method`,
       ($) => $.parameter(`v version`, s).parameter(`b bump`, e).default(`bump`, `major`),
     ).parse()
-    Ts.Test.exact<{
+    Ts.Assert.exact.ofAs<{
       method:
         | {
           _tag: 'version'
@@ -93,7 +93,7 @@ describe(`default`, () => {
           _tag: 'bump'
           value: 'major' | 'minor' | 'patch'
         }
-    }>()(args)
+    }>().on(args)
   })
   it(`used if nothing passed for group`, () => {
     args = $$.parametersExclusive(

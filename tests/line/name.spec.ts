@@ -99,18 +99,18 @@ describe(`case`, () => {
 
   test(`kebab case param spec can be passed camel case parameter`, () => {
     const args = $.parameter(`--foo-bar`, s).parse({ line: [`--fooBar`, `foo`] })
-    true as Ts.Test.bid<{ fooBar: string }, typeof args>
+    true as Ts.Assert.equiv<{ fooBar: string }, typeof args>
   })
   test(`kebab case param spec can be passed kebab case parameter`, () => {
     const args = $.parameter(`--foo-bar`, s).parse({ line: [`--foo-bar`, `foo`] })
-    true as Ts.Test.bid<{ fooBar: string }, typeof args>
+    true as Ts.Assert.equiv<{ fooBar: string }, typeof args>
   })
   test(`camel case param spec can be passed kebab case parameter`, () => {
     const args = $.parameter(`--fooBar`, s).parse({ line: [`--foo-bar`, `foo`] })
-    true as Ts.Test.bid<{ fooBar: string }, typeof args>
+    true as Ts.Assert.equiv<{ fooBar: string }, typeof args>
   })
   test(`camel case param spec can be passed camel case parameter`, () => {
     const args = $.parameter(`--fooBar`, s).parse({ line: [`--fooBar`, `foo`] })
-    true as Ts.Test.bid<{ fooBar: string }, typeof args>
+    true as Ts.Assert.equiv<{ fooBar: string }, typeof args>
   })
 })

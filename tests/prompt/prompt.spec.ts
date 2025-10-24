@@ -292,16 +292,16 @@ it(`array value`, () => {
 // })
 
 it(`Static type tests`, () => {
-  Ts.Test.bid<() => { a: 1 }>()(
+  Ts.Assert.equiv.ofAs<() => { a: 1 }>().on(
     $.parameter(`a`, { type: l1, prompt: { enabled: false, when: { result: `accepted` } } }).parse,
   )
-  Ts.Test.bid<() => { a: 1 }>()(
+  Ts.Assert.equiv.ofAs<() => { a: 1 }>().on(
     $.parameter(`a`, { type: l1 }).settings({ prompt: { enabled: false, when: { result: `accepted` } } }).parse,
   )
-  Ts.Test.bid<() => Promise<{ a: 1 }>>()(
+  Ts.Assert.equiv.ofAs<() => Promise<{ a: 1; b: 1 }>>().on(
     $.parameter(`a`, { type: l1, prompt: true }).parameter(`b`, { type: l1, prompt: false }).parse,
   )
-  Ts.Test.bid<() => Promise<{ a: 1 }>>()(
+  Ts.Assert.equiv.ofAs<() => Promise<{ a: 1 }>>().on(
     $.parameter(`a`, { type: l1 }).settings({ prompt: { when: { result: `accepted` } } }).parse,
   )
 })
