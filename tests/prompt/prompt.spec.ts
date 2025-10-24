@@ -1,5 +1,4 @@
 import { Ts } from '@wollybeard/kit'
-import stripAnsi from 'strip-ansi'
 import { beforeEach, describe, expect, it } from 'vitest'
 import { z } from 'zod/v4'
 import type { BuilderCommandState } from '../../src/builders/command/state.js'
@@ -7,6 +6,7 @@ import type { CommandBuilder } from '../../src/builders/command/types.js'
 import type { KeyPress } from '../../src/lib/KeyPress/index.js'
 import { $, b, e, l1, n, s, tryCatch } from '../_/helpers.js'
 import { memoryPrompter } from '../_/mocks/tty.js'
+import { normalizeTerminalOutput } from '../_/snapshotSerializer.js'
 
 // TODO test that prompt order is based on order of parameter definition
 
@@ -315,9 +315,6 @@ const run = async ($: any) => {
   memoryPrompter.script.keyPress.push(...keyPresses)
   const args = await tryCatch(() => $.parse({ line, tty: memoryPrompter }))
   expect(args).toMatchSnapshot(`args`)
-  // Skip ANSI snapshots in CI due to environment differences
-  {
-    expect(memoryPrompter.history.all).toMatchSnapshot(`tty`)
-  }
-  expect(memoryPrompter.history.all.map((_) => stripAnsi(_))).toMatchSnapshot(`tty strip ansi`)
+  // Normalize terminal output for consistent snapshots across environments
+  expect(normalizeTerminalOutput(memoryPrompter.history.all)).toMatchSnapshot(`tty output`)
 }

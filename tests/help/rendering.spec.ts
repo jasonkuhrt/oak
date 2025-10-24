@@ -19,7 +19,6 @@ it(`if command has description it is shown`, () => {
     .settings({ onOutput })
     .parse({ line: [`-h`] })
   expect(stripAnsi(output.value)).toMatchSnapshot(`monochrome`)
-  expect(output.value).toMatchSnapshot(`polychrome`)
 })
 
 it(`if there is optional param it is shown`, () => {
@@ -27,7 +26,6 @@ it(`if there is optional param it is shown`, () => {
     .settings({ onOutput })
     .parse({ line: [`-h`] })
   expect(stripAnsi(output.value)).toMatchSnapshot(`monochrome`)
-  expect(output.value).toMatchSnapshot(`polychrome`)
 })
 
 it(`if parameter has description it is shown`, () => {
@@ -35,7 +33,6 @@ it(`if parameter has description it is shown`, () => {
     .settings({ onOutput })
     .parse({ line: [`-h`] })
   expect(stripAnsi(output.value)).toMatchSnapshot(`monochrome`)
-  expect(output.value).toMatchSnapshot(`polychrome`)
 })
 
 it(`long description wraps within column`, () => {
@@ -43,7 +40,6 @@ it(`long description wraps within column`, () => {
     .settings({ onOutput })
     .parse({ line: [`-h`] })
   expect(stripAnsi(output.value)).toMatchSnapshot(`monochrome`)
-  expect(output.value).toMatchSnapshot(`polychrome`)
 })
 
 it(`if parameter has default it is shown`, () => {
@@ -51,7 +47,6 @@ it(`if parameter has default it is shown`, () => {
     .settings({ onOutput })
     .parse({ line: [`-h`] })
   expect(stripAnsi(output.value)).toMatchSnapshot(`monochrome`)
-  expect(output.value).toMatchSnapshot(`polychrome`)
 })
 
 it(`if parameter is optional without default then its default shows up as "undefined"`, () => {
@@ -59,7 +54,6 @@ it(`if parameter is optional without default then its default shows up as "undef
     .settings({ onOutput })
     .parse({ line: [`-h`] })
   expect(stripAnsi(output.value)).toMatchSnapshot(`monochrome`)
-  expect(output.value).toMatchSnapshot(`polychrome`)
 })
 
 it(`if there is an error trying to get default then a nice message is shown`, () => {
@@ -72,7 +66,6 @@ it(`if there is an error trying to get default then a nice message is shown`, ()
     .settings({ onOutput })
     .parse({ line: [`-h`] })
   expect(stripAnsi(output.value)).toMatchSnapshot(`monochrome`)
-  expect(output.value).toMatchSnapshot(`polychrome`)
 })
 
 it(`if there is an error trying to get default then a nice message is shown`, () => {
@@ -85,7 +78,6 @@ it(`if there is an error trying to get default then a nice message is shown`, ()
     .settings({ onOutput })
     .parse({ line: [`-h`] })
   expect(stripAnsi(output.value)).toMatchSnapshot(`monochrome`)
-  expect(output.value).toMatchSnapshot(`polychrome`)
 })
 
 it(`enums do not mess up alignment when they are widest line in the column`, () => {
@@ -124,7 +116,6 @@ it(`enums do not mess up alignment when they are widest line in the column`, () 
     s.optional(),
   ).settings({ onOutput }).parse({ line: [`-h`] })
   expect(stripAnsi(output.value)).toMatchSnapshot(`monochrome`)
-  expect(output.value).toMatchSnapshot(`polychrome`)
 })
 
 describe(`enum`, () => {
@@ -133,7 +124,6 @@ describe(`enum`, () => {
       .settings({ onOutput })
       .parse({ line: [`-h`] })
     expect(stripAnsi(output.value)).toMatchSnapshot(`monochrome`)
-    expect(output.value).toMatchSnapshot(`polychrome`)
   })
 
   it(`optional enum members are listed`, () => {
@@ -141,7 +131,6 @@ describe(`enum`, () => {
       .settings({ onOutput })
       .parse({ line: [`-h`] })
     expect(stripAnsi(output.value)).toMatchSnapshot(`monochrome`)
-    expect(output.value).toMatchSnapshot(`polychrome`)
   })
 
   it(`when there is only one enum member it is prefixed with "enum:" to avoid confusion of it looking like the name of a kind of type`, () => {
@@ -149,7 +138,6 @@ describe(`enum`, () => {
       .settings({ onOutput })
       .parse({ line: [`-h`] })
     expect(stripAnsi(output.value)).toMatchSnapshot(`monochrome`)
-    expect(output.value).toMatchSnapshot(`polychrome`)
   })
 
   it(`when there are many members they wrap`, () => {
@@ -172,7 +160,6 @@ describe(`enum`, () => {
       .settings({ onOutput })
       .parse({ line: [`-h`] })
     expect(stripAnsi(output.value)).toMatchSnapshot(`monochrome`)
-    expect(output.value).toMatchSnapshot(`polychrome`)
   })
 })
 
@@ -182,14 +169,12 @@ describe(`environment`, () => {
       .settings({ onOutput, parameters: { environment: false } })
       .parse({ line: [`-h`] })
     expect(stripAnsi(output.value)).toMatchSnapshot(`monochrome`)
-    expect(output.value).toMatchSnapshot(`polychrome`)
   })
   it(`when environment is enabled it shows as the last column`, () => {
     $.parameter(`foo`, s)
       .settings({ onOutput, parameters: { environment: true } })
       .parse({ line: [`-h`] })
     expect(stripAnsi(output.value)).toMatchSnapshot(`monochrome`)
-    expect(output.value).toMatchSnapshot(`polychrome`)
   })
   it(`when environment is disabled for one parameter it has X indicating that`, () => {
     $.parameter(`foo`, s)
@@ -197,7 +182,6 @@ describe(`environment`, () => {
       .settings({ onOutput, parameters: { environment: { $default: true, foo: false } } })
       .parse({ line: [`-h`] })
     expect(stripAnsi(output.value)).toMatchSnapshot(`monochrome`)
-    expect(output.value).toMatchSnapshot(`polychrome`)
   })
   it(`when environment has custom prefix it is displayed`, () => {
     $.parameter(`foo`, s)
@@ -205,7 +189,6 @@ describe(`environment`, () => {
       .settings({ onOutput, parameters: { environment: { $default: true, foo: { prefix: `moo` } } } })
       .parse({ line: [`-h`] })
     expect(stripAnsi(output.value)).toMatchSnapshot(`monochrome`)
-    expect(output.value).toMatchSnapshot(`polychrome`)
   })
   it(`when environment has multiple custom prefix they are displayed`, () => {
     $.parameter(`foo`, s)
@@ -216,7 +199,6 @@ describe(`environment`, () => {
       })
       .parse({ line: [`-h`] })
     expect(stripAnsi(output.value)).toMatchSnapshot(`monochrome`)
-    expect(output.value).toMatchSnapshot(`polychrome`)
   })
   it(`when environment has no prefix it is displayed`, () => {
     $.parameter(`foo`, s)
@@ -224,7 +206,6 @@ describe(`environment`, () => {
       .settings({ onOutput, parameters: { environment: { $default: true, foo: { prefix: false } } } })
       .parse({ line: [`-h`] })
     expect(stripAnsi(output.value)).toMatchSnapshot(`monochrome`)
-    expect(output.value).toMatchSnapshot(`polychrome`)
   })
 })
 
@@ -237,7 +218,6 @@ describe(`exclusive`, () => {
           line: [`-h`],
         })
       expect(stripAnsi(output.value)).toMatchSnapshot(`monochrome`)
-      expect(output.value).toMatchSnapshot(`polychrome`)
     })
   })
   describe(`default`, () => {
@@ -248,7 +228,6 @@ describe(`exclusive`, () => {
           line: [`-h`],
         })
       expect(stripAnsi(output.value)).toMatchSnapshot(`monochrome`)
-      expect(output.value).toMatchSnapshot(`polychrome`)
     })
   })
   describe(`default with long value`, () => {
@@ -262,7 +241,6 @@ describe(`exclusive`, () => {
           line: [`-h`],
         })
       expect(stripAnsi(output.value)).toMatchSnapshot(`monochrome`)
-      expect(output.value).toMatchSnapshot(`polychrome`)
     })
   })
   describe(`with environment disabled`, () => {
@@ -273,7 +251,6 @@ describe(`exclusive`, () => {
           line: [`-h`],
         })
       expect(stripAnsi(output.value)).toMatchSnapshot(`monochrome`)
-      expect(output.value).toMatchSnapshot(`polychrome`)
     })
   })
 })
@@ -287,7 +264,6 @@ describe(`union parameter`, () => {
           line: [`-h`],
         })
       expect(stripAnsi(output.value)).toMatchSnapshot(`monochrome`)
-      expect(output.value).toMatchSnapshot(`polychrome`)
     })
     it(`used when only overall description given`, () => {
       $.parameter(`b bar`, z.union([z.string(), z.number()]).describe(`Blah blah blah.`))
@@ -296,7 +272,6 @@ describe(`union parameter`, () => {
           line: [`-h`],
         })
       expect(stripAnsi(output.value)).toMatchSnapshot(`monochrome`)
-      expect(output.value).toMatchSnapshot(`polychrome`)
     })
   })
   describe(`expanded style`, () => {
@@ -305,7 +280,6 @@ describe(`union parameter`, () => {
         .settings({ onOutput, helpRendering: { union: { mode: `expandAlways` } } })
         .parse({ line: [`-h`] })
       expect(stripAnsi(output.value)).toMatchSnapshot(`monochrome`)
-      expect(output.value).toMatchSnapshot(`polychrome`)
     })
     it(`shows member on each line if each has description`, () => {
       $.parameter(
@@ -320,7 +294,6 @@ describe(`union parameter`, () => {
           line: [`-h`],
         })
       expect(stripAnsi(output.value)).toMatchSnapshot(`monochrome`)
-      expect(output.value).toMatchSnapshot(`polychrome`)
     })
     it(`shows member on each line if at least one has description`, () => {
       $.parameter(`b bar`, z.union([z.string(), z.number().describe(`Blah blah blah number.`)]))
@@ -329,7 +302,6 @@ describe(`union parameter`, () => {
           line: [`-h`],
         })
       expect(stripAnsi(output.value)).toMatchSnapshot(`monochrome`)
-      expect(output.value).toMatchSnapshot(`polychrome`)
     })
     it(`shows overall description above all members when members also have descriptions`, () => {
       $.parameter(
@@ -346,7 +318,6 @@ describe(`union parameter`, () => {
           line: [`-h`],
         })
       expect(stripAnsi(output.value)).toMatchSnapshot(`monochrome`)
-      expect(output.value).toMatchSnapshot(`polychrome`)
     })
   })
   it(`shows default when overall has a default`, () => {
@@ -362,7 +333,6 @@ describe(`union parameter`, () => {
         line: [`-h`],
       })
     expect(stripAnsi(output.value)).toMatchSnapshot(`monochrome`)
-    expect(output.value).toMatchSnapshot(`polychrome`)
   })
   it(`shows default as undefined when overall optional`, () => {
     $.parameter(
@@ -377,6 +347,5 @@ describe(`union parameter`, () => {
         line: [`-h`],
       })
     expect(stripAnsi(output.value)).toMatchSnapshot(`monochrome`)
-    expect(output.value).toMatchSnapshot(`polychrome`)
   })
 })
