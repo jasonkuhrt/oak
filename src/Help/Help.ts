@@ -73,7 +73,10 @@ export const render = (parameters_: Parameter[], settings: Settings.Output, _set
     )
   }
 
-  const output = Cli.Tex.Tex()
+  // Explicitly set terminal width to avoid shallow spread issues in kit's parameter merging
+  // See: https://github.com/jasonkuhrt/kit/issues/35
+  const terminalWidth = process.stdout.columns ?? 120
+  const output = Cli.Tex.Tex({ spanRange: { cross: { max: terminalWidth } } })
     .block(($) => {
       if (!settings.description) return null
       return $.block({ padding: [1, 0] }, `ABOUT`).block(
