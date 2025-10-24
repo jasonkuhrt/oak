@@ -1,11 +1,19 @@
-import { beforeEach, expect } from 'vitest'
+import { beforeEach, expect, vi } from 'vitest'
 import { describe, it } from 'vitest'
 import { z } from 'zod/v4'
 import { $, b, n, s } from '../_/helpers.js'
-import { stdout } from '../_/mocks.js'
-import { environmentManager } from './__helpers__.js'
+import { createState, environmentManager } from './__helpers__.js'
 
-beforeEach(() => environmentManager.set(`CLI_SETTINGS_READ_ARGUMENTS_FROM_ENVIRONMENT`, `true`))
+const output = createState<string>({
+  value: (values) => values.join(``),
+})
+
+const onOutput = output.set
+
+beforeEach(() => {
+  vi.spyOn(process, 'exit').mockImplementation(() => undefined as never)
+  environmentManager.set(`CLI_SETTINGS_READ_ARGUMENTS_FROM_ENVIRONMENT`, `true`)
+})
 
 describe(`boolean can be parsed`, () => {
   it(`parses value of true`, () => {
@@ -74,9 +82,8 @@ it(`parses a value specified to be a number`, () => {
 describe(`enum can be parsed`, () => {
   it(`throws an error if the value does not pass validation`, () => {
     environmentManager.set(`cli_param_foo`, `d`)
-    $.parameter(`--foo`, z.enum([`a`, `b`, `c`])).parse({ line: [] })
-    // Skip ANSI snapshots in CI due to environment differences
-    expect(stdout.mock.calls).toMatchSnapshot()
+    $.parameter(`--foo`, z.enum([`a`, `b`, `c`])).settings({ onOutput }).parse({ line: [] })
+    expect([[output.value]]).toMatchSnapshot()
   })
 })
 

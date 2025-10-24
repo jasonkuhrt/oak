@@ -1,8 +1,18 @@
 import type { Ts } from '@wollybeard/kit'
-import { describe, expect, it } from 'vitest'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { $, n } from '../../_/helpers.js'
 import { s } from '../../_/helpers.js'
-import { getStdoutCalls } from '../../_/mocks.js'
+import { createState } from '../../environment/__helpers__.js'
+
+const output = createState<string>({
+  value: (values) => values.join(``),
+})
+
+const onOutput = output.set
+
+beforeEach(() => {
+  vi.spyOn(process, 'exit').mockImplementation(() => undefined as never)
+})
 
 it(`casts the input as a number`, () => {
   const args = $.parameter(`--age`, n).parse({ line: [`--age`, `1`] })
@@ -12,22 +22,20 @@ it(`casts the input as a number`, () => {
 
 describe(`errors`, () => {
   it(`validates the  input`, () => {
-    $.parameter(`--age`, n.int()).parse({ line: [`--age`, `1.1`] })
-    // Skip ANSI snapshots in CI due to environment differences
-    expect(getStdoutCalls()).toMatchSnapshot()
+    $.parameter(`--age`, n.int()).settings({ onOutput }).parse({ line: [`--age`, `1.1`] })
+    expect([[output.value]]).toMatchSnapshot()
   })
   it(`throws error when argument missing (last position)`, () => {
-    $.parameter(`--age`, n).parse({ line: [`--age`] })
-    // Skip ANSI snapshots in CI due to environment differences
-    expect(getStdoutCalls()).toMatchSnapshot()
+    $.parameter(`--age`, n).settings({ onOutput }).parse({ line: [`--age`] })
+    expect([[output.value]]).toMatchSnapshot()
   })
   it(`throws error when argument missing (non-last position)`, () => {
     $.parameter(`--name`, s)
       .parameter(`--age`, n)
+      .settings({ onOutput })
       .parse({
         line: [` --age`, `--name`, `joe`],
       })
-    // Skip ANSI snapshots in CI due to environment differences
-    expect(getStdoutCalls()).toMatchSnapshot()
+    expect([[output.value]]).toMatchSnapshot()
   })
 })

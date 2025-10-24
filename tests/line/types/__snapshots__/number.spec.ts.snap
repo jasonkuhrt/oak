@@ -5,25 +5,6 @@ exports[`errors > throws error when argument missing (last position) 1`] = `
   [
     "Cannot run command, you made some mistakes:
 
-Invalid argument for parameter: "age". The error was:
-Invalid input: expected int, received number
-
-Here are the docs for this command:
-
-                                                                                                                        
-PARAMETERS                                                                                                              
-                                                                                                                        
-  Name     Type              Default       Environment (1)                                                              
-                                                                                                                        
-  age      number             REQUIRED     ✓                                                                            
-                                                                                                                        
-                                                                                                                        
-  NOTES                                                                                                                 
-  ━━━━━                                                                                                                 
-  (1)   Parameters can be passed arguments via environment variables. Command line arguments take precedence. Environmen
-        → CLI_PARAMETER_AGE="..."                                                                                       
-Cannot run command, you made some mistakes:
-
 Missing argument for flag "age".
 
 Here are the docs for this command:
@@ -49,43 +30,6 @@ exports[`errors > throws error when argument missing (non-last position) 1`] = `
 [
   [
     "Cannot run command, you made some mistakes:
-
-Invalid argument for parameter: "age". The error was:
-Invalid input: expected int, received number
-
-Here are the docs for this command:
-
-                                                                                                                        
-PARAMETERS                                                                                                              
-                                                                                                                        
-  Name     Type              Default       Environment (1)                                                              
-                                                                                                                        
-  age      number             REQUIRED     ✓                                                                            
-                                                                                                                        
-                                                                                                                        
-  NOTES                                                                                                                 
-  ━━━━━                                                                                                                 
-  (1)   Parameters can be passed arguments via environment variables. Command line arguments take precedence. Environmen
-        → CLI_PARAMETER_AGE="..."                                                                                       
-Cannot run command, you made some mistakes:
-
-Missing argument for flag "age".
-
-Here are the docs for this command:
-
-                                                                                                                        
-PARAMETERS                                                                                                              
-                                                                                                                        
-  Name     Type              Default       Environment (1)                                                              
-                                                                                                                        
-  age      number             REQUIRED     ✓                                                                            
-                                                                                                                        
-                                                                                                                        
-  NOTES                                                                                                                 
-  ━━━━━                                                                                                                 
-  (1)   Parameters can be passed arguments via environment variables. Command line arguments take precedence. Environmen
-        → CLI_PARAMETER_AGE="..."                                                                                       
-Cannot run command, you made some mistakes:
 
 Missing argument for flag "age".
 
