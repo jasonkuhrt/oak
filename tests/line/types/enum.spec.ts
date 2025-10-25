@@ -22,6 +22,7 @@ describe.skipIf(process.env.CI === 'true')(`errors`, () => {
   it(`when argument missing (non-last position)`, () => {
     $.parameter(`--name`, s).parameter(`--mode`, z.enum([`a`, `b`])).settings({ onOutput }).parse({
       line: [` --mode`, `--name`, `joe`],
+      environment: {}, // Exclude environment variables to test line parsing only
     })
     expect([[output.value]]).toMatchSnapshot()
   })

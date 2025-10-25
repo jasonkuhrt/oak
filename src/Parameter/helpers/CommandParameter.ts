@@ -1,5 +1,5 @@
+import { Cli } from '@wollybeard/kit'
 import { Either } from 'effect'
-import { stripeNegatePrefix } from '../../helpers.js'
 import * as SchemaRuntime from '../../schema/schema-runtime.js'
 import type { Parameter } from '../types.js'
 
@@ -44,14 +44,17 @@ type NameHit =
 
 /**
  * Is one of the parameter's names the given name?
+ *
+ * Uses Cli.Arg to detect negation prefix pattern for boolean parameters.
  */
 export const hasName = (parameter: Parameter, name: string): null | NameHit => {
   const result = parameterSpecHasNameDo(parameter, name, false)
 
   if (isOrHasType(parameter, `TypeBoolean`)) {
-    const nameWithoutNegatePrefix = stripeNegatePrefix(name)
-    if (nameWithoutNegatePrefix) {
-      return parameterSpecHasNameDo(parameter, nameWithoutNegatePrefix, true)
+    // Try to detect negation using Cli.Arg pattern
+    const analyzed = Cli.Arg.analyze(`--${name}`)
+    if (analyzed._tag === `long-flag` && analyzed.negated) {
+      return parameterSpecHasNameDo(parameter, analyzed.name, true)
     }
   }
 

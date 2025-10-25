@@ -32,6 +32,11 @@ type ArgumentSource = LineSource | EnvironmentSource
 interface LineSource {
   _tag: 'line'
   name: string
+  /**
+   * Whether this flag had a negation prefix (`--no-*` pattern).
+   * Only applicable to boolean flags. Populated by Cli.Arg analysis.
+   */
+  negated: boolean
 }
 
 interface EnvironmentSource {

@@ -1,13 +1,8 @@
-import { Str } from '@wollybeard/kit'
+import { Cli, Str } from '@wollybeard/kit'
 import { Either } from 'effect'
-import { negateNamePattern } from '../helpers.js'
 import type { Parameter } from '../Parameter/types.js'
 import * as SchemaRuntime from '../schema/schema-runtime.js'
 import type { Value } from './types.js'
-
-export const stripeDashPrefix = (flagNameInput: string): string => {
-  return flagNameInput.replace(/^-+/, ``)
-}
 
 export const parseSerializedValue = (name: string, serializedValue: string, spec: Parameter): Value => {
   const either = SchemaRuntime.deserialize(spec.type, serializedValue)
@@ -32,15 +27,14 @@ export const parseSerializedValue = (name: string, serializedValue: string, spec
 /**
  * Is the environment variable input negated? Unlike line input the environment can be
  * namespaced so a bit more work is needed to parse out the name pattern.
+ *
+ * Uses Cli.Arg to detect negation prefix pattern.
  */
 export const isEnvarNegated = (name: string, spec: Parameter): boolean => {
   const nameWithNamespaceStripped = stripeNamespace(name, spec)
-  // dump({ nameWithNamespaceStripped })
-  return negateNamePattern.test(nameWithNamespaceStripped)
-}
-
-export const isNegated = (name: string): boolean => {
-  return negateNamePattern.test(name)
+  // Use Cli.Arg to detect negation pattern (--no-* pattern in camelCase)
+  const analyzed = Cli.Arg.analyze(`--${nameWithNamespaceStripped}`)
+  return analyzed._tag === `long-flag` ? analyzed.negated : false
 }
 
 const stripeNamespace = (name: string, spec: Parameter): string => {
