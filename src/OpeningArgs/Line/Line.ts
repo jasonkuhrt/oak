@@ -1,10 +1,9 @@
-import { Str } from '@wollybeard/kit'
+import { Cli } from '@wollybeard/kit'
 import { Errors } from '../../Errors/index.js'
-import { stripeNegatePrefixLoose } from '../../helpers.js'
 import type { Index } from '../../lib/prelude.js'
 import { findByName, isOrHasType } from '../../Parameter/helpers/CommandParameter.js'
 import type { Parameter } from '../../Parameter/types.js'
-import { isNegated, parseSerializedValue, stripeDashPrefix } from '../helpers.js'
+import { parseSerializedValue } from '../helpers.js'
 import type { ArgumentReport } from '../types.js'
 
 export type RawInputs = string[]
@@ -25,20 +24,33 @@ interface ParsedInputs {
 export const parse = (rawLineInputs: RawInputs, parameters: Parameter[]): ParsedInputs => {
   const globalErrors: GlobalParseErrors[] = []
 
-  const rawLineInputsPrepared = rawLineInputs
-    .flatMap((lineInput) => {
-      if (!isShortFlag(lineInput)) return [lineInput]
-      return stripeShortFlagPrefixUnsafe(lineInput).split(``).map(addShortFlagPrefix)
-    })
-    .flatMap((lineInput) => {
-      if (lineInput.trim() === `=`) return []
-      if (!isFlag(lineInput.trim())) return [lineInput]
-      // Nodejs will not get us empty string input so we are guaranteed a flag name here.
-      const [flag, ...value] = lineInput.trim().split(`=`) as [string, ...string[]]
-      if (value.length === 0) return [flag]
-      if (value.join(``) === ``) return [flag]
-      return [flag, value.join(`=`)]
-    })
+  const rawLineInputsPrepared = rawLineInputs.flatMap((lineInput) => {
+    // Skip standalone equals
+    if (lineInput.trim() === `=`) return []
+
+    const analyzed = Cli.Arg.analyze(lineInput.trim())
+
+    // Handle short flag clusters (e.g., -abc → [-a, -b, -c])
+    if (analyzed._tag === `short-flag-cluster`) {
+      return analyzed.flags.flatMap((flag) => {
+        if (flag.value !== null && flag.value !== ``) {
+          // Split flag and value into separate tokens
+          return [flag.original.split(`=`)[0]!, flag.value]
+        }
+        return [flag.original]
+      })
+    }
+
+    // Handle flags with values (e.g., --foo=bar → [--foo, bar])
+    if ((analyzed._tag === `long-flag` || analyzed._tag === `short-flag`) && analyzed.value !== null) {
+      // Preserve molt's behavior of dropping empty values
+      if (analyzed.value === ``) return [analyzed.original.split(`=`)[0]!]
+      return [analyzed.original.split(`=`)[0]!, analyzed.value]
+    }
+
+    // Pass through everything else unchanged
+    return [lineInput]
+  })
 
   const reports: Index<ArgumentReport> = {}
 
@@ -56,7 +68,7 @@ export const parse = (rawLineInputs: RawInputs, parameters: Parameter[]): Parsed
         pendingReport.value = {
           value: true,
           _tag: `boolean`,
-          negated: isNegated(Str.Case.camel(pendingReport.source.name)),
+          negated: pendingReport.source._tag === `line` ? pendingReport.source.negated : false,
         }
       } else {
         pendingReport.errors.push(new Errors.ErrorMissingArgument({ parameter: pendingReport.parameter }))
@@ -67,18 +79,18 @@ export const parse = (rawLineInputs: RawInputs, parameters: Parameter[]): Parsed
   // Do processing
 
   for (const rawLineInput of rawLineInputsPrepared) {
-    if (isFlag(rawLineInput)) {
+    const analyzed = Cli.Arg.analyze(rawLineInput)
+
+    if (analyzed._tag === `long-flag` || analyzed._tag === `short-flag`) {
       if (currentReport) {
         finishPendingReport(currentReport)
         currentReport = null
       }
 
-      const flagNameNoDashPrefix = stripeDashPrefix(rawLineInput)
-      const flagNameNoDashPrefixCamel = Str.Case.camel(flagNameNoDashPrefix)
-      const flagNameNoDashPrefixNoNegate = stripeNegatePrefixLoose(flagNameNoDashPrefixCamel)
-      const parameter = findByName(flagNameNoDashPrefixCamel, parameters)
+      // analyzed.name is already camelCase with negation prefix stripped (if applicable)
+      const parameter = findByName(analyzed.name, parameters)
       if (!parameter) {
-        globalErrors.push(new Errors.Global.ErrorUnknownFlag({ flagName: flagNameNoDashPrefixNoNegate }))
+        globalErrors.push(new Errors.Global.ErrorUnknownFlag({ flagName: analyzed.name }))
         continue
       }
 
@@ -90,7 +102,7 @@ export const parse = (rawLineInputs: RawInputs, parameters: Parameter[]): Parsed
         existing.errors.push(
           new Errors.ErrorDuplicateLineArg({
             parameter,
-            flagName: flagNameNoDashPrefixNoNegate,
+            flagName: analyzed.name,
           }),
         )
         continue
@@ -102,7 +114,8 @@ export const parse = (rawLineInputs: RawInputs, parameters: Parameter[]): Parsed
         value: PENDING_VALUE,
         source: {
           _tag: `line`,
-          name: flagNameNoDashPrefix,
+          name: analyzed.name,
+          negated: analyzed._tag === `long-flag` ? analyzed.negated : false,
         },
       }
 
@@ -146,15 +159,5 @@ export const parse = (rawLineInputs: RawInputs, parameters: Parameter[]): Parsed
     reports,
   }
 }
-
-const isFlag = (lineInput: string) => isLongFlag(lineInput) || isShortFlag(lineInput)
-
-const isLongFlag = (lineInput: string) => lineInput.trim().startsWith(`--`)
-
-const isShortFlag = (lineInput: string) => lineInput.trim().startsWith(`-`) && !lineInput.trim().startsWith(`--`)
-
-const stripeShortFlagPrefixUnsafe = (lineInput: string) => lineInput.trim().slice(1)
-
-const addShortFlagPrefix = (lineInput: string) => `-${lineInput}`
 
 const PENDING_VALUE = `__PENDING__` as any

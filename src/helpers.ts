@@ -1,4 +1,3 @@
-import { Str } from '@wollybeard/kit'
 import { Either } from 'effect'
 
 export const BooleanLookup = {
@@ -11,10 +10,6 @@ export const environmentVariableBooleanLookup = {
   '1': true,
   '0': false,
 } as const
-
-export const stripeDashPrefix = (flagNameInput: string): string => {
-  return flagNameInput.replace(/^-+/, ``)
-}
 
 export type Values<T> = T[keyof T]
 
@@ -36,20 +31,6 @@ export const parseEnvironmentVariableBooleanOrThrow = (value: string) => {
     throw result.left
   }
   return result.right
-}
-
-export const negateNamePattern = /^no([A-Z].+)/
-
-export const stripeNegatePrefix = (name: string): null | string => {
-  const withoutPrefix = name.match(negateNamePattern)?.[1]
-  if (!withoutPrefix) return null
-  const withCamelCase = Str.Case.camel(withoutPrefix)
-  return withCamelCase
-}
-
-export const stripeNegatePrefixLoose = (name: string): string => {
-  const result = stripeNegatePrefix(name)
-  return result ? result : name
 }
 
 export const invertTable = <T>(rows: T[][]): T[][] => {
