@@ -8,7 +8,7 @@
   "author": "Jason Kuhrt",
   "license": "MIT",
   "type": "module",
-  "packageManager": "pnpm@8.15.2",
+  "packageManager": "pnpm@8.15.9",
   "files": [
     "src",
     "build"
