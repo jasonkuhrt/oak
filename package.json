@@ -44,11 +44,11 @@
   "keywords": [],
   "dependencies": {
     "@standard-schema/spec": "^1.0.0",
-    "@wollybeard/kit": "^0.87.1",
+    "@wollybeard/kit": "^0.101.1",
     "alge": "0.8.1",
-    "ansi-escapes": "^7.1.1",
+    "ansi-escapes": "^7.2.0",
     "chalk": "^5.6.2",
-    "effect": "^3.18.4",
+    "effect": "^3.19.3",
     "jasonkuhrt": "link:..",
     "string-length": "^6.0.0",
     "strip-ansi": "^7.1.2"
@@ -57,24 +57,24 @@
     "zod": "^4.0.0"
   },
   "devDependencies": {
-    "@octokit/core": "^7.0.5",
-    "@shikijs/transformers": "^3.13.0",
-    "@shikijs/vitepress-twoslash": "^3.13.0",
+    "@octokit/core": "^7.0.6",
+    "@shikijs/transformers": "^3.15.0",
+    "@shikijs/vitepress-twoslash": "^3.15.0",
     "@tsconfig/node-lts": "^22.0.2",
-    "@tsconfig/strictest": "^2.0.6",
-    "@types/node": "24.9.1",
+    "@tsconfig/strictest": "^2.0.7",
+    "@types/node": "24.10.0",
     "@types/semver": "^7.7.1",
     "execa": "9.6.0",
     "fast-glob": "3.3.3",
     "fs-jetpack": "5.1.0",
     "markdown-toc": "^1.2.0",
-    "oxlint": "^1.24.0",
+    "oxlint": "^1.28.0",
     "semver": "^7.7.3",
     "semver-regex": "4.0.5",
     "tsx": "^4.20.6",
     "typescript": "5.9.3",
     "vitepress": "^1.6.4",
-    "vitest": "^4.0.2",
+    "vitest": "^4.0.8",
     "zod": "^4.1.12"
   }
 }
