@@ -1,9 +1,9 @@
-import type { Errors } from '../Errors/index.js'
+import type { Errors } from '../Errors/_.ts'
 import type { ArgumentValue, ArgumentValueMutuallyExclusive } from '../executor/types.js'
 import type { ParameterBasic } from '../Parameter/basic.js'
 import type { ParameterExclusive, ParameterExclusiveGroup } from '../Parameter/exclusive.js'
 import type { Parameter } from '../Parameter/types.js'
-import type { Environment } from './Environment/index.js'
+import type { Environment } from './Environment/_.ts'
 import type { LocalParseErrors } from './Line/Line.js'
 
 export interface EnvironmentArgumentReport<$Parameter extends Parameter = Parameter> extends Argument {

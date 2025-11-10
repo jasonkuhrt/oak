@@ -1,4 +1,4 @@
-import type { Pam } from '../../lib/Pam/index.js'
+import type { Pam } from '../../lib/Pam/_.ts'
 import type { BuilderCommandState } from '../command/state.js'
 import type { BuilderParameterExclusiveState } from './state.js'
 import { createState, ExclusiveBuilderStateSymbol } from './state.js'

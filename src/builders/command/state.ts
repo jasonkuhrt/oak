@@ -6,7 +6,7 @@ import type { ParameterBasicInput } from '../../Parameter/basic.js'
 import type { ParameterExclusiveInput } from '../../Parameter/exclusive.js'
 import type { Prompt } from '../../Parameter/types.js'
 import type { InferOutput } from '../../schema/standard-schema.js'
-import type { Settings } from '../../Settings/index.js'
+import type { Settings } from '../../Settings/_.ts'
 import type { ExclusiveParameterConfiguration } from '../exclusive/types.js'
 import type { IsPromptEnabledInParameterSettings, ParameterConfiguration } from './types.js'
 

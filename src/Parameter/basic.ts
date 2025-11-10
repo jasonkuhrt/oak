@@ -1,9 +1,9 @@
 import { Cli } from '@wollybeard/kit'
 import type { BuilderCommandState } from '../builders/command/state.js'
 import { S } from '../deps/effect.js'
-import type { Pam } from '../lib/Pam/index.js'
+import type { Pam } from '../lib/Pam/_.ts'
 import type { OakSchema } from '../schema/oak-schema.js'
-import type { Settings } from '../Settings/index.js'
+import type { Settings } from '../Settings/_.ts'
 import { processEnvironment } from './helpers/environment.js'
 import type { Environment, Prompt } from './helpers/types.js'
 

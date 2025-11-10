@@ -1,6 +1,6 @@
 import type { Cli } from '@wollybeard/kit'
 import { Str } from '@wollybeard/kit'
-import type { Settings } from '../../Settings/index.js'
+import type { Settings } from '../../Settings/_.ts'
 import type { Environment } from './types.js'
 
 /**

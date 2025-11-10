@@ -1,6 +1,6 @@
-import type { Errors } from './Errors/index.js'
+import type { Errors } from './Errors/_.ts'
 import type { ArgumentValue } from './executor/types.js'
-import type { OpeningArgs } from './OpeningArgs/index.js'
+import type { OpeningArgs } from './OpeningArgs/_.ts'
 import type { ParameterBasicData } from './Parameter/basic.js'
 import type { Pattern } from './Pattern/Pattern.js'
 import type { OakSchema } from './schema/oak-schema.js'

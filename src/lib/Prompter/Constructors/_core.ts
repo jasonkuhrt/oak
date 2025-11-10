@@ -2,10 +2,10 @@ import { Effect } from 'effect'
 import type { OakSchema } from '../../../schema/oak-schema.js'
 import type { InferOutput } from '../../../schema/standard-schema.js'
 import { Term } from '../../../term.js'
-import type { KeyPress } from '../../KeyPress/index.js'
-import type { Pam } from '../../Pam/index.js'
+import type { KeyPress } from '../../KeyPress/_.ts'
+import type { Pam } from '../../Pam/_.ts'
 import { PromptEngine } from '../../PromptEngine/PromptEngine.js'
-import { Text } from '../../Text/index.js'
+import { Text } from '../../Text/_.ts'
 
 export interface Prompter {
   /**

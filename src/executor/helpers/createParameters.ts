@@ -6,7 +6,7 @@ import type { ParameterExclusive, ParameterExclusiveInput } from '../../Paramete
 import { parameterExclusiveCreate } from '../../Parameter/exclusive.js'
 import type { Parameter } from '../../Parameter/types.js'
 import type { OakSchema } from '../../schema/oak-schema.js'
-import type { Settings } from '../../Settings/index.js'
+import type { Settings } from '../../Settings/_.ts'
 
 /**
  * Process the spec input into a normalized spec.

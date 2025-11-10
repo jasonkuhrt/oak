@@ -1,10 +1,10 @@
 import { Effect } from 'effect'
 import type { RawArgInputs } from '../builders/command/types.js'
 import { createEvent } from '../eventPatterns.js'
-import { Help } from '../Help/index.js'
+import { Help } from '../Help/_.ts'
 import { getLowerCaseEnvironment, lowerCaseObjectKeys } from '../helpers.js'
-import { Prompter } from '../lib/Prompter/index.js'
-import { OpeningArgs } from '../OpeningArgs/index.js'
+import { Prompter } from '../lib/Prompter/_.ts'
+import { OpeningArgs } from '../OpeningArgs/_.ts'
 import type {
   ParseResultBasicError,
   ParseResultExclusiveGroupError,
@@ -13,7 +13,7 @@ import type {
 import type { ParameterBasic, ParameterBasicInput } from '../Parameter/basic.js'
 import type { ParameterExclusiveInput } from '../Parameter/exclusive.js'
 import { match } from '../Pattern/Pattern.js'
-import type { Settings } from '../Settings/index.js'
+import type { Settings } from '../Settings/_.ts'
 import { createParameters } from './helpers/createParameters.js'
 import { prompt } from './prompt.js'
 import type { ArgumentValue } from './types.js'

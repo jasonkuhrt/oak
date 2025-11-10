@@ -1,2 +1,2 @@
-export { Settings } from '../Settings/index.js'
+export { Settings } from '../Settings/_.ts'
 export * as Command from './default_.js'

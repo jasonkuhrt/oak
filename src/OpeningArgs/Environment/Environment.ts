@@ -1,5 +1,5 @@
 import { Str } from '@wollybeard/kit'
-import { Errors } from '../../Errors/index.js'
+import { Errors } from '../../Errors/_.ts'
 import type { Index, RequireField } from '../../lib/prelude.js'
 import { getNames } from '../../Parameter/helpers/CommandParameter.js'
 import type { Parameter } from '../../Parameter/types.js'

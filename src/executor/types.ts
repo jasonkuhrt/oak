@@ -1,4 +1,4 @@
-import type { Pam } from '../lib/Pam/index.js'
+import type { Pam } from '../lib/Pam/_.ts'
 
 export type ArgumentValueMutuallyExclusive = {
   _tag: string

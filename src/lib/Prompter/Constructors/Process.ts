@@ -1,6 +1,6 @@
 import { Effect, Exit, Stream } from 'effect'
 import * as Readline from 'node:readline/promises'
-import { KeyPress } from '../../KeyPress/index.js'
+import { KeyPress } from '../../KeyPress/_.ts'
 import type { KeyPressEvent } from '../../KeyPress/KeyPress.js'
 import type { PromptEngine } from '../../PromptEngine/PromptEngine.js'
 import { create } from './_core.js'

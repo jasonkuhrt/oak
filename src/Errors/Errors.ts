@@ -1,4 +1,4 @@
-import type { OpeningArgs } from '../OpeningArgs/index.js'
+import type { OpeningArgs } from '../OpeningArgs/_.ts'
 import type { ParameterExclusive, ParameterExclusiveGroup } from '../Parameter/exclusive.js'
 import type { Parameter } from '../Parameter/types.js'
 

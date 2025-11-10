@@ -1,5 +1,5 @@
 import { Str } from '@wollybeard/kit'
-import { Errors } from '../../Errors/index.js'
+import { Errors } from '../../Errors/_.ts'
 import { stripeNegatePrefixLoose } from '../../helpers.js'
 import type { Index } from '../../lib/prelude.js'
 import { findByName, isOrHasType } from '../../Parameter/helpers/CommandParameter.js'

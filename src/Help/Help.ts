@@ -1,10 +1,10 @@
 import { Cli, Str } from '@wollybeard/kit'
 import chalk from 'chalk'
 import { groupBy } from '../lib/prelude.js'
-import { Text } from '../lib/Text/index.js'
+import { Text } from '../lib/Text/_.ts'
 import type { Parameter } from '../Parameter/types.js'
 import * as SchemaRuntime from '../schema/schema-runtime.js'
-import type { Settings } from '../Settings/index.js'
+import type { Settings } from '../Settings/_.ts'
 import { Term } from '../term.js'
 
 // TODO use

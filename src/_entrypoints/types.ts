@@ -1,1 +1,1 @@
-export type { Settings } from '../Settings/index.js'
+export type { Settings } from '../Settings/_.ts'
