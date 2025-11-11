@@ -13,7 +13,7 @@ export interface ParameterBasicInput<
   _tag: 'Basic'
   nameExpression: string
   type: OakSchema
-  prompt: Prompt<$State['Schema']>
+  prompt: Prompt<BuilderCommandState.Type<$State>>
 }
 
 export interface ParameterBasic extends Omit<Pam.Parameter, '_tag'> {

@@ -8,7 +8,7 @@ import { isBoolean, isDefault, isEnum, isLiteral, isNumber, isOptional, isString
 // Supported Zod schema types for CLI parameters
 // Explicitly excludes ZodUnknown and other types that don't make sense for CLI
 // Note: ZodNativeEnum doesn't have an exported type in Zod v4, but is handled at runtime
-type SupportedZodType =
+export type SupportedZodType =
   | z.ZodString
   | z.ZodNumber
   | z.ZodBoolean
@@ -30,9 +30,10 @@ export interface ZodGuard extends Fn.Kind.Kind {
     >
 }
 
-export const Zod = createExtension<ZodGuard>({
+export const Zod = createExtension<SupportedZodType, ZodGuard>({
   name: `Zod`,
 
+  type: undefined as any,
   guard: undefined as any,
 
   toStandardSchema: (schema: unknown): StandardSchemaV1<any, any> => {

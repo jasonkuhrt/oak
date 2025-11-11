@@ -27,17 +27,19 @@ export interface BuilderCommandState {
 }
 
 export namespace BuilderCommandState {
+  export type Type<$State extends Base> = $State['Extension'] extends { type: infer $Type } ? $Type : unknown
+
   export interface BaseEmpty extends Base {
     IsPromptEnabled: false
     Extension: null
     ParametersExclusive: {}
     Parameters: {}
-    Schema: unknown
+    // Schema: unknown
   }
 
   export type Base = {
     IsPromptEnabled: boolean
-    Schema: unknown // Schema type parameter (accepts any schema)
+    // Schema: unknown // Schema type parameter (accepts any schema)
     Extension: SomeExtension | null // The extension (provides guard for validation)
     ParametersExclusive: {
       [label: string]: {

@@ -4,7 +4,7 @@ import type { ApplyGuard } from '../command/types.js'
 import type { BuilderParameterExclusiveState, ExclusiveBuilderStateSymbol } from './state.js'
 
 export interface ExclusiveParameterConfiguration<$State extends BuilderCommandState.Base> {
-  type: $State['Schema']
+  type: BuilderCommandState.Type<$State>
 }
 
 interface Parameter<$State extends BuilderCommandState.Base, Label extends string> {
@@ -17,7 +17,7 @@ interface Parameter<$State extends BuilderCommandState.Base, Label extends strin
     Label
   >
 
-  <NameExpression extends string, $Schema extends $State['Schema']>(
+  <NameExpression extends string, $Schema extends BuilderCommandState.Type<$State>>(
     name: BuilderCommandState.ValidateNameExpression<$State, NameExpression>,
     type: ApplyGuard<$State, $Schema>,
   ): BuilderExclusiveInitial<
@@ -45,7 +45,7 @@ export type BuilderExclusiveAfterDefault<$State extends BuilderCommandState.Base
 }
 
 export interface SomeParameter<$State extends BuilderCommandState.Base> {
-  (nameExpression: any, type: $State['Schema']): any
+  (nameExpression: any, type: BuilderCommandState.Type<$State>): any
   (nameExpression: any, configuration: ExclusiveParameterConfiguration<$State>): any
 }
 

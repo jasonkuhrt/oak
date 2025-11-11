@@ -1,5 +1,5 @@
 import type { Fn, Obj } from '@wollybeard/kit'
-import type { SomeExtension } from '../../extension.js'
+import type { Extension, SomeExtension } from '../../extension.js'
 import type { Prompter } from '../../lib/Prompter/__.ts'
 import type { OpeningArgs } from '../../OpeningArgs/_.ts'
 import type { Prompt } from '../../Parameter/types.js'
@@ -26,7 +26,7 @@ export type ApplyGuard<$State extends BuilderCommandState.Base, $Schema> =
 export interface ParameterConfiguration<
   $State extends BuilderCommandState.Base = BuilderCommandState.BaseEmpty,
 > {
-  type: $State['Schema']
+  type: BuilderCommandState.Type<$State>
   prompt?: Prompt<this['type']>
 }
 
@@ -52,7 +52,6 @@ export interface CommandBuilder<$State extends BuilderCommandState.Base = Builde
     extension: $Extension,
   ): CommandBuilder<
     Obj.Replace<$State, {
-      // Store the full extension (for accessing the guard)
       Extension: $Extension
     }>
   >
@@ -69,7 +68,7 @@ export interface CommandBuilder<$State extends BuilderCommandState.Base = Builde
       Obj.Replace<Configuration, { type: Configuration['type'] }>
     >
   >
-  parameter<NameExpression extends string, $Schema extends $State['Schema']>(
+  parameter<NameExpression extends string, $Schema extends BuilderCommandState.Type<$State>>(
     this: void,
     name: BuilderCommandState.ValidateNameExpression<$State, NameExpression>,
     type: ApplyGuard<$State, $Schema>,

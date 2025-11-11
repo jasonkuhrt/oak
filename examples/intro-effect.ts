@@ -1,5 +1,5 @@
 import { Schema } from 'effect'
-import { Command } from '../src/_entrypoints/default.js'
+import { Command } from '../src/_entrypoints/_.js'
 import { EffectSchema } from '../src/_entrypoints/extensions.js'
 
 const args = await Command.create()

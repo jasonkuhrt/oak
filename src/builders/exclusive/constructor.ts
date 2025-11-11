@@ -14,14 +14,14 @@ const create_ = (
 ): SomeBuilderExclusiveInitial => {
   const builder: SomeBuilderExclusiveInitial = {
     [ExclusiveBuilderStateSymbol]: state,
-    parameter: (nameExpression: string, typeOrConfiguration) => {
+    parameter: (nameExpression: string, schemaOrConfig) => {
       // Check if this is a schema (has ~standard property) or a configuration object
       // Standard Schema V1 schemas have a '~standard' property
-      const isSchema = typeOrConfiguration && typeof typeOrConfiguration === `object`
-        && `~standard` in typeOrConfiguration
-      const configuration = isSchema
-        ? { type: typeOrConfiguration }
-        : typeOrConfiguration
+      const isSchema = schemaOrConfig && typeof schemaOrConfig === `object`
+        && `~standard` in schemaOrConfig
+      const configuration: any = isSchema
+        ? { type: schemaOrConfig }
+        : schemaOrConfig
 
       // Convert raw schema to OakSchema using extension
       if (!commandState.extension) {

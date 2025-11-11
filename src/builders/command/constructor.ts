@@ -7,7 +7,7 @@ import * as ExclusiveBuilder from '../exclusive/constructor.js'
 import { ExclusiveBuilderStateSymbol } from '../exclusive/state.js'
 import type { BuilderCommandState } from './state.js'
 import { createState } from './state.js'
-import type { CommandBuilder, ParameterConfiguration, RawArgInputs } from './types.js'
+import type { CommandBuilder, RawArgInputs } from './types.js'
 
 export const create = (): CommandBuilder => {
   return create_(createState())

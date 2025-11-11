@@ -14,7 +14,7 @@
     "build"
   ],
   "exports": {
-    ".": "./build/_entrypoints/default.js",
+    ".": "./build/_entrypoints/_.js",
     "./types": "./build/_entrypoints/types.js",
     "./extensions": "./build/_entrypoints/extensions.js"
   },

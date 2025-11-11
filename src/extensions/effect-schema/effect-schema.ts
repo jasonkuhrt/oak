@@ -5,12 +5,14 @@ import { Option, Schema, SchemaAST } from 'effect'
 import { createExtension } from '../../extension.js'
 import type { Optionality, SchemaType } from '../../schema/oak-schema.js'
 
+export type SupportedType = Schema.Schema.All
+
 /**
  * Effect Schema guard that rejects Schema.NullOr patterns.
  * CLI users cannot pass literal null values - they can only omit parameters.
  * Use Schema.UndefinedOr instead for optional parameters.
  */
-interface EffectSchemaGuard extends Fn.Kind.Kind {
+export interface EffectSchemaGuard extends Fn.Kind.Kind {
   // @ts-expect-error - Intentional HKT pattern
   return: this['parameters'][0] extends Schema.NullOr<any> ? Ts.Err.StaticError<
       ['schema', 'nullor-not-supported'],
@@ -22,11 +24,12 @@ interface EffectSchemaGuard extends Fn.Kind.Kind {
     : never // Valid schema - return never so ApplyGuard passes through original
 }
 
-export const EffectSchema = createExtension<EffectSchemaGuard>({
+export const EffectSchema = createExtension<SupportedType, EffectSchemaGuard>({
   name: `EffectSchema`,
 
   // Guard that rejects Schema.NullOr at compile-time
   guard: undefined as any,
+  type: undefined as any,
 
   toStandardSchema: (schema: unknown): StandardSchemaV1<any, any> => {
     const effectSchema = schema as Schema.Schema<any, any, never>

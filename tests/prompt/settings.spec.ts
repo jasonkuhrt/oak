@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import type { Settings } from '../../src/_entrypoints/default.js'
+import type { Settings } from '../../src/_entrypoints/_.js'
 import type { OakSchema } from '../../src/schema/oak-schema.js'
 import { $, s, tryCatch } from '../_/helpers.js'
 import { memoryPrompter } from '../_/mocks/tty.js'

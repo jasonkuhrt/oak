@@ -1,5 +1,5 @@
 import { z } from 'zod/v4'
-import { Command } from '../../src/_entrypoints/default.js'
+import { Command } from '../../src/_entrypoints/_.js'
 import { Zod } from '../../src/_entrypoints/extensions.js'
 import { isPromiseLikeValue } from '../../src/lib/prelude.js'
 
