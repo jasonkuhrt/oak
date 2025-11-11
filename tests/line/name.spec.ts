@@ -1,4 +1,4 @@
-import type { Ts } from '@wollybeard/kit'
+import { Ts } from '@wollybeard/kit'
 import { describe, expect, test } from 'vitest'
 import { $, b, s } from '../_/helpers.js'
 
@@ -99,18 +99,18 @@ describe(`case`, () => {
 
   test(`kebab case param spec can be passed camel case parameter`, () => {
     const args = $.parameter(`--foo-bar`, s).parse({ line: [`--fooBar`, `foo`] })
-    true as Ts.Assert.equiv<{ fooBar: string }, typeof args>
+    Ts.Assert.on(args).exact.of({} as { fooBar: string })
   })
   test(`kebab case param spec can be passed kebab case parameter`, () => {
     const args = $.parameter(`--foo-bar`, s).parse({ line: [`--foo-bar`, `foo`] })
-    true as Ts.Assert.equiv<{ fooBar: string }, typeof args>
+    Ts.Assert.on(args).exact.of({} as { fooBar: string })
   })
   test(`camel case param spec can be passed kebab case parameter`, () => {
     const args = $.parameter(`--fooBar`, s).parse({ line: [`--foo-bar`, `foo`] })
-    true as Ts.Assert.equiv<{ fooBar: string }, typeof args>
+    Ts.Assert.on(args).exact.of({} as { fooBar: string })
   })
   test(`camel case param spec can be passed camel case parameter`, () => {
     const args = $.parameter(`--fooBar`, s).parse({ line: [`--fooBar`, `foo`] })
-    true as Ts.Assert.equiv<{ fooBar: string }, typeof args>
+    Ts.Assert.on(args).exact.of({} as { fooBar: string })
   })
 })

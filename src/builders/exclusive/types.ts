@@ -1,5 +1,6 @@
 import type { InferOutput } from '../../schema/standard-schema.js'
 import type { BuilderCommandState } from '../command/state.js'
+import type { ApplyGuard } from '../command/types.js'
 import type { BuilderParameterExclusiveState, ExclusiveBuilderStateSymbol } from './state.js'
 
 export interface ExclusiveParameterConfiguration<$State extends BuilderCommandState.Base> {
@@ -7,6 +8,7 @@ export interface ExclusiveParameterConfiguration<$State extends BuilderCommandSt
 }
 
 interface Parameter<$State extends BuilderCommandState.Base, Label extends string> {
+  // TODO: Apply guard to configuration parameter (e.g., configuration: Configuration & { type: ApplyGuard<...> })
   <NameExpression extends string, Configuration extends ExclusiveParameterConfiguration<$State>>(
     name: BuilderCommandState.ValidateNameExpression<$State, NameExpression>,
     configuration: Configuration,
@@ -17,7 +19,7 @@ interface Parameter<$State extends BuilderCommandState.Base, Label extends strin
 
   <NameExpression extends string, $Schema extends $State['Schema']>(
     name: BuilderCommandState.ValidateNameExpression<$State, NameExpression>,
-    type: $Schema,
+    type: ApplyGuard<$State, $Schema>,
   ): BuilderExclusiveInitial<
     BuilderCommandState.AddExclusiveParameter<$State, Label, NameExpression, { type: $Schema }>,
     Label

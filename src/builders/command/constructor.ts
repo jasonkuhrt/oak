@@ -44,10 +44,12 @@ const create_ = (state: BuilderCommandState): any => {
       return create_(newState)
     },
     parameter: (nameExpression: string, typeOrConfiguration: any) => {
-      // Check if this is a schema (has ~standard property) or a configuration object
-      // Standard Schema V1 schemas have a '~standard' property
-      const isSchema = typeOrConfiguration && typeof typeOrConfiguration === `object`
-        && `~standard` in typeOrConfiguration
+      // Check if this is a schema or a configuration object
+      // - Standard Schema V1 schemas (like Zod v4) have a '~standard' property and are objects
+      // - Effect Schemas have an 'ast' property and are functions (classes)
+      const isSchema = typeOrConfiguration
+        && (typeof typeOrConfiguration === `object` || typeof typeOrConfiguration === `function`)
+        && (`~standard` in typeOrConfiguration || `ast` in typeOrConfiguration)
       const configuration = isSchema
         ? { type: typeOrConfiguration }
         : typeOrConfiguration

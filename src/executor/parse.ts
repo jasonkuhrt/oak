@@ -202,17 +202,28 @@ export const parse = (
     const args = {
       ...Object.fromEntries(
         Object.entries(parseProgressPostPrompts.basicParameters)
-          .map(([k, v]) => {
-            return [
-              k,
-              v.prompt.enabled
-                ? v.prompt.arg
-                : v.openingParseResult._tag === `supplied`
-                ? v.openingParseResult.value
-                : null,
-            ]
+          .map(([k, v]): [string, ArgumentValue] | null => {
+            if (v.prompt.enabled) {
+              return [k, v.prompt.arg]
+            } else if (v.openingParseResult._tag === `supplied`) {
+              return [k, v.openingParseResult.value]
+            } else if (v.openingParseResult._tag === `omitted`) {
+              // Handle omitted parameters - use the omittedValue from optionality metadata
+              const optionality = v.spec.type.metadata.optionality
+              if (
+                optionality._tag === `optional` && `omittedValue` in optionality
+                && optionality.omittedValue !== undefined
+              ) {
+                // Only include the key if omittedValue is explicitly set to a non-undefined value (e.g., null for NullOr)
+                return [k, optionality.omittedValue]
+              }
+              // Otherwise, don't include the key (undefined by absence)
+              return null
+            } else {
+              return null
+            }
           })
-          .filter((kv): kv is [string, ArgumentValue] => kv[1] !== null),
+          .filter((kv): kv is [string, ArgumentValue] => kv !== null),
       ),
       ...Object.fromEntries(
         Object.values(parseProgressPostPrompts.mutuallyExclusiveParameters)

@@ -1,7 +1,8 @@
 import type { StandardSchemaV1 } from '@standard-schema/spec'
+import type { Fn } from '@wollybeard/kit'
 import type { OakSchema } from './schema/oak-schema.js'
 
-export type SomeExtension = Extension<any>
+export type SomeExtension = Extension
 
 /**
  * Extension interface for schema libraries (Zod, Effect, etc.).
@@ -9,19 +10,39 @@ export type SomeExtension = Extension<any>
  * Extensions convert library-specific schemas to Standard Schema V1
  * and extract metadata for better CLI help generation.
  */
-export interface Extension<Type = unknown> {
+export interface Extension<$Guard extends Fn.Kind.Kind = Fn.Kind.Identity> {
   /**
    * Extension name (e.g., "Zod", "Effect").
    */
   name: string
 
   /**
-   * The type constraint that this extension accepts.
-   * This is used for compile-time type checking of parameters.
+   * Type-level guard for validating schemas at compile-time.
    *
-   * For example, the Zod extension would use `z.ZodType`.
+   * The guard is a Higher-Kinded Type (HKT) that receives a schema
+   * and returns either:
+   * - `never` (if valid - guard passes through original schema)
+   * - `Ts.Err.StaticError` (if invalid, causing TypeScript compile error)
+   *
+   * This allows extensions to reject schemas that don't make sense
+   * in a CLI context (e.g., Effect's Schema.NullOr, Zod's .nullable()).
+   *
+   * Default: Fn.Kind.Identity (accepts all schemas)
+   *
+   * @example
+   * ```ts
+   * // Effect Schema guard that rejects NullOr
+   * interface EffectSchemaGuard extends Fn.Kind.Kind {
+   *   return: this['parameters'][0] extends Schema.NullOr<any>
+   *     ? Ts.Err.StaticError<
+   *         ['schema', 'nullor-not-supported'],
+   *         { message: 'Schema.NullOr() is not supported. Use Schema.UndefinedOr() instead.' }
+   *       >
+   *     : never
+   * }
+   * ```
    */
-  type: Type
+  guard: $Guard
 
   /**
    * Convert a library-specific schema to Standard Schema V1.
@@ -44,4 +65,6 @@ export interface Extension<Type = unknown> {
 /**
  * Create an extension with the given configuration.
  */
-export const createExtension = <Type>(config: Extension<Type>): Extension<Type> => config
+export const createExtension = <$Guard extends Fn.Kind.Kind = Fn.Kind.Identity>(
+  config: Extension<$Guard>,
+): Extension<$Guard> => config

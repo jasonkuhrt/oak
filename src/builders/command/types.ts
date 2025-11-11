@@ -1,14 +1,27 @@
-import type { Obj } from '@wollybeard/kit'
+import type { Fn, Obj } from '@wollybeard/kit'
 import type { SomeExtension } from '../../extension.js'
-import type { HKT } from '../../helpers.js'
 import type { Prompter } from '../../lib/Prompter/__.ts'
 import type { OpeningArgs } from '../../OpeningArgs/_.ts'
 import type { Prompt } from '../../Parameter/types.js'
-import type { OakSchema } from '../../schema/oak-schema.js'
 import type { Settings } from '../../Settings/_.ts'
 import type { ExclusiveBuilderStateSymbol } from '../exclusive/state.js'
 import type { BuilderExclusive, BuilderExclusiveInitial } from '../exclusive/types.js'
 import type { BuilderCommandState } from './state.js'
+
+/**
+ * Apply extension's guard HKT to validate schema at compile-time.
+ * Returns the schema unchanged if valid, or Ts.Err.StaticError if invalid.
+ * Defaults to pass-through when no extension is configured.
+ */
+// dprint-ignore
+export type ApplyGuard<$State extends BuilderCommandState.Base, $Schema> =
+  $State['Extension'] extends null
+    ? $Schema // No extension = pass through
+    : $State['Extension'] extends { guard: infer $Guard extends Fn.Kind.Kind }
+      ? [Fn.Kind.Apply<$Guard, [$Schema]>] extends [never]
+        ? $Schema
+        : Fn.Kind.Apply<$Guard, [$Schema]>
+      : $Schema // Fallback = pass through
 
 export interface ParameterConfiguration<
   $State extends BuilderCommandState.Base = BuilderCommandState.BaseEmpty,
@@ -39,20 +52,27 @@ export interface CommandBuilder<$State extends BuilderCommandState.Base = Builde
     extension: $Extension,
   ): CommandBuilder<
     Obj.Replace<$State, {
-      // Store the extension's type constraint (e.g., z.ZodType) for compile-time validation
-      Schema: $Extension extends { type: infer __type__ } ? __type__ : $State['Schema']
+      // Store the full extension (for accessing the guard)
+      Extension: $Extension
     }>
   >
   description(this: void, description: string): CommandBuilder<$State>
+  // TODO: Apply guard to configuration parameter (e.g., configuration: Configuration & { type: ApplyGuard<...> })
   parameter<NameExpression extends string, const Configuration extends ParameterConfiguration<$State>>(
     this: void,
     name: BuilderCommandState.ValidateNameExpression<$State, NameExpression>,
     configuration: Configuration,
-  ): CommandBuilder<BuilderCommandState.AddParameter<$State, NameExpression, Configuration>>
+  ): CommandBuilder<
+    BuilderCommandState.AddParameter<
+      $State,
+      NameExpression,
+      Obj.Replace<Configuration, { type: Configuration['type'] }>
+    >
+  >
   parameter<NameExpression extends string, $Schema extends $State['Schema']>(
     this: void,
     name: BuilderCommandState.ValidateNameExpression<$State, NameExpression>,
-    type: $Schema,
+    type: ApplyGuard<$State, $Schema>,
   ): CommandBuilder<BuilderCommandState.AddParameter<$State, NameExpression, { type: $Schema }>>
   parametersExclusive<Label extends string, $BuilderExclusive extends BuilderExclusive<$State>>(
     this: void,

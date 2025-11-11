@@ -5,7 +5,7 @@ import type { StandardSchemaV1 } from '@standard-schema/spec'
  */
 export type Optionality<___T = unknown> =
   | { _tag: 'required' }
-  | { _tag: 'optional' }
+  | { _tag: 'optional'; omittedValue?: null | undefined }
   | { _tag: 'default'; getValue: () => ___T }
 
 /**

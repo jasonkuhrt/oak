@@ -1,18 +1,9 @@
 import type { StandardSchemaV1 } from '@standard-schema/spec'
+import type { Fn, Ts } from '@wollybeard/kit'
 import type { z } from 'zod/v4'
 import { createExtension } from '../../extension.js'
 import type { Optionality, SchemaType } from '../../schema/oak-schema.js'
-import {
-  isBoolean,
-  isDefault,
-  isEnum,
-  isLiteral,
-  isNativeEnum,
-  isNumber,
-  isOptional,
-  isString,
-  isUnion,
-} from './guards.js'
+import { isBoolean, isDefault, isEnum, isLiteral, isNumber, isOptional, isString, isUnion } from './guards.js'
 
 // Supported Zod schema types for CLI parameters
 // Explicitly excludes ZodUnknown and other types that don't make sense for CLI
@@ -27,12 +18,22 @@ type SupportedZodType =
   | z.ZodOptional<any>
   | z.ZodDefault<any>
 
-export const Zod = createExtension<SupportedZodType>({
+export interface ZodGuard extends Fn.Kind.Kind {
+  // @ts-expect-error - Intentional HKT pattern
+  return: this['parameters'][0] extends SupportedZodType ? never
+    : Ts.Err.StaticError<
+      ['schema', 'unsupported-zod-type'],
+      {
+        message:
+          'Unsupported Zod schema type. Supported types: string, number, boolean, enum, literal, union, optional, default. Not supported: nullable, nullish, unknown.'
+      }
+    >
+}
+
+export const Zod = createExtension<ZodGuard>({
   name: `Zod`,
 
-  // Type-level only field for compile-time validation
-  // Excludes z.ZodUnknown to prevent using unknown types in CLI parameters
-  type: undefined as any,
+  guard: undefined as any,
 
   toStandardSchema: (schema: unknown): StandardSchemaV1<any, any> => {
     const zodSchema = schema as any
@@ -82,7 +83,7 @@ const extractZodMetadata = (
     // Create a thunk that will access the default value lazily when needed
     optionality = { _tag: `default`, getValue: () => schema._def?.defaultValue }
   } else if (isOptional(zodSchema)) {
-    optionality = { _tag: `optional` }
+    optionality = { _tag: `optional`, omittedValue: undefined }
   } else {
     optionality = { _tag: `required` }
   }

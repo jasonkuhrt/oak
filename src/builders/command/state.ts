@@ -29,14 +29,16 @@ export interface BuilderCommandState {
 export namespace BuilderCommandState {
   export interface BaseEmpty extends Base {
     IsPromptEnabled: false
+    Extension: null
     ParametersExclusive: {}
     Parameters: {}
-    Schema: StandardSchemaV1
+    Schema: unknown
   }
 
   export type Base = {
     IsPromptEnabled: boolean
-    Schema: unknown // The constraint type from the extension (e.g., z.ZodType)
+    Schema: unknown // Schema type parameter (accepts any schema)
+    Extension: SomeExtension | null // The extension (provides guard for validation)
     ParametersExclusive: {
       [label: string]: {
         Optional: boolean
@@ -127,8 +129,8 @@ export namespace BuilderCommandState {
           Optional: $State['ParametersExclusive'][_]['Optional']
           Parameters: {
             [_ in NameExpression as GetCanonicalName<Cli.Param.Analyze<NameExpression>>]: {
-              // Store the schema as StandardSchemaV1 to extract Output type
-              Schema: Configuration['type'] extends StandardSchemaV1 ? Configuration['type'] : never
+              // Store the schema type as-is - InferOutput will handle extraction
+              Schema: Configuration['type']
               NameParsed: Cli.Param.Analyze<
                 NameExpression,
                 { usedNames: GetUsedNames<$State>; reservedNames: ReservedParameterNames }
@@ -150,9 +152,9 @@ export namespace BuilderCommandState {
     NameExpression extends string,
     Configuration extends ParameterConfiguration<$State>,
   > = {
-    // Store the schema as StandardSchemaV1 to extract Output type
-    // Configuration['type'] is constrained to be a StandardSchemaV1
-    Schema: Configuration['type'] extends StandardSchemaV1 ? Configuration['type'] : never
+    // Store the schema type as-is - InferOutput will handle extraction
+    // Supports both StandardSchemaV1 (Zod) and Effect schemas
+    Schema: Configuration['type']
     NameParsed: Cli.Param.Analyze<
       NameExpression,
       { usedNames: GetUsedNames<$State>; reservedNames: ReservedParameterNames }

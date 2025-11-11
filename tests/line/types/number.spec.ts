@@ -1,4 +1,4 @@
-import type { Ts } from '@wollybeard/kit'
+import { Ts } from '@wollybeard/kit'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { $, n } from '../../_/helpers.js'
 import { s } from '../../_/helpers.js'
@@ -16,7 +16,7 @@ beforeEach(() => {
 
 it(`casts the input as a number`, () => {
   const args = $.parameter(`--age`, n).parse({ line: [`--age`, `1`] })
-  true as Ts.Assert.equiv<{ age: number }, typeof args>
+  Ts.Assert.on(args).exact.of({} as { age: number })
   expect(args).toMatchObject({ age: 1 })
 })
 

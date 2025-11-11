@@ -36,7 +36,10 @@
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
     "docs:preview": "vitepress preview docs",
-    "examples:intro": "tsx examples/intro.ts",
+    "examples:intro": "tsx examples/intro-zod.ts",
+    "examples:intro-zod": "tsx examples/intro-zod.ts",
+    "examples:intro-effect": "tsx examples/intro-effect.ts",
+    "examples:optional-effect": "tsx examples/optional-effect.ts",
     "examples:prompt": "tsx examples/prompt.ts",
     "examples:kitchen-sink": "tsx examples/kitchen-sink.ts",
     "examples:publish": "tsx examples/publish.ts"
@@ -44,7 +47,7 @@
   "keywords": [],
   "dependencies": {
     "@standard-schema/spec": "^1.0.0",
-    "@wollybeard/kit": "^0.101.1",
+    "@wollybeard/kit": "^0.102.0",
     "alge": "0.8.1",
     "ansi-escapes": "^7.2.0",
     "chalk": "^5.6.2",

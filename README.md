@@ -43,7 +43,9 @@ if (args.age) console.log(`You are ${args.age} years old.`)
 
 Check out the [examples](./examples) directory for more usage patterns:
 
-- [intro.ts](./examples/intro.ts) - Basic usage
+- [intro-zod.ts](./examples/intro-zod.ts) - Basic usage with Zod
+- [intro-effect.ts](./examples/intro-effect.ts) - Basic usage with Effect Schema
+- [optional-effect.ts](./examples/optional-effect.ts) - Effect Schema optional patterns
 - [prompt.ts](./examples/prompt.ts) - Interactive prompts
 - [kitchen-sink.ts](./examples/kitchen-sink.ts) - Advanced features
 - [publish.ts](./examples/publish.ts) - Real-world example

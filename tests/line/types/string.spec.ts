@@ -1,4 +1,4 @@
-import type { Ts } from '@wollybeard/kit'
+import { Ts } from '@wollybeard/kit'
 import { describe, expect, it } from 'vitest'
 import { $, n, s } from '../../_/helpers.js'
 
@@ -23,12 +23,12 @@ describe(`errors`, () => {
 describe(`optional`, () => {
   it(`specified input can be omitted, missing key is possible`, () => {
     const args = $.parameter(`--foo`, s.optional()).parse({ line: [] })
-    true as Ts.Assert.equiv<{ foo: string | undefined }, typeof args>
+    Ts.Assert.on(args).exact.of({} as { foo: string | undefined })
     expect(Object.keys(args)).not.toContain(`foo`)
   })
   it(`input can be given`, () => {
     const args = $.parameter(`--foo`, s.optional()).parse({ line: [`--foo`, `bar`] })
-    true as Ts.Assert.equiv<{ foo: string | undefined }, typeof args>
+    Ts.Assert.on(args).exact.of({} as { foo: string | undefined })
     expect(args).toMatchObject({ foo: `bar` })
   })
 })

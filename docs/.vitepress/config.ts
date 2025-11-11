@@ -80,6 +80,7 @@ export default defineConfig({
           text: 'Extensions',
           items: [
             { text: 'Zod', link: '/guides/extensions/zod' },
+            { text: 'Effect Schema', link: '/guides/extensions/effect-schema' },
           ],
         },
       ],
